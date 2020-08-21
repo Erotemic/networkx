@@ -9,6 +9,137 @@ except Exception:
     profile = ub.identity
 
 
+def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2'):
+    """
+
+        >>> n = 80
+        >>> paths1 = ['{}/{}'.format(i, j) for i in range(0, (n // 10) + 1) for j in range(0, n)]
+        >>> paths2 = ['q/r/sp/' + p for p in paths1]
+        >>> len(paths1)
+
+        >>> rng = None
+        >>> import kwarray
+        >>> rng = kwarray.ensure_rng(rng)
+        >>> def random_paths(rng, max_depth=10):
+        >>>     depth = rng.randint(1, max_depth)
+        >>>     parts = list(map(chr, rng.randint(ord('a'), ord('z'), size=depth)))
+        >>>     path = '/'.join(parts)
+        >>>     return path
+        >>> n = 200
+        >>> paths1 = sorted({random_paths(rng) for _ in range(n)})
+        >>> paths2 = sorted({random_paths(rng) for _ in range(n)})
+        >>> paths1 = paths1 + ['a/' + k for k in paths2[0:n // 3]]
+
+        >>> with ub.Timer('iterative-prehash'):
+        >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
+        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='iter-prehash')
+        >>>     d = dict(zip(*m))
+        >>>     #print('d = {!r}'.format(d))
+        >>> with ub.Timer('iterative-prehash2'):
+        >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
+        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='iter-prehash2')
+        >>>     d = dict(zip(*m))
+        >>>     #print('d = {!r}'.format(d))
+        >>> with ub.Timer('iterative-alt2'):
+        >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
+        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='iter-alt2')
+        >>>     d = dict(zip(*m))
+        >>>     print('d = {!r}'.format(d))
+        >>> with ub.Timer('recurse'):
+        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='recurse')
+        >>>     d = dict(zip(*m))
+        >>>     print('d = {!r}'.format(d))
+
+    """
+    import networkx as nx
+
+    # the longest common balanced sequence problem
+    def _affinity(tok1, tok2):
+        return tok1[-1] == tok2[-1]
+        # score = 0
+        # for t1, t2 in zip(tok1[::-1], tok2[::-1]):
+        #     if t1 == t2:
+        #         score += 1
+        #     else:
+        #         break
+        # return score
+    node_affinity = _affinity
+    # import operator
+    # eq = operator.eq
+
+    def paths_to_tree(paths):
+        tree = nx.OrderedDiGraph()
+        for path in sorted(paths):
+            parts = tuple(path.split(sep))
+            node_path = []
+            for i in range(1, len(parts) + 1):
+                node = parts[0:i]
+                tree.add_node(node)
+                tree.nodes[node]['label'] = node[-1]
+                node_path.append(node)
+            for u, v in ub.iter_window(node_path, 2):
+                tree.add_edge(u, v)
+        return tree
+
+    tree1 = paths_to_tree(paths1)
+    tree2 = paths_to_tree(paths2)
+
+    subtree1, subtree2 = maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity=node_affinity, impl=impl)
+    # subtree1, subtree2 = maximum_common_ordered_subtree_isomorphism(tree1, tree2, node_affinity=node_affinity)
+
+    subpaths1 = [sep.join(node) for node in subtree1.nodes if subtree1.out_degree[node] == 0]
+    subpaths2 = [sep.join(node) for node in subtree2.nodes if subtree2.out_degree[node] == 0]
+    return subpaths1, subpaths2
+
+
+def maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity='auto', impl='iter-alt2'):
+    """
+
+    Example:
+        >>> from netharn.initializers._nx_extensions import *  # NOQA
+        >>> from netharn.initializers._nx_extensions import _lcs, _print_forest
+        >>> def random_ordered_tree(n, seed=None):
+        >>>     tree = nx.dfs_tree(nx.random_tree(n, seed=seed))
+        >>>     otree = nx.OrderedDiGraph()
+        >>>     otree.add_edges_from(tree.edges)
+        >>>     return otree
+        >>> tree1 = random_ordered_tree(10, seed=1)
+        >>> tree2 = random_ordered_tree(10, seed=2)
+        >>> print('tree1')
+        >>> _print_forest(tree1)
+        >>> print('tree2')
+        >>> _print_forest(tree2)
+
+        >>> embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2 )
+        >>> print('embedding1')
+        >>> _print_forest(embedding1)
+        >>> print('embedding2')
+        >>> _print_forest(embedding2)
+    """
+    if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree1)):
+        raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
+    if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree2)):
+        raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
+
+    # Convert the trees to balanced sequences
+    sequence1, open_to_close, toks = tree_to_balanced_sequence(tree1, open_to_close=None, toks=None)
+    sequence2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks)
+    seq1 = sequence1
+    seq2 = sequence2
+
+    open_to_tok = ub.invert_dict(toks)
+
+    # Solve the longest common balanced sequence problem
+    best, value = longest_common_balanced_sequence(
+        seq1, seq2, open_to_close, open_to_tok=open_to_tok, node_affinity=node_affinity, impl=impl)
+    subseq1, subseq2 = best
+
+    # Convert the subsequence back into a tree
+    embedding1 = seq_to_tree(subseq1, open_to_close, toks)
+    embedding2 = seq_to_tree(subseq2, open_to_close, toks)
+    return embedding1, embedding2
+
+
 # @profile
 def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None, node_affinity='auto', impl='iter'):
     """
@@ -24,8 +155,8 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None
 
         >>> import kwarray
         >>> rng = kwarray.ensure_rng(3432432, 'python')
-        >>> tree1 = random_ordered_tree(100, seed=rng, pool='[{(')
-        >>> tree2 = random_ordered_tree(100, seed=rng, pool='[{(')
+        >>> tree1 = random_ordered_tree(300, seed=rng, pool='[{(')
+        >>> tree2 = random_ordered_tree(300, seed=rng, pool='[{(')
         >>> if len(tree1.nodes) < 20:
         >>>     _print_forest(tree1)
         >>>     _print_forest(tree2)
@@ -39,19 +170,19 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None
         >>> node_affinity = operator.eq
         >>> with ub.Timer('iterative-alt2'):
         >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
-        >>>     print('val1, best1 = {}, {!r}'.format(val1, best1))
+        >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
         >>> with ub.Timer('iterative-alt1'):
         >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt1')
-        >>>     print('val1, best1 = {}, {!r}'.format(val1, best1))
+        >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
         >>> with ub.Timer('iterative'):
         >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter')
-        >>>     print('val1, best1 = {}, {!r}'.format(val1, best1))
+        >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
         >>> with ub.Timer('recursive'):
         >>>     best2, val2 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='recurse')
-        >>>     print('val2, best2 = {}, {!r}'.format(val2, best2))
-        >>> #with ub.Timer('iterative-prehash'):
-        >>> #    best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-prehash')
-        >>> #    print('val1, best1 = {}, {!r}'.format(val1, best1))
+        >>>     #print('val2, best2 = {}, {!r}'.format(val2, best2))
+        >>> with ub.Timer('iterative-prehash'):
+        >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-prehash')
+        >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
     """
     if node_affinity == 'auto' or node_affinity == 'eq':
         node_affinity = operator.eq
@@ -74,6 +205,8 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None
         best, value = _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
     elif impl == 'iter-prehash':
         best, value = _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+    elif impl == 'iter-prehash2':
+        best, value = _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
     elif impl == 'iter-alt1':
         best, value = _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
     elif impl == 'iter-alt2':
@@ -419,8 +552,6 @@ def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, op
 def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
     """
     Version of the lcs iterative algorithm where we precompute hash values
-
-    This is actually slower than the simple version
     """
     def decomp_info(seq, open_to_close):
         pop_open, pop_close, head, tail = balanced_decomp_unsafe(seq, open_to_close)
@@ -565,6 +696,158 @@ def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_t
 
     # The stack pop is our solution
     (val, best) = _results[key]
+    found = (best, val)
+    return found
+
+
+@profile
+def _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+    """
+    Version of the lcs iterative algorithm where we precompute hash values
+    """
+    def decomp_info(seq, open_to_close):
+        pop_open, pop_close, head, tail = balanced_decomp_unsafe(seq, open_to_close)
+        head_tail = head + tail
+        head_key = hash(head)
+        tail_key = hash(tail)
+        head_tail_key = hash(head_tail)
+        tok = open_to_tok[pop_open[0]]
+        a = pop_open
+        b = pop_close
+        info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
+        return info
+
+    def gen_decomp_v2(seq, open_to_close):
+        _genmemo = {}
+        # TODO: make iterative
+        def _gen(seq):
+            if seq:
+                key = hash(seq)
+                if key not in _genmemo:
+                    info = decomp_info(seq, open_to_close)
+                    head, tail, head_tail = info[2:5]
+                    _genmemo[key] = info
+                    yield (seq, _genmemo[key])
+                    yield from _gen(head_tail)
+                    yield from _gen(head)
+                    yield from _gen(tail)
+        all_decomp = dict(_gen(seq))
+        return all_decomp
+
+    all_decomp1 = gen_decomp_v2(full_seq1, open_to_close)
+    all_decomp2 = gen_decomp_v2(full_seq2, open_to_close)
+
+    key_decomp1 = {}
+    key_decomp2 = {}
+    _results = {}
+    # Populate base cases
+    empty1 = type(ub.peek(all_decomp1.keys()))()
+    empty2 = type(ub.peek(all_decomp2.keys()))()
+    empty1_key = hash(empty1)
+    empty2_key = hash(empty2)
+    best = (empty1, empty2)
+    base_result = (0, best)
+    for seq1, info1 in all_decomp1.items():
+        seq1_key = hash(seq1)
+        head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]
+        _results[(seq1_key, empty2_key)] = base_result
+        _results[(head1_key, empty2_key)] = base_result
+        _results[(tail1_key, empty2_key)] = base_result
+        _results[(head_tail1_key, empty2_key)] = base_result
+        key_decomp1[seq1_key] = info1
+
+    for seq2, info2 in all_decomp2.items():
+        seq2_key = hash(seq2)
+        head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]
+        _results[(empty1_key, seq2_key)] = base_result
+        _results[(empty1_key, head2_key)] = base_result
+        _results[(empty1_key, tail2_key)] = base_result
+        _results[(empty1_key, head_tail2_key)] = base_result
+        key_decomp2[seq2_key] = info2
+
+    full_seq1_key = hash(full_seq1)
+    full_seq2_key = hash(full_seq2)
+    key0 = (full_seq1_key, full_seq2_key)
+    frame0 = key0, full_seq1, full_seq2
+    stack = [frame0]
+    missing_frames = []
+    while stack:
+        frame = stack[-1]
+        key, seq1, seq2 = frame
+        seq1_key, seq2_key = key
+        if key not in _results:
+            missing_frames.clear()
+
+            # if seq1_key not in key_decomp1:
+            info1 = key_decomp1[seq1_key]
+            # else:
+            #     info1 = decomp_info(seq1, open_to_close)
+            #     key_decomp1[seq1_key] = info1
+            tok1, seq1, head1, tail1, head_tail1, head1_key, tail1_key, head_tail1_key, a1, b1 = info1
+
+            # if seq2_key not in key_decomp2:
+            info2 = key_decomp2[seq2_key]
+            # else:
+            #     info2 = decomp_info(seq2, open_to_close)
+            #     key_decomp2[seq2_key] = info2
+            tok2, seq2, head2, tail2, head_tail2, head2_key, tail2_key, head_tail2_key, a2, b2 = info2
+
+            affinity = node_affinity(tok1, tok2)
+
+            # Case 2: The current edge in sequence1 is deleted
+            try_key = (head_tail1_key, seq2_key)
+            if try_key in _results:
+                cand1 = _results[try_key]
+            else:
+                miss_frame = try_key, head_tail1, seq2
+                stack.append(miss_frame)
+                continue
+
+            # Case 3: The current edge in sequence2 is deleted
+            try_key = (seq1_key, head_tail2_key)
+            if try_key in _results:
+                cand2 = _results[try_key]
+            else:
+                miss_frame = try_key, seq1, head_tail2
+                stack.append(miss_frame)
+                continue
+
+            # Case 1: The LCS involves this edge
+            if affinity:
+                try_key = (head1_key, head2_key)
+                if try_key in _results:
+                    pval_h, new_heads = _results[try_key]
+                else:
+                    miss_frame = try_key, head1, head2
+                    stack.append(miss_frame)
+                    continue
+
+                try_key = (tail1_key, tail2_key)
+                if try_key in _results:
+                    pval_t, new_tails = _results[try_key]
+                else:
+                    miss_frame = try_key, tail1, tail2
+                    stack.append(miss_frame)
+                    continue
+
+                new_head1, new_head2 = new_heads
+                new_tail1, new_tail2 = new_tails
+
+                subseq1 = a1 + new_head1 + b1 + new_tail1
+                subseq2 = a2 + new_head2 + b2 + new_tail2
+
+                res3 = (subseq1, subseq2)
+                val3 = pval_h + pval_t + affinity
+                cand3 = (val3, res3)
+            else:
+                cand3 = (-1, None)
+
+            # We solved the frame
+            _results[key] = max(cand1, cand2, cand3)
+        stack.pop()
+
+    # The stack pop is our solution
+    (val, best) = _results[key0]
     found = (best, val)
     return found
 
