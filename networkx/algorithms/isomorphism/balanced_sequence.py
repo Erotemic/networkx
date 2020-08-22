@@ -209,6 +209,12 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None
         best, value = _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
     elif impl == 'iter-alt2':
         best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+    elif impl == 'iter-alt2-cython':
+        from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_simple_alt2_cython
+        best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+    elif impl == 'iter-prehash2-cython':
+        from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_prehash2_cython
+        best, value = _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
     else:
         raise KeyError(impl)
     return best, value
@@ -229,8 +235,8 @@ def _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to
 
     _results = {}
     # Populate base cases
-    empty1 = type(ub.peek(all_decomp1.keys()))()
-    empty2 = type(ub.peek(all_decomp2.keys()))()
+    empty1 = type(next(iter(all_decomp1.keys())))()
+    empty2 = type(next(iter(all_decomp2.keys())))()
     best = (empty1, empty2)
     base_result = (0, best)
     for seq1 in all_decomp1.keys():
@@ -347,8 +353,8 @@ def _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, op
 
     _results = {}
     # Populate base cases
-    empty1 = type(ub.peek(all_decomp1.keys()))()
-    empty2 = type(ub.peek(all_decomp2.keys()))()
+    empty1 = type(next(iter(all_decomp1.keys())))()
+    empty2 = type(next(iter(all_decomp2.keys())))()
     best = (empty1, empty2)
     base_result = (0, best)
     for seq1 in all_decomp1.keys():
@@ -454,8 +460,8 @@ def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, op
 
     _results = {}
     # Populate base cases
-    empty1 = type(ub.peek(all_decomp1.keys()))()
-    empty2 = type(ub.peek(all_decomp2.keys()))()
+    empty1 = type(next(iter(all_decomp1.keys())))()
+    empty2 = type(next(iter(all_decomp2.keys())))()
     best = (empty1, empty2)
     base_result = (0, best)
     for seq1 in all_decomp1.keys():
@@ -551,44 +557,15 @@ def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_t
     """
     Version of the lcs iterative algorithm where we precompute hash values
     """
-    def decomp_info(seq, open_to_close):
-        pop_open, pop_close, head, tail = balanced_decomp_unsafe(seq, open_to_close)
-        head_tail = head + tail
-        head_key = hash(head)
-        tail_key = hash(tail)
-        head_tail_key = hash(head_tail)
-        tok = open_to_tok[pop_open[0]]
-        a = pop_open
-        b = pop_close
-        info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
-        return info
-
-    def gen_decomp_v2(seq, open_to_close):
-        all_decomp = {}
-        stack = [seq]
-        while stack:
-            seq = stack.pop()
-            if seq:
-                # key = hash(seq)
-                key = seq
-                if key not in all_decomp:
-                    info = decomp_info(seq, open_to_close)
-                    head, tail, head_tail = info[2:5]
-                    all_decomp[key] = info
-                    stack.append(head_tail)
-                    stack.append(head)
-                    stack.append(tail)
-        return all_decomp
-
-    all_decomp1 = gen_decomp_v2(full_seq1, open_to_close)
-    all_decomp2 = gen_decomp_v2(full_seq2, open_to_close)
+    all_decomp1 = gen_decomp_v2(full_seq1, open_to_close, open_to_tok)
+    all_decomp2 = gen_decomp_v2(full_seq2, open_to_close, open_to_tok)
 
     key_decomp1 = {}
     key_decomp2 = {}
     _results = {}
     # Populate base cases
-    empty1 = type(ub.peek(all_decomp1.keys()))()
-    empty2 = type(ub.peek(all_decomp2.keys()))()
+    empty1 = type(next(iter(all_decomp1.keys())))()
+    empty2 = type(next(iter(all_decomp2.keys())))()
     empty1_key = hash(empty1)
     empty2_key = hash(empty2)
     best = (empty1, empty2)
@@ -699,49 +676,52 @@ def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_t
     return found
 
 
+def decomp_info(seq, open_to_close, open_to_tok):
+    pop_open, pop_close, head, tail = balanced_decomp_unsafe(seq, open_to_close)
+    head_tail = head + tail
+    head_key = hash(head)
+    tail_key = hash(tail)
+    head_tail_key = hash(head_tail)
+    tok = open_to_tok[pop_open[0]]
+    a = pop_open
+    b = pop_close
+    info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
+    return info
+
+
+def gen_decomp_v2(seq, open_to_close, open_to_tok):
+    all_decomp = {}
+    stack = [seq]
+    while stack:
+        seq = stack.pop()
+        if seq:
+            # key = hash(seq)
+            key = seq
+            if key not in all_decomp:
+                info = decomp_info(seq, open_to_close, open_to_tok)
+                head, tail, head_tail = info[2:5]
+                all_decomp[key] = info
+                stack.append(head_tail)
+                stack.append(head)
+                stack.append(tail)
+    return all_decomp
+
+
 @profile
 def _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
     """
     Version of the lcs iterative algorithm where we precompute hash values
     """
-    def decomp_info(seq, open_to_close):
-        pop_open, pop_close, head, tail = balanced_decomp_unsafe(seq, open_to_close)
-        head_tail = head + tail
-        head_key = hash(head)
-        tail_key = hash(tail)
-        head_tail_key = hash(head_tail)
-        tok = open_to_tok[pop_open[0]]
-        a = pop_open
-        b = pop_close
-        info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
-        return info
 
-    def gen_decomp_v2(seq, open_to_close):
-        all_decomp = {}
-        stack = [seq]
-        while stack:
-            seq = stack.pop()
-            if seq:
-                # key = hash(seq)
-                key = seq
-                if key not in all_decomp:
-                    info = decomp_info(seq, open_to_close)
-                    head, tail, head_tail = info[2:5]
-                    all_decomp[key] = info
-                    stack.append(head_tail)
-                    stack.append(head)
-                    stack.append(tail)
-        return all_decomp
-
-    all_decomp1 = gen_decomp_v2(full_seq1, open_to_close)
-    all_decomp2 = gen_decomp_v2(full_seq2, open_to_close)
+    all_decomp1 = gen_decomp_v2(full_seq1, open_to_close, open_to_tok)
+    all_decomp2 = gen_decomp_v2(full_seq2, open_to_close, open_to_tok)
 
     key_decomp1 = {}
     key_decomp2 = {}
     _results = {}
     # Populate base cases
-    empty1 = type(ub.peek(all_decomp1.keys()))()
-    empty2 = type(ub.peek(all_decomp2.keys()))()
+    empty1 = type(next(iter(all_decomp1.keys())))()
+    empty2 = type(next(iter(all_decomp2.keys())))()
     empty1_key = hash(empty1)
     empty2_key = hash(empty2)
     best = (empty1, empty2)
@@ -1282,11 +1262,11 @@ def benchmarks():
 
     data_modes = []
 
-    # data_modes += [
-    #     {'size': size, 'max_depth': max_depth}
-    #     for size in [50, 100]
-    #     for max_depth in [1, 3, 5, 7, 9]
-    # ]
+    data_modes += [
+        {'size': size, 'max_depth': max_depth}
+        for size in [10, 50, 100]
+        for max_depth in [1, 3, 5, 7, 9]
+    ]
 
     data_modes += [
         {'size': size, 'max_depth': max_depth}
@@ -1298,17 +1278,19 @@ def benchmarks():
     ti = timerit.Timerit(1, bestof=1, verbose=1, unit='s')
 
     impls = [
-        'iter',
-        'iter-alt2',
-        # 'recurse',
+        # 'iter-alt2-cython',
+        'iter-prehash2-cython',
         'iter-prehash2',
+        # 'iter-alt2',
+        # 'iter',
+        # 'recurse',
     ]
 
     run_modes = [
         {'impl': impl, 'mode': mode}
         for impl in impls
         for mode in [
-            # 'chr',
+            'chr',
             # 'tuple',
             'number'
         ]
@@ -1317,8 +1299,8 @@ def benchmarks():
     for datakw in data_modes:
         data_key = ub.repr2(datakw, sep='', itemsep='', kvsep='', explicit=1,
                             nobr=1, nl=0)
-        paths1, paths2 = simple_sequences(**datakw)
-        # paths1, paths2 = random_sequences(rng=None, **datakw)
+        # paths1, paths2 = simple_sequences(**datakw)
+        paths1, paths2 = random_sequences(rng=None, **datakw)
         # paths1, paths2 = random_sequences(rng=None, **datakw)
 
         print('---')
