@@ -9,9 +9,8 @@ except Exception:
     profile = ub.identity
 
 
-def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2'):
+def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2', mode='number'):
     """
-
         >>> n = 80
         >>> paths1 = ['{}/{}'.format(i, j) for i in range(0, (n // 10) + 1) for j in range(0, n)]
         >>> paths2 = ['q/r/sp/' + p for p in paths1]
@@ -51,8 +50,6 @@ def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2'):
         >>>     print('d = {!r}'.format(d))
 
     """
-    import networkx as nx
-
     # the longest common balanced sequence problem
     def _affinity(tok1, tok2):
         return tok1[-1] == tok2[-1]
@@ -67,24 +64,10 @@ def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2'):
     # import operator
     # eq = operator.eq
 
-    def paths_to_tree(paths):
-        tree = nx.OrderedDiGraph()
-        for path in sorted(paths):
-            parts = tuple(path.split(sep))
-            node_path = []
-            for i in range(1, len(parts) + 1):
-                node = parts[0:i]
-                tree.add_node(node)
-                tree.nodes[node]['label'] = node[-1]
-                node_path.append(node)
-            for u, v in ub.iter_window(node_path, 2):
-                tree.add_edge(u, v)
-        return tree
+    tree1 = paths_to_tree(paths1, sep=sep)
+    tree2 = paths_to_tree(paths2, sep=sep)
 
-    tree1 = paths_to_tree(paths1)
-    tree2 = paths_to_tree(paths2)
-
-    subtree1, subtree2 = maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity=node_affinity, impl=impl)
+    subtree1, subtree2 = maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity=node_affinity, impl=impl, mode=mode)
     # subtree1, subtree2 = maximum_common_ordered_subtree_isomorphism(tree1, tree2, node_affinity=node_affinity)
 
     subpaths1 = [sep.join(node) for node in subtree1.nodes if subtree1.out_degree[node] == 0]
@@ -92,7 +75,22 @@ def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2'):
     return subpaths1, subpaths2
 
 
-def maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity='auto', impl='iter-alt2'):
+def paths_to_tree(paths, sep='/'):
+    tree = nx.OrderedDiGraph()
+    for path in sorted(paths):
+        parts = tuple(path.split(sep))
+        node_path = []
+        for i in range(1, len(parts) + 1):
+            node = parts[0:i]
+            tree.add_node(node)
+            tree.nodes[node]['label'] = node[-1]
+            node_path.append(node)
+        for u, v in ub.iter_window(node_path, 2):
+            tree.add_edge(u, v)
+    return tree
+
+
+def maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity='auto', impl='iter-alt2', mode='number'):
     """
 
     Example:
@@ -122,8 +120,8 @@ def maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity='auto', im
         raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
 
     # Convert the trees to balanced sequences
-    sequence1, open_to_close, toks = tree_to_balanced_sequence(tree1, open_to_close=None, toks=None)
-    sequence2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks)
+    sequence1, open_to_close, toks = tree_to_balanced_sequence(tree1, open_to_close=None, toks=None, mode=mode)
+    sequence2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks, mode=mode)
     seq1 = sequence1
     seq2 = sequence2
 
@@ -566,19 +564,20 @@ def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_t
         return info
 
     def gen_decomp_v2(seq, open_to_close):
-        _genmemo = {}
-        def _gen(seq):
+        all_decomp = {}
+        stack = [seq]
+        while stack:
+            seq = stack.pop()
             if seq:
-                key = hash(seq)
-                if key not in _genmemo:
+                # key = hash(seq)
+                key = seq
+                if key not in all_decomp:
                     info = decomp_info(seq, open_to_close)
                     head, tail, head_tail = info[2:5]
-                    _genmemo[key] = info
-                    yield (seq, _genmemo[key])
-                    yield from _gen(head_tail)
-                    yield from _gen(head)
-                    yield from _gen(tail)
-        all_decomp = dict(_gen(seq))
+                    all_decomp[key] = info
+                    stack.append(head_tail)
+                    stack.append(head)
+                    stack.append(tail)
         return all_decomp
 
     all_decomp1 = gen_decomp_v2(full_seq1, open_to_close)
@@ -718,20 +717,20 @@ def _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_
         return info
 
     def gen_decomp_v2(seq, open_to_close):
-        _genmemo = {}
-        # TODO: make iterative
-        def _gen(seq):
+        all_decomp = {}
+        stack = [seq]
+        while stack:
+            seq = stack.pop()
             if seq:
-                key = hash(seq)
-                if key not in _genmemo:
+                # key = hash(seq)
+                key = seq
+                if key not in all_decomp:
                     info = decomp_info(seq, open_to_close)
                     head, tail, head_tail = info[2:5]
-                    _genmemo[key] = info
-                    yield (seq, _genmemo[key])
-                    yield from _gen(head_tail)
-                    yield from _gen(head)
-                    yield from _gen(tail)
-        all_decomp = dict(_gen(seq))
+                    all_decomp[key] = info
+                    stack.append(head_tail)
+                    stack.append(head)
+                    stack.append(tail)
         return all_decomp
 
     all_decomp1 = gen_decomp_v2(full_seq1, open_to_close)
@@ -863,7 +862,7 @@ def generate_all_decompositions(seq, open_to_close, open_to_tok=None):
     pop_open, pop_close, head, tail = balanced_decomp(seq, open_to_close)
 
     >>> tree = random_ordered_tree(10)
-    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree)
+    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr', strhack=True)
     >>> all_decomp = generate_all_decompositions(seq, open_to_close)
     """
     if open_to_tok is None:
@@ -871,24 +870,18 @@ def generate_all_decompositions(seq, open_to_close, open_to_tok=None):
             def __getitem__(self, key):
                 return key
         open_to_tok = Dummy()
-    _memo = {}
-    def _gen(seq):
-        if not seq:
-            pass
-            # yield None
-        elif seq in _memo:
-            pass
-            # yield (seq, _memo[seq])
-        else:
+    all_decomp = {}
+    stack = [seq]
+    while stack:
+        seq = stack.pop()
+        if seq not in all_decomp and seq:
             pop_open, pop_close, head, tail = balanced_decomp(seq, open_to_close)
             head_tail = head + tail
             tok = open_to_tok[pop_open[0]]
-            _memo[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
-            yield (seq, _memo[seq])
-            yield from _gen(head_tail)
-            yield from _gen(head)
-            yield from _gen(tail)
-    all_decomp = dict(_gen(seq))
+            all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
+            stack.append(head_tail)
+            stack.append(head)
+            stack.append(tail)
     return all_decomp
 
 
@@ -998,12 +991,22 @@ def balanced_decomp(sequence, open_to_close):
     return pop_open, pop_close, head, tail
 
 
-def tree_to_balanced_sequence(tree, open_to_close=None, toks=None, mode='tuple', strhack=False):
-    from collections import namedtuple
-    Token = namedtuple('Token', ['action', 'value'])
+def tree_to_balanced_sequence(tree, open_to_close=None, toks=None, mode='tuple', strhack=None):
+    """
+    Example:
+        >>> tree = random_ordered_tree(1000)
+        >>> sequence, open_to_close, toks = tree_to_balanced_sequence(tree, mode='tuple')
+        >>> sequence, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr')
+    """
+    # from collections import namedtuple
+    # Token = namedtuple('Token', ['action', 'value'])
     # mapping between opening and closing tokens
     sources = [n for n in tree.nodes if tree.in_degree[n] == 0]
     sequence = []
+
+    if strhack is None:
+        if mode == 'chr':
+            strhack = True
 
     if open_to_close is None:
         open_to_close = {}
@@ -1025,8 +1028,10 @@ def tree_to_balanced_sequence(tree, open_to_close=None, toks=None, mode='tuple',
                         # are matchable via a custom operation.
                         # open_tok = '<{}>'.format(v)
                         # close_tok = '</{}>'.format(v)
-                        open_tok = Token('open', v)
-                        close_tok = Token('close', v)
+                        # open_tok = Token('open', v)
+                        # close_tok = Token('close', v)
+                        open_tok = ('open', v)
+                        close_tok = ('close', v)
                     elif mode == 'number':
                         open_tok = len(toks) + 1
                         close_tok = -open_tok
@@ -1034,8 +1039,14 @@ def tree_to_balanced_sequence(tree, open_to_close=None, toks=None, mode='tuple',
                         open_tok = '{}('.format(v)
                         close_tok = '){}'.format(v)
                     elif mode == 'chr':
-                        open_tok = str(v)
-                        close_tok = str(v) + u'\u0301'
+                        if not strhack:
+                            open_tok = str(v)
+                            close_tok = str(v) + u'\u0301'
+                        else:
+                            # utf8 can only encode this many chars
+                            assert len(toks) < (1112064 // 2)
+                            open_tok = chr(len(toks) * 2)
+                            close_tok = chr(len(toks) * 2 + 1)
                     elif mode == 'label':
                         open_tok = tree.nodes[v]['label']
                         assert strhack
@@ -1231,6 +1242,102 @@ def _print_forest(graph):
     for idx, node in enumerate(sources, start=1):
         islast_next = (idx == len(sources))
         _recurse(node, indent='', islast=islast_next)
+
+
+def random_sequences(size=10, max_depth=10, rng=None):
+    """
+    paths1, paths2 = random_sequences(size=10, max_depth=10)
+    tree1 = paths_to_tree(paths1)
+    seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr')
+    seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='number')
+    seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='tuple')
+    """
+    from networkx.utils import create_py_random_state
+    rng = None
+    rng = create_py_random_state(rng)
+
+    def random_paths(rng, max_depth=10):
+        depth = rng.randint(1, max_depth)
+        parts = list(map(chr, [rng.randint(ord('a'), ord('z')) for _ in range(depth)]))
+        path = '/'.join(parts)
+        return path
+
+    paths1 = sorted({random_paths(rng, max_depth) for _ in range(size)})
+    paths2 = sorted({random_paths(rng, max_depth) for _ in range(size)})
+    return paths1, paths2
+
+
+def simple_sequences(size=80, **kw):
+    n = size
+    paths1 = ['{}/{}'.format(i, j) for i in range(0, (n // 10) + 1) for j in range(0, n)]
+    paths2 = ['q/r/sp/' + p for p in paths1]
+    len(paths1)
+    return paths1, paths2
+
+
+def benchmarks():
+    """
+    xdoctest ~/code/networkx/networkx/algorithms/isomorphism/balanced_sequence.py benchmarks --profile
+    """
+
+    data_modes = []
+
+    # data_modes += [
+    #     {'size': size, 'max_depth': max_depth}
+    #     for size in [50, 100]
+    #     for max_depth in [1, 3, 5, 7, 9]
+    # ]
+
+    data_modes += [
+        {'size': size, 'max_depth': max_depth}
+        for size in [200, 400]
+        for max_depth in [1, 3]
+    ]
+    import ubelt as ub
+    import timerit
+    ti = timerit.Timerit(1, bestof=1, verbose=1, unit='s')
+
+    impls = [
+        'iter',
+        'iter-alt2',
+        # 'recurse',
+        'iter-prehash2',
+    ]
+
+    run_modes = [
+        {'impl': impl, 'mode': mode}
+        for impl in impls
+        for mode in [
+            # 'chr',
+            # 'tuple',
+            'number'
+        ]
+    ]
+
+    for datakw in data_modes:
+        data_key = ub.repr2(datakw, sep='', itemsep='', kvsep='', explicit=1,
+                            nobr=1, nl=0)
+        paths1, paths2 = simple_sequences(**datakw)
+        # paths1, paths2 = random_sequences(rng=None, **datakw)
+        # paths1, paths2 = random_sequences(rng=None, **datakw)
+
+        print('---')
+        for runkw in run_modes:
+            # if runkw['impl'] == 'iter-alt2' and runkw['mode'] == 'number':
+            #     continue
+            # if runkw['impl'] == 'iter' and runkw['mode'] == 'number':
+            #     continue
+            run_key = ub.repr2(runkw, sep='', itemsep='', kvsep='', explicit=1,
+                                nobr=1, nl=0)
+            key = '{},{}'.format(data_key, run_key)
+            for timer in ti.reset(key):
+                with timer:
+                    try:
+                        maximum_common_ordered_paths(paths1, paths2, **runkw)
+                    except RecursionError as ex:
+                        print('ex = {!r}'.format(ex))
+
+    print(ub.repr2(ub.sorted_vals(ti.measures['min']), nl=1, align=':', precision=6))
 
 
 __notes_ = """
