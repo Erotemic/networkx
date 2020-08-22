@@ -9,7 +9,7 @@ except Exception:
     profile = ub.identity
 
 
-def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2', mode='number'):
+def maximum_common_path_embedding(paths1, paths2, sep='/', impl='iter-prehash2', mode='number'):
     """
         >>> n = 80
         >>> paths1 = ['{}/{}'.format(i, j) for i in range(0, (n // 10) + 1) for j in range(0, n)]
@@ -31,21 +31,21 @@ def maximum_common_ordered_paths(paths1, paths2, sep='/', impl='iter-prehash2', 
 
         >>> with ub.Timer('iterative-prehash'):
         >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
-        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='iter-prehash')
+        >>>     m = maximum_common_path_embedding(paths1, paths2, impl='iter-prehash')
         >>>     d = dict(zip(*m))
         >>>     #print('d = {!r}'.format(d))
         >>> with ub.Timer('iterative-prehash2'):
         >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
-        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='iter-prehash2')
+        >>>     m = maximum_common_path_embedding(paths1, paths2, impl='iter-prehash2')
         >>>     d = dict(zip(*m))
         >>>     #print('d = {!r}'.format(d))
         >>> with ub.Timer('iterative-alt2'):
         >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
-        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='iter-alt2')
+        >>>     m = maximum_common_path_embedding(paths1, paths2, impl='iter-alt2')
         >>>     d = dict(zip(*m))
         >>>     print('d = {!r}'.format(d))
         >>> with ub.Timer('recurse'):
-        >>>     m = maximum_common_ordered_paths(paths1, paths2, impl='recurse')
+        >>>     m = maximum_common_path_embedding(paths1, paths2, impl='recurse')
         >>>     d = dict(zip(*m))
         >>>     print('d = {!r}'.format(d))
 
@@ -1283,14 +1283,14 @@ def benchmarks():
         'iter-prehash2',
         # 'iter-alt2',
         # 'iter',
-        # 'recurse',
+        'recurse',
     ]
 
     run_modes = [
         {'impl': impl, 'mode': mode}
         for impl in impls
         for mode in [
-            'chr',
+            # 'chr',
             # 'tuple',
             'number'
         ]
@@ -1315,7 +1315,7 @@ def benchmarks():
             for timer in ti.reset(key):
                 with timer:
                     try:
-                        maximum_common_ordered_paths(paths1, paths2, **runkw)
+                        maximum_common_path_embedding(paths1, paths2, **runkw)
                     except RecursionError as ex:
                         print('ex = {!r}'.format(ex))
 
