@@ -230,6 +230,15 @@ def forest_str(graph, impl='iter', eager=0, write=None):
     """
     Nice utf8 representation of a forest
 
+    Notes
+    -----
+    The iterative and recursive versions seem to be roughly as fast, but the
+    iterative one does not have the issue of running into the call stack and
+    causing a RecursionError (use params r=1, h=2 ** 14 to reproduce).
+
+    CommandLine:
+        xdoctest -m /home/joncrall/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/tree_embedding.py forest_str --bench
+
     Example
     -------
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
@@ -237,14 +246,13 @@ def forest_str(graph, impl='iter', eager=0, write=None):
     >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.DiGraph)
     >>> print(forest_str(graph, impl='recurse'))
 
-
     Benchmark
     ---------
     >>> # xdoctest: +REQUIRES(--bench)
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
     >>> import networkx as nx
     >>> # TODO: enumerate test cases
-    >>> graph = nx.balanced_tree(r=1, h=int(2 ** 14), create_using=nx.DiGraph)
+    >>> graph = nx.balanced_tree(r=1, h=int(2 ** 14), create_using=nx.DiGraph)  # causes RecursionError
     >>> graph = nx.balanced_tree(r=2, h=14, create_using=nx.DiGraph)
     >>> if len(graph.nodes) < 1000:
     >>>     forest_str(graph, eager=1, write=print)
@@ -254,6 +262,8 @@ def forest_str(graph, impl='iter', eager=0, write=None):
     >>> ti = timerit.Timerit(1, bestof=1, verbose=3)
     >>> ti.reset('iter-lazy').call(forest_str, graph, impl='iter', eager=0)
     >>> ti.reset('recurse-lazy').call(forest_str, graph, impl='recurse', eager=0)
+    >>> # xdoctest: +REQUIRES(module:ubelt)
+    >>> import ubelt as ub
     >>> print('ti.measures = {}'.format(ub.repr2(ti.measures['min'], nl=1, align=':', precision=6)))
     """
     if len(graph.nodes) == 0:
