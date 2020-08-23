@@ -76,8 +76,8 @@ def maximum_common_ordered_tree_embedding(tree1, tree2, node_affinity='auto'):
         raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
 
     # Convert the trees to balanced sequences
-    sequence1, open_to_close, toks = tree_to_balanced_sequence(tree1, open_to_close=None, toks=None)
-    sequence2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks)
+    sequence1, open_to_close, toks = tree_to_seq(tree1, open_to_close=None, toks=None)
+    sequence2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks)
     seq1 = sequence1
     seq2 = sequence2
 
@@ -232,8 +232,8 @@ def maximum_common_ordered_subtree_isomorphism(tree1, tree2, node_affinity='auto
         return subtree1, subtree2
 
     # Convert the trees to balanced sequences
-    sequence1, open_to_close, toks = tree_to_balanced_sequence(tree1, open_to_close=None, toks=None, mode='chr')
-    sequence2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks, mode='chr')
+    sequence1, open_to_close, toks = tree_to_seq(tree1, open_to_close=None, toks=None, mode='chr')
+    sequence2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks, mode='chr')
     seq1 = sequence1
     seq2 = sequence2
 
@@ -254,7 +254,7 @@ class UnbalancedException(Exception):
     pass
 
 
-def tree_to_balanced_sequence(tree, open_to_close=None, toks=None, mode='tuple'):
+def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple'):
     from collections import namedtuple
     Token = namedtuple('Token', ['action', 'value'])
     # mapping between opening and closing tokens
@@ -337,8 +337,8 @@ def generate_balance_unsafe_python(sequence, open_to_close):
     """
     Benchmark:
         >>> tree = random_ordered_tree(1000)
-        >>> sequence, open_to_close, toks = tree_to_balanced_sequence(tree, mode='tuple')
-        >>> sequence, open_to_close, toks = tree_to_balanced_sequence(tree, mode='number')
+        >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
+        >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
         >>> import timerit
         >>> ti = timerit.Timerit(100, bestof=10, verbose=2)
         >>> for timer in ti.reset('time'):
@@ -407,7 +407,7 @@ def balanced_decomp_unsafe(sequence, open_to_close):
     Benchmark:
         >>> from netharn.initializers._nx_extensions import *  # NOQA
         >>> tree = random_ordered_tree(100)
-        >>> sequence, open_to_close, toks = tree_to_balanced_sequence(tree)
+        >>> sequence, open_to_close, toks = tree_to_seq(tree)
         >>> import timerit
         >>> ti = timerit.Timerit(100, bestof=10, verbose=2, unit='us')
         >>> for timer in ti.reset('safe-python'):
@@ -497,7 +497,7 @@ def generate_balance(sequence, open_to_close, safe=True):
 
     Example:
         >>> tree = random_ordered_tree(1000)
-        >>> sequence, open_to_close, toks = tree_to_balanced_sequence(tree)
+        >>> sequence, open_to_close, toks = tree_to_seq(tree)
         >>> gen = list(generate_balance(sequence, open_to_close))
         >>> for flag, token in gen:
         >>>     print('flag={:d}, token={}'.format(flag, token))
@@ -505,7 +505,7 @@ def generate_balance(sequence, open_to_close, safe=True):
     Benchmark:
         >>> from netharn.initializers._nx_extensions import *  # NOQA
         >>> tree = random_ordered_tree(100)
-        >>> sequence, open_to_close, toks = tree_to_balanced_sequence(tree)
+        >>> sequence, open_to_close, toks = tree_to_seq(tree)
         >>> import timerit
         >>> ti = timerit.Timerit(100, bestof=10, verbose=2, unit='us')
         >>> for timer in ti.reset('safe-python'):
@@ -525,7 +525,7 @@ def generate_balance(sequence, open_to_close, safe=True):
         list(jit_generate_balance(sequence, open_to_close))
 
         tree = random_ordered_tree(1000)
-        sequence, open_to_close, toks = tree_to_balanced_sequence(tree)
+        sequence, open_to_close, toks = tree_to_seq(tree)
 
         import timerit
         ti = timerit.Timerit(100, bestof=10, verbose=2, unit='us')
@@ -579,15 +579,15 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, node_affinity='a
     Example:
         >>> tree1 = random_ordered_tree(100, seed=1)
         >>> tree2 = random_ordered_tree(100, seed=2)
-        >>> seq1, open_to_close, toks = tree_to_balanced_sequence(tree1)
-        >>> seq2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks)
+        >>> seq1, open_to_close, toks = tree_to_seq(tree1)
+        >>> seq2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks)
         >>> longest_common_balanced_sequence(seq1, seq2, open_to_close)
 
     Benchmark:
         >>> tree1 = random_ordered_tree(20, seed=1)
         >>> tree2 = random_ordered_tree(20, seed=2)
-        >>> seq1, open_to_close, toks = tree_to_balanced_sequence(tree1)
-        >>> seq2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks)
+        >>> seq1, open_to_close, toks = tree_to_seq(tree1)
+        >>> seq2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks)
         >>> longest_common_balanced_sequence(seq1, seq2, open_to_close)
 
         import sys, ubelt
@@ -786,7 +786,7 @@ def _lcsi(seq1, seq2, open_to_close, node_affinity, open_to_tok, _memo, _seq_mem
             │   └── g
             └── d
 
-        seq1, open_to_close, toks = tree_to_balanced_sequence(tree1, mode='chr')
+        seq1, open_to_close, toks = tree_to_seq(tree1, mode='chr')
         a, b, head1, tail1 = balanced_decomp(seq1, open_to_close)
         _print_forest(seq_to_tree(head1, open_to_close, toks))
         _print_forest(seq_to_tree(tail1, open_to_close, toks))

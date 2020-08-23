@@ -39,26 +39,6 @@ def maximum_common_path_embedding(paths1, paths2, sep='/', impl='iter-prehash2',
     >>> paths1 = sorted({random_paths(rng) for _ in range(n)})
     >>> paths2 = sorted({random_paths(rng) for _ in range(n)})
     >>> paths1 = paths1 + ['a/' + k for k in paths2[0:n // 3]]
-
-    >>> with ub.Timer('iterative-prehash'):
-    >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
-    >>>     m = maximum_common_path_embedding(paths1, paths2, impl='iter-prehash')
-    >>>     d = dict(zip(*m))
-    >>>     #print('d = {!r}'.format(d))
-    >>> with ub.Timer('iterative-prehash2'):
-    >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
-    >>>     m = maximum_common_path_embedding(paths1, paths2, impl='iter-prehash2')
-    >>>     d = dict(zip(*m))
-    >>>     #print('d = {!r}'.format(d))
-    >>> with ub.Timer('iterative-alt2'):
-    >>>     #best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
-    >>>     m = maximum_common_path_embedding(paths1, paths2, impl='iter-alt2')
-    >>>     d = dict(zip(*m))
-    >>>     print('d = {!r}'.format(d))
-    >>> with ub.Timer('recurse'):
-    >>>     m = maximum_common_path_embedding(paths1, paths2, impl='recurse')
-    >>>     d = dict(zip(*m))
-    >>>     print('d = {!r}'.format(d))
     """
     # the longest common balanced sequence problem
     def _affinity(tok1, tok2):

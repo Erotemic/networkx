@@ -6,28 +6,49 @@ from .balanced_sequence import longest_common_balanced_sequence
 def maximum_common_ordered_tree_embedding(
         tree1, tree2, node_affinity='auto', impl='iter-alt2', mode='number'):
     """
+    Core networkx API
 
     Example
     -------
-    >>> from netharn.initializers._nx_extensions import *  # NOQA
-    >>> from netharn.initializers._nx_extensions import _lcs, forest_str
-    >>> def random_ordered_tree(n, seed=None):
-    >>>     tree = nx.dfs_tree(nx.random_tree(n, seed=seed))
-    >>>     otree = nx.OrderedDiGraph()
-    >>>     otree.add_edges_from(tree.edges)
-    >>>     return otree
-    >>> tree1 = random_ordered_tree(10, seed=1)
-    >>> tree2 = random_ordered_tree(10, seed=2)
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree  # NOQA
+    >>> tree1 = random_ordered_tree(7, seed=355707353457411172772606611)
+    >>> tree2 = random_ordered_tree(7, seed=1235685871331524688238689717)
     >>> print('tree1')
-    >>> forest_str(tree1)
+    >>> forest_str(tree1, eager=1)
     >>> print('tree2')
-    >>> forest_str(tree2)
-
+    >>> forest_str(tree2, eager=1)
     >>> embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2 )
     >>> print('embedding1')
-    >>> forest_str(embedding1)
+    >>> forest_str(embedding1, eager=1)
     >>> print('embedding2')
-    >>> forest_str(embedding2)
+    >>> forest_str(embedding2, eager=1)
+    tree1
+    └── 0
+        └── 5
+            └── 1
+                ├── 6
+                │   └── 3
+                │       └── 4
+                └── 2
+    tree2
+    └── 0
+        ├── 3
+        │   ├── 6
+        │   │   └── 1
+        │   │       └── 5
+        │   └── 4
+        └── 2
+    embedding1
+    └── 0
+        ├── 3
+        │   └── 4
+        └── 2
+    embedding2
+    └── 0
+        ├── 3
+        │   └── 4
+        └── 2
     """
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree1)):
         raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
@@ -58,7 +79,9 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
     Converts an ordered tree to a balanced sequence
 
     Example
-    --------
+    -------
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree  # NOQA
     >>> tree = random_ordered_tree(1000)
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='chr')
@@ -143,6 +166,8 @@ def seq_to_tree(subseq, open_to_close, toks):
 
     Example
     --------
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
     >>> tree = random_ordered_tree(1000)
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='chr')
@@ -196,20 +221,23 @@ def invert_dict(dict_, unique_vals=True):
 
     Example
     -------
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
     >>> dict_ = {'a': 1, 'b': 2}
     >>> inverted = invert_dict(dict_)
     >>> assert inverted == {1: 'a', 2: 'b'}
 
     Example
     -------
-    >>> dict_ = ub.odict([(2, 'a'), (1, 'b'), (0, 'c'), (None, 'd')])
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> dict_ = OrderedDict([(2, 'a'), (1, 'b'), (0, 'c'), (None, 'd')])
     >>> inverted = invert_dict(dict_)
     >>> assert list(inverted.keys())[0] == 'a'
 
     Example
     -------
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
     >>> dict_ = {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'f': 2}
-    >>> inverted = ub.invert_dict(dict_, unique_vals=False)
+    >>> inverted = invert_dict(dict_, unique_vals=False)
     >>> assert inverted == {0: {'b', 'c', 'd'}, 1: {'a'}, 2: {'f'}}
     """
     if unique_vals:
@@ -241,6 +269,7 @@ def forest_str(graph, impl='iter', eager=0, write=None):
 
     Example
     -------
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
     >>> import networkx as nx
     >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.DiGraph)

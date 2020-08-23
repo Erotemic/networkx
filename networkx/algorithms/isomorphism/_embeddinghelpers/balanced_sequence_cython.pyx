@@ -2,41 +2,43 @@
 """
 cythonize -a -i ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx
 
-        >>> from networkx.algorithms.isomorphism.balanced_sequence import *  # NOQA
-        >>> from networkx.algorithms.isomorphism.balanced_sequence import _lcs_iter_simple, _lcs_iter_simple_alt1, _lcs_iter_simple_alt2, _lcs_iter_prehash, _lcs_recurse, _print_forest
-        >>> tree1 = random_ordered_tree(5, seed=10, pool='[{(')
-        >>> tree2 = random_ordered_tree(5, seed=3, pool='[{(')
+Examples
+--------
+>>> from networkx.algorithms.isomorphism.balanced_sequence import *  # NOQA
+>>> from networkx.algorithms.isomorphism.balanced_sequence import _lcs_iter_simple, _lcs_iter_simple_alt1, _lcs_iter_simple_alt2, _lcs_iter_prehash, _lcs_recurse, _print_forest
+>>> tree1 = random_ordered_tree(5, seed=10, pool='[{(')
+>>> tree2 = random_ordered_tree(5, seed=3, pool='[{(')
 
-        >>> import kwarray
-        >>> rng = kwarray.ensure_rng(3432432, 'python')
-        >>> tree1 = random_ordered_tree(300, seed=rng, pool='[{(')
-        >>> tree2 = random_ordered_tree(300, seed=rng, pool='[{(')
-        >>> if len(tree1.nodes) < 20:
-        >>>     _print_forest(tree1)
-        >>>     _print_forest(tree2)
-        >>> seq1, open_to_close, toks = tree_to_balanced_sequence(tree1, mode='label', strhack=1)
-        >>> seq2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks, mode='label', strhack=1)
-        >>> full_seq1 = seq1
-        >>> full_seq2 = seq2
+>>> import kwarray
+>>> rng = kwarray.ensure_rng(3432432, 'python')
+>>> tree1 = random_ordered_tree(300, seed=rng, pool='[{(')
+>>> tree2 = random_ordered_tree(300, seed=rng, pool='[{(')
+>>> if len(tree1.nodes) < 20:
+>>>     _print_forest(tree1)
+>>>     _print_forest(tree2)
+>>> seq1, open_to_close, toks = tree_to_seq(tree1, mode='label', strhack=1)
+>>> seq2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks, mode='label', strhack=1)
+>>> full_seq1 = seq1
+>>> full_seq2 = seq2
 
-        >>> node_affinity = operator.eq
-        >>> open_to_tok = ub.invert_dict(toks)
-        >>> from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_simple_alt2_cython  # NOQA
+>>> node_affinity = operator.eq
+>>> open_to_tok = ub.invert_dict(toks)
+>>> from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_simple_alt2_cython  # NOQA
 
-        with ub.Timer('cython'):
-            best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+with ub.Timer('cython'):
+    best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
 
-        with ub.Timer('python'):
-            best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+with ub.Timer('python'):
+    best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
 
-References:
-    https://stackoverflow.com/questions/41909486/returning-a-complex-object-containing-pyobject-from-c-function-cython
-
+References
+----------
+https://stackoverflow.com/questions/41909486/returning-a-complex-object-containing-pyobject-from-c-function-cython
 """
 
-from libcpp.map cimport map as cmap
-from libcpp.string cimport string
-from libcpp.vector cimport vector
+# from libcpp.map cimport map as cmap
+# from libcpp.string cimport string
+# from libcpp.vector cimport vector
         
 
 def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
@@ -299,7 +301,7 @@ cdef tuple balanced_decomp_unsafe_cython(sequence, dict open_to_close):
 def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):
     """
     >>> tree = random_ordered_tree(10)
-    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr', strhack=True)
+    >>> seq, open_to_close, toks = tree_to_seq(tree, mode='chr', strhack=True)
     >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)
     """
     all_decomp = {}

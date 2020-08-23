@@ -35,12 +35,16 @@ def random_paths(
     Examples
     --------
     >>> paths1, paths2 = random_paths(size=5, max_depth=3, common=6, prefix_depth1=3, prefix_depth2=3, seed=0, labels=2 ** 64)
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers import path_embedding
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers import tree_embedding
+    >>> tree = path_embedding.paths_to_otree(paths1)
+    >>> seq, open_to_close, toks = tree_embedding.tree_to_seq(tree, mode='chr')
+    >>> seq, open_to_close, toks = tree_embedding.tree_to_seq(tree, mode='number')
+    >>> seq, open_to_close, toks = tree_embedding.tree_to_seq(tree, mode='tuple')
+    >>> # xdoctest: +REQUIRES(module:ubelt)
+    >>> import ubelt as ub
     >>> print('paths1 = {}'.format(ub.repr2(paths1, nl=1)))
     >>> print('paths2 = {}'.format(ub.repr2(paths2, nl=1)))
-    >>> tree1 = paths_to_otree(paths1)
-    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr')
-    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='number')
-    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='tuple')
     """
     from networkx.utils import create_py_random_state
     rng = create_py_random_state(seed)
