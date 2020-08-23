@@ -3,14 +3,13 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [],
         "language": "c++",
-        "name": "balanced_sequence_cython",
+        "name": "networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython",
         "sources": [
             "/home/joncrall/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx"
         ]
     },
-    "module_name": "balanced_sequence_cython"
+    "module_name": "networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython"
 }
 END: Cython Metadata */
 
@@ -626,29 +625,9 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__balanced_sequence_cython
-#define __PYX_HAVE_API__balanced_sequence_cython
+#define __PYX_HAVE__networkx__algorithms__isomorphism___embeddinghelpers__balanced_sequence_cython
+#define __PYX_HAVE_API__networkx__algorithms__isomorphism___embeddinghelpers__balanced_sequence_cython
 /* Early includes */
-#include "ios"
-#include "new"
-#include "stdexcept"
-#include "typeinfo"
-#include <utility>
-
-    #if __cplusplus > 199711L
-    #include <type_traits>
-
-    namespace cython_std {
-    template <typename T> typename std::remove_reference<T>::type&& move(T& t) noexcept { return std::move(t); }
-    template <typename T> typename std::remove_reference<T>::type&& move(T&& t) noexcept { return std::move(t); }
-    }
-
-    #endif
-    
-#include <map>
-#include <string.h>
-#include <string>
-#include <vector>
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -857,7 +836,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "balanced_sequence_cython.pyx",
+  "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx",
 };
 
 /*--- Type declarations ---*/
@@ -1376,25 +1355,15 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'libcpp.utility' */
+/* Module declarations from 'networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython' */
+static PyObject *__pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_balanced_decomp_unsafe_cython(PyObject *, PyObject *); /*proto*/
+static PyObject *__pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_balanced_decomp_prehash_cython(PyObject *, PyObject *, PyObject *); /*proto*/
+static PyObject *__pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_generate_all_decomp_prehash_cython(PyObject *, PyObject *, PyObject *); /*proto*/
+#define __Pyx_MODULE_NAME "networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython"
+extern int __pyx_module_is_main_networkx__algorithms__isomorphism___embeddinghelpers__balanced_sequence_cython;
+int __pyx_module_is_main_networkx__algorithms__isomorphism___embeddinghelpers__balanced_sequence_cython = 0;
 
-/* Module declarations from 'libcpp.map' */
-
-/* Module declarations from 'libc.string' */
-
-/* Module declarations from 'libcpp.string' */
-
-/* Module declarations from 'libcpp.vector' */
-
-/* Module declarations from 'balanced_sequence_cython' */
-static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cython(PyObject *, PyObject *); /*proto*/
-static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cython(PyObject *, PyObject *, PyObject *); /*proto*/
-static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_cython(PyObject *, PyObject *, PyObject *); /*proto*/
-#define __Pyx_MODULE_NAME "balanced_sequence_cython"
-extern int __pyx_module_is_main_balanced_sequence_cython;
-int __pyx_module_is_main_balanced_sequence_cython = 0;
-
-/* Implementation of 'balanced_sequence_cython' */
+/* Implementation of 'networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython' */
 static PyObject *__pyx_builtin_range;
 static const char __pyx_k_a1[] = "a1";
 static const char __pyx_k_a2[] = "a2";
@@ -1492,15 +1461,15 @@ static const char __pyx_k_head_tail1_key[] = "head_tail1_key";
 static const char __pyx_k_head_tail2_key[] = "head_tail2_key";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_IdentityDict___getitem[] = "IdentityDict.__getitem__";
-static const char __pyx_k_balanced_sequence_cython[] = "balanced_sequence_cython";
 static const char __pyx_k_lcs_iter_prehash2_cython[] = "_lcs_iter_prehash2_cython";
 static const char __pyx_k_generate_all_decomp_cython[] = "generate_all_decomp_cython";
 static const char __pyx_k_lcs_iter_simple_alt2_cython[] = "_lcs_iter_simple_alt2_cython";
-static const char __pyx_k_balanced_sequence_cython_pyx[] = "balanced_sequence_cython.pyx";
 static const char __pyx_k_Used_when_open_to_tok_is_unspec[] = " Used when ``open_to_tok`` is unspecified ";
-static const char __pyx_k_cythonize_a_i_code_networkx_net[] = "\ncythonize -a -i ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx\n\n        >>> from networkx.algorithms.isomorphism.balanced_sequence import *  # NOQA\n        >>> from networkx.algorithms.isomorphism.balanced_sequence import _lcs_iter_simple, _lcs_iter_simple_alt1, _lcs_iter_simple_alt2, _lcs_iter_prehash, _lcs_recurse, _print_forest\n        >>> tree1 = random_ordered_tree(5, seed=10, pool='[{(')\n        >>> tree2 = random_ordered_tree(5, seed=3, pool='[{(')\n\n        >>> import kwarray\n        >>> rng = kwarray.ensure_rng(3432432, 'python')\n        >>> tree1 = random_ordered_tree(300, seed=rng, pool='[{(')\n        >>> tree2 = random_ordered_tree(300, seed=rng, pool='[{(')\n        >>> if len(tree1.nodes) < 20:\n        >>>     _print_forest(tree1)\n        >>>     _print_forest(tree2)\n        >>> seq1, open_to_close, toks = tree_to_balanced_sequence(tree1, mode='label', strhack=1)\n        >>> seq2, open_to_close, toks = tree_to_balanced_sequence(tree2, open_to_close, toks, mode='label', strhack=1)\n        >>> full_seq1 = seq1\n        >>> full_seq2 = seq2\n\n        >>> node_affinity = operator.eq\n        >>> open_to_tok = ub.invert_dict(toks)\n        >>> from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_simple_alt2_cython  # NOQA\n\n        with ub.Timer('cython'):\n            best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)\n\n        with ub.Timer('python'):\n            best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)\n\nReferences:\n    https://stackoverflow.com/questions/41909486/returning-a-complex-object-containing-pyobject-from-c-function-cython\n\n";
-        static const char __pyx_k_generate_all_decomp_cython_line[] = "generate_all_decomp_cython (line 299)";
-        static const char __pyx_k_tree_random_ordered_tree_10_seq[] = "\n    >>> tree = random_ordered_tree(10)\n    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr', strhack=True)\n    >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)\n    ";
+static const char __pyx_k_cythonize_a_i_code_networkx_net[] = "\ncythonize -a -i ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx\n\nExamples\n--------\n>>> from networkx.algorithms.isomorphism.balanced_sequence import *  # NOQA\n>>> from networkx.algorithms.isomorphism.balanced_sequence import _lcs_iter_simple, _lcs_iter_simple_alt1, _lcs_iter_simple_alt2, _lcs_iter_prehash, _lcs_recurse, _print_forest\n>>> tree1 = random_ordered_tree(5, seed=10, pool='[{(')\n>>> tree2 = random_ordered_tree(5, seed=3, pool='[{(')\n\n>>> import kwarray\n>>> rng = kwarray.ensure_rng(3432432, 'python')\n>>> tree1 = random_ordered_tree(300, seed=rng, pool='[{(')\n>>> tree2 = random_ordered_tree(300, seed=rng, pool='[{(')\n>>> if len(tree1.nodes) < 20:\n>>>     _print_forest(tree1)\n>>>     _print_forest(tree2)\n>>> seq1, open_to_close, toks = tree_to_seq(tree1, mode='label', strhack=1)\n>>> seq2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks, mode='label', strhack=1)\n>>> full_seq1 = seq1\n>>> full_seq2 = seq2\n\n>>> node_affinity = operator.eq\n>>> open_to_tok = ub.invert_dict(toks)\n>>> from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_simple_alt2_cython  # NOQA\n\nwith ub.Timer('cython'):\n    best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)\n\nwith ub.Timer('python'):\n    best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)\n\nReferences\n----------\nhttps://stackoverflow.com/questions/41909486/returning-a-complex-object-containing-pyobject-from-c-function-cython\n";
+        static const char __pyx_k_generate_all_decomp_cython_line[] = "generate_all_decomp_cython (line 301)";
+        static const char __pyx_k_networkx_algorithms_isomorphism[] = "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx";
+        static const char __pyx_k_tree_random_ordered_tree_10_seq[] = "\n    >>> tree = random_ordered_tree(10)\n    >>> seq, open_to_close, toks = tree_to_seq(tree, mode='chr', strhack=True)\n    >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)\n    ";
+        static const char __pyx_k_networkx_algorithms_isomorphism_2[] = "networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython";
         static PyObject *__pyx_n_s_IdentityDict;
         static PyObject *__pyx_n_s_IdentityDict___getitem;
         static PyObject *__pyx_kp_s_Used_when_open_to_tok_is_unspec;
@@ -1512,8 +1481,6 @@ static const char __pyx_k_cythonize_a_i_code_networkx_net[] = "\ncythonize -a -i
         static PyObject *__pyx_n_s_all_decomp2;
         static PyObject *__pyx_n_s_b1;
         static PyObject *__pyx_n_s_b2;
-        static PyObject *__pyx_n_s_balanced_sequence_cython;
-        static PyObject *__pyx_kp_s_balanced_sequence_cython_pyx;
         static PyObject *__pyx_n_s_base_result;
         static PyObject *__pyx_n_s_best;
         static PyObject *__pyx_n_s_cand1;
@@ -1562,6 +1529,8 @@ static const char __pyx_k_cythonize_a_i_code_networkx_net[] = "\ncythonize -a -i
         static PyObject *__pyx_n_s_miss_frame;
         static PyObject *__pyx_n_s_module;
         static PyObject *__pyx_n_s_name;
+        static PyObject *__pyx_kp_s_networkx_algorithms_isomorphism;
+        static PyObject *__pyx_n_s_networkx_algorithms_isomorphism_2;
         static PyObject *__pyx_n_s_new_head1;
         static PyObject *__pyx_n_s_new_head2;
         static PyObject *__pyx_n_s_new_heads;
@@ -1605,10 +1574,10 @@ static const char __pyx_k_cythonize_a_i_code_networkx_net[] = "\ncythonize -a -i
         static PyObject *__pyx_n_s_try_key;
         static PyObject *__pyx_n_s_val;
         static PyObject *__pyx_n_s_val3;
-static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok); /* proto */
-static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok); /* proto */
-static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok); /* proto */
-static PyObject *__pyx_pf_24balanced_sequence_cython_12IdentityDict___getitem__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython__lcs_iter_simple_alt2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok); /* proto */
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok); /* proto */
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_4generate_all_decomp_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok); /* proto */
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict___getitem__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items = {0, &__pyx_n_s_items, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_keys = {0, &__pyx_n_s_keys, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyList_Type_pop = {0, &__pyx_n_s_pop, 0, 0, 0};
@@ -1630,7 +1599,7 @@ static PyObject *__pyx_codeobj__9;
 static PyObject *__pyx_codeobj__11;
 /* Late includes */
 
-/* "balanced_sequence_cython.pyx":42
+/* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":44
  * 
  * 
  * def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
@@ -1639,10 +1608,10 @@ static PyObject *__pyx_codeobj__11;
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_24balanced_sequence_cython__lcs_iter_simple_alt2_cython[] = "\n    Depth first stack trajectory and replace try except statements with ifs\n    ";
-static PyMethodDef __pyx_mdef_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython = {"_lcs_iter_simple_alt2_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_24balanced_sequence_cython__lcs_iter_simple_alt2_cython};
-static PyObject *__pyx_pw_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython__lcs_iter_simple_alt2_cython[] = "\n    Depth first stack trajectory and replace try except statements with ifs\n    ";
+static PyMethodDef __pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython = {"_lcs_iter_simple_alt2_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython__lcs_iter_simple_alt2_cython};
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_full_seq1 = 0;
   PyObject *__pyx_v_full_seq2 = 0;
   PyObject *__pyx_v_open_to_close = 0;
@@ -1683,29 +1652,29 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cyth
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_full_seq2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 1); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 1); __PYX_ERR(0, 44, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_open_to_close)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 2); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 2); __PYX_ERR(0, 44, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_node_affinity)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 3); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 3); __PYX_ERR(0, 44, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_open_to_tok)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 4); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, 4); __PYX_ERR(0, 44, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_lcs_iter_simple_alt2_cython") < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_lcs_iter_simple_alt2_cython") < 0)) __PYX_ERR(0, 44, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -1724,20 +1693,20 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cyth
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 42, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_lcs_iter_simple_alt2_cython", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 44, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("balanced_sequence_cython._lcs_iter_simple_alt2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython._lcs_iter_simple_alt2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cython(__pyx_self, __pyx_v_full_seq1, __pyx_v_full_seq2, __pyx_v_open_to_close, __pyx_v_node_affinity, __pyx_v_open_to_tok);
+  __pyx_r = __pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython__lcs_iter_simple_alt2_cython(__pyx_self, __pyx_v_full_seq1, __pyx_v_full_seq2, __pyx_v_open_to_close, __pyx_v_node_affinity, __pyx_v_open_to_tok);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok) {
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython__lcs_iter_simple_alt2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok) {
   PyObject *__pyx_v_all_decomp1 = NULL;
   PyObject *__pyx_v_all_decomp2 = NULL;
   PyObject *__pyx_v_key0 = NULL;
@@ -1809,7 +1778,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __Pyx_RefNannySetupContext("_lcs_iter_simple_alt2_cython", 0);
   __Pyx_INCREF(__pyx_v_open_to_tok);
 
-  /* "balanced_sequence_cython.pyx":46
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":48
  *     Depth first stack trajectory and replace try except statements with ifs
  *     """
  *     if open_to_tok is None:             # <<<<<<<<<<<<<<
@@ -1820,14 +1789,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "balanced_sequence_cython.pyx":47
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":49
  *     """
  *     if open_to_tok is None:
  *         open_to_tok = IdentityDict()             # <<<<<<<<<<<<<<
  *     all_decomp1 = generate_all_decomp_cython(full_seq1, open_to_close, open_to_tok)
  *     all_decomp2 = generate_all_decomp_cython(full_seq2, open_to_close, open_to_tok)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_IdentityDict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_IdentityDict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -1841,13 +1810,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF_SET(__pyx_v_open_to_tok, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":46
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":48
  *     Depth first stack trajectory and replace try except statements with ifs
  *     """
  *     if open_to_tok is None:             # <<<<<<<<<<<<<<
@@ -1856,14 +1825,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
  */
   }
 
-  /* "balanced_sequence_cython.pyx":48
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":50
  *     if open_to_tok is None:
  *         open_to_tok = IdentityDict()
  *     all_decomp1 = generate_all_decomp_cython(full_seq1, open_to_close, open_to_tok)             # <<<<<<<<<<<<<<
  *     all_decomp2 = generate_all_decomp_cython(full_seq2, open_to_close, open_to_tok)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_generate_all_decomp_cython); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_generate_all_decomp_cython); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   __pyx_t_6 = 0;
@@ -1880,7 +1849,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_v_full_seq1, __pyx_v_open_to_close, __pyx_v_open_to_tok};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
@@ -1888,13 +1857,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_v_full_seq1, __pyx_v_open_to_close, __pyx_v_open_to_tok};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -1908,7 +1877,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_open_to_tok);
     __Pyx_GIVEREF(__pyx_v_open_to_tok);
     PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_6, __pyx_v_open_to_tok);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
@@ -1916,14 +1885,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_v_all_decomp1 = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":49
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":51
  *         open_to_tok = IdentityDict()
  *     all_decomp1 = generate_all_decomp_cython(full_seq1, open_to_close, open_to_tok)
  *     all_decomp2 = generate_all_decomp_cython(full_seq2, open_to_close, open_to_tok)             # <<<<<<<<<<<<<<
  * 
  *     key0 = (full_seq1, full_seq2)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_generate_all_decomp_cython); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_generate_all_decomp_cython); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_7 = NULL;
   __pyx_t_6 = 0;
@@ -1940,7 +1909,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_v_full_seq2, __pyx_v_open_to_close, __pyx_v_open_to_tok};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
@@ -1948,13 +1917,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[4] = {__pyx_t_7, __pyx_v_full_seq2, __pyx_v_open_to_close, __pyx_v_open_to_tok};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_6, 3+__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 49, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3+__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -1968,7 +1937,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_open_to_tok);
     __Pyx_GIVEREF(__pyx_v_open_to_tok);
     PyTuple_SET_ITEM(__pyx_t_5, 2+__pyx_t_6, __pyx_v_open_to_tok);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -1976,14 +1945,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_v_all_decomp2 = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":51
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":53
  *     all_decomp2 = generate_all_decomp_cython(full_seq2, open_to_close, open_to_tok)
  * 
  *     key0 = (full_seq1, full_seq2)             # <<<<<<<<<<<<<<
  *     frame0 = key0
  *     stack = [frame0]
  */
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_full_seq1);
   __Pyx_GIVEREF(__pyx_v_full_seq1);
@@ -1994,7 +1963,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_v_key0 = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":52
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":54
  * 
  *     key0 = (full_seq1, full_seq2)
  *     frame0 = key0             # <<<<<<<<<<<<<<
@@ -2004,14 +1973,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __Pyx_INCREF(__pyx_v_key0);
   __pyx_v_frame0 = __pyx_v_key0;
 
-  /* "balanced_sequence_cython.pyx":53
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":55
  *     key0 = (full_seq1, full_seq2)
  *     frame0 = key0
  *     stack = [frame0]             # <<<<<<<<<<<<<<
  * 
  *     _results = {}
  */
-  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_frame0);
   __Pyx_GIVEREF(__pyx_v_frame0);
@@ -2019,26 +1988,26 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_v_stack = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":55
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":57
  *     stack = [frame0]
  * 
  *     _results = {}             # <<<<<<<<<<<<<<
  *     # Populate base cases
  *     empty1 = type(next(iter(all_decomp1.keys())))()
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v__results = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":57
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":59
  *     _results = {}
  *     # Populate base cases
  *     empty1 = type(next(iter(all_decomp1.keys())))()             # <<<<<<<<<<<<<<
  *     empty2 = type(next(iter(all_decomp2.keys())))()
  *     best = (empty1, empty2)
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp1, __pyx_n_s_keys); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp1, __pyx_n_s_keys); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_7 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -2052,13 +2021,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __pyx_t_4 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyIter_Next(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyIter_Next(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_INCREF(((PyObject *)Py_TYPE(__pyx_t_4)));
@@ -2075,20 +2044,20 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_empty1 = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":58
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":60
  *     # Populate base cases
  *     empty1 = type(next(iter(all_decomp1.keys())))()
  *     empty2 = type(next(iter(all_decomp2.keys())))()             # <<<<<<<<<<<<<<
  *     best = (empty1, empty2)
  *     base_result = (0, best)
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp2, __pyx_n_s_keys); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp2, __pyx_n_s_keys); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_7 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -2102,13 +2071,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __pyx_t_5 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_4 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyIter_Next(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyIter_Next(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_INCREF(((PyObject *)Py_TYPE(__pyx_t_5)));
@@ -2125,20 +2094,20 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_empty2 = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":59
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":61
  *     empty1 = type(next(iter(all_decomp1.keys())))()
  *     empty2 = type(next(iter(all_decomp2.keys())))()
  *     best = (empty1, empty2)             # <<<<<<<<<<<<<<
  *     base_result = (0, best)
  *     for seq1 in all_decomp1.keys():
  */
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_empty1);
   __Pyx_GIVEREF(__pyx_v_empty1);
@@ -2149,14 +2118,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_v_best = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":60
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":62
  *     empty2 = type(next(iter(all_decomp2.keys())))()
  *     best = (empty1, empty2)
  *     base_result = (0, best)             # <<<<<<<<<<<<<<
  *     for seq1 in all_decomp1.keys():
  *         key1 = seq1
  */
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -2167,14 +2136,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_v_base_result = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":61
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":63
  *     best = (empty1, empty2)
  *     base_result = (0, best)
  *     for seq1 in all_decomp1.keys():             # <<<<<<<<<<<<<<
  *         key1 = seq1
  *         t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[key1]
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp1, __pyx_n_s_keys); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp1, __pyx_n_s_keys); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -2188,16 +2157,16 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
     __pyx_t_4 = __pyx_t_3; __Pyx_INCREF(__pyx_t_4); __pyx_t_8 = 0;
     __pyx_t_9 = NULL;
   } else {
-    __pyx_t_8 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 61, __pyx_L1_error)
+    __pyx_t_8 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_9 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 61, __pyx_L1_error)
+    __pyx_t_9 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 63, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   for (;;) {
@@ -2205,17 +2174,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       if (likely(PyList_CheckExact(__pyx_t_4))) {
         if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_4)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 61, __pyx_L1_error)
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 63, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       } else {
         if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_4)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 61, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 63, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       }
@@ -2225,7 +2194,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 61, __pyx_L1_error)
+          else __PYX_ERR(0, 63, __pyx_L1_error)
         }
         break;
       }
@@ -2234,7 +2203,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_XDECREF_SET(__pyx_v_seq1, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":62
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":64
  *     base_result = (0, best)
  *     for seq1 in all_decomp1.keys():
  *         key1 = seq1             # <<<<<<<<<<<<<<
@@ -2244,14 +2213,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_seq1);
     __Pyx_XDECREF_SET(__pyx_v_key1, __pyx_v_seq1);
 
-    /* "balanced_sequence_cython.pyx":63
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":65
  *     for seq1 in all_decomp1.keys():
  *         key1 = seq1
  *         t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[key1]             # <<<<<<<<<<<<<<
  *         _results[(seq1, empty2)] = base_result
  *         _results[(head1, empty2)] = base_result
  */
-    __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp1, __pyx_v_key1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp1, __pyx_v_key1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
       PyObject* sequence = __pyx_t_3;
@@ -2259,7 +2228,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       if (unlikely(size != 6)) {
         if (size > 6) __Pyx_RaiseTooManyValuesError(6);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 63, __pyx_L1_error)
+        __PYX_ERR(0, 65, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -2288,7 +2257,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         Py_ssize_t i;
         PyObject** temps[6] = {&__pyx_t_5,&__pyx_t_7,&__pyx_t_10,&__pyx_t_11,&__pyx_t_12,&__pyx_t_13};
         for (i=0; i < 6; i++) {
-          PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 63, __pyx_L1_error)
+          PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 65, __pyx_L1_error)
           __Pyx_GOTREF(item);
           *(temps[i]) = item;
         }
@@ -2298,7 +2267,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     } else {
       Py_ssize_t index = -1;
       PyObject** temps[6] = {&__pyx_t_5,&__pyx_t_7,&__pyx_t_10,&__pyx_t_11,&__pyx_t_12,&__pyx_t_13};
-      __pyx_t_14 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 63, __pyx_L1_error)
+      __pyx_t_14 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 65, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_15 = Py_TYPE(__pyx_t_14)->tp_iternext;
@@ -2307,7 +2276,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_GOTREF(item);
         *(temps[index]) = item;
       }
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 6) < 0) __PYX_ERR(0, 63, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 6) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
       __pyx_t_15 = NULL;
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       goto __pyx_L7_unpacking_done;
@@ -2315,7 +2284,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       __pyx_t_15 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 63, __pyx_L1_error)
+      __PYX_ERR(0, 65, __pyx_L1_error)
       __pyx_L7_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_t1, __pyx_t_5);
@@ -2331,14 +2300,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_XDECREF_SET(__pyx_v_head_tail1, __pyx_t_13);
     __pyx_t_13 = 0;
 
-    /* "balanced_sequence_cython.pyx":64
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":66
  *         key1 = seq1
  *         t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[key1]
  *         _results[(seq1, empty2)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(head1, empty2)] = base_result
  *         _results[(tail1, empty2)] = base_result
  */
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_seq1);
     __Pyx_GIVEREF(__pyx_v_seq1);
@@ -2346,17 +2315,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_empty2);
     __Pyx_GIVEREF(__pyx_v_empty2);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_empty2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 64, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":65
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":67
  *         t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[key1]
  *         _results[(seq1, empty2)] = base_result
  *         _results[(head1, empty2)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(tail1, empty2)] = base_result
  *         _results[(head_tail1, empty2)] = base_result
  */
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_head1);
     __Pyx_GIVEREF(__pyx_v_head1);
@@ -2364,17 +2333,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_empty2);
     __Pyx_GIVEREF(__pyx_v_empty2);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_empty2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 65, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":66
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":68
  *         _results[(seq1, empty2)] = base_result
  *         _results[(head1, empty2)] = base_result
  *         _results[(tail1, empty2)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(head_tail1, empty2)] = base_result
  * 
  */
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_tail1);
     __Pyx_GIVEREF(__pyx_v_tail1);
@@ -2382,17 +2351,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_empty2);
     __Pyx_GIVEREF(__pyx_v_empty2);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_empty2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 66, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":67
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":69
  *         _results[(head1, empty2)] = base_result
  *         _results[(tail1, empty2)] = base_result
  *         _results[(head_tail1, empty2)] = base_result             # <<<<<<<<<<<<<<
  * 
  *     for seq2 in all_decomp2.keys():
  */
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_head_tail1);
     __Pyx_GIVEREF(__pyx_v_head_tail1);
@@ -2400,10 +2369,10 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_empty2);
     __Pyx_GIVEREF(__pyx_v_empty2);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_empty2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 67, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 69, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":61
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":63
  *     best = (empty1, empty2)
  *     base_result = (0, best)
  *     for seq1 in all_decomp1.keys():             # <<<<<<<<<<<<<<
@@ -2413,14 +2382,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "balanced_sequence_cython.pyx":69
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":71
  *         _results[(head_tail1, empty2)] = base_result
  * 
  *     for seq2 in all_decomp2.keys():             # <<<<<<<<<<<<<<
  *         key2 = seq2
  *         t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[key2]
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp2, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_decomp2, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_13 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -2434,16 +2403,16 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __pyx_t_4 = (__pyx_t_13) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_13) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
     __pyx_t_3 = __pyx_t_4; __Pyx_INCREF(__pyx_t_3); __pyx_t_8 = 0;
     __pyx_t_9 = NULL;
   } else {
-    __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+    __pyx_t_8 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_9 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 69, __pyx_L1_error)
+    __pyx_t_9 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 71, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   for (;;) {
@@ -2451,17 +2420,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 69, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 71, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 69, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 71, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 69, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -2471,7 +2440,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 69, __pyx_L1_error)
+          else __PYX_ERR(0, 71, __pyx_L1_error)
         }
         break;
       }
@@ -2480,7 +2449,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_XDECREF_SET(__pyx_v_seq2, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "balanced_sequence_cython.pyx":70
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":72
  * 
  *     for seq2 in all_decomp2.keys():
  *         key2 = seq2             # <<<<<<<<<<<<<<
@@ -2490,14 +2459,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_seq2);
     __Pyx_XDECREF_SET(__pyx_v_key2, __pyx_v_seq2);
 
-    /* "balanced_sequence_cython.pyx":71
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":73
  *     for seq2 in all_decomp2.keys():
  *         key2 = seq2
  *         t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[key2]             # <<<<<<<<<<<<<<
  *         _results[(empty1, seq2)] = base_result
  *         _results[(empty1, head2)] = base_result
  */
-    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp2, __pyx_v_key2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 71, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp2, __pyx_v_key2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
       PyObject* sequence = __pyx_t_4;
@@ -2505,7 +2474,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       if (unlikely(size != 6)) {
         if (size > 6) __Pyx_RaiseTooManyValuesError(6);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 71, __pyx_L1_error)
+        __PYX_ERR(0, 73, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -2534,7 +2503,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         Py_ssize_t i;
         PyObject** temps[6] = {&__pyx_t_13,&__pyx_t_12,&__pyx_t_11,&__pyx_t_10,&__pyx_t_7,&__pyx_t_5};
         for (i=0; i < 6; i++) {
-          PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 71, __pyx_L1_error)
+          PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 73, __pyx_L1_error)
           __Pyx_GOTREF(item);
           *(temps[i]) = item;
         }
@@ -2544,7 +2513,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     } else {
       Py_ssize_t index = -1;
       PyObject** temps[6] = {&__pyx_t_13,&__pyx_t_12,&__pyx_t_11,&__pyx_t_10,&__pyx_t_7,&__pyx_t_5};
-      __pyx_t_14 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 71, __pyx_L1_error)
+      __pyx_t_14 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 73, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_15 = Py_TYPE(__pyx_t_14)->tp_iternext;
@@ -2553,7 +2522,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_GOTREF(item);
         *(temps[index]) = item;
       }
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 6) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 6) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
       __pyx_t_15 = NULL;
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       goto __pyx_L11_unpacking_done;
@@ -2561,7 +2530,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       __pyx_t_15 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 71, __pyx_L1_error)
+      __PYX_ERR(0, 73, __pyx_L1_error)
       __pyx_L11_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_t2, __pyx_t_13);
@@ -2577,14 +2546,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_XDECREF_SET(__pyx_v_head_tail2, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "balanced_sequence_cython.pyx":72
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":74
  *         key2 = seq2
  *         t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[key2]
  *         _results[(empty1, seq2)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(empty1, head2)] = base_result
  *         _results[(empty1, tail2)] = base_result
  */
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_v_empty1);
     __Pyx_GIVEREF(__pyx_v_empty1);
@@ -2592,17 +2561,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_seq2);
     __Pyx_GIVEREF(__pyx_v_seq2);
     PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_seq2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 72, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "balanced_sequence_cython.pyx":73
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":75
  *         t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[key2]
  *         _results[(empty1, seq2)] = base_result
  *         _results[(empty1, head2)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(empty1, tail2)] = base_result
  *         _results[(empty1, head_tail2)] = base_result
  */
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_v_empty1);
     __Pyx_GIVEREF(__pyx_v_empty1);
@@ -2610,17 +2579,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_head2);
     __Pyx_GIVEREF(__pyx_v_head2);
     PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_head2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 75, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "balanced_sequence_cython.pyx":74
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":76
  *         _results[(empty1, seq2)] = base_result
  *         _results[(empty1, head2)] = base_result
  *         _results[(empty1, tail2)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(empty1, head_tail2)] = base_result
  * 
  */
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_v_empty1);
     __Pyx_GIVEREF(__pyx_v_empty1);
@@ -2628,17 +2597,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_tail2);
     __Pyx_GIVEREF(__pyx_v_tail2);
     PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_tail2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "balanced_sequence_cython.pyx":75
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":77
  *         _results[(empty1, head2)] = base_result
  *         _results[(empty1, tail2)] = base_result
  *         _results[(empty1, head_tail2)] = base_result             # <<<<<<<<<<<<<<
  * 
  *     while stack:
  */
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 77, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_v_empty1);
     __Pyx_GIVEREF(__pyx_v_empty1);
@@ -2646,10 +2615,10 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_v_head_tail2);
     __Pyx_GIVEREF(__pyx_v_head_tail2);
     PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_head_tail2);
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 75, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_4, __pyx_v_base_result) < 0)) __PYX_ERR(0, 77, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "balanced_sequence_cython.pyx":69
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":71
  *         _results[(head_tail1, empty2)] = base_result
  * 
  *     for seq2 in all_decomp2.keys():             # <<<<<<<<<<<<<<
@@ -2659,7 +2628,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":77
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":79
  *         _results[(empty1, head_tail2)] = base_result
  * 
  *     while stack:             # <<<<<<<<<<<<<<
@@ -2670,30 +2639,30 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __pyx_t_2 = (PyList_GET_SIZE(__pyx_v_stack) != 0);
     if (!__pyx_t_2) break;
 
-    /* "balanced_sequence_cython.pyx":78
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":80
  * 
  *     while stack:
  *         key = stack[-1]             # <<<<<<<<<<<<<<
  *         if key not in _results:
  *             seq1, seq2 = key
  */
-    __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_v_stack, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_v_stack, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":79
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":81
  *     while stack:
  *         key = stack[-1]
  *         if key not in _results:             # <<<<<<<<<<<<<<
  *             seq1, seq2 = key
  * 
  */
-    __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_key, __pyx_v__results, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_key, __pyx_v__results, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
     __pyx_t_1 = (__pyx_t_2 != 0);
     if (__pyx_t_1) {
 
-      /* "balanced_sequence_cython.pyx":80
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":82
  *         key = stack[-1]
  *         if key not in _results:
  *             seq1, seq2 = key             # <<<<<<<<<<<<<<
@@ -2706,7 +2675,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 80, __pyx_L1_error)
+          __PYX_ERR(0, 82, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -2719,21 +2688,21 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_INCREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_4);
         #else
-        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_5 = PyObject_GetIter(__pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
+        __pyx_t_5 = PyObject_GetIter(__pyx_v_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __pyx_t_15 = Py_TYPE(__pyx_t_5)->tp_iternext;
         index = 0; __pyx_t_3 = __pyx_t_15(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L15_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_3);
         index = 1; __pyx_t_4 = __pyx_t_15(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L15_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_4);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 80, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
         __pyx_t_15 = NULL;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         goto __pyx_L16_unpacking_done;
@@ -2741,7 +2710,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __pyx_t_15 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 80, __pyx_L1_error)
+        __PYX_ERR(0, 82, __pyx_L1_error)
         __pyx_L16_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_seq1, __pyx_t_3);
@@ -2749,14 +2718,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_XDECREF_SET(__pyx_v_seq2, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "balanced_sequence_cython.pyx":82
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":84
  *             seq1, seq2 = key
  * 
  *             t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[seq1]             # <<<<<<<<<<<<<<
  *             t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[seq2]
  * 
  */
-      __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp1, __pyx_v_seq1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp1, __pyx_v_seq1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
         PyObject* sequence = __pyx_t_4;
@@ -2764,7 +2733,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         if (unlikely(size != 6)) {
           if (size > 6) __Pyx_RaiseTooManyValuesError(6);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 82, __pyx_L1_error)
+          __PYX_ERR(0, 84, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -2793,7 +2762,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           Py_ssize_t i;
           PyObject** temps[6] = {&__pyx_t_3,&__pyx_t_5,&__pyx_t_7,&__pyx_t_10,&__pyx_t_11,&__pyx_t_12};
           for (i=0; i < 6; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 82, __pyx_L1_error)
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 84, __pyx_L1_error)
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
@@ -2803,7 +2772,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       } else {
         Py_ssize_t index = -1;
         PyObject** temps[6] = {&__pyx_t_3,&__pyx_t_5,&__pyx_t_7,&__pyx_t_10,&__pyx_t_11,&__pyx_t_12};
-        __pyx_t_13 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 82, __pyx_L1_error)
+        __pyx_t_13 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 84, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_15 = Py_TYPE(__pyx_t_13)->tp_iternext;
@@ -2812,7 +2781,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_GOTREF(item);
           *(temps[index]) = item;
         }
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_13), 6) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_13), 6) < 0) __PYX_ERR(0, 84, __pyx_L1_error)
         __pyx_t_15 = NULL;
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         goto __pyx_L18_unpacking_done;
@@ -2820,7 +2789,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __pyx_t_15 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 82, __pyx_L1_error)
+        __PYX_ERR(0, 84, __pyx_L1_error)
         __pyx_L18_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_t1, __pyx_t_3);
@@ -2836,14 +2805,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_XDECREF_SET(__pyx_v_head_tail1, __pyx_t_12);
       __pyx_t_12 = 0;
 
-      /* "balanced_sequence_cython.pyx":83
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":85
  * 
  *             t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[seq1]
  *             t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[seq2]             # <<<<<<<<<<<<<<
  * 
  *             # Case 2: The current edge in sequence1 is deleted
  */
-      __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp2, __pyx_v_seq2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_all_decomp2, __pyx_v_seq2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
         PyObject* sequence = __pyx_t_4;
@@ -2851,7 +2820,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         if (unlikely(size != 6)) {
           if (size > 6) __Pyx_RaiseTooManyValuesError(6);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 83, __pyx_L1_error)
+          __PYX_ERR(0, 85, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -2880,7 +2849,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           Py_ssize_t i;
           PyObject** temps[6] = {&__pyx_t_12,&__pyx_t_11,&__pyx_t_10,&__pyx_t_7,&__pyx_t_5,&__pyx_t_3};
           for (i=0; i < 6; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 83, __pyx_L1_error)
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 85, __pyx_L1_error)
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
@@ -2890,7 +2859,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       } else {
         Py_ssize_t index = -1;
         PyObject** temps[6] = {&__pyx_t_12,&__pyx_t_11,&__pyx_t_10,&__pyx_t_7,&__pyx_t_5,&__pyx_t_3};
-        __pyx_t_13 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 83, __pyx_L1_error)
+        __pyx_t_13 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_15 = Py_TYPE(__pyx_t_13)->tp_iternext;
@@ -2899,7 +2868,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_GOTREF(item);
           *(temps[index]) = item;
         }
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_13), 6) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_13), 6) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
         __pyx_t_15 = NULL;
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         goto __pyx_L20_unpacking_done;
@@ -2907,7 +2876,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __pyx_t_15 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 83, __pyx_L1_error)
+        __PYX_ERR(0, 85, __pyx_L1_error)
         __pyx_L20_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_t2, __pyx_t_12);
@@ -2923,14 +2892,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_XDECREF_SET(__pyx_v_head_tail2, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "balanced_sequence_cython.pyx":86
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":88
  * 
  *             # Case 2: The current edge in sequence1 is deleted
  *             try_key = (head_tail1, seq2)             # <<<<<<<<<<<<<<
  *             if try_key in _results:
  *                 cand1 = _results[try_key]
  */
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_v_head_tail1);
       __Pyx_GIVEREF(__pyx_v_head_tail1);
@@ -2941,30 +2910,30 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_XDECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_4));
       __pyx_t_4 = 0;
 
-      /* "balanced_sequence_cython.pyx":87
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":89
  *             # Case 2: The current edge in sequence1 is deleted
  *             try_key = (head_tail1, seq2)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
  *                 cand1 = _results[try_key]
  *             else:
  */
-      __pyx_t_1 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 87, __pyx_L1_error)
+      __pyx_t_1 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 89, __pyx_L1_error)
       __pyx_t_2 = (__pyx_t_1 != 0);
       if (__pyx_t_2) {
 
-        /* "balanced_sequence_cython.pyx":88
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":90
  *             try_key = (head_tail1, seq2)
  *             if try_key in _results:
  *                 cand1 = _results[try_key]             # <<<<<<<<<<<<<<
  *             else:
  *                 # stack.append(key)
  */
-        __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_XDECREF_SET(__pyx_v_cand1, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":87
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":89
  *             # Case 2: The current edge in sequence1 is deleted
  *             try_key = (head_tail1, seq2)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
@@ -2974,7 +2943,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         goto __pyx_L21;
       }
 
-      /* "balanced_sequence_cython.pyx":91
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":93
  *             else:
  *                 # stack.append(key)
  *                 stack.append(try_key)             # <<<<<<<<<<<<<<
@@ -2982,9 +2951,9 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
  * 
  */
       /*else*/ {
-        __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 91, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 93, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":92
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":94
  *                 # stack.append(key)
  *                 stack.append(try_key)
  *                 continue             # <<<<<<<<<<<<<<
@@ -2995,14 +2964,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       }
       __pyx_L21:;
 
-      /* "balanced_sequence_cython.pyx":95
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":97
  * 
  *             # Case 3: The current edge in sequence2 is deleted
  *             try_key = (seq1, head_tail2)             # <<<<<<<<<<<<<<
  *             if try_key in _results:
  *                 cand2 = _results[try_key]
  */
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_v_seq1);
       __Pyx_GIVEREF(__pyx_v_seq1);
@@ -3013,30 +2982,30 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_DECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_4));
       __pyx_t_4 = 0;
 
-      /* "balanced_sequence_cython.pyx":96
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":98
  *             # Case 3: The current edge in sequence2 is deleted
  *             try_key = (seq1, head_tail2)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
  *                 cand2 = _results[try_key]
  *             else:
  */
-      __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 98, __pyx_L1_error)
       __pyx_t_1 = (__pyx_t_2 != 0);
       if (__pyx_t_1) {
 
-        /* "balanced_sequence_cython.pyx":97
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":99
  *             try_key = (seq1, head_tail2)
  *             if try_key in _results:
  *                 cand2 = _results[try_key]             # <<<<<<<<<<<<<<
  *             else:
  *                 # stack.append(key)
  */
-        __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_XDECREF_SET(__pyx_v_cand2, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":96
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":98
  *             # Case 3: The current edge in sequence2 is deleted
  *             try_key = (seq1, head_tail2)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
@@ -3046,7 +3015,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         goto __pyx_L22;
       }
 
-      /* "balanced_sequence_cython.pyx":100
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":102
  *             else:
  *                 # stack.append(key)
  *                 stack.append(try_key)             # <<<<<<<<<<<<<<
@@ -3054,9 +3023,9 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
  * 
  */
       /*else*/ {
-        __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 102, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":101
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":103
  *                 # stack.append(key)
  *                 stack.append(try_key)
  *                 continue             # <<<<<<<<<<<<<<
@@ -3067,7 +3036,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       }
       __pyx_L22:;
 
-      /* "balanced_sequence_cython.pyx":104
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":106
  * 
  *             # Case 1: The LCS involves this edge
  *             affinity = node_affinity(t1, t2)             # <<<<<<<<<<<<<<
@@ -3090,7 +3059,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_t1, __pyx_v_t2};
-        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_4);
       } else
@@ -3098,13 +3067,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_t1, __pyx_v_t2};
-        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_GOTREF(__pyx_t_4);
       } else
       #endif
       {
-        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 106, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         if (__pyx_t_5) {
           __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -3115,7 +3084,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_INCREF(__pyx_v_t2);
         __Pyx_GIVEREF(__pyx_v_t2);
         PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_v_t2);
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
@@ -3123,24 +3092,24 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_XDECREF_SET(__pyx_v_affinity, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "balanced_sequence_cython.pyx":105
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":107
  *             # Case 1: The LCS involves this edge
  *             affinity = node_affinity(t1, t2)
  *             if affinity:             # <<<<<<<<<<<<<<
  *                 try_key = (head1, head2)
  *                 if try_key in _results:
  */
-      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_affinity); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_affinity); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 107, __pyx_L1_error)
       if (__pyx_t_1) {
 
-        /* "balanced_sequence_cython.pyx":106
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":108
  *             affinity = node_affinity(t1, t2)
  *             if affinity:
  *                 try_key = (head1, head2)             # <<<<<<<<<<<<<<
  *                 if try_key in _results:
  *                     pval_h, new_heads = _results[try_key]
  */
-        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_v_head1);
         __Pyx_GIVEREF(__pyx_v_head1);
@@ -3151,25 +3120,25 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_DECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_4));
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":107
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":109
  *             if affinity:
  *                 try_key = (head1, head2)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
  *                     pval_h, new_heads = _results[try_key]
  *                 else:
  */
-        __pyx_t_1 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 107, __pyx_L1_error)
+        __pyx_t_1 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 109, __pyx_L1_error)
         __pyx_t_2 = (__pyx_t_1 != 0);
         if (__pyx_t_2) {
 
-          /* "balanced_sequence_cython.pyx":108
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":110
  *                 try_key = (head1, head2)
  *                 if try_key in _results:
  *                     pval_h, new_heads = _results[try_key]             # <<<<<<<<<<<<<<
  *                 else:
  *                     # stack.append(key)
  */
-          __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
             PyObject* sequence = __pyx_t_4;
@@ -3177,7 +3146,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             if (unlikely(size != 2)) {
               if (size > 2) __Pyx_RaiseTooManyValuesError(2);
               else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-              __PYX_ERR(0, 108, __pyx_L1_error)
+              __PYX_ERR(0, 110, __pyx_L1_error)
             }
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
             if (likely(PyTuple_CheckExact(sequence))) {
@@ -3190,15 +3159,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             __Pyx_INCREF(__pyx_t_3);
             __Pyx_INCREF(__pyx_t_7);
             #else
-            __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
+            __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 108, __pyx_L1_error)
+            __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 110, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
             #endif
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           } else {
             Py_ssize_t index = -1;
-            __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 108, __pyx_L1_error)
+            __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 110, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_5);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             __pyx_t_15 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -3206,7 +3175,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             __Pyx_GOTREF(__pyx_t_3);
             index = 1; __pyx_t_7 = __pyx_t_15(__pyx_t_5); if (unlikely(!__pyx_t_7)) goto __pyx_L25_unpacking_failed;
             __Pyx_GOTREF(__pyx_t_7);
-            if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+            if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
             __pyx_t_15 = NULL;
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             goto __pyx_L26_unpacking_done;
@@ -3214,7 +3183,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             __pyx_t_15 = NULL;
             if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-            __PYX_ERR(0, 108, __pyx_L1_error)
+            __PYX_ERR(0, 110, __pyx_L1_error)
             __pyx_L26_unpacking_done:;
           }
           __Pyx_XDECREF_SET(__pyx_v_pval_h, __pyx_t_3);
@@ -3222,7 +3191,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_XDECREF_SET(__pyx_v_new_heads, __pyx_t_7);
           __pyx_t_7 = 0;
 
-          /* "balanced_sequence_cython.pyx":107
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":109
  *             if affinity:
  *                 try_key = (head1, head2)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
@@ -3232,7 +3201,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           goto __pyx_L24;
         }
 
-        /* "balanced_sequence_cython.pyx":111
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":113
  *                 else:
  *                     # stack.append(key)
  *                     stack.append(try_key)             # <<<<<<<<<<<<<<
@@ -3240,9 +3209,9 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
  * 
  */
         /*else*/ {
-          __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 111, __pyx_L1_error)
+          __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 113, __pyx_L1_error)
 
-          /* "balanced_sequence_cython.pyx":112
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":114
  *                     # stack.append(key)
  *                     stack.append(try_key)
  *                     continue             # <<<<<<<<<<<<<<
@@ -3253,14 +3222,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         }
         __pyx_L24:;
 
-        /* "balanced_sequence_cython.pyx":114
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":116
  *                     continue
  * 
  *                 try_key = (tail1, tail2)             # <<<<<<<<<<<<<<
  *                 if try_key in _results:
  *                     pval_t, new_tails = _results[try_key]
  */
-        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_v_tail1);
         __Pyx_GIVEREF(__pyx_v_tail1);
@@ -3271,25 +3240,25 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_DECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_4));
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":115
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":117
  * 
  *                 try_key = (tail1, tail2)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
  *                     pval_t, new_tails = _results[try_key]
  *                 else:
  */
-        __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 115, __pyx_L1_error)
+        __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 117, __pyx_L1_error)
         __pyx_t_1 = (__pyx_t_2 != 0);
         if (__pyx_t_1) {
 
-          /* "balanced_sequence_cython.pyx":116
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":118
  *                 try_key = (tail1, tail2)
  *                 if try_key in _results:
  *                     pval_t, new_tails = _results[try_key]             # <<<<<<<<<<<<<<
  *                 else:
  *                     # stack.append(key)
  */
-          __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
+          __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
             PyObject* sequence = __pyx_t_4;
@@ -3297,7 +3266,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             if (unlikely(size != 2)) {
               if (size > 2) __Pyx_RaiseTooManyValuesError(2);
               else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-              __PYX_ERR(0, 116, __pyx_L1_error)
+              __PYX_ERR(0, 118, __pyx_L1_error)
             }
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
             if (likely(PyTuple_CheckExact(sequence))) {
@@ -3310,15 +3279,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             __Pyx_INCREF(__pyx_t_7);
             __Pyx_INCREF(__pyx_t_3);
             #else
-            __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 116, __pyx_L1_error)
+            __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 118, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
+            __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
             #endif
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           } else {
             Py_ssize_t index = -1;
-            __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+            __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_5);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             __pyx_t_15 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -3326,7 +3295,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             __Pyx_GOTREF(__pyx_t_7);
             index = 1; __pyx_t_3 = __pyx_t_15(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L28_unpacking_failed;
             __Pyx_GOTREF(__pyx_t_3);
-            if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
+            if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 118, __pyx_L1_error)
             __pyx_t_15 = NULL;
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             goto __pyx_L29_unpacking_done;
@@ -3334,7 +3303,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             __pyx_t_15 = NULL;
             if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-            __PYX_ERR(0, 116, __pyx_L1_error)
+            __PYX_ERR(0, 118, __pyx_L1_error)
             __pyx_L29_unpacking_done:;
           }
           __Pyx_XDECREF_SET(__pyx_v_pval_t, __pyx_t_7);
@@ -3342,7 +3311,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_XDECREF_SET(__pyx_v_new_tails, __pyx_t_3);
           __pyx_t_3 = 0;
 
-          /* "balanced_sequence_cython.pyx":115
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":117
  * 
  *                 try_key = (tail1, tail2)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
@@ -3352,7 +3321,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           goto __pyx_L27;
         }
 
-        /* "balanced_sequence_cython.pyx":119
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":121
  *                 else:
  *                     # stack.append(key)
  *                     stack.append(try_key)             # <<<<<<<<<<<<<<
@@ -3360,9 +3329,9 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
  * 
  */
         /*else*/ {
-          __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 119, __pyx_L1_error)
+          __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_try_key); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 121, __pyx_L1_error)
 
-          /* "balanced_sequence_cython.pyx":120
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":122
  *                     # stack.append(key)
  *                     stack.append(try_key)
  *                     continue             # <<<<<<<<<<<<<<
@@ -3373,7 +3342,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         }
         __pyx_L27:;
 
-        /* "balanced_sequence_cython.pyx":122
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":124
  *                     continue
  * 
  *                 new_head1, new_head2 = new_heads             # <<<<<<<<<<<<<<
@@ -3386,7 +3355,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 122, __pyx_L1_error)
+            __PYX_ERR(0, 124, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           if (likely(PyTuple_CheckExact(sequence))) {
@@ -3399,21 +3368,21 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_INCREF(__pyx_t_4);
           __Pyx_INCREF(__pyx_t_3);
           #else
-          __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 122, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_heads); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 122, __pyx_L1_error)
+          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_heads); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 124, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __pyx_t_15 = Py_TYPE(__pyx_t_7)->tp_iternext;
           index = 0; __pyx_t_4 = __pyx_t_15(__pyx_t_7); if (unlikely(!__pyx_t_4)) goto __pyx_L30_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_4);
           index = 1; __pyx_t_3 = __pyx_t_15(__pyx_t_7); if (unlikely(!__pyx_t_3)) goto __pyx_L30_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_3);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_7), 2) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_7), 2) < 0) __PYX_ERR(0, 124, __pyx_L1_error)
           __pyx_t_15 = NULL;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           goto __pyx_L31_unpacking_done;
@@ -3421,7 +3390,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __pyx_t_15 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 122, __pyx_L1_error)
+          __PYX_ERR(0, 124, __pyx_L1_error)
           __pyx_L31_unpacking_done:;
         }
         __Pyx_XDECREF_SET(__pyx_v_new_head1, __pyx_t_4);
@@ -3429,7 +3398,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_XDECREF_SET(__pyx_v_new_head2, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":123
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":125
  * 
  *                 new_head1, new_head2 = new_heads
  *                 new_tail1, new_tail2 = new_tails             # <<<<<<<<<<<<<<
@@ -3442,7 +3411,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 123, __pyx_L1_error)
+            __PYX_ERR(0, 125, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           if (likely(PyTuple_CheckExact(sequence))) {
@@ -3455,21 +3424,21 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_INCREF(__pyx_t_3);
           __Pyx_INCREF(__pyx_t_4);
           #else
-          __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_tails); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 123, __pyx_L1_error)
+          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_tails); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __pyx_t_15 = Py_TYPE(__pyx_t_7)->tp_iternext;
           index = 0; __pyx_t_3 = __pyx_t_15(__pyx_t_7); if (unlikely(!__pyx_t_3)) goto __pyx_L32_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_3);
           index = 1; __pyx_t_4 = __pyx_t_15(__pyx_t_7); if (unlikely(!__pyx_t_4)) goto __pyx_L32_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_4);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_7), 2) < 0) __PYX_ERR(0, 123, __pyx_L1_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_7), 2) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
           __pyx_t_15 = NULL;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           goto __pyx_L33_unpacking_done;
@@ -3477,7 +3446,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __pyx_t_15 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 123, __pyx_L1_error)
+          __PYX_ERR(0, 125, __pyx_L1_error)
           __pyx_L33_unpacking_done:;
         }
         __Pyx_XDECREF_SET(__pyx_v_new_tail1, __pyx_t_3);
@@ -3485,50 +3454,50 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_XDECREF_SET(__pyx_v_new_tail2, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":125
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":127
  *                 new_tail1, new_tail2 = new_tails
  * 
  *                 subseq1 = a1 + new_head1 + b1 + new_tail1             # <<<<<<<<<<<<<<
  *                 subseq2 = a2 + new_head2 + b2 + new_tail2
  * 
  */
-        __pyx_t_4 = PyNumber_Add(__pyx_v_a1, __pyx_v_new_head1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_Add(__pyx_v_a1, __pyx_v_new_head1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_v_b1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_v_b1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_v_new_tail1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_v_new_tail1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF_SET(__pyx_v_subseq1, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":126
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":128
  * 
  *                 subseq1 = a1 + new_head1 + b1 + new_tail1
  *                 subseq2 = a2 + new_head2 + b2 + new_tail2             # <<<<<<<<<<<<<<
  * 
  *                 res3 = (subseq1, subseq2)
  */
-        __pyx_t_4 = PyNumber_Add(__pyx_v_a2, __pyx_v_new_head2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_Add(__pyx_v_a2, __pyx_v_new_head2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_v_b2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_v_b2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_v_new_tail2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_Add(__pyx_t_3, __pyx_v_new_tail2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF_SET(__pyx_v_subseq2, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":128
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":130
  *                 subseq2 = a2 + new_head2 + b2 + new_tail2
  * 
  *                 res3 = (subseq1, subseq2)             # <<<<<<<<<<<<<<
  *                 val3 = pval_h + pval_t + affinity
  *                 cand3 = (val3, res3)
  */
-        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 130, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_v_subseq1);
         __Pyx_GIVEREF(__pyx_v_subseq1);
@@ -3539,29 +3508,29 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_XDECREF_SET(__pyx_v_res3, ((PyObject*)__pyx_t_4));
         __pyx_t_4 = 0;
 
-        /* "balanced_sequence_cython.pyx":129
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":131
  * 
  *                 res3 = (subseq1, subseq2)
  *                 val3 = pval_h + pval_t + affinity             # <<<<<<<<<<<<<<
  *                 cand3 = (val3, res3)
  *             else:
  */
-        __pyx_t_4 = PyNumber_Add(__pyx_v_pval_h, __pyx_v_pval_t); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_Add(__pyx_v_pval_h, __pyx_v_pval_t); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_v_affinity); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_v_affinity); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_XDECREF_SET(__pyx_v_val3, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":130
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":132
  *                 res3 = (subseq1, subseq2)
  *                 val3 = pval_h + pval_t + affinity
  *                 cand3 = (val3, res3)             # <<<<<<<<<<<<<<
  *             else:
  *                 cand3 = (-1, None)
  */
-        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_v_val3);
         __Pyx_GIVEREF(__pyx_v_val3);
@@ -3572,7 +3541,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         __Pyx_XDECREF_SET(__pyx_v_cand3, ((PyObject*)__pyx_t_3));
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":105
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":107
  *             # Case 1: The LCS involves this edge
  *             affinity = node_affinity(t1, t2)
  *             if affinity:             # <<<<<<<<<<<<<<
@@ -3582,7 +3551,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
         goto __pyx_L23;
       }
 
-      /* "balanced_sequence_cython.pyx":132
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":134
  *                 cand3 = (val3, res3)
  *             else:
  *                 cand3 = (-1, None)             # <<<<<<<<<<<<<<
@@ -3595,7 +3564,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       }
       __pyx_L23:;
 
-      /* "balanced_sequence_cython.pyx":135
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":137
  * 
  *             # We solved the frame
  *             _results[key] = max(cand1, cand2, cand3)             # <<<<<<<<<<<<<<
@@ -3608,8 +3577,8 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __pyx_t_17 = __pyx_v_cand3;
       __Pyx_INCREF(__pyx_v_cand1);
       __pyx_t_4 = __pyx_v_cand1;
-      __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
-      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
+      __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 137, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (__pyx_t_1) {
         __Pyx_INCREF(__pyx_t_3);
@@ -3622,8 +3591,8 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __Pyx_INCREF(__pyx_t_7);
       __pyx_t_4 = __pyx_t_7;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_5 = PyObject_RichCompare(__pyx_t_17, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
-      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
+      __pyx_t_5 = PyObject_RichCompare(__pyx_t_17, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 137, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (__pyx_t_1) {
         __Pyx_INCREF(__pyx_t_17);
@@ -3638,10 +3607,10 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
       __pyx_t_3 = __pyx_t_7;
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_v_key, __pyx_t_3) < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
+      if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_v_key, __pyx_t_3) < 0)) __PYX_ERR(0, 137, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "balanced_sequence_cython.pyx":79
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":81
  *     while stack:
  *         key = stack[-1]
  *         if key not in _results:             # <<<<<<<<<<<<<<
@@ -3650,27 +3619,27 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
  */
     }
 
-    /* "balanced_sequence_cython.pyx":136
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":138
  *             # We solved the frame
  *             _results[key] = max(cand1, cand2, cand3)
  *         stack.pop()             # <<<<<<<<<<<<<<
  * 
  *     val, best = _results[key0]
  */
-    __pyx_t_3 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_L12_continue:;
   }
 
-  /* "balanced_sequence_cython.pyx":138
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":140
  *         stack.pop()
  * 
  *     val, best = _results[key0]             # <<<<<<<<<<<<<<
  *     found = (best, val)
  *     return found
  */
-  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_key0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_key0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
     PyObject* sequence = __pyx_t_3;
@@ -3678,7 +3647,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 138, __pyx_L1_error)
+      __PYX_ERR(0, 140, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -3691,15 +3660,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_INCREF(__pyx_t_7);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_15 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -3707,7 +3676,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_GOTREF(__pyx_t_7);
     index = 1; __pyx_t_4 = __pyx_t_15(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L34_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 138, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_5), 2) < 0) __PYX_ERR(0, 140, __pyx_L1_error)
     __pyx_t_15 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L35_unpacking_done;
@@ -3715,7 +3684,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_15 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 138, __pyx_L1_error)
+    __PYX_ERR(0, 140, __pyx_L1_error)
     __pyx_L35_unpacking_done:;
   }
   __pyx_v_val = __pyx_t_7;
@@ -3723,14 +3692,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __Pyx_DECREF_SET(__pyx_v_best, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "balanced_sequence_cython.pyx":139
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":141
  * 
  *     val, best = _results[key0]
  *     found = (best, val)             # <<<<<<<<<<<<<<
  *     return found
  * 
  */
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_best);
   __Pyx_GIVEREF(__pyx_v_best);
@@ -3741,7 +3710,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_v_found = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":140
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":142
  *     val, best = _results[key0]
  *     found = (best, val)
  *     return found             # <<<<<<<<<<<<<<
@@ -3753,7 +3722,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __pyx_r = __pyx_v_found;
   goto __pyx_L0;
 
-  /* "balanced_sequence_cython.pyx":42
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":44
  * 
  * 
  * def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
@@ -3773,7 +3742,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
   __Pyx_XDECREF(__pyx_t_17);
-  __Pyx_AddTraceback("balanced_sequence_cython._lcs_iter_simple_alt2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython._lcs_iter_simple_alt2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_all_decomp1);
@@ -3828,7 +3797,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
   return __pyx_r;
 }
 
-/* "balanced_sequence_cython.pyx":143
+/* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":145
  * 
  * 
  * def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
@@ -3837,10 +3806,10 @@ static PyObject *__pyx_pf_24balanced_sequence_cython__lcs_iter_simple_alt2_cytho
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_24balanced_sequence_cython_3_lcs_iter_prehash2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_24balanced_sequence_cython_2_lcs_iter_prehash2_cython[] = "\n    Version of the lcs iterative algorithm where we precompute hash values\n    ";
-static PyMethodDef __pyx_mdef_24balanced_sequence_cython_3_lcs_iter_prehash2_cython = {"_lcs_iter_prehash2_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_24balanced_sequence_cython_3_lcs_iter_prehash2_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_24balanced_sequence_cython_2_lcs_iter_prehash2_cython};
-static PyObject *__pyx_pw_24balanced_sequence_cython_3_lcs_iter_prehash2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_3_lcs_iter_prehash2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_2_lcs_iter_prehash2_cython[] = "\n    Version of the lcs iterative algorithm where we precompute hash values\n    ";
+static PyMethodDef __pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_3_lcs_iter_prehash2_cython = {"_lcs_iter_prehash2_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_3_lcs_iter_prehash2_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_2_lcs_iter_prehash2_cython};
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_3_lcs_iter_prehash2_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_full_seq1 = 0;
   PyObject *__pyx_v_full_seq2 = 0;
   PyObject *__pyx_v_open_to_close = 0;
@@ -3881,29 +3850,29 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_3_lcs_iter_prehash2_cython(
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_full_seq2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 1); __PYX_ERR(0, 143, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 1); __PYX_ERR(0, 145, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_open_to_close)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 2); __PYX_ERR(0, 143, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 2); __PYX_ERR(0, 145, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_node_affinity)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 3); __PYX_ERR(0, 143, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 3); __PYX_ERR(0, 145, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_open_to_tok)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 4); __PYX_ERR(0, 143, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, 4); __PYX_ERR(0, 145, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_lcs_iter_prehash2_cython") < 0)) __PYX_ERR(0, 143, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_lcs_iter_prehash2_cython") < 0)) __PYX_ERR(0, 145, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -3922,20 +3891,20 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_3_lcs_iter_prehash2_cython(
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 143, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_lcs_iter_prehash2_cython", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 145, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("balanced_sequence_cython._lcs_iter_prehash2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython._lcs_iter_prehash2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(__pyx_self, __pyx_v_full_seq1, __pyx_v_full_seq2, __pyx_v_open_to_close, __pyx_v_node_affinity, __pyx_v_open_to_tok);
+  __pyx_r = __pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(__pyx_self, __pyx_v_full_seq1, __pyx_v_full_seq2, __pyx_v_open_to_close, __pyx_v_node_affinity, __pyx_v_open_to_tok);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok) {
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_full_seq1, PyObject *__pyx_v_full_seq2, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_node_affinity, PyObject *__pyx_v_open_to_tok) {
   PyObject *__pyx_v_all_decomp1 = 0;
   PyObject *__pyx_v_all_decomp2 = 0;
   PyObject *__pyx_v_key_decomp1 = 0;
@@ -4026,69 +3995,69 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_lcs_iter_prehash2_cython", 0);
 
-  /* "balanced_sequence_cython.pyx":147
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":149
  *     Version of the lcs iterative algorithm where we precompute hash values
  *     """
  *     cdef dict all_decomp1 = generate_all_decomp_prehash_cython(full_seq1, open_to_close, open_to_tok)             # <<<<<<<<<<<<<<
  *     cdef dict all_decomp2 = generate_all_decomp_prehash_cython(full_seq2, open_to_close, open_to_tok)
  *     cdef dict key_decomp1 = {}
  */
-  if (!(likely(PyDict_CheckExact(__pyx_v_open_to_close))||((__pyx_v_open_to_close) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_open_to_close)->tp_name), 0))) __PYX_ERR(0, 147, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_cython(__pyx_v_full_seq1, ((PyObject*)__pyx_v_open_to_close), __pyx_v_open_to_tok); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
+  if (!(likely(PyDict_CheckExact(__pyx_v_open_to_close))||((__pyx_v_open_to_close) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_open_to_close)->tp_name), 0))) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_generate_all_decomp_prehash_cython(__pyx_v_full_seq1, ((PyObject*)__pyx_v_open_to_close), __pyx_v_open_to_tok); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_all_decomp1 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":148
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":150
  *     """
  *     cdef dict all_decomp1 = generate_all_decomp_prehash_cython(full_seq1, open_to_close, open_to_tok)
  *     cdef dict all_decomp2 = generate_all_decomp_prehash_cython(full_seq2, open_to_close, open_to_tok)             # <<<<<<<<<<<<<<
  *     cdef dict key_decomp1 = {}
  *     cdef dict key_decomp2 = {}
  */
-  if (!(likely(PyDict_CheckExact(__pyx_v_open_to_close))||((__pyx_v_open_to_close) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_open_to_close)->tp_name), 0))) __PYX_ERR(0, 148, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_cython(__pyx_v_full_seq2, ((PyObject*)__pyx_v_open_to_close), __pyx_v_open_to_tok); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+  if (!(likely(PyDict_CheckExact(__pyx_v_open_to_close))||((__pyx_v_open_to_close) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_open_to_close)->tp_name), 0))) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_generate_all_decomp_prehash_cython(__pyx_v_full_seq2, ((PyObject*)__pyx_v_open_to_close), __pyx_v_open_to_tok); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_all_decomp2 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":149
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":151
  *     cdef dict all_decomp1 = generate_all_decomp_prehash_cython(full_seq1, open_to_close, open_to_tok)
  *     cdef dict all_decomp2 = generate_all_decomp_prehash_cython(full_seq2, open_to_close, open_to_tok)
  *     cdef dict key_decomp1 = {}             # <<<<<<<<<<<<<<
  *     cdef dict key_decomp2 = {}
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_key_decomp1 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":150
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":152
  *     cdef dict all_decomp2 = generate_all_decomp_prehash_cython(full_seq2, open_to_close, open_to_tok)
  *     cdef dict key_decomp1 = {}
  *     cdef dict key_decomp2 = {}             # <<<<<<<<<<<<<<
  * 
  *     cdef dict _results = {}
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_key_decomp2 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":152
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":154
  *     cdef dict key_decomp2 = {}
  * 
  *     cdef dict _results = {}             # <<<<<<<<<<<<<<
  *     # cdef cmap[Py_hash_t, tuple] _results3
  *     # = {}
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v__results = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":156
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":158
  *     # = {}
  *     # Populate base cases
  *     empty1 = type(next(iter(all_decomp1.keys())))()             # <<<<<<<<<<<<<<
@@ -4097,14 +4066,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  */
   if (unlikely(__pyx_v_all_decomp1 == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "keys");
-    __PYX_ERR(0, 156, __pyx_L1_error)
+    __PYX_ERR(0, 158, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyDict_Keys(__pyx_v_all_decomp1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_Keys(__pyx_v_all_decomp1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyIter_Next(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyIter_Next(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_INCREF(((PyObject *)Py_TYPE(__pyx_t_2)));
@@ -4121,13 +4090,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_empty1 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":157
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":159
  *     # Populate base cases
  *     empty1 = type(next(iter(all_decomp1.keys())))()
  *     empty2 = type(next(iter(all_decomp2.keys())))()             # <<<<<<<<<<<<<<
@@ -4136,14 +4105,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  */
   if (unlikely(__pyx_v_all_decomp2 == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "keys");
-    __PYX_ERR(0, 157, __pyx_L1_error)
+    __PYX_ERR(0, 159, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyDict_Keys(__pyx_v_all_decomp2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_Keys(__pyx_v_all_decomp2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyIter_Next(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyIter_Next(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_INCREF(((PyObject *)Py_TYPE(__pyx_t_3)));
@@ -4160,40 +4129,40 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_empty2 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":158
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":160
  *     empty1 = type(next(iter(all_decomp1.keys())))()
  *     empty2 = type(next(iter(all_decomp2.keys())))()
  *     cdef Py_hash_t empty1_key = hash(empty1)             # <<<<<<<<<<<<<<
  *     cdef Py_hash_t empty2_key = hash(empty2)
  *     cdef tuple best = (empty1, empty2)
  */
-  __pyx_t_4 = PyObject_Hash(__pyx_v_empty1); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Hash(__pyx_v_empty1); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 160, __pyx_L1_error)
   __pyx_v_empty1_key = __pyx_t_4;
 
-  /* "balanced_sequence_cython.pyx":159
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":161
  *     empty2 = type(next(iter(all_decomp2.keys())))()
  *     cdef Py_hash_t empty1_key = hash(empty1)
  *     cdef Py_hash_t empty2_key = hash(empty2)             # <<<<<<<<<<<<<<
  *     cdef tuple best = (empty1, empty2)
  * 
  */
-  __pyx_t_4 = PyObject_Hash(__pyx_v_empty2); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Hash(__pyx_v_empty2); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 161, __pyx_L1_error)
   __pyx_v_empty2_key = __pyx_t_4;
 
-  /* "balanced_sequence_cython.pyx":160
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":162
  *     cdef Py_hash_t empty1_key = hash(empty1)
  *     cdef Py_hash_t empty2_key = hash(empty2)
  *     cdef tuple best = (empty1, empty2)             # <<<<<<<<<<<<<<
  * 
  *     cdef tuple info1, info2
  */
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_empty1);
   __Pyx_GIVEREF(__pyx_v_empty1);
@@ -4204,14 +4173,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __pyx_v_best = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":170
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":172
  *     cdef tuple miss_frame
  * 
  *     base_result = (0, best)             # <<<<<<<<<<<<<<
  *     for seq1, info1 in all_decomp1.items():
  *         seq1_key = hash(seq1)
  */
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -4222,7 +4191,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __pyx_v_base_result = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":171
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":173
  * 
  *     base_result = (0, best)
  *     for seq1, info1 in all_decomp1.items():             # <<<<<<<<<<<<<<
@@ -4231,17 +4200,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  */
   if (unlikely(__pyx_v_all_decomp1 == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-    __PYX_ERR(0, 171, __pyx_L1_error)
+    __PYX_ERR(0, 173, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_Items(__pyx_v_all_decomp1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Items(__pyx_v_all_decomp1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 171, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 173, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -4249,17 +4218,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 173, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 173, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -4269,7 +4238,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 171, __pyx_L1_error)
+          else __PYX_ERR(0, 173, __pyx_L1_error)
         }
         break;
       }
@@ -4281,7 +4250,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 171, __pyx_L1_error)
+        __PYX_ERR(0, 173, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -4294,15 +4263,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_7);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_8 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_8 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_9 = Py_TYPE(__pyx_t_8)->tp_iternext;
@@ -4310,7 +4279,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_GOTREF(__pyx_t_3);
       index = 1; __pyx_t_7 = __pyx_t_9(__pyx_t_8); if (unlikely(!__pyx_t_7)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_7);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 2) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 2) < 0) __PYX_ERR(0, 173, __pyx_L1_error)
       __pyx_t_9 = NULL;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       goto __pyx_L6_unpacking_done;
@@ -4318,26 +4287,26 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_9 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 171, __pyx_L1_error)
+      __PYX_ERR(0, 173, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
-    if (!(likely(PyTuple_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 171, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 173, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_seq1, __pyx_t_3);
     __pyx_t_3 = 0;
     __Pyx_XDECREF_SET(__pyx_v_info1, ((PyObject*)__pyx_t_7));
     __pyx_t_7 = 0;
 
-    /* "balanced_sequence_cython.pyx":172
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":174
  *     base_result = (0, best)
  *     for seq1, info1 in all_decomp1.items():
  *         seq1_key = hash(seq1)             # <<<<<<<<<<<<<<
  *         head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]
  *         _results[(seq1_key, empty2_key)] = base_result
  */
-    __pyx_t_4 = PyObject_Hash(__pyx_v_seq1); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 172, __pyx_L1_error)
+    __pyx_t_4 = PyObject_Hash(__pyx_v_seq1); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 174, __pyx_L1_error)
     __pyx_v_seq1_key = __pyx_t_4;
 
-    /* "balanced_sequence_cython.pyx":173
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":175
  *     for seq1, info1 in all_decomp1.items():
  *         seq1_key = hash(seq1)
  *         head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]             # <<<<<<<<<<<<<<
@@ -4346,11 +4315,11 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  */
     if (unlikely(__pyx_v_all_decomp1 == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 173, __pyx_L1_error)
+      __PYX_ERR(0, 175, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_all_decomp1, __pyx_v_seq1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_all_decomp1, __pyx_v_seq1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyObject_GetSlice(__pyx_t_1, 5, 8, NULL, NULL, &__pyx_slice__2, 1, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetSlice(__pyx_t_1, 5, 8, NULL, NULL, &__pyx_slice__2, 1, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 175, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if ((likely(PyTuple_CheckExact(__pyx_t_7))) || (PyList_CheckExact(__pyx_t_7))) {
@@ -4359,7 +4328,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 173, __pyx_L1_error)
+        __PYX_ERR(0, 175, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -4375,17 +4344,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_8);
       #else
-      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_8 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_8 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 175, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       #endif
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_10 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_10 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 175, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_9 = Py_TYPE(__pyx_t_10)->tp_iternext;
@@ -4395,7 +4364,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_GOTREF(__pyx_t_3);
       index = 2; __pyx_t_8 = __pyx_t_9(__pyx_t_10); if (unlikely(!__pyx_t_8)) goto __pyx_L7_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_8);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_10), 3) < 0) __PYX_ERR(0, 173, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_10), 3) < 0) __PYX_ERR(0, 175, __pyx_L1_error)
       __pyx_t_9 = NULL;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       goto __pyx_L8_unpacking_done;
@@ -4403,71 +4372,27 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __pyx_t_9 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 173, __pyx_L1_error)
+      __PYX_ERR(0, 175, __pyx_L1_error)
       __pyx_L8_unpacking_done:;
     }
-    __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_3); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_3); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_8); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_8); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_v_head1_key = __pyx_t_4;
     __pyx_v_tail1_key = __pyx_t_11;
     __pyx_v_head_tail1_key = __pyx_t_12;
 
-    /* "balanced_sequence_cython.pyx":174
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":176
  *         seq1_key = hash(seq1)
  *         head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]
  *         _results[(seq1_key, empty2_key)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(head1_key, empty2_key)] = base_result
  *         _results[(tail1_key, empty2_key)] = base_result
  */
-    __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 174, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty2_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 174, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 174, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_7);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7);
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_8);
-    __pyx_t_7 = 0;
-    __pyx_t_8 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 174, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-    /* "balanced_sequence_cython.pyx":175
- *         head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]
- *         _results[(seq1_key, empty2_key)] = base_result
- *         _results[(head1_key, empty2_key)] = base_result             # <<<<<<<<<<<<<<
- *         _results[(tail1_key, empty2_key)] = base_result
- *         _results[(head_tail1_key, empty2_key)] = base_result
- */
-    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty2_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 175, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 175, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_8);
-    __pyx_t_3 = 0;
-    __pyx_t_8 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_7, __pyx_v_base_result) < 0)) __PYX_ERR(0, 175, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
-    /* "balanced_sequence_cython.pyx":176
- *         _results[(seq1_key, empty2_key)] = base_result
- *         _results[(head1_key, empty2_key)] = base_result
- *         _results[(tail1_key, empty2_key)] = base_result             # <<<<<<<<<<<<<<
- *         _results[(head_tail1_key, empty2_key)] = base_result
- *         key_decomp1[seq1_key] = info1
- */
-    __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_tail1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 176, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty2_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
@@ -4482,14 +4407,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":177
- *         _results[(head1_key, empty2_key)] = base_result
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":177
+ *         head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]
+ *         _results[(seq1_key, empty2_key)] = base_result
+ *         _results[(head1_key, empty2_key)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(tail1_key, empty2_key)] = base_result
- *         _results[(head_tail1_key, empty2_key)] = base_result             # <<<<<<<<<<<<<<
- *         key_decomp1[seq1_key] = info1
- * 
+ *         _results[(head_tail1_key, empty2_key)] = base_result
  */
-    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty2_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
@@ -4504,19 +4429,63 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_7, __pyx_v_base_result) < 0)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "balanced_sequence_cython.pyx":178
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":178
+ *         _results[(seq1_key, empty2_key)] = base_result
+ *         _results[(head1_key, empty2_key)] = base_result
+ *         _results[(tail1_key, empty2_key)] = base_result             # <<<<<<<<<<<<<<
+ *         _results[(head_tail1_key, empty2_key)] = base_result
+ *         key_decomp1[seq1_key] = info1
+ */
+    __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_tail1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 178, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty2_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 178, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_8);
+    __pyx_t_7 = 0;
+    __pyx_t_8 = 0;
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 178, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":179
+ *         _results[(head1_key, empty2_key)] = base_result
+ *         _results[(tail1_key, empty2_key)] = base_result
+ *         _results[(head_tail1_key, empty2_key)] = base_result             # <<<<<<<<<<<<<<
+ *         key_decomp1[seq1_key] = info1
+ * 
+ */
+    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty2_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_8);
+    __pyx_t_3 = 0;
+    __pyx_t_8 = 0;
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_7, __pyx_v_base_result) < 0)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":180
  *         _results[(tail1_key, empty2_key)] = base_result
  *         _results[(head_tail1_key, empty2_key)] = base_result
  *         key_decomp1[seq1_key] = info1             # <<<<<<<<<<<<<<
  * 
  *     for seq2, info2 in all_decomp2.items():
  */
-    __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 178, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    if (unlikely(PyDict_SetItem(__pyx_v_key_decomp1, __pyx_t_7, __pyx_v_info1) < 0)) __PYX_ERR(0, 178, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_key_decomp1, __pyx_t_7, __pyx_v_info1) < 0)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "balanced_sequence_cython.pyx":171
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":173
  * 
  *     base_result = (0, best)
  *     for seq1, info1 in all_decomp1.items():             # <<<<<<<<<<<<<<
@@ -4526,7 +4495,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "balanced_sequence_cython.pyx":180
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":182
  *         key_decomp1[seq1_key] = info1
  * 
  *     for seq2, info2 in all_decomp2.items():             # <<<<<<<<<<<<<<
@@ -4535,17 +4504,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  */
   if (unlikely(__pyx_v_all_decomp2 == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-    __PYX_ERR(0, 180, __pyx_L1_error)
+    __PYX_ERR(0, 182, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyDict_Items(__pyx_v_all_decomp2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_Items(__pyx_v_all_decomp2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_7 = __pyx_t_2; __Pyx_INCREF(__pyx_t_7); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 180, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 182, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_6 = Py_TYPE(__pyx_t_7)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 180, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_7)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 182, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -4553,17 +4522,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (likely(PyList_CheckExact(__pyx_t_7))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_7)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_7, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 180, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_7, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 182, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_7, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_7, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_7)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 180, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 182, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_7, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_7, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -4573,7 +4542,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 180, __pyx_L1_error)
+          else __PYX_ERR(0, 182, __pyx_L1_error)
         }
         break;
       }
@@ -4585,7 +4554,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 180, __pyx_L1_error)
+        __PYX_ERR(0, 182, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -4598,15 +4567,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_t_3);
       #else
-      __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 180, __pyx_L1_error)
+      __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_9 = Py_TYPE(__pyx_t_1)->tp_iternext;
@@ -4614,7 +4583,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_GOTREF(__pyx_t_8);
       index = 1; __pyx_t_3 = __pyx_t_9(__pyx_t_1); if (unlikely(!__pyx_t_3)) goto __pyx_L11_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 180, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 182, __pyx_L1_error)
       __pyx_t_9 = NULL;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L12_unpacking_done;
@@ -4622,26 +4591,26 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_9 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 180, __pyx_L1_error)
+      __PYX_ERR(0, 182, __pyx_L1_error)
       __pyx_L12_unpacking_done:;
     }
-    if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 180, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 182, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_seq2, __pyx_t_8);
     __pyx_t_8 = 0;
     __Pyx_XDECREF_SET(__pyx_v_info2, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":181
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":183
  * 
  *     for seq2, info2 in all_decomp2.items():
  *         seq2_key = hash(seq2)             # <<<<<<<<<<<<<<
  *         head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]
  *         _results[(empty1_key, seq2_key)] = base_result
  */
-    __pyx_t_12 = PyObject_Hash(__pyx_v_seq2); if (unlikely(__pyx_t_12 == ((Py_hash_t)-1))) __PYX_ERR(0, 181, __pyx_L1_error)
+    __pyx_t_12 = PyObject_Hash(__pyx_v_seq2); if (unlikely(__pyx_t_12 == ((Py_hash_t)-1))) __PYX_ERR(0, 183, __pyx_L1_error)
     __pyx_v_seq2_key = __pyx_t_12;
 
-    /* "balanced_sequence_cython.pyx":182
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":184
  *     for seq2, info2 in all_decomp2.items():
  *         seq2_key = hash(seq2)
  *         head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]             # <<<<<<<<<<<<<<
@@ -4650,11 +4619,11 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  */
     if (unlikely(__pyx_v_all_decomp2 == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 182, __pyx_L1_error)
+      __PYX_ERR(0, 184, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_all_decomp2, __pyx_v_seq2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_all_decomp2, __pyx_v_seq2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_2, 5, 8, NULL, NULL, &__pyx_slice__2, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_2, 5, 8, NULL, NULL, &__pyx_slice__2, 1, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
@@ -4663,7 +4632,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 182, __pyx_L1_error)
+        __PYX_ERR(0, 184, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -4679,17 +4648,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_t_1);
       #else
-      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_1 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       #endif
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_10 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_10 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_9 = Py_TYPE(__pyx_t_10)->tp_iternext;
@@ -4699,7 +4668,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_GOTREF(__pyx_t_8);
       index = 2; __pyx_t_1 = __pyx_t_9(__pyx_t_10); if (unlikely(!__pyx_t_1)) goto __pyx_L13_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_1);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_10), 3) < 0) __PYX_ERR(0, 182, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_10), 3) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
       __pyx_t_9 = NULL;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       goto __pyx_L14_unpacking_done;
@@ -4707,73 +4676,29 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __pyx_t_9 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 182, __pyx_L1_error)
+      __PYX_ERR(0, 184, __pyx_L1_error)
       __pyx_L14_unpacking_done:;
     }
-    __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_2); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_2); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_8); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_8); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_head2_key = __pyx_t_12;
     __pyx_v_tail2_key = __pyx_t_11;
     __pyx_v_head_tail2_key = __pyx_t_4;
 
-    /* "balanced_sequence_cython.pyx":183
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":185
  *         seq2_key = hash(seq2)
  *         head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]
  *         _results[(empty1_key, seq2_key)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(empty1_key, head2_key)] = base_result
  *         _results[(empty1_key, tail2_key)] = base_result
  */
-    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_empty1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 183, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 183, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_1);
-    __pyx_t_3 = 0;
-    __pyx_t_1 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_8, __pyx_v_base_result) < 0)) __PYX_ERR(0, 183, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-
-    /* "balanced_sequence_cython.pyx":184
- *         head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]
- *         _results[(empty1_key, seq2_key)] = base_result
- *         _results[(empty1_key, head2_key)] = base_result             # <<<<<<<<<<<<<<
- *         _results[(empty1_key, tail2_key)] = base_result
- *         _results[(empty1_key, head_tail2_key)] = base_result
- */
-    __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty1_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 184, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_head2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
-    __pyx_t_8 = 0;
-    __pyx_t_1 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 184, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-    /* "balanced_sequence_cython.pyx":185
- *         _results[(empty1_key, seq2_key)] = base_result
- *         _results[(empty1_key, head2_key)] = base_result
- *         _results[(empty1_key, tail2_key)] = base_result             # <<<<<<<<<<<<<<
- *         _results[(empty1_key, head_tail2_key)] = base_result
- *         key_decomp2[seq2_key] = info2
- */
     __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_empty1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_tail2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 185, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
@@ -4786,16 +4711,16 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_8, __pyx_v_base_result) < 0)) __PYX_ERR(0, 185, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "balanced_sequence_cython.pyx":186
- *         _results[(empty1_key, head2_key)] = base_result
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":186
+ *         head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]
+ *         _results[(empty1_key, seq2_key)] = base_result
+ *         _results[(empty1_key, head2_key)] = base_result             # <<<<<<<<<<<<<<
  *         _results[(empty1_key, tail2_key)] = base_result
- *         _results[(empty1_key, head_tail2_key)] = base_result             # <<<<<<<<<<<<<<
- *         key_decomp2[seq2_key] = info2
- * 
+ *         _results[(empty1_key, head_tail2_key)] = base_result
  */
     __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty1_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 186, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_head2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -4808,19 +4733,63 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 186, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":187
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":187
+ *         _results[(empty1_key, seq2_key)] = base_result
+ *         _results[(empty1_key, head2_key)] = base_result
+ *         _results[(empty1_key, tail2_key)] = base_result             # <<<<<<<<<<<<<<
+ *         _results[(empty1_key, head_tail2_key)] = base_result
+ *         key_decomp2[seq2_key] = info2
+ */
+    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_empty1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_tail2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_1);
+    __pyx_t_3 = 0;
+    __pyx_t_1 = 0;
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_8, __pyx_v_base_result) < 0)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":188
+ *         _results[(empty1_key, head2_key)] = base_result
+ *         _results[(empty1_key, tail2_key)] = base_result
+ *         _results[(empty1_key, head_tail2_key)] = base_result             # <<<<<<<<<<<<<<
+ *         key_decomp2[seq2_key] = info2
+ * 
+ */
+    __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_empty1_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail2_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
+    __pyx_t_8 = 0;
+    __pyx_t_1 = 0;
+    if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_t_3, __pyx_v_base_result) < 0)) __PYX_ERR(0, 188, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":189
  *         _results[(empty1_key, tail2_key)] = base_result
  *         _results[(empty1_key, head_tail2_key)] = base_result
  *         key_decomp2[seq2_key] = info2             # <<<<<<<<<<<<<<
  * 
  *     cdef Py_hash_t full_seq1_key = hash(full_seq1)
  */
-    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 187, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (unlikely(PyDict_SetItem(__pyx_v_key_decomp2, __pyx_t_3, __pyx_v_info2) < 0)) __PYX_ERR(0, 187, __pyx_L1_error)
+    if (unlikely(PyDict_SetItem(__pyx_v_key_decomp2, __pyx_t_3, __pyx_v_info2) < 0)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "balanced_sequence_cython.pyx":180
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":182
  *         key_decomp1[seq1_key] = info1
  * 
  *     for seq2, info2 in all_decomp2.items():             # <<<<<<<<<<<<<<
@@ -4830,38 +4799,38 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "balanced_sequence_cython.pyx":189
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":191
  *         key_decomp2[seq2_key] = info2
  * 
  *     cdef Py_hash_t full_seq1_key = hash(full_seq1)             # <<<<<<<<<<<<<<
  *     cdef Py_hash_t full_seq2_key = hash(full_seq2)
  * 
  */
-  __pyx_t_4 = PyObject_Hash(__pyx_v_full_seq1); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Hash(__pyx_v_full_seq1); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 191, __pyx_L1_error)
   __pyx_v_full_seq1_key = __pyx_t_4;
 
-  /* "balanced_sequence_cython.pyx":190
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":192
  * 
  *     cdef Py_hash_t full_seq1_key = hash(full_seq1)
  *     cdef Py_hash_t full_seq2_key = hash(full_seq2)             # <<<<<<<<<<<<<<
  * 
  *     cdef tuple key0 = (full_seq1_key, full_seq2_key)
  */
-  __pyx_t_4 = PyObject_Hash(__pyx_v_full_seq2); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Hash(__pyx_v_full_seq2); if (unlikely(__pyx_t_4 == ((Py_hash_t)-1))) __PYX_ERR(0, 192, __pyx_L1_error)
   __pyx_v_full_seq2_key = __pyx_t_4;
 
-  /* "balanced_sequence_cython.pyx":192
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":194
  *     cdef Py_hash_t full_seq2_key = hash(full_seq2)
  * 
  *     cdef tuple key0 = (full_seq1_key, full_seq2_key)             # <<<<<<<<<<<<<<
  *     cdef tuple frame0 = (key0, full_seq1, full_seq2)
  *     cdef list stack = [frame0]
  */
-  __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_full_seq1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_full_seq1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_full_seq2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_full_seq2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_7);
@@ -4872,14 +4841,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __pyx_v_key0 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":193
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":195
  * 
  *     cdef tuple key0 = (full_seq1_key, full_seq2_key)
  *     cdef tuple frame0 = (key0, full_seq1, full_seq2)             # <<<<<<<<<<<<<<
  *     cdef list stack = [frame0]
  *     # cdef vector[PyObjectPtr] stack2
  */
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_key0);
   __Pyx_GIVEREF(__pyx_v_key0);
@@ -4893,14 +4862,14 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __pyx_v_frame0 = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":194
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":196
  *     cdef tuple key0 = (full_seq1_key, full_seq2_key)
  *     cdef tuple frame0 = (key0, full_seq1, full_seq2)
  *     cdef list stack = [frame0]             # <<<<<<<<<<<<<<
  *     # cdef vector[PyObjectPtr] stack2
  *     # stack2.push_back(&frame0)
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_frame0);
   __Pyx_GIVEREF(__pyx_v_frame0);
@@ -4908,7 +4877,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __pyx_v_stack = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":198
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":200
  *     # stack2.push_back(&frame0)
  * 
  *     while stack:             # <<<<<<<<<<<<<<
@@ -4919,20 +4888,20 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     __pyx_t_13 = (PyList_GET_SIZE(__pyx_v_stack) != 0);
     if (!__pyx_t_13) break;
 
-    /* "balanced_sequence_cython.pyx":199
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":201
  * 
  *     while stack:
  *         frame = stack[-1]             # <<<<<<<<<<<<<<
  *         key, seq1, seq2 = frame
  *         seq1_key, seq2_key = key
  */
-    __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_stack, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 199, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_stack, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!(likely(PyTuple_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 199, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_frame, ((PyObject*)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "balanced_sequence_cython.pyx":200
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":202
  *     while stack:
  *         frame = stack[-1]
  *         key, seq1, seq2 = frame             # <<<<<<<<<<<<<<
@@ -4945,7 +4914,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 200, __pyx_L1_error)
+        __PYX_ERR(0, 202, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0); 
@@ -4955,17 +4924,17 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_7);
       #else
-      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 202, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_7 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 202, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       #endif
     } else {
-      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 200, __pyx_L1_error)
+      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 202, __pyx_L1_error)
     }
-    if (!(likely(PyTuple_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 200, __pyx_L1_error)
+    if (!(likely(PyTuple_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 202, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_key, ((PyObject*)__pyx_t_1));
     __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_seq1, __pyx_t_3);
@@ -4973,7 +4942,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     __Pyx_XDECREF_SET(__pyx_v_seq2, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "balanced_sequence_cython.pyx":201
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":203
  *         frame = stack[-1]
  *         key, seq1, seq2 = frame
  *         seq1_key, seq2_key = key             # <<<<<<<<<<<<<<
@@ -4986,7 +4955,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 201, __pyx_L1_error)
+        __PYX_ERR(0, 203, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       __pyx_t_7 = PyTuple_GET_ITEM(sequence, 0); 
@@ -4994,49 +4963,49 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(__pyx_t_3);
       #else
-      __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 201, __pyx_L1_error)
+      __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 203, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 203, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
     } else {
-      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 201, __pyx_L1_error)
+      __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 203, __pyx_L1_error)
     }
-    __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_7); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_7); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 203, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_3); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 201, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_3); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 203, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_seq1_key = __pyx_t_4;
     __pyx_v_seq2_key = __pyx_t_11;
 
-    /* "balanced_sequence_cython.pyx":202
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":204
  *         key, seq1, seq2 = frame
  *         seq1_key, seq2_key = key
  *         if key not in _results:             # <<<<<<<<<<<<<<
  *             # if seq1_key not in key_decomp1:
  *             info1 = key_decomp1[seq1_key]
  */
-    __pyx_t_13 = (__Pyx_PyDict_ContainsTF(__pyx_v_key, __pyx_v__results, Py_NE)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 202, __pyx_L1_error)
+    __pyx_t_13 = (__Pyx_PyDict_ContainsTF(__pyx_v_key, __pyx_v__results, Py_NE)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 204, __pyx_L1_error)
     __pyx_t_14 = (__pyx_t_13 != 0);
     if (__pyx_t_14) {
 
-      /* "balanced_sequence_cython.pyx":204
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":206
  *         if key not in _results:
  *             # if seq1_key not in key_decomp1:
  *             info1 = key_decomp1[seq1_key]             # <<<<<<<<<<<<<<
  *             # else:
  *             #     info1 = decomp_info(seq1, open_to_close)
  */
-      __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 204, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_key_decomp1, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 204, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_key_decomp1, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (!(likely(PyTuple_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 204, __pyx_L1_error)
+      if (!(likely(PyTuple_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_XDECREF_SET(__pyx_v_info1, ((PyObject*)__pyx_t_7));
       __pyx_t_7 = 0;
 
-      /* "balanced_sequence_cython.pyx":208
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":210
  *             #     info1 = decomp_info(seq1, open_to_close)
  *             #     key_decomp1[seq1_key] = info1
  *             tok1, seq1, head1, tail1, head_tail1, head1_key, tail1_key, head_tail1_key, a1, b1 = info1             # <<<<<<<<<<<<<<
@@ -5049,7 +5018,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         if (unlikely(size != 10)) {
           if (size > 10) __Pyx_RaiseTooManyValuesError(10);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 208, __pyx_L1_error)
+          __PYX_ERR(0, 210, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         __pyx_t_7 = PyTuple_GET_ITEM(sequence, 0); 
@@ -5077,20 +5046,20 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           Py_ssize_t i;
           PyObject** temps[10] = {&__pyx_t_7,&__pyx_t_3,&__pyx_t_1,&__pyx_t_8,&__pyx_t_2,&__pyx_t_10,&__pyx_t_15,&__pyx_t_16,&__pyx_t_17,&__pyx_t_18};
           for (i=0; i < 10; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 208, __pyx_L1_error)
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 210, __pyx_L1_error)
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
         }
         #endif
       } else {
-        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 208, __pyx_L1_error)
+        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 210, __pyx_L1_error)
       }
-      __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_10); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 208, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_10); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_15); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 208, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_15); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-      __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_16); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 208, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_16); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
       __Pyx_XDECREF_SET(__pyx_v_tok1, __pyx_t_7);
       __pyx_t_7 = 0;
@@ -5110,23 +5079,23 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_XDECREF_SET(__pyx_v_b1, __pyx_t_18);
       __pyx_t_18 = 0;
 
-      /* "balanced_sequence_cython.pyx":211
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":213
  * 
  *             # if seq2_key not in key_decomp2:
  *             info2 = key_decomp2[seq2_key]             # <<<<<<<<<<<<<<
  *             # else:
  *             #     info2 = decomp_info(seq2, open_to_close)
  */
-      __pyx_t_18 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __pyx_t_18 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 213, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_18);
-      __pyx_t_17 = __Pyx_PyDict_GetItem(__pyx_v_key_decomp2, __pyx_t_18); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 211, __pyx_L1_error)
+      __pyx_t_17 = __Pyx_PyDict_GetItem(__pyx_v_key_decomp2, __pyx_t_18); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 213, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_17);
       __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-      if (!(likely(PyTuple_CheckExact(__pyx_t_17))||((__pyx_t_17) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_17)->tp_name), 0))) __PYX_ERR(0, 211, __pyx_L1_error)
+      if (!(likely(PyTuple_CheckExact(__pyx_t_17))||((__pyx_t_17) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_17)->tp_name), 0))) __PYX_ERR(0, 213, __pyx_L1_error)
       __Pyx_XDECREF_SET(__pyx_v_info2, ((PyObject*)__pyx_t_17));
       __pyx_t_17 = 0;
 
-      /* "balanced_sequence_cython.pyx":215
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":217
  *             #     info2 = decomp_info(seq2, open_to_close)
  *             #     key_decomp2[seq2_key] = info2
  *             tok2, seq2, head2, tail2, head_tail2, head2_key, tail2_key, head_tail2_key, a2, b2 = info2             # <<<<<<<<<<<<<<
@@ -5139,7 +5108,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         if (unlikely(size != 10)) {
           if (size > 10) __Pyx_RaiseTooManyValuesError(10);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 215, __pyx_L1_error)
+          __PYX_ERR(0, 217, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         __pyx_t_17 = PyTuple_GET_ITEM(sequence, 0); 
@@ -5167,20 +5136,20 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           Py_ssize_t i;
           PyObject** temps[10] = {&__pyx_t_17,&__pyx_t_18,&__pyx_t_16,&__pyx_t_15,&__pyx_t_10,&__pyx_t_2,&__pyx_t_8,&__pyx_t_1,&__pyx_t_3,&__pyx_t_7};
           for (i=0; i < 10; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 215, __pyx_L1_error)
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 217, __pyx_L1_error)
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
         }
         #endif
       } else {
-        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 215, __pyx_L1_error)
+        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 217, __pyx_L1_error)
       }
-      __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_2); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyInt_AsHash_t(__pyx_t_2); if (unlikely((__pyx_t_12 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_8); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyInt_AsHash_t(__pyx_t_8); if (unlikely((__pyx_t_4 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_1); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyInt_AsHash_t(__pyx_t_1); if (unlikely((__pyx_t_11 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 217, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_tok2, __pyx_t_17);
       __pyx_t_17 = 0;
@@ -5200,7 +5169,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_XDECREF_SET(__pyx_v_b2, __pyx_t_7);
       __pyx_t_7 = 0;
 
-      /* "balanced_sequence_cython.pyx":217
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":219
  *             tok2, seq2, head2, tail2, head_tail2, head2_key, tail2_key, head_tail2_key, a2, b2 = info2
  * 
  *             affinity = node_affinity(tok1, tok2)             # <<<<<<<<<<<<<<
@@ -5223,7 +5192,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_tok1, __pyx_v_tok2};
-        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_19, 2+__pyx_t_19); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_19, 2+__pyx_t_19); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 219, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
@@ -5231,13 +5200,13 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_tok1, __pyx_v_tok2};
-        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_19, 2+__pyx_t_19); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_19, 2+__pyx_t_19); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 219, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_GOTREF(__pyx_t_7);
       } else
       #endif
       {
-        __pyx_t_8 = PyTuple_New(2+__pyx_t_19); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 217, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_New(2+__pyx_t_19); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 219, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         if (__pyx_t_1) {
           __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1); __pyx_t_1 = NULL;
@@ -5248,7 +5217,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_INCREF(__pyx_v_tok2);
         __Pyx_GIVEREF(__pyx_v_tok2);
         PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_19, __pyx_v_tok2);
-        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 217, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 219, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       }
@@ -5256,18 +5225,18 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_XDECREF_SET(__pyx_v_affinity, __pyx_t_7);
       __pyx_t_7 = 0;
 
-      /* "balanced_sequence_cython.pyx":220
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":222
  * 
  *             # Case 2: The current edge in sequence1 is deleted
  *             try_key = (head_tail1_key, seq2_key)             # <<<<<<<<<<<<<<
  *             if try_key in _results:
  *                 cand1 = _results[try_key]
  */
-      __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 220, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 222, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 220, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_seq2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 220, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 222, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7);
@@ -5278,30 +5247,30 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_XDECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_8));
       __pyx_t_8 = 0;
 
-      /* "balanced_sequence_cython.pyx":221
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":223
  *             # Case 2: The current edge in sequence1 is deleted
  *             try_key = (head_tail1_key, seq2_key)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
  *                 cand1 = _results[try_key]
  *             else:
  */
-      __pyx_t_14 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 221, __pyx_L1_error)
+      __pyx_t_14 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 223, __pyx_L1_error)
       __pyx_t_13 = (__pyx_t_14 != 0);
       if (__pyx_t_13) {
 
-        /* "balanced_sequence_cython.pyx":222
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":224
  *             try_key = (head_tail1_key, seq2_key)
  *             if try_key in _results:
  *                 cand1 = _results[try_key]             # <<<<<<<<<<<<<<
  *             else:
  *                 miss_frame = try_key, head_tail1, seq2
  */
-        __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 222, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 224, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_XDECREF_SET(__pyx_v_cand1, __pyx_t_8);
         __pyx_t_8 = 0;
 
-        /* "balanced_sequence_cython.pyx":221
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":223
  *             # Case 2: The current edge in sequence1 is deleted
  *             try_key = (head_tail1_key, seq2_key)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
@@ -5311,7 +5280,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         goto __pyx_L18;
       }
 
-      /* "balanced_sequence_cython.pyx":224
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":226
  *                 cand1 = _results[try_key]
  *             else:
  *                 miss_frame = try_key, head_tail1, seq2             # <<<<<<<<<<<<<<
@@ -5319,7 +5288,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  *                 continue
  */
       /*else*/ {
-        __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 224, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 226, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_INCREF(__pyx_v_try_key);
         __Pyx_GIVEREF(__pyx_v_try_key);
@@ -5333,16 +5302,16 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_XDECREF_SET(__pyx_v_miss_frame, ((PyObject*)__pyx_t_8));
         __pyx_t_8 = 0;
 
-        /* "balanced_sequence_cython.pyx":225
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":227
  *             else:
  *                 miss_frame = try_key, head_tail1, seq2
  *                 stack.append(miss_frame)             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-        __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 225, __pyx_L1_error)
+        __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 227, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":226
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":228
  *                 miss_frame = try_key, head_tail1, seq2
  *                 stack.append(miss_frame)
  *                 continue             # <<<<<<<<<<<<<<
@@ -5353,18 +5322,18 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       }
       __pyx_L18:;
 
-      /* "balanced_sequence_cython.pyx":229
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":231
  * 
  *             # Case 3: The current edge in sequence2 is deleted
  *             try_key = (seq1_key, head_tail2_key)             # <<<<<<<<<<<<<<
  *             if try_key in _results:
  *                 cand2 = _results[try_key]
  */
-      __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 229, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_seq1_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 229, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 229, __pyx_L1_error)
+      __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8);
@@ -5375,30 +5344,30 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_DECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_7));
       __pyx_t_7 = 0;
 
-      /* "balanced_sequence_cython.pyx":230
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":232
  *             # Case 3: The current edge in sequence2 is deleted
  *             try_key = (seq1_key, head_tail2_key)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
  *                 cand2 = _results[try_key]
  *             else:
  */
-      __pyx_t_13 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
+      __pyx_t_13 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 232, __pyx_L1_error)
       __pyx_t_14 = (__pyx_t_13 != 0);
       if (__pyx_t_14) {
 
-        /* "balanced_sequence_cython.pyx":231
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":233
  *             try_key = (seq1_key, head_tail2_key)
  *             if try_key in _results:
  *                 cand2 = _results[try_key]             # <<<<<<<<<<<<<<
  *             else:
  *                 miss_frame = try_key, seq1, head_tail2
  */
-        __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 231, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 233, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_XDECREF_SET(__pyx_v_cand2, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "balanced_sequence_cython.pyx":230
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":232
  *             # Case 3: The current edge in sequence2 is deleted
  *             try_key = (seq1_key, head_tail2_key)
  *             if try_key in _results:             # <<<<<<<<<<<<<<
@@ -5408,7 +5377,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         goto __pyx_L19;
       }
 
-      /* "balanced_sequence_cython.pyx":233
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":235
  *                 cand2 = _results[try_key]
  *             else:
  *                 miss_frame = try_key, seq1, head_tail2             # <<<<<<<<<<<<<<
@@ -5416,7 +5385,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  *                 continue
  */
       /*else*/ {
-        __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 233, __pyx_L1_error)
+        __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 235, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_INCREF(__pyx_v_try_key);
         __Pyx_GIVEREF(__pyx_v_try_key);
@@ -5430,16 +5399,16 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_XDECREF_SET(__pyx_v_miss_frame, ((PyObject*)__pyx_t_7));
         __pyx_t_7 = 0;
 
-        /* "balanced_sequence_cython.pyx":234
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":236
  *             else:
  *                 miss_frame = try_key, seq1, head_tail2
  *                 stack.append(miss_frame)             # <<<<<<<<<<<<<<
  *                 continue
  * 
  */
-        __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 234, __pyx_L1_error)
+        __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 236, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":235
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":237
  *                 miss_frame = try_key, seq1, head_tail2
  *                 stack.append(miss_frame)
  *                 continue             # <<<<<<<<<<<<<<
@@ -5450,28 +5419,28 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       }
       __pyx_L19:;
 
-      /* "balanced_sequence_cython.pyx":238
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":240
  * 
  *             # Case 1: The LCS involves this edge
  *             if affinity:             # <<<<<<<<<<<<<<
  *                 try_key = (head1_key, head2_key)
  *                 if try_key in _results:
  */
-      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_v_affinity); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 238, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_v_affinity); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 240, __pyx_L1_error)
       if (__pyx_t_14) {
 
-        /* "balanced_sequence_cython.pyx":239
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":241
  *             # Case 1: The LCS involves this edge
  *             if affinity:
  *                 try_key = (head1_key, head2_key)             # <<<<<<<<<<<<<<
  *                 if try_key in _results:
  *                     pval_h, new_heads = _results[try_key]
  */
-        __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_head1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_head1_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 241, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_FromHash_t(__pyx_v_head2_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 239, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 241, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_GIVEREF(__pyx_t_7);
         PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7);
@@ -5482,25 +5451,25 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_DECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_8));
         __pyx_t_8 = 0;
 
-        /* "balanced_sequence_cython.pyx":240
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":242
  *             if affinity:
  *                 try_key = (head1_key, head2_key)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
  *                     pval_h, new_heads = _results[try_key]
  *                 else:
  */
-        __pyx_t_14 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 240, __pyx_L1_error)
+        __pyx_t_14 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 242, __pyx_L1_error)
         __pyx_t_13 = (__pyx_t_14 != 0);
         if (__pyx_t_13) {
 
-          /* "balanced_sequence_cython.pyx":241
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":243
  *                 try_key = (head1_key, head2_key)
  *                 if try_key in _results:
  *                     pval_h, new_heads = _results[try_key]             # <<<<<<<<<<<<<<
  *                 else:
  *                     miss_frame = try_key, head1, head2
  */
-          __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 241, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 243, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           if ((likely(PyTuple_CheckExact(__pyx_t_8))) || (PyList_CheckExact(__pyx_t_8))) {
             PyObject* sequence = __pyx_t_8;
@@ -5508,7 +5477,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             if (unlikely(size != 2)) {
               if (size > 2) __Pyx_RaiseTooManyValuesError(2);
               else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-              __PYX_ERR(0, 241, __pyx_L1_error)
+              __PYX_ERR(0, 243, __pyx_L1_error)
             }
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
             if (likely(PyTuple_CheckExact(sequence))) {
@@ -5521,15 +5490,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             __Pyx_INCREF(__pyx_t_3);
             __Pyx_INCREF(__pyx_t_7);
             #else
-            __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L1_error)
+            __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 241, __pyx_L1_error)
+            __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 243, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
             #endif
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           } else {
             Py_ssize_t index = -1;
-            __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
+            __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
             __pyx_t_9 = Py_TYPE(__pyx_t_1)->tp_iternext;
@@ -5537,7 +5506,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             __Pyx_GOTREF(__pyx_t_3);
             index = 1; __pyx_t_7 = __pyx_t_9(__pyx_t_1); if (unlikely(!__pyx_t_7)) goto __pyx_L22_unpacking_failed;
             __Pyx_GOTREF(__pyx_t_7);
-            if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 241, __pyx_L1_error)
+            if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
             __pyx_t_9 = NULL;
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
             goto __pyx_L23_unpacking_done;
@@ -5545,7 +5514,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
             __pyx_t_9 = NULL;
             if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-            __PYX_ERR(0, 241, __pyx_L1_error)
+            __PYX_ERR(0, 243, __pyx_L1_error)
             __pyx_L23_unpacking_done:;
           }
           __Pyx_XDECREF_SET(__pyx_v_pval_h, __pyx_t_3);
@@ -5553,7 +5522,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_XDECREF_SET(__pyx_v_new_heads, __pyx_t_7);
           __pyx_t_7 = 0;
 
-          /* "balanced_sequence_cython.pyx":240
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":242
  *             if affinity:
  *                 try_key = (head1_key, head2_key)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
@@ -5563,7 +5532,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           goto __pyx_L21;
         }
 
-        /* "balanced_sequence_cython.pyx":243
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":245
  *                     pval_h, new_heads = _results[try_key]
  *                 else:
  *                     miss_frame = try_key, head1, head2             # <<<<<<<<<<<<<<
@@ -5571,7 +5540,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  *                     continue
  */
         /*else*/ {
-          __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 243, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 245, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_INCREF(__pyx_v_try_key);
           __Pyx_GIVEREF(__pyx_v_try_key);
@@ -5585,16 +5554,16 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_XDECREF_SET(__pyx_v_miss_frame, ((PyObject*)__pyx_t_8));
           __pyx_t_8 = 0;
 
-          /* "balanced_sequence_cython.pyx":244
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":246
  *                 else:
  *                     miss_frame = try_key, head1, head2
  *                     stack.append(miss_frame)             # <<<<<<<<<<<<<<
  *                     continue
  * 
  */
-          __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 244, __pyx_L1_error)
+          __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 246, __pyx_L1_error)
 
-          /* "balanced_sequence_cython.pyx":245
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":247
  *                     miss_frame = try_key, head1, head2
  *                     stack.append(miss_frame)
  *                     continue             # <<<<<<<<<<<<<<
@@ -5605,18 +5574,18 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         }
         __pyx_L21:;
 
-        /* "balanced_sequence_cython.pyx":247
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":249
  *                     continue
  * 
  *                 try_key = (tail1_key, tail2_key)             # <<<<<<<<<<<<<<
  *                 if try_key in _results:
  *                     pval_t, new_tails = _results[try_key]
  */
-        __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_tail1_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 247, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyInt_FromHash_t(__pyx_v_tail1_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 249, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_tail2_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 247, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyInt_FromHash_t(__pyx_v_tail2_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 247, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GIVEREF(__pyx_t_8);
         PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8);
@@ -5627,25 +5596,25 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_DECREF_SET(__pyx_v_try_key, ((PyObject*)__pyx_t_3));
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":248
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":250
  * 
  *                 try_key = (tail1_key, tail2_key)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
  *                     pval_t, new_tails = _results[try_key]
  *                 else:
  */
-        __pyx_t_13 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 248, __pyx_L1_error)
+        __pyx_t_13 = (__Pyx_PyDict_ContainsTF(__pyx_v_try_key, __pyx_v__results, Py_EQ)); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(0, 250, __pyx_L1_error)
         __pyx_t_14 = (__pyx_t_13 != 0);
         if (__pyx_t_14) {
 
-          /* "balanced_sequence_cython.pyx":249
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":251
  *                 try_key = (tail1_key, tail2_key)
  *                 if try_key in _results:
  *                     pval_t, new_tails = _results[try_key]             # <<<<<<<<<<<<<<
  *                 else:
  *                     miss_frame = try_key, tail1, tail2
  */
-          __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_try_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
             PyObject* sequence = __pyx_t_3;
@@ -5653,7 +5622,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             if (unlikely(size != 2)) {
               if (size > 2) __Pyx_RaiseTooManyValuesError(2);
               else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-              __PYX_ERR(0, 249, __pyx_L1_error)
+              __PYX_ERR(0, 251, __pyx_L1_error)
             }
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
             if (likely(PyTuple_CheckExact(sequence))) {
@@ -5666,15 +5635,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             __Pyx_INCREF(__pyx_t_7);
             __Pyx_INCREF(__pyx_t_8);
             #else
-            __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
+            __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 251, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 249, __pyx_L1_error)
+            __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 251, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_8);
             #endif
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           } else {
             Py_ssize_t index = -1;
-            __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
+            __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __pyx_t_9 = Py_TYPE(__pyx_t_1)->tp_iternext;
@@ -5682,7 +5651,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             __Pyx_GOTREF(__pyx_t_7);
             index = 1; __pyx_t_8 = __pyx_t_9(__pyx_t_1); if (unlikely(!__pyx_t_8)) goto __pyx_L25_unpacking_failed;
             __Pyx_GOTREF(__pyx_t_8);
-            if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 249, __pyx_L1_error)
+            if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 251, __pyx_L1_error)
             __pyx_t_9 = NULL;
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
             goto __pyx_L26_unpacking_done;
@@ -5690,7 +5659,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
             __pyx_t_9 = NULL;
             if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-            __PYX_ERR(0, 249, __pyx_L1_error)
+            __PYX_ERR(0, 251, __pyx_L1_error)
             __pyx_L26_unpacking_done:;
           }
           __Pyx_XDECREF_SET(__pyx_v_pval_t, __pyx_t_7);
@@ -5698,7 +5667,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_XDECREF_SET(__pyx_v_new_tails, __pyx_t_8);
           __pyx_t_8 = 0;
 
-          /* "balanced_sequence_cython.pyx":248
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":250
  * 
  *                 try_key = (tail1_key, tail2_key)
  *                 if try_key in _results:             # <<<<<<<<<<<<<<
@@ -5708,7 +5677,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           goto __pyx_L24;
         }
 
-        /* "balanced_sequence_cython.pyx":251
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":253
  *                     pval_t, new_tails = _results[try_key]
  *                 else:
  *                     miss_frame = try_key, tail1, tail2             # <<<<<<<<<<<<<<
@@ -5716,7 +5685,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  *                     continue
  */
         /*else*/ {
-          __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_INCREF(__pyx_v_try_key);
           __Pyx_GIVEREF(__pyx_v_try_key);
@@ -5730,16 +5699,16 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_XDECREF_SET(__pyx_v_miss_frame, ((PyObject*)__pyx_t_3));
           __pyx_t_3 = 0;
 
-          /* "balanced_sequence_cython.pyx":252
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":254
  *                 else:
  *                     miss_frame = try_key, tail1, tail2
  *                     stack.append(miss_frame)             # <<<<<<<<<<<<<<
  *                     continue
  * 
  */
-          __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 252, __pyx_L1_error)
+          __pyx_t_20 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_miss_frame); if (unlikely(__pyx_t_20 == ((int)-1))) __PYX_ERR(0, 254, __pyx_L1_error)
 
-          /* "balanced_sequence_cython.pyx":253
+          /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":255
  *                     miss_frame = try_key, tail1, tail2
  *                     stack.append(miss_frame)
  *                     continue             # <<<<<<<<<<<<<<
@@ -5750,7 +5719,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         }
         __pyx_L24:;
 
-        /* "balanced_sequence_cython.pyx":255
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":257
  *                     continue
  * 
  *                 new_head1, new_head2 = new_heads             # <<<<<<<<<<<<<<
@@ -5763,7 +5732,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 255, __pyx_L1_error)
+            __PYX_ERR(0, 257, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           if (likely(PyTuple_CheckExact(sequence))) {
@@ -5776,21 +5745,21 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_INCREF(__pyx_t_3);
           __Pyx_INCREF(__pyx_t_8);
           #else
-          __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 255, __pyx_L1_error)
+          __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 257, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           #endif
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_heads); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 255, __pyx_L1_error)
+          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_heads); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 257, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __pyx_t_9 = Py_TYPE(__pyx_t_7)->tp_iternext;
           index = 0; __pyx_t_3 = __pyx_t_9(__pyx_t_7); if (unlikely(!__pyx_t_3)) goto __pyx_L27_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_3);
           index = 1; __pyx_t_8 = __pyx_t_9(__pyx_t_7); if (unlikely(!__pyx_t_8)) goto __pyx_L27_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_8);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_7), 2) < 0) __PYX_ERR(0, 255, __pyx_L1_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_7), 2) < 0) __PYX_ERR(0, 257, __pyx_L1_error)
           __pyx_t_9 = NULL;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           goto __pyx_L28_unpacking_done;
@@ -5798,7 +5767,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __pyx_t_9 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 255, __pyx_L1_error)
+          __PYX_ERR(0, 257, __pyx_L1_error)
           __pyx_L28_unpacking_done:;
         }
         __Pyx_XDECREF_SET(__pyx_v_new_head1, __pyx_t_3);
@@ -5806,7 +5775,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_XDECREF_SET(__pyx_v_new_head2, __pyx_t_8);
         __pyx_t_8 = 0;
 
-        /* "balanced_sequence_cython.pyx":256
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":258
  * 
  *                 new_head1, new_head2 = new_heads
  *                 new_tail1, new_tail2 = new_tails             # <<<<<<<<<<<<<<
@@ -5819,7 +5788,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 256, __pyx_L1_error)
+            __PYX_ERR(0, 258, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           if (likely(PyTuple_CheckExact(sequence))) {
@@ -5832,21 +5801,21 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_INCREF(__pyx_t_8);
           __Pyx_INCREF(__pyx_t_3);
           #else
-          __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 256, __pyx_L1_error)
+          __pyx_t_8 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 258, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 256, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_tails); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 256, __pyx_L1_error)
+          __pyx_t_7 = PyObject_GetIter(__pyx_v_new_tails); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 258, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __pyx_t_9 = Py_TYPE(__pyx_t_7)->tp_iternext;
           index = 0; __pyx_t_8 = __pyx_t_9(__pyx_t_7); if (unlikely(!__pyx_t_8)) goto __pyx_L29_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_8);
           index = 1; __pyx_t_3 = __pyx_t_9(__pyx_t_7); if (unlikely(!__pyx_t_3)) goto __pyx_L29_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_3);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_7), 2) < 0) __PYX_ERR(0, 256, __pyx_L1_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_7), 2) < 0) __PYX_ERR(0, 258, __pyx_L1_error)
           __pyx_t_9 = NULL;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           goto __pyx_L30_unpacking_done;
@@ -5854,7 +5823,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
           __pyx_t_9 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-          __PYX_ERR(0, 256, __pyx_L1_error)
+          __PYX_ERR(0, 258, __pyx_L1_error)
           __pyx_L30_unpacking_done:;
         }
         __Pyx_XDECREF_SET(__pyx_v_new_tail1, __pyx_t_8);
@@ -5862,50 +5831,50 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_XDECREF_SET(__pyx_v_new_tail2, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":258
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":260
  *                 new_tail1, new_tail2 = new_tails
  * 
  *                 subseq1 = a1 + new_head1 + b1 + new_tail1             # <<<<<<<<<<<<<<
  *                 subseq2 = a2 + new_head2 + b2 + new_tail2
  * 
  */
-        __pyx_t_3 = PyNumber_Add(__pyx_v_a1, __pyx_v_new_head1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_v_a1, __pyx_v_new_head1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_8 = PyNumber_Add(__pyx_t_3, __pyx_v_b1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 258, __pyx_L1_error)
+        __pyx_t_8 = PyNumber_Add(__pyx_t_3, __pyx_v_b1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 260, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyNumber_Add(__pyx_t_8, __pyx_v_new_tail1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_t_8, __pyx_v_new_tail1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_XDECREF_SET(__pyx_v_subseq1, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":259
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":261
  * 
  *                 subseq1 = a1 + new_head1 + b1 + new_tail1
  *                 subseq2 = a2 + new_head2 + b2 + new_tail2             # <<<<<<<<<<<<<<
  * 
  *                 res3 = (subseq1, subseq2)
  */
-        __pyx_t_3 = PyNumber_Add(__pyx_v_a2, __pyx_v_new_head2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_v_a2, __pyx_v_new_head2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_8 = PyNumber_Add(__pyx_t_3, __pyx_v_b2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 259, __pyx_L1_error)
+        __pyx_t_8 = PyNumber_Add(__pyx_t_3, __pyx_v_b2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 261, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyNumber_Add(__pyx_t_8, __pyx_v_new_tail2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_t_8, __pyx_v_new_tail2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_XDECREF_SET(__pyx_v_subseq2, __pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":261
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":263
  *                 subseq2 = a2 + new_head2 + b2 + new_tail2
  * 
  *                 res3 = (subseq1, subseq2)             # <<<<<<<<<<<<<<
  *                 val3 = pval_h + pval_t + affinity
  *                 cand3 = (val3, res3)
  */
-        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 263, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_v_subseq1);
         __Pyx_GIVEREF(__pyx_v_subseq1);
@@ -5916,29 +5885,29 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_XDECREF_SET(__pyx_v_res3, ((PyObject*)__pyx_t_3));
         __pyx_t_3 = 0;
 
-        /* "balanced_sequence_cython.pyx":262
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":264
  * 
  *                 res3 = (subseq1, subseq2)
  *                 val3 = pval_h + pval_t + affinity             # <<<<<<<<<<<<<<
  *                 cand3 = (val3, res3)
  *             else:
  */
-        __pyx_t_3 = PyNumber_Add(__pyx_v_pval_h, __pyx_v_pval_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 262, __pyx_L1_error)
+        __pyx_t_3 = PyNumber_Add(__pyx_v_pval_h, __pyx_v_pval_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 264, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_8 = PyNumber_Add(__pyx_t_3, __pyx_v_affinity); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 262, __pyx_L1_error)
+        __pyx_t_8 = PyNumber_Add(__pyx_t_3, __pyx_v_affinity); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 264, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF_SET(__pyx_v_val3, __pyx_t_8);
         __pyx_t_8 = 0;
 
-        /* "balanced_sequence_cython.pyx":263
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":265
  *                 res3 = (subseq1, subseq2)
  *                 val3 = pval_h + pval_t + affinity
  *                 cand3 = (val3, res3)             # <<<<<<<<<<<<<<
  *             else:
  *                 cand3 = (-1, None)
  */
-        __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 263, __pyx_L1_error)
+        __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 265, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_INCREF(__pyx_v_val3);
         __Pyx_GIVEREF(__pyx_v_val3);
@@ -5949,7 +5918,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         __Pyx_XDECREF_SET(__pyx_v_cand3, ((PyObject*)__pyx_t_8));
         __pyx_t_8 = 0;
 
-        /* "balanced_sequence_cython.pyx":238
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":240
  * 
  *             # Case 1: The LCS involves this edge
  *             if affinity:             # <<<<<<<<<<<<<<
@@ -5959,7 +5928,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
         goto __pyx_L20;
       }
 
-      /* "balanced_sequence_cython.pyx":265
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":267
  *                 cand3 = (val3, res3)
  *             else:
  *                 cand3 = (-1, None)             # <<<<<<<<<<<<<<
@@ -5972,7 +5941,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       }
       __pyx_L20:;
 
-      /* "balanced_sequence_cython.pyx":268
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":270
  * 
  *             # We solved the frame
  *             _results[key] = max(cand1, cand2, cand3)             # <<<<<<<<<<<<<<
@@ -5985,8 +5954,8 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __pyx_t_21 = __pyx_v_cand3;
       __Pyx_INCREF(__pyx_v_cand1);
       __pyx_t_3 = __pyx_v_cand1;
-      __pyx_t_1 = PyObject_RichCompare(__pyx_t_8, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
-      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 268, __pyx_L1_error)
+      __pyx_t_1 = PyObject_RichCompare(__pyx_t_8, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 270, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_14) {
         __Pyx_INCREF(__pyx_t_8);
@@ -5999,8 +5968,8 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __Pyx_INCREF(__pyx_t_7);
       __pyx_t_3 = __pyx_t_7;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_1 = PyObject_RichCompare(__pyx_t_21, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
-      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 268, __pyx_L1_error)
+      __pyx_t_1 = PyObject_RichCompare(__pyx_t_21, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 270, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_14) {
         __Pyx_INCREF(__pyx_t_21);
@@ -6015,10 +5984,10 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
       __pyx_t_8 = __pyx_t_7;
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_v_key, __pyx_t_8) < 0)) __PYX_ERR(0, 268, __pyx_L1_error)
+      if (unlikely(PyDict_SetItem(__pyx_v__results, __pyx_v_key, __pyx_t_8) < 0)) __PYX_ERR(0, 270, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "balanced_sequence_cython.pyx":202
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":204
  *         key, seq1, seq2 = frame
  *         seq1_key, seq2_key = key
  *         if key not in _results:             # <<<<<<<<<<<<<<
@@ -6027,27 +5996,27 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  */
     }
 
-    /* "balanced_sequence_cython.pyx":269
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":271
  *             # We solved the frame
  *             _results[key] = max(cand1, cand2, cand3)
  *         stack.pop()             # <<<<<<<<<<<<<<
  * 
  *     # The stack pop is our solution
  */
-    __pyx_t_8 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 269, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_L15_continue:;
   }
 
-  /* "balanced_sequence_cython.pyx":272
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":274
  * 
  *     # The stack pop is our solution
  *     (val, best) = _results[key0]             # <<<<<<<<<<<<<<
  *     found = (best, val)
  *     return found
  */
-  __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_key0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v__results, __pyx_v_key0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   if ((likely(PyTuple_CheckExact(__pyx_t_8))) || (PyList_CheckExact(__pyx_t_8))) {
     PyObject* sequence = __pyx_t_8;
@@ -6055,7 +6024,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 272, __pyx_L1_error)
+      __PYX_ERR(0, 274, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -6068,15 +6037,15 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     __Pyx_INCREF(__pyx_t_7);
     __Pyx_INCREF(__pyx_t_3);
     #else
-    __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 272, __pyx_L1_error)
+    __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+    __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_t_9 = Py_TYPE(__pyx_t_1)->tp_iternext;
@@ -6084,7 +6053,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     __Pyx_GOTREF(__pyx_t_7);
     index = 1; __pyx_t_3 = __pyx_t_9(__pyx_t_1); if (unlikely(!__pyx_t_3)) goto __pyx_L31_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 272, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_1), 2) < 0) __PYX_ERR(0, 274, __pyx_L1_error)
     __pyx_t_9 = NULL;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L32_unpacking_done;
@@ -6092,23 +6061,23 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_9 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 272, __pyx_L1_error)
+    __PYX_ERR(0, 274, __pyx_L1_error)
     __pyx_L32_unpacking_done:;
   }
-  if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 272, __pyx_L1_error)
+  if (!(likely(PyTuple_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 274, __pyx_L1_error)
   __pyx_v_val = __pyx_t_7;
   __pyx_t_7 = 0;
   __Pyx_DECREF_SET(__pyx_v_best, ((PyObject*)__pyx_t_3));
   __pyx_t_3 = 0;
 
-  /* "balanced_sequence_cython.pyx":273
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":275
  *     # The stack pop is our solution
  *     (val, best) = _results[key0]
  *     found = (best, val)             # <<<<<<<<<<<<<<
  *     return found
  * 
  */
-  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_v_best);
   __Pyx_GIVEREF(__pyx_v_best);
@@ -6119,7 +6088,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __pyx_v_found = ((PyObject*)__pyx_t_8);
   __pyx_t_8 = 0;
 
-  /* "balanced_sequence_cython.pyx":274
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":276
  *     (val, best) = _results[key0]
  *     found = (best, val)
  *     return found             # <<<<<<<<<<<<<<
@@ -6131,7 +6100,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __pyx_r = __pyx_v_found;
   goto __pyx_L0;
 
-  /* "balanced_sequence_cython.pyx":143
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":145
  * 
  * 
  * def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
@@ -6152,7 +6121,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   __Pyx_XDECREF(__pyx_t_17);
   __Pyx_XDECREF(__pyx_t_18);
   __Pyx_XDECREF(__pyx_t_21);
-  __Pyx_AddTraceback("balanced_sequence_cython._lcs_iter_prehash2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython._lcs_iter_prehash2_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_all_decomp1);
@@ -6210,7 +6179,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
   return __pyx_r;
 }
 
-/* "balanced_sequence_cython.pyx":277
+/* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":279
  * 
  * 
  * cdef tuple balanced_decomp_unsafe_cython(sequence, dict open_to_close):             # <<<<<<<<<<<<<<
@@ -6218,7 +6187,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_2_lcs_iter_prehash2_cython(
  *     cdef int head_stop = 1
  */
 
-static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cython(PyObject *__pyx_v_sequence, PyObject *__pyx_v_open_to_close) {
+static PyObject *__pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_balanced_decomp_unsafe_cython(PyObject *__pyx_v_sequence, PyObject *__pyx_v_open_to_close) {
   int __pyx_v_stacklen;
   int __pyx_v_head_stop;
   PyObject *__pyx_v_tok_curr = NULL;
@@ -6242,7 +6211,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("balanced_decomp_unsafe_cython", 0);
 
-  /* "balanced_sequence_cython.pyx":278
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":280
  * 
  * cdef tuple balanced_decomp_unsafe_cython(sequence, dict open_to_close):
  *     cdef int stacklen = 1  # always +1 in the first iteration             # <<<<<<<<<<<<<<
@@ -6251,7 +6220,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
  */
   __pyx_v_stacklen = 1;
 
-  /* "balanced_sequence_cython.pyx":279
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":281
  * cdef tuple balanced_decomp_unsafe_cython(sequence, dict open_to_close):
  *     cdef int stacklen = 1  # always +1 in the first iteration
  *     cdef int head_stop = 1             # <<<<<<<<<<<<<<
@@ -6260,19 +6229,19 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
  */
   __pyx_v_head_stop = 1;
 
-  /* "balanced_sequence_cython.pyx":281
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":283
  *     cdef int head_stop = 1
  * 
  *     tok_curr = sequence[0]             # <<<<<<<<<<<<<<
  *     want_close = open_to_close[tok_curr]
  * 
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_sequence, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_sequence, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_tok_curr = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":282
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":284
  * 
  *     tok_curr = sequence[0]
  *     want_close = open_to_close[tok_curr]             # <<<<<<<<<<<<<<
@@ -6281,38 +6250,38 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
  */
   if (unlikely(__pyx_v_open_to_close == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 282, __pyx_L1_error)
+    __PYX_ERR(0, 284, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_open_to_close, __pyx_v_tok_curr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_open_to_close, __pyx_v_tok_curr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_want_close = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":285
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":287
  * 
  *     # for tok_curr in sequence[1:]:
  *     for head_stop in range(1, len(sequence)):             # <<<<<<<<<<<<<<
  *         tok_curr = sequence[head_stop]
  *         stacklen += 1 if tok_curr in open_to_close else -1
  */
-  __pyx_t_2 = PyObject_Length(__pyx_v_sequence); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_2 = PyObject_Length(__pyx_v_sequence); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 287, __pyx_L1_error)
   __pyx_t_3 = __pyx_t_2;
   for (__pyx_t_4 = 1; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_head_stop = __pyx_t_4;
 
-    /* "balanced_sequence_cython.pyx":286
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":288
  *     # for tok_curr in sequence[1:]:
  *     for head_stop in range(1, len(sequence)):
  *         tok_curr = sequence[head_stop]             # <<<<<<<<<<<<<<
  *         stacklen += 1 if tok_curr in open_to_close else -1
  *         if stacklen == 0 and tok_curr == want_close:
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_sequence, __pyx_v_head_stop, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_sequence, __pyx_v_head_stop, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_tok_curr, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "balanced_sequence_cython.pyx":287
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":289
  *     for head_stop in range(1, len(sequence)):
  *         tok_curr = sequence[head_stop]
  *         stacklen += 1 if tok_curr in open_to_close else -1             # <<<<<<<<<<<<<<
@@ -6321,9 +6290,9 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
  */
     if (unlikely(__pyx_v_open_to_close == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 287, __pyx_L1_error)
+      __PYX_ERR(0, 289, __pyx_L1_error)
     }
-    __pyx_t_6 = (__Pyx_PyDict_ContainsTF(__pyx_v_tok_curr, __pyx_v_open_to_close, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 287, __pyx_L1_error)
+    __pyx_t_6 = (__Pyx_PyDict_ContainsTF(__pyx_v_tok_curr, __pyx_v_open_to_close, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 289, __pyx_L1_error)
     if ((__pyx_t_6 != 0)) {
       __pyx_t_5 = 1;
     } else {
@@ -6331,7 +6300,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
     }
     __pyx_v_stacklen = (__pyx_v_stacklen + __pyx_t_5);
 
-    /* "balanced_sequence_cython.pyx":288
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":290
  *         tok_curr = sequence[head_stop]
  *         stacklen += 1 if tok_curr in open_to_close else -1
  *         if stacklen == 0 and tok_curr == want_close:             # <<<<<<<<<<<<<<
@@ -6344,26 +6313,26 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
       __pyx_t_6 = __pyx_t_7;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_tok_curr, __pyx_v_want_close, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 288, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_tok_curr, __pyx_v_want_close, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 290, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = __pyx_t_7;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "balanced_sequence_cython.pyx":289
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":291
  *         stacklen += 1 if tok_curr in open_to_close else -1
  *         if stacklen == 0 and tok_curr == want_close:
  *             pop_close = sequence[head_stop:head_stop + 1]             # <<<<<<<<<<<<<<
  *             break
  * 
  */
-      __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, __pyx_v_head_stop, (__pyx_v_head_stop + 1), NULL, NULL, NULL, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, __pyx_v_head_stop, (__pyx_v_head_stop + 1), NULL, NULL, NULL, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_v_pop_close = __pyx_t_1;
       __pyx_t_1 = 0;
 
-      /* "balanced_sequence_cython.pyx":290
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":292
  *         if stacklen == 0 and tok_curr == want_close:
  *             pop_close = sequence[head_stop:head_stop + 1]
  *             break             # <<<<<<<<<<<<<<
@@ -6372,7 +6341,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
  */
       goto __pyx_L4_break;
 
-      /* "balanced_sequence_cython.pyx":288
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":290
  *         tok_curr = sequence[head_stop]
  *         stacklen += 1 if tok_curr in open_to_close else -1
  *         if stacklen == 0 and tok_curr == want_close:             # <<<<<<<<<<<<<<
@@ -6383,55 +6352,55 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
   }
   __pyx_L4_break:;
 
-  /* "balanced_sequence_cython.pyx":292
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":294
  *             break
  * 
  *     pop_open = sequence[0:1]             # <<<<<<<<<<<<<<
  *     head = sequence[1:head_stop]
  *     tail = sequence[head_stop + 1:]
  */
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, 0, 1, NULL, NULL, &__pyx_slice__3, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, 0, 1, NULL, NULL, &__pyx_slice__3, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_pop_open = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":293
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":295
  * 
  *     pop_open = sequence[0:1]
  *     head = sequence[1:head_stop]             # <<<<<<<<<<<<<<
  *     tail = sequence[head_stop + 1:]
  *     head_tail = head + tail
  */
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, 1, __pyx_v_head_stop, NULL, NULL, NULL, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, 1, __pyx_v_head_stop, NULL, NULL, NULL, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_head = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":294
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":296
  *     pop_open = sequence[0:1]
  *     head = sequence[1:head_stop]
  *     tail = sequence[head_stop + 1:]             # <<<<<<<<<<<<<<
  *     head_tail = head + tail
  *     return pop_open, pop_close, head, tail, head_tail
  */
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, (__pyx_v_head_stop + 1), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_sequence, (__pyx_v_head_stop + 1), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_tail = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":295
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":297
  *     head = sequence[1:head_stop]
  *     tail = sequence[head_stop + 1:]
  *     head_tail = head + tail             # <<<<<<<<<<<<<<
  *     return pop_open, pop_close, head, tail, head_tail
  * 
  */
-  __pyx_t_1 = PyNumber_Add(__pyx_v_head, __pyx_v_tail); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_head, __pyx_v_tail); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_head_tail = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":296
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":298
  *     tail = sequence[head_stop + 1:]
  *     head_tail = head + tail
  *     return pop_open, pop_close, head, tail, head_tail             # <<<<<<<<<<<<<<
@@ -6439,8 +6408,8 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_pop_close)) { __Pyx_RaiseUnboundLocalError("pop_close"); __PYX_ERR(0, 296, __pyx_L1_error) }
-  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
+  if (unlikely(!__pyx_v_pop_close)) { __Pyx_RaiseUnboundLocalError("pop_close"); __PYX_ERR(0, 298, __pyx_L1_error) }
+  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_pop_open);
   __Pyx_GIVEREF(__pyx_v_pop_open);
@@ -6461,7 +6430,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "balanced_sequence_cython.pyx":277
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":279
  * 
  * 
  * cdef tuple balanced_decomp_unsafe_cython(sequence, dict open_to_close):             # <<<<<<<<<<<<<<
@@ -6472,7 +6441,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("balanced_sequence_cython.balanced_decomp_unsafe_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython.balanced_decomp_unsafe_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_tok_curr);
@@ -6487,7 +6456,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
   return __pyx_r;
 }
 
-/* "balanced_sequence_cython.pyx":299
+/* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":301
  * 
  * 
  * def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):             # <<<<<<<<<<<<<<
@@ -6496,10 +6465,10 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cytho
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_24balanced_sequence_cython_5generate_all_decomp_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_24balanced_sequence_cython_4generate_all_decomp_cython[] = "\n    >>> tree = random_ordered_tree(10)\n    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr', strhack=True)\n    >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)\n    ";
-static PyMethodDef __pyx_mdef_24balanced_sequence_cython_5generate_all_decomp_cython = {"generate_all_decomp_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_24balanced_sequence_cython_5generate_all_decomp_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_24balanced_sequence_cython_4generate_all_decomp_cython};
-static PyObject *__pyx_pw_24balanced_sequence_cython_5generate_all_decomp_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_5generate_all_decomp_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_4generate_all_decomp_cython[] = "\n    >>> tree = random_ordered_tree(10)\n    >>> seq, open_to_close, toks = tree_to_seq(tree, mode='chr', strhack=True)\n    >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)\n    ";
+static PyMethodDef __pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_5generate_all_decomp_cython = {"generate_all_decomp_cython", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_5generate_all_decomp_cython, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_4generate_all_decomp_cython};
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_5generate_all_decomp_cython(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_seq = 0;
   PyObject *__pyx_v_open_to_close = 0;
   PyObject *__pyx_v_open_to_tok = 0;
@@ -6535,7 +6504,7 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_5generate_all_decomp_cython
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_open_to_close)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("generate_all_decomp_cython", 0, 2, 3, 1); __PYX_ERR(0, 299, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("generate_all_decomp_cython", 0, 2, 3, 1); __PYX_ERR(0, 301, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -6545,7 +6514,7 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_5generate_all_decomp_cython
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "generate_all_decomp_cython") < 0)) __PYX_ERR(0, 299, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "generate_all_decomp_cython") < 0)) __PYX_ERR(0, 301, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6563,20 +6532,20 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_5generate_all_decomp_cython
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("generate_all_decomp_cython", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 299, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("generate_all_decomp_cython", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 301, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("balanced_sequence_cython.generate_all_decomp_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython.generate_all_decomp_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython(__pyx_self, __pyx_v_seq, __pyx_v_open_to_close, __pyx_v_open_to_tok);
+  __pyx_r = __pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_4generate_all_decomp_cython(__pyx_self, __pyx_v_seq, __pyx_v_open_to_close, __pyx_v_open_to_tok);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok) {
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_4generate_all_decomp_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok) {
   PyObject *__pyx_v_all_decomp = NULL;
   PyObject *__pyx_v_stack = NULL;
   PyObject *__pyx_v_pop_open = NULL;
@@ -6603,26 +6572,26 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
   __Pyx_RefNannySetupContext("generate_all_decomp_cython", 0);
   __Pyx_INCREF(__pyx_v_seq);
 
-  /* "balanced_sequence_cython.pyx":305
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":307
  *     >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)
  *     """
  *     all_decomp = {}             # <<<<<<<<<<<<<<
  *     stack = [seq]
  *     while stack:
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_all_decomp = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":306
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":308
  *     """
  *     all_decomp = {}
  *     stack = [seq]             # <<<<<<<<<<<<<<
  *     while stack:
  *         seq = stack.pop()
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_seq);
   __Pyx_GIVEREF(__pyx_v_seq);
@@ -6630,7 +6599,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
   __pyx_v_stack = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":307
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":309
  *     all_decomp = {}
  *     stack = [seq]
  *     while stack:             # <<<<<<<<<<<<<<
@@ -6641,46 +6610,46 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
     __pyx_t_2 = (PyList_GET_SIZE(__pyx_v_stack) != 0);
     if (!__pyx_t_2) break;
 
-    /* "balanced_sequence_cython.pyx":308
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":310
  *     stack = [seq]
  *     while stack:
  *         seq = stack.pop()             # <<<<<<<<<<<<<<
  *         if seq not in all_decomp and seq:
  *             pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
  */
-    __pyx_t_1 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_seq, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "balanced_sequence_cython.pyx":309
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":311
  *     while stack:
  *         seq = stack.pop()
  *         if seq not in all_decomp and seq:             # <<<<<<<<<<<<<<
  *             pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
  *             tok = open_to_tok[pop_open[0]]
  */
-    __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_v_seq, __pyx_v_all_decomp, Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 309, __pyx_L1_error)
+    __pyx_t_3 = (__Pyx_PyDict_ContainsTF(__pyx_v_seq, __pyx_v_all_decomp, Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 311, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_3 != 0);
     if (__pyx_t_4) {
     } else {
       __pyx_t_2 = __pyx_t_4;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_seq); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 309, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_seq); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 311, __pyx_L1_error)
     __pyx_t_2 = __pyx_t_4;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "balanced_sequence_cython.pyx":310
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":312
  *         seq = stack.pop()
  *         if seq not in all_decomp and seq:
  *             pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)             # <<<<<<<<<<<<<<
  *             tok = open_to_tok[pop_open[0]]
  *             all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
  */
-      if (!(likely(PyDict_CheckExact(__pyx_v_open_to_close))||((__pyx_v_open_to_close) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_open_to_close)->tp_name), 0))) __PYX_ERR(0, 310, __pyx_L1_error)
-      __pyx_t_1 = __pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cython(__pyx_v_seq, ((PyObject*)__pyx_v_open_to_close)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+      if (!(likely(PyDict_CheckExact(__pyx_v_open_to_close))||((__pyx_v_open_to_close) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "dict", Py_TYPE(__pyx_v_open_to_close)->tp_name), 0))) __PYX_ERR(0, 312, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_balanced_decomp_unsafe_cython(__pyx_v_seq, ((PyObject*)__pyx_v_open_to_close)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (likely(__pyx_t_1 != Py_None)) {
         PyObject* sequence = __pyx_t_1;
@@ -6688,7 +6657,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
         if (unlikely(size != 5)) {
           if (size > 5) __Pyx_RaiseTooManyValuesError(5);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 310, __pyx_L1_error)
+          __PYX_ERR(0, 312, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         __pyx_t_5 = PyTuple_GET_ITEM(sequence, 0); 
@@ -6706,7 +6675,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
           Py_ssize_t i;
           PyObject** temps[5] = {&__pyx_t_5,&__pyx_t_6,&__pyx_t_7,&__pyx_t_8,&__pyx_t_9};
           for (i=0; i < 5; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 310, __pyx_L1_error)
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 312, __pyx_L1_error)
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
@@ -6714,7 +6683,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
-        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 310, __pyx_L1_error)
+        __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 312, __pyx_L1_error)
       }
       __Pyx_XDECREF_SET(__pyx_v_pop_open, __pyx_t_5);
       __pyx_t_5 = 0;
@@ -6727,29 +6696,29 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
       __Pyx_XDECREF_SET(__pyx_v_head_tail, __pyx_t_9);
       __pyx_t_9 = 0;
 
-      /* "balanced_sequence_cython.pyx":311
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":313
  *         if seq not in all_decomp and seq:
  *             pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
  *             tok = open_to_tok[pop_open[0]]             # <<<<<<<<<<<<<<
  *             all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
  *             stack.append(head_tail)
  */
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_pop_open, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_pop_open, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_9 = __Pyx_PyObject_GetItem(__pyx_v_open_to_tok, __pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 311, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_GetItem(__pyx_v_open_to_tok, __pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 313, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_tok, __pyx_t_9);
       __pyx_t_9 = 0;
 
-      /* "balanced_sequence_cython.pyx":312
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":314
  *             pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
  *             tok = open_to_tok[pop_open[0]]
  *             all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)             # <<<<<<<<<<<<<<
  *             stack.append(head_tail)
  *             stack.append(head)
  */
-      __pyx_t_9 = PyTuple_New(6); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 312, __pyx_L1_error)
+      __pyx_t_9 = PyTuple_New(6); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 314, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_INCREF(__pyx_v_tok);
       __Pyx_GIVEREF(__pyx_v_tok);
@@ -6769,37 +6738,37 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
       __Pyx_INCREF(__pyx_v_head_tail);
       __Pyx_GIVEREF(__pyx_v_head_tail);
       PyTuple_SET_ITEM(__pyx_t_9, 5, __pyx_v_head_tail);
-      if (unlikely(PyDict_SetItem(__pyx_v_all_decomp, __pyx_v_seq, __pyx_t_9) < 0)) __PYX_ERR(0, 312, __pyx_L1_error)
+      if (unlikely(PyDict_SetItem(__pyx_v_all_decomp, __pyx_v_seq, __pyx_t_9) < 0)) __PYX_ERR(0, 314, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "balanced_sequence_cython.pyx":313
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":315
  *             tok = open_to_tok[pop_open[0]]
  *             all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
  *             stack.append(head_tail)             # <<<<<<<<<<<<<<
  *             stack.append(head)
  *             stack.append(tail)
  */
-      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head_tail); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 313, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head_tail); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 315, __pyx_L1_error)
 
-      /* "balanced_sequence_cython.pyx":314
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":316
  *             all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
  *             stack.append(head_tail)
  *             stack.append(head)             # <<<<<<<<<<<<<<
  *             stack.append(tail)
  *     return all_decomp
  */
-      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 314, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 316, __pyx_L1_error)
 
-      /* "balanced_sequence_cython.pyx":315
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":317
  *             stack.append(head_tail)
  *             stack.append(head)
  *             stack.append(tail)             # <<<<<<<<<<<<<<
  *     return all_decomp
  * 
  */
-      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_tail); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 315, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_tail); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 317, __pyx_L1_error)
 
-      /* "balanced_sequence_cython.pyx":309
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":311
  *     while stack:
  *         seq = stack.pop()
  *         if seq not in all_decomp and seq:             # <<<<<<<<<<<<<<
@@ -6809,7 +6778,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
     }
   }
 
-  /* "balanced_sequence_cython.pyx":316
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":318
  *             stack.append(head)
  *             stack.append(tail)
  *     return all_decomp             # <<<<<<<<<<<<<<
@@ -6821,7 +6790,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
   __pyx_r = __pyx_v_all_decomp;
   goto __pyx_L0;
 
-  /* "balanced_sequence_cython.pyx":299
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":301
  * 
  * 
  * def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):             # <<<<<<<<<<<<<<
@@ -6837,7 +6806,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("balanced_sequence_cython.generate_all_decomp_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython.generate_all_decomp_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_all_decomp);
@@ -6854,7 +6823,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
   return __pyx_r;
 }
 
-/* "balanced_sequence_cython.pyx":319
+/* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":321
  * 
  * 
  * cdef tuple balanced_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):             # <<<<<<<<<<<<<<
@@ -6862,7 +6831,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_4generate_all_decomp_cython
  *     pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
  */
 
-static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cython(PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok) {
+static PyObject *__pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_balanced_decomp_prehash_cython(PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok) {
   PyObject *__pyx_v_info = 0;
   PyObject *__pyx_v_pop_open = NULL;
   PyObject *__pyx_v_pop_close = NULL;
@@ -6889,14 +6858,14 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("balanced_decomp_prehash_cython", 0);
 
-  /* "balanced_sequence_cython.pyx":321
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":323
  * cdef tuple balanced_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):
  *     cdef tuple info
  *     pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)             # <<<<<<<<<<<<<<
  *     cdef Py_hash_t head_key = hash(head)
  *     cdef Py_hash_t tail_key = hash(tail)
  */
-  __pyx_t_1 = __pyx_f_24balanced_sequence_cython_balanced_decomp_unsafe_cython(__pyx_v_seq, __pyx_v_open_to_close); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_balanced_decomp_unsafe_cython(__pyx_v_seq, __pyx_v_open_to_close); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(__pyx_t_1 != Py_None)) {
     PyObject* sequence = __pyx_t_1;
@@ -6904,7 +6873,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
     if (unlikely(size != 5)) {
       if (size > 5) __Pyx_RaiseTooManyValuesError(5);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 321, __pyx_L1_error)
+      __PYX_ERR(0, 323, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
@@ -6922,7 +6891,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
       Py_ssize_t i;
       PyObject** temps[5] = {&__pyx_t_2,&__pyx_t_3,&__pyx_t_4,&__pyx_t_5,&__pyx_t_6};
       for (i=0; i < 5; i++) {
-        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 321, __pyx_L1_error)
+        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 323, __pyx_L1_error)
         __Pyx_GOTREF(item);
         *(temps[i]) = item;
       }
@@ -6930,7 +6899,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 321, __pyx_L1_error)
+    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 323, __pyx_L1_error)
   }
   __pyx_v_pop_open = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -6943,52 +6912,52 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   __pyx_v_head_tail = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "balanced_sequence_cython.pyx":322
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":324
  *     cdef tuple info
  *     pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
  *     cdef Py_hash_t head_key = hash(head)             # <<<<<<<<<<<<<<
  *     cdef Py_hash_t tail_key = hash(tail)
  *     cdef Py_hash_t head_tail_key = hash(head_tail)
  */
-  __pyx_t_7 = PyObject_Hash(__pyx_v_head); if (unlikely(__pyx_t_7 == ((Py_hash_t)-1))) __PYX_ERR(0, 322, __pyx_L1_error)
+  __pyx_t_7 = PyObject_Hash(__pyx_v_head); if (unlikely(__pyx_t_7 == ((Py_hash_t)-1))) __PYX_ERR(0, 324, __pyx_L1_error)
   __pyx_v_head_key = __pyx_t_7;
 
-  /* "balanced_sequence_cython.pyx":323
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":325
  *     pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
  *     cdef Py_hash_t head_key = hash(head)
  *     cdef Py_hash_t tail_key = hash(tail)             # <<<<<<<<<<<<<<
  *     cdef Py_hash_t head_tail_key = hash(head_tail)
  *     tok = open_to_tok[pop_open[0]]
  */
-  __pyx_t_7 = PyObject_Hash(__pyx_v_tail); if (unlikely(__pyx_t_7 == ((Py_hash_t)-1))) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_7 = PyObject_Hash(__pyx_v_tail); if (unlikely(__pyx_t_7 == ((Py_hash_t)-1))) __PYX_ERR(0, 325, __pyx_L1_error)
   __pyx_v_tail_key = __pyx_t_7;
 
-  /* "balanced_sequence_cython.pyx":324
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":326
  *     cdef Py_hash_t head_key = hash(head)
  *     cdef Py_hash_t tail_key = hash(tail)
  *     cdef Py_hash_t head_tail_key = hash(head_tail)             # <<<<<<<<<<<<<<
  *     tok = open_to_tok[pop_open[0]]
  *     a = pop_open
  */
-  __pyx_t_7 = PyObject_Hash(__pyx_v_head_tail); if (unlikely(__pyx_t_7 == ((Py_hash_t)-1))) __PYX_ERR(0, 324, __pyx_L1_error)
+  __pyx_t_7 = PyObject_Hash(__pyx_v_head_tail); if (unlikely(__pyx_t_7 == ((Py_hash_t)-1))) __PYX_ERR(0, 326, __pyx_L1_error)
   __pyx_v_head_tail_key = __pyx_t_7;
 
-  /* "balanced_sequence_cython.pyx":325
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":327
  *     cdef Py_hash_t tail_key = hash(tail)
  *     cdef Py_hash_t head_tail_key = hash(head_tail)
  *     tok = open_to_tok[pop_open[0]]             # <<<<<<<<<<<<<<
  *     a = pop_open
  *     b = pop_close
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_pop_open, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_pop_open, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_v_open_to_tok, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_v_open_to_tok, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_tok = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "balanced_sequence_cython.pyx":326
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":328
  *     cdef Py_hash_t head_tail_key = hash(head_tail)
  *     tok = open_to_tok[pop_open[0]]
  *     a = pop_open             # <<<<<<<<<<<<<<
@@ -6998,7 +6967,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   __Pyx_INCREF(__pyx_v_pop_open);
   __pyx_v_a = __pyx_v_pop_open;
 
-  /* "balanced_sequence_cython.pyx":327
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":329
  *     tok = open_to_tok[pop_open[0]]
  *     a = pop_open
  *     b = pop_close             # <<<<<<<<<<<<<<
@@ -7008,20 +6977,20 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   __Pyx_INCREF(__pyx_v_pop_close);
   __pyx_v_b = __pyx_v_pop_close;
 
-  /* "balanced_sequence_cython.pyx":328
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":330
  *     a = pop_open
  *     b = pop_close
  *     info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)             # <<<<<<<<<<<<<<
  *     return info
  * 
  */
-  __pyx_t_6 = __Pyx_PyInt_FromHash_t(__pyx_v_head_key); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_FromHash_t(__pyx_v_head_key); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_tail_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_FromHash_t(__pyx_v_tail_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_FromHash_t(__pyx_v_head_tail_key); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = PyTuple_New(10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_v_tok);
   __Pyx_GIVEREF(__pyx_v_tok);
@@ -7056,7 +7025,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   __pyx_v_info = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "balanced_sequence_cython.pyx":329
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":331
  *     b = pop_close
  *     info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
  *     return info             # <<<<<<<<<<<<<<
@@ -7068,7 +7037,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   __pyx_r = __pyx_v_info;
   goto __pyx_L0;
 
-  /* "balanced_sequence_cython.pyx":319
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":321
  * 
  * 
  * cdef tuple balanced_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):             # <<<<<<<<<<<<<<
@@ -7084,7 +7053,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("balanced_sequence_cython.balanced_decomp_prehash_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython.balanced_decomp_prehash_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_info);
@@ -7101,7 +7070,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
   return __pyx_r;
 }
 
-/* "balanced_sequence_cython.pyx":332
+/* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":334
  * 
  * 
  * cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):             # <<<<<<<<<<<<<<
@@ -7109,7 +7078,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cyth
  *     cdef list stack = [seq]
  */
 
-static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_cython(PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok) {
+static PyObject *__pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_generate_all_decomp_prehash_cython(PyObject *__pyx_v_seq, PyObject *__pyx_v_open_to_close, PyObject *__pyx_v_open_to_tok) {
   PyObject *__pyx_v_all_decomp = 0;
   PyObject *__pyx_v_stack = 0;
   PyObject *__pyx_v_info = 0;
@@ -7132,26 +7101,26 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
   __Pyx_RefNannySetupContext("generate_all_decomp_prehash_cython", 0);
   __Pyx_INCREF(__pyx_v_seq);
 
-  /* "balanced_sequence_cython.pyx":333
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":335
  * 
  * cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):
  *     cdef dict all_decomp = {}             # <<<<<<<<<<<<<<
  *     cdef list stack = [seq]
  *     cdef tuple info
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_all_decomp = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":334
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":336
  * cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):
  *     cdef dict all_decomp = {}
  *     cdef list stack = [seq]             # <<<<<<<<<<<<<<
  *     cdef tuple info
  *     while stack:
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_seq);
   __Pyx_GIVEREF(__pyx_v_seq);
@@ -7159,7 +7128,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
   __pyx_v_stack = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":336
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":338
  *     cdef list stack = [seq]
  *     cdef tuple info
  *     while stack:             # <<<<<<<<<<<<<<
@@ -7170,29 +7139,29 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
     __pyx_t_2 = (PyList_GET_SIZE(__pyx_v_stack) != 0);
     if (!__pyx_t_2) break;
 
-    /* "balanced_sequence_cython.pyx":337
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":339
  *     cdef tuple info
  *     while stack:
  *         seq = stack.pop()             # <<<<<<<<<<<<<<
  *         if seq:
  *             # key = hash(seq)
  */
-    __pyx_t_1 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 337, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyList_Pop(__pyx_v_stack); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_seq, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "balanced_sequence_cython.pyx":338
+    /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":340
  *     while stack:
  *         seq = stack.pop()
  *         if seq:             # <<<<<<<<<<<<<<
  *             # key = hash(seq)
  *             key = seq
  */
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_seq); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 338, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_seq); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 340, __pyx_L1_error)
     if (__pyx_t_2) {
 
-      /* "balanced_sequence_cython.pyx":340
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":342
  *         if seq:
  *             # key = hash(seq)
  *             key = seq             # <<<<<<<<<<<<<<
@@ -7202,30 +7171,30 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
       __Pyx_INCREF(__pyx_v_seq);
       __Pyx_XDECREF_SET(__pyx_v_key, __pyx_v_seq);
 
-      /* "balanced_sequence_cython.pyx":341
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":343
  *             # key = hash(seq)
  *             key = seq
  *             if key not in all_decomp:             # <<<<<<<<<<<<<<
  *                 info = balanced_decomp_prehash_cython(seq, open_to_close, open_to_tok)
  *                 head, tail, head_tail = info[2:5]
  */
-      __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_key, __pyx_v_all_decomp, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 341, __pyx_L1_error)
+      __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_key, __pyx_v_all_decomp, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 343, __pyx_L1_error)
       __pyx_t_3 = (__pyx_t_2 != 0);
       if (__pyx_t_3) {
 
-        /* "balanced_sequence_cython.pyx":342
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":344
  *             key = seq
  *             if key not in all_decomp:
  *                 info = balanced_decomp_prehash_cython(seq, open_to_close, open_to_tok)             # <<<<<<<<<<<<<<
  *                 head, tail, head_tail = info[2:5]
  *                 all_decomp[key] = info
  */
-        __pyx_t_1 = __pyx_f_24balanced_sequence_cython_balanced_decomp_prehash_cython(__pyx_v_seq, __pyx_v_open_to_close, __pyx_v_open_to_tok); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 342, __pyx_L1_error)
+        __pyx_t_1 = __pyx_f_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_balanced_decomp_prehash_cython(__pyx_v_seq, __pyx_v_open_to_close, __pyx_v_open_to_tok); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 344, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_XDECREF_SET(__pyx_v_info, ((PyObject*)__pyx_t_1));
         __pyx_t_1 = 0;
 
-        /* "balanced_sequence_cython.pyx":343
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":345
  *             if key not in all_decomp:
  *                 info = balanced_decomp_prehash_cython(seq, open_to_close, open_to_tok)
  *                 head, tail, head_tail = info[2:5]             # <<<<<<<<<<<<<<
@@ -7234,9 +7203,9 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
  */
         if (unlikely(__pyx_v_info == Py_None)) {
           PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-          __PYX_ERR(0, 343, __pyx_L1_error)
+          __PYX_ERR(0, 345, __pyx_L1_error)
         }
-        __pyx_t_1 = __Pyx_PyTuple_GetSlice(__pyx_v_info, 2, 5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 343, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyTuple_GetSlice(__pyx_v_info, 2, 5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         if (1) {
           PyObject* sequence = __pyx_t_1;
@@ -7244,7 +7213,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
           if (unlikely(size != 3)) {
             if (size > 3) __Pyx_RaiseTooManyValuesError(3);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 343, __pyx_L1_error)
+            __PYX_ERR(0, 345, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
@@ -7254,11 +7223,11 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
           __Pyx_INCREF(__pyx_t_5);
           __Pyx_INCREF(__pyx_t_6);
           #else
-          __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 343, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 345, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 343, __pyx_L1_error)
+          __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 345, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
-          __pyx_t_6 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 343, __pyx_L1_error)
+          __pyx_t_6 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 345, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           #endif
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7270,43 +7239,43 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
         __Pyx_XDECREF_SET(__pyx_v_head_tail, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "balanced_sequence_cython.pyx":344
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":346
  *                 info = balanced_decomp_prehash_cython(seq, open_to_close, open_to_tok)
  *                 head, tail, head_tail = info[2:5]
  *                 all_decomp[key] = info             # <<<<<<<<<<<<<<
  *                 stack.append(head_tail)
  *                 stack.append(head)
  */
-        if (unlikely(PyDict_SetItem(__pyx_v_all_decomp, __pyx_v_key, __pyx_v_info) < 0)) __PYX_ERR(0, 344, __pyx_L1_error)
+        if (unlikely(PyDict_SetItem(__pyx_v_all_decomp, __pyx_v_key, __pyx_v_info) < 0)) __PYX_ERR(0, 346, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":345
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":347
  *                 head, tail, head_tail = info[2:5]
  *                 all_decomp[key] = info
  *                 stack.append(head_tail)             # <<<<<<<<<<<<<<
  *                 stack.append(head)
  *                 stack.append(tail)
  */
-        __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head_tail); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 345, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head_tail); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 347, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":346
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":348
  *                 all_decomp[key] = info
  *                 stack.append(head_tail)
  *                 stack.append(head)             # <<<<<<<<<<<<<<
  *                 stack.append(tail)
  *     return all_decomp
  */
-        __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 346, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_head); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 348, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":347
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":349
  *                 stack.append(head_tail)
  *                 stack.append(head)
  *                 stack.append(tail)             # <<<<<<<<<<<<<<
  *     return all_decomp
  * 
  */
-        __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_tail); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 347, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_stack, __pyx_v_tail); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 349, __pyx_L1_error)
 
-        /* "balanced_sequence_cython.pyx":341
+        /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":343
  *             # key = hash(seq)
  *             key = seq
  *             if key not in all_decomp:             # <<<<<<<<<<<<<<
@@ -7315,7 +7284,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
  */
       }
 
-      /* "balanced_sequence_cython.pyx":338
+      /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":340
  *     while stack:
  *         seq = stack.pop()
  *         if seq:             # <<<<<<<<<<<<<<
@@ -7325,7 +7294,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
     }
   }
 
-  /* "balanced_sequence_cython.pyx":348
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":350
  *                 stack.append(head)
  *                 stack.append(tail)
  *     return all_decomp             # <<<<<<<<<<<<<<
@@ -7337,7 +7306,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
   __pyx_r = __pyx_v_all_decomp;
   goto __pyx_L0;
 
-  /* "balanced_sequence_cython.pyx":332
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":334
  * 
  * 
  * cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):             # <<<<<<<<<<<<<<
@@ -7351,7 +7320,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("balanced_sequence_cython.generate_all_decomp_prehash_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython.generate_all_decomp_prehash_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_all_decomp);
@@ -7367,7 +7336,7 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
   return __pyx_r;
 }
 
-/* "balanced_sequence_cython.pyx":353
+/* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":355
  * class IdentityDict:
  *     """ Used when ``open_to_tok`` is unspecified """
  *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
@@ -7375,9 +7344,9 @@ static PyObject *__pyx_f_24balanced_sequence_cython_generate_all_decomp_prehash_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_24balanced_sequence_cython_12IdentityDict_1__getitem__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_24balanced_sequence_cython_12IdentityDict_1__getitem__ = {"__getitem__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_24balanced_sequence_cython_12IdentityDict_1__getitem__, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_24balanced_sequence_cython_12IdentityDict_1__getitem__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict_1__getitem__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict_1__getitem__ = {"__getitem__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict_1__getitem__, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict_1__getitem__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_key = 0;
   int __pyx_lineno = 0;
@@ -7409,11 +7378,11 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_12IdentityDict_1__getitem__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_key)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, 1); __PYX_ERR(0, 353, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, 1); __PYX_ERR(0, 355, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__getitem__") < 0)) __PYX_ERR(0, 353, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__getitem__") < 0)) __PYX_ERR(0, 355, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -7426,25 +7395,25 @@ static PyObject *__pyx_pw_24balanced_sequence_cython_12IdentityDict_1__getitem__
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 353, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 355, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("balanced_sequence_cython.IdentityDict.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython.IdentityDict.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_24balanced_sequence_cython_12IdentityDict___getitem__(__pyx_self, __pyx_v_self, __pyx_v_key);
+  __pyx_r = __pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict___getitem__(__pyx_self, __pyx_v_self, __pyx_v_key);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_24balanced_sequence_cython_12IdentityDict___getitem__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_key) {
+static PyObject *__pyx_pf_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict___getitem__(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_key) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "balanced_sequence_cython.pyx":354
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":356
  *     """ Used when ``open_to_tok`` is unspecified """
  *     def __getitem__(self, key):
  *         return key             # <<<<<<<<<<<<<<
@@ -7454,7 +7423,7 @@ static PyObject *__pyx_pf_24balanced_sequence_cython_12IdentityDict___getitem__(
   __pyx_r = __pyx_v_key;
   goto __pyx_L0;
 
-  /* "balanced_sequence_cython.pyx":353
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":355
  * class IdentityDict:
  *     """ Used when ``open_to_tok`` is unspecified """
  *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
@@ -7525,8 +7494,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_all_decomp2, __pyx_k_all_decomp2, sizeof(__pyx_k_all_decomp2), 0, 0, 1, 1},
   {&__pyx_n_s_b1, __pyx_k_b1, sizeof(__pyx_k_b1), 0, 0, 1, 1},
   {&__pyx_n_s_b2, __pyx_k_b2, sizeof(__pyx_k_b2), 0, 0, 1, 1},
-  {&__pyx_n_s_balanced_sequence_cython, __pyx_k_balanced_sequence_cython, sizeof(__pyx_k_balanced_sequence_cython), 0, 0, 1, 1},
-  {&__pyx_kp_s_balanced_sequence_cython_pyx, __pyx_k_balanced_sequence_cython_pyx, sizeof(__pyx_k_balanced_sequence_cython_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_base_result, __pyx_k_base_result, sizeof(__pyx_k_base_result), 0, 0, 1, 1},
   {&__pyx_n_s_best, __pyx_k_best, sizeof(__pyx_k_best), 0, 0, 1, 1},
   {&__pyx_n_s_cand1, __pyx_k_cand1, sizeof(__pyx_k_cand1), 0, 0, 1, 1},
@@ -7575,6 +7542,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_miss_frame, __pyx_k_miss_frame, sizeof(__pyx_k_miss_frame), 0, 0, 1, 1},
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
+  {&__pyx_kp_s_networkx_algorithms_isomorphism, __pyx_k_networkx_algorithms_isomorphism, sizeof(__pyx_k_networkx_algorithms_isomorphism), 0, 0, 1, 0},
+  {&__pyx_n_s_networkx_algorithms_isomorphism_2, __pyx_k_networkx_algorithms_isomorphism_2, sizeof(__pyx_k_networkx_algorithms_isomorphism_2), 0, 0, 1, 1},
   {&__pyx_n_s_new_head1, __pyx_k_new_head1, sizeof(__pyx_k_new_head1), 0, 0, 1, 1},
   {&__pyx_n_s_new_head2, __pyx_k_new_head2, sizeof(__pyx_k_new_head2), 0, 0, 1, 1},
   {&__pyx_n_s_new_heads, __pyx_k_new_heads, sizeof(__pyx_k_new_heads), 0, 0, 1, 1},
@@ -7621,7 +7590,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 287, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -7631,85 +7600,85 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "balanced_sequence_cython.pyx":132
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":134
  *                 cand3 = (val3, res3)
  *             else:
  *                 cand3 = (-1, None)             # <<<<<<<<<<<<<<
  * 
  *             # We solved the frame
  */
-  __pyx_tuple_ = PyTuple_Pack(2, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(2, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "balanced_sequence_cython.pyx":173
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":175
  *     for seq1, info1 in all_decomp1.items():
  *         seq1_key = hash(seq1)
  *         head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]             # <<<<<<<<<<<<<<
  *         _results[(seq1_key, empty2_key)] = base_result
  *         _results[(head1_key, empty2_key)] = base_result
  */
-  __pyx_slice__2 = PySlice_New(__pyx_int_5, __pyx_int_8, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __pyx_slice__2 = PySlice_New(__pyx_int_5, __pyx_int_8, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__2);
   __Pyx_GIVEREF(__pyx_slice__2);
 
-  /* "balanced_sequence_cython.pyx":292
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":294
  *             break
  * 
  *     pop_open = sequence[0:1]             # <<<<<<<<<<<<<<
  *     head = sequence[1:head_stop]
  *     tail = sequence[head_stop + 1:]
  */
-  __pyx_slice__3 = PySlice_New(__pyx_int_0, __pyx_int_1, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_slice__3 = PySlice_New(__pyx_int_0, __pyx_int_1, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__3);
   __Pyx_GIVEREF(__pyx_slice__3);
 
-  /* "balanced_sequence_cython.pyx":42
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":44
  * 
  * 
  * def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
  *     """
  *     Depth first stack trajectory and replace try except statements with ifs
  */
-  __pyx_tuple__4 = PyTuple_Pack(51, __pyx_n_s_full_seq1, __pyx_n_s_full_seq2, __pyx_n_s_open_to_close, __pyx_n_s_node_affinity, __pyx_n_s_open_to_tok, __pyx_n_s_all_decomp1, __pyx_n_s_all_decomp2, __pyx_n_s_key0, __pyx_n_s_frame0, __pyx_n_s_stack, __pyx_n_s_results, __pyx_n_s_empty1, __pyx_n_s_empty2, __pyx_n_s_best, __pyx_n_s_base_result, __pyx_n_s_seq1, __pyx_n_s_key1, __pyx_n_s_t1, __pyx_n_s_a1, __pyx_n_s_b1, __pyx_n_s_head1, __pyx_n_s_tail1, __pyx_n_s_head_tail1, __pyx_n_s_seq2, __pyx_n_s_key2, __pyx_n_s_t2, __pyx_n_s_a2, __pyx_n_s_b2, __pyx_n_s_head2, __pyx_n_s_tail2, __pyx_n_s_head_tail2, __pyx_n_s_key, __pyx_n_s_try_key, __pyx_n_s_cand1, __pyx_n_s_cand2, __pyx_n_s_affinity, __pyx_n_s_pval_h, __pyx_n_s_new_heads, __pyx_n_s_pval_t, __pyx_n_s_new_tails, __pyx_n_s_new_head1, __pyx_n_s_new_head2, __pyx_n_s_new_tail1, __pyx_n_s_new_tail2, __pyx_n_s_subseq1, __pyx_n_s_subseq2, __pyx_n_s_res3, __pyx_n_s_val3, __pyx_n_s_cand3, __pyx_n_s_val, __pyx_n_s_found); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(51, __pyx_n_s_full_seq1, __pyx_n_s_full_seq2, __pyx_n_s_open_to_close, __pyx_n_s_node_affinity, __pyx_n_s_open_to_tok, __pyx_n_s_all_decomp1, __pyx_n_s_all_decomp2, __pyx_n_s_key0, __pyx_n_s_frame0, __pyx_n_s_stack, __pyx_n_s_results, __pyx_n_s_empty1, __pyx_n_s_empty2, __pyx_n_s_best, __pyx_n_s_base_result, __pyx_n_s_seq1, __pyx_n_s_key1, __pyx_n_s_t1, __pyx_n_s_a1, __pyx_n_s_b1, __pyx_n_s_head1, __pyx_n_s_tail1, __pyx_n_s_head_tail1, __pyx_n_s_seq2, __pyx_n_s_key2, __pyx_n_s_t2, __pyx_n_s_a2, __pyx_n_s_b2, __pyx_n_s_head2, __pyx_n_s_tail2, __pyx_n_s_head_tail2, __pyx_n_s_key, __pyx_n_s_try_key, __pyx_n_s_cand1, __pyx_n_s_cand2, __pyx_n_s_affinity, __pyx_n_s_pval_h, __pyx_n_s_new_heads, __pyx_n_s_pval_t, __pyx_n_s_new_tails, __pyx_n_s_new_head1, __pyx_n_s_new_head2, __pyx_n_s_new_tail1, __pyx_n_s_new_tail2, __pyx_n_s_subseq1, __pyx_n_s_subseq2, __pyx_n_s_res3, __pyx_n_s_val3, __pyx_n_s_cand3, __pyx_n_s_val, __pyx_n_s_found); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(5, 0, 51, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_balanced_sequence_cython_pyx, __pyx_n_s_lcs_iter_simple_alt2_cython, 42, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(5, 0, 51, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_networkx_algorithms_isomorphism, __pyx_n_s_lcs_iter_simple_alt2_cython, 44, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 44, __pyx_L1_error)
 
-  /* "balanced_sequence_cython.pyx":143
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":145
  * 
  * 
  * def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
  *     """
  *     Version of the lcs iterative algorithm where we precompute hash values
  */
-  __pyx_tuple__6 = PyTuple_Pack(67, __pyx_n_s_full_seq1, __pyx_n_s_full_seq2, __pyx_n_s_open_to_close, __pyx_n_s_node_affinity, __pyx_n_s_open_to_tok, __pyx_n_s_all_decomp1, __pyx_n_s_all_decomp2, __pyx_n_s_key_decomp1, __pyx_n_s_key_decomp2, __pyx_n_s_results, __pyx_n_s_empty1, __pyx_n_s_empty2, __pyx_n_s_empty1_key, __pyx_n_s_empty2_key, __pyx_n_s_best, __pyx_n_s_info1, __pyx_n_s_info2, __pyx_n_s_try_key, __pyx_n_s_key, __pyx_n_s_seq1_key, __pyx_n_s_seq2_key, __pyx_n_s_head1_key, __pyx_n_s_tail1_key, __pyx_n_s_head_tail1_key, __pyx_n_s_head2_key, __pyx_n_s_tail2_key, __pyx_n_s_head_tail2_key, __pyx_n_s_frame, __pyx_n_s_miss_frame, __pyx_n_s_base_result, __pyx_n_s_seq1, __pyx_n_s_seq2, __pyx_n_s_full_seq1_key, __pyx_n_s_full_seq2_key, __pyx_n_s_key0, __pyx_n_s_frame0, __pyx_n_s_stack, __pyx_n_s_tok1, __pyx_n_s_head1, __pyx_n_s_tail1, __pyx_n_s_head_tail1, __pyx_n_s_a1, __pyx_n_s_b1, __pyx_n_s_tok2, __pyx_n_s_head2, __pyx_n_s_tail2, __pyx_n_s_head_tail2, __pyx_n_s_a2, __pyx_n_s_b2, __pyx_n_s_affinity, __pyx_n_s_cand1, __pyx_n_s_cand2, __pyx_n_s_pval_h, __pyx_n_s_new_heads, __pyx_n_s_pval_t, __pyx_n_s_new_tails, __pyx_n_s_new_head1, __pyx_n_s_new_head2, __pyx_n_s_new_tail1, __pyx_n_s_new_tail2, __pyx_n_s_subseq1, __pyx_n_s_subseq2, __pyx_n_s_res3, __pyx_n_s_val3, __pyx_n_s_cand3, __pyx_n_s_val, __pyx_n_s_found); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(67, __pyx_n_s_full_seq1, __pyx_n_s_full_seq2, __pyx_n_s_open_to_close, __pyx_n_s_node_affinity, __pyx_n_s_open_to_tok, __pyx_n_s_all_decomp1, __pyx_n_s_all_decomp2, __pyx_n_s_key_decomp1, __pyx_n_s_key_decomp2, __pyx_n_s_results, __pyx_n_s_empty1, __pyx_n_s_empty2, __pyx_n_s_empty1_key, __pyx_n_s_empty2_key, __pyx_n_s_best, __pyx_n_s_info1, __pyx_n_s_info2, __pyx_n_s_try_key, __pyx_n_s_key, __pyx_n_s_seq1_key, __pyx_n_s_seq2_key, __pyx_n_s_head1_key, __pyx_n_s_tail1_key, __pyx_n_s_head_tail1_key, __pyx_n_s_head2_key, __pyx_n_s_tail2_key, __pyx_n_s_head_tail2_key, __pyx_n_s_frame, __pyx_n_s_miss_frame, __pyx_n_s_base_result, __pyx_n_s_seq1, __pyx_n_s_seq2, __pyx_n_s_full_seq1_key, __pyx_n_s_full_seq2_key, __pyx_n_s_key0, __pyx_n_s_frame0, __pyx_n_s_stack, __pyx_n_s_tok1, __pyx_n_s_head1, __pyx_n_s_tail1, __pyx_n_s_head_tail1, __pyx_n_s_a1, __pyx_n_s_b1, __pyx_n_s_tok2, __pyx_n_s_head2, __pyx_n_s_tail2, __pyx_n_s_head_tail2, __pyx_n_s_a2, __pyx_n_s_b2, __pyx_n_s_affinity, __pyx_n_s_cand1, __pyx_n_s_cand2, __pyx_n_s_pval_h, __pyx_n_s_new_heads, __pyx_n_s_pval_t, __pyx_n_s_new_tails, __pyx_n_s_new_head1, __pyx_n_s_new_head2, __pyx_n_s_new_tail1, __pyx_n_s_new_tail2, __pyx_n_s_subseq1, __pyx_n_s_subseq2, __pyx_n_s_res3, __pyx_n_s_val3, __pyx_n_s_cand3, __pyx_n_s_val, __pyx_n_s_found); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(5, 0, 67, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_balanced_sequence_cython_pyx, __pyx_n_s_lcs_iter_prehash2_cython, 143, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(5, 0, 67, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_networkx_algorithms_isomorphism, __pyx_n_s_lcs_iter_prehash2_cython, 145, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 145, __pyx_L1_error)
 
-  /* "balanced_sequence_cython.pyx":299
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":301
  * 
  * 
  * def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):             # <<<<<<<<<<<<<<
  *     """
  *     >>> tree = random_ordered_tree(10)
  */
-  __pyx_tuple__8 = PyTuple_Pack(11, __pyx_n_s_seq, __pyx_n_s_open_to_close, __pyx_n_s_open_to_tok, __pyx_n_s_all_decomp, __pyx_n_s_stack, __pyx_n_s_pop_open, __pyx_n_s_pop_close, __pyx_n_s_head, __pyx_n_s_tail, __pyx_n_s_head_tail, __pyx_n_s_tok); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(11, __pyx_n_s_seq, __pyx_n_s_open_to_close, __pyx_n_s_open_to_tok, __pyx_n_s_all_decomp, __pyx_n_s_stack, __pyx_n_s_pop_open, __pyx_n_s_pop_close, __pyx_n_s_head, __pyx_n_s_tail, __pyx_n_s_head_tail, __pyx_n_s_tok); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(3, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_balanced_sequence_cython_pyx, __pyx_n_s_generate_all_decomp_cython, 299, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(3, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_networkx_algorithms_isomorphism, __pyx_n_s_generate_all_decomp_cython, 301, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 301, __pyx_L1_error)
 
-  /* "balanced_sequence_cython.pyx":353
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":355
  * class IdentityDict:
  *     """ Used when ``open_to_tok`` is unspecified """
  *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
  *         return key
  */
-  __pyx_tuple__10 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_key); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_key); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_balanced_sequence_cython_pyx, __pyx_n_s_getitem, 353, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_networkx_algorithms_isomorphism, __pyx_n_s_getitem, 355, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -7971,14 +7940,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_balanced_sequence_cython) {
+  if (__pyx_module_is_main_networkx__algorithms__isomorphism___embeddinghelpers__balanced_sequence_cython) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "balanced_sequence_cython")) {
-      if (unlikely(PyDict_SetItemString(modules, "balanced_sequence_cython", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython")) {
+      if (unlikely(PyDict_SetItemString(modules, "networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -7999,77 +7968,77 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "balanced_sequence_cython.pyx":42
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":44
  * 
  * 
  * def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
  *     """
  *     Depth first stack trajectory and replace try except statements with ifs
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython, NULL, __pyx_n_s_balanced_sequence_cython); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_1_lcs_iter_simple_alt2_cython, NULL, __pyx_n_s_networkx_algorithms_isomorphism_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_lcs_iter_simple_alt2_cython, __pyx_t_1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_lcs_iter_simple_alt2_cython, __pyx_t_1) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":143
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":145
  * 
  * 
  * def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):             # <<<<<<<<<<<<<<
  *     """
  *     Version of the lcs iterative algorithm where we precompute hash values
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_24balanced_sequence_cython_3_lcs_iter_prehash2_cython, NULL, __pyx_n_s_balanced_sequence_cython); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_3_lcs_iter_prehash2_cython, NULL, __pyx_n_s_networkx_algorithms_isomorphism_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_lcs_iter_prehash2_cython, __pyx_t_1) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_lcs_iter_prehash2_cython, __pyx_t_1) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":299
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":301
  * 
  * 
  * def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):             # <<<<<<<<<<<<<<
  *     """
  *     >>> tree = random_ordered_tree(10)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_24balanced_sequence_cython_5generate_all_decomp_cython, NULL, __pyx_n_s_balanced_sequence_cython); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_5generate_all_decomp_cython, NULL, __pyx_n_s_networkx_algorithms_isomorphism_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_generate_all_decomp_cython, __pyx_t_1) < 0) __PYX_ERR(0, 299, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_generate_all_decomp_cython, __pyx_t_1) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":351
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":353
  * 
  * 
  * class IdentityDict:             # <<<<<<<<<<<<<<
  *     """ Used when ``open_to_tok`` is unspecified """
  *     def __getitem__(self, key):
  */
-  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_IdentityDict, __pyx_n_s_IdentityDict, (PyObject *) NULL, __pyx_n_s_balanced_sequence_cython, __pyx_kp_s_Used_when_open_to_tok_is_unspec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_IdentityDict, __pyx_n_s_IdentityDict, (PyObject *) NULL, __pyx_n_s_networkx_algorithms_isomorphism_2, __pyx_kp_s_Used_when_open_to_tok_is_unspec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "balanced_sequence_cython.pyx":353
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":355
  * class IdentityDict:
  *     """ Used when ``open_to_tok`` is unspecified """
  *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
  *         return key
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_24balanced_sequence_cython_12IdentityDict_1__getitem__, 0, __pyx_n_s_IdentityDict___getitem, NULL, __pyx_n_s_balanced_sequence_cython, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_8networkx_10algorithms_11isomorphism_17_embeddinghelpers_24balanced_sequence_cython_12IdentityDict_1__getitem__, 0, __pyx_n_s_IdentityDict___getitem, NULL, __pyx_n_s_networkx_algorithms_isomorphism_2, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getitem, __pyx_t_2) < 0) __PYX_ERR(0, 353, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getitem, __pyx_t_2) < 0) __PYX_ERR(0, 355, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "balanced_sequence_cython.pyx":351
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":353
  * 
  * 
  * class IdentityDict:             # <<<<<<<<<<<<<<
  *     """ Used when ``open_to_tok`` is unspecified """
  *     def __getitem__(self, key):
  */
-  __pyx_t_2 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_IdentityDict, __pyx_empty_tuple, __pyx_t_1, NULL, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_IdentityDict, __pyx_empty_tuple, __pyx_t_1, NULL, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_IdentityDict, __pyx_t_2) < 0) __PYX_ERR(0, 351, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_IdentityDict, __pyx_t_2) < 0) __PYX_ERR(0, 353, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "balanced_sequence_cython.pyx":1
+  /* "networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx":1
  * # distutils: language = c++             # <<<<<<<<<<<<<<
  * """
  * cythonize -a -i ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx
@@ -8088,11 +8057,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_2);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init balanced_sequence_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init balanced_sequence_cython");
+    PyErr_SetString(PyExc_ImportError, "init networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence_cython");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
