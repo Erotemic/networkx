@@ -1,6 +1,6 @@
 # distutils: language = c++
 """
-cythonize -a -i ~/code/networkx/networkx/algorithms/isomorphism/balanced_sequence_cython.pyx
+cythonize -a -i ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence_cython.pyx
 
         >>> from networkx.algorithms.isomorphism.balanced_sequence import *  # NOQA
         >>> from networkx.algorithms.isomorphism.balanced_sequence import _lcs_iter_simple, _lcs_iter_simple_alt1, _lcs_iter_simple_alt2, _lcs_iter_prehash, _lcs_recurse, _print_forest
@@ -37,71 +37,6 @@ References:
 from libcpp.map cimport map as cmap
 from libcpp.string cimport string
 from libcpp.vector cimport vector
-# from cpython.ref cimport PyObject, Py_DECREF, PyObject_Hash
-# from cpython.ref cimport PyObject_Hash
-# from cython.operator cimport dereference as deref, preincrement
-# ctypedef PyObject* PyObjectPtr 
-
-
-def generate_balance_unsafe_cython(sequence, open_to_close):
-    cdef tuple item
-    cdef bint flag
-    cdef int stacklen = 0
-    for token in sequence:
-        if token in open_to_close:
-            stacklen += 1
-        else:
-            stacklen -= 1
-        flag = stacklen == 0
-        item = (flag, token)
-        yield item
-
-
-cdef tuple balanced_decomp_unsafe2_cython(sequence, dict open_to_close):
-    cdef int stacklen = 1  # always +1 in the first iteration
-    cdef int head_stop = 1
-
-    tok_curr = sequence[0]
-    want_close = open_to_close[tok_curr]
-
-    # for tok_curr in sequence[1:]:
-    for head_stop in range(1, len(sequence)):
-        tok_curr = sequence[head_stop]
-        stacklen += 1 if tok_curr in open_to_close else -1
-        if stacklen == 0 and tok_curr == want_close:
-            pop_close = sequence[head_stop:head_stop + 1]
-            break
-
-    pop_open = sequence[0:1]
-    head = sequence[1:head_stop]
-    tail = sequence[head_stop + 1:]
-    return pop_open, pop_close, head, tail
-
-
-class Dummy:
-    def __getitem__(self, key):
-        return key
-
-
-def generate_all_decompositions_cython(seq, open_to_close, open_to_tok=None):
-    """
-    >>> tree = random_ordered_tree(10)
-    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr', strhack=True)
-    >>> all_decomp = generate_all_decompositions_cython(seq, open_to_close)
-    """
-    all_decomp = {}
-    stack = [seq]
-    while stack:
-        seq = stack.pop()
-        if seq not in all_decomp and seq:
-            pop_open, pop_close, head, tail = balanced_decomp_unsafe2_cython(seq, open_to_close)
-            head_tail = head + tail
-            tok = open_to_tok[pop_open[0]]
-            all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
-            stack.append(head_tail)
-            stack.append(head)
-            stack.append(tail)
-    return all_decomp
         
 
 def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
@@ -109,9 +44,9 @@ def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affin
     Depth first stack trajectory and replace try except statements with ifs
     """
     if open_to_tok is None:
-        open_to_tok = Dummy()
-    all_decomp1 = generate_all_decompositions_cython(full_seq1, open_to_close, open_to_tok)
-    all_decomp2 = generate_all_decompositions_cython(full_seq2, open_to_close, open_to_tok)
+        open_to_tok = IdentityDict()
+    all_decomp1 = generate_all_decomp_cython(full_seq1, open_to_close, open_to_tok)
+    all_decomp2 = generate_all_decomp_cython(full_seq2, open_to_close, open_to_tok)
 
     key0 = (full_seq1, full_seq2)
     frame0 = key0
@@ -205,45 +140,12 @@ def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affin
     return found
 
 
-cdef tuple decomp_info_cython(seq, dict open_to_close, open_to_tok):
-    cdef tuple info
-    pop_open, pop_close, head, tail = balanced_decomp_unsafe2_cython(seq, open_to_close)
-    head_tail = head + tail
-    cdef Py_hash_t head_key = hash(head)
-    cdef Py_hash_t tail_key = hash(tail)
-    cdef Py_hash_t head_tail_key = hash(head_tail)
-    tok = open_to_tok[pop_open[0]]
-    a = pop_open
-    b = pop_close
-    info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
-    return info
-
-
-cdef dict gen_decomp_v2_cython(seq, dict open_to_close, open_to_tok):
-    cdef dict all_decomp = {}
-    cdef list stack = [seq]
-    cdef tuple info
-    while stack:
-        seq = stack.pop()
-        if seq:
-            # key = hash(seq)
-            key = seq
-            if key not in all_decomp:
-                info = decomp_info_cython(seq, open_to_close, open_to_tok)
-                head, tail, head_tail = info[2:5]
-                all_decomp[key] = info
-                stack.append(head_tail)
-                stack.append(head)
-                stack.append(tail)
-    return all_decomp
-
-
 def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
     """
     Version of the lcs iterative algorithm where we precompute hash values
     """
-    cdef dict all_decomp1 = gen_decomp_v2_cython(full_seq1, open_to_close, open_to_tok)
-    cdef dict all_decomp2 = gen_decomp_v2_cython(full_seq2, open_to_close, open_to_tok)
+    cdef dict all_decomp1 = generate_all_decomp_prehash_cython(full_seq1, open_to_close, open_to_tok)
+    cdef dict all_decomp2 = generate_all_decomp_prehash_cython(full_seq2, open_to_close, open_to_tok)
     cdef dict key_decomp1 = {}
     cdef dict key_decomp2 = {}
 
@@ -370,3 +272,83 @@ def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity
     (val, best) = _results[key0]
     found = (best, val)
     return found
+
+
+cdef tuple balanced_decomp_unsafe_cython(sequence, dict open_to_close):
+    cdef int stacklen = 1  # always +1 in the first iteration
+    cdef int head_stop = 1
+
+    tok_curr = sequence[0]
+    want_close = open_to_close[tok_curr]
+
+    # for tok_curr in sequence[1:]:
+    for head_stop in range(1, len(sequence)):
+        tok_curr = sequence[head_stop]
+        stacklen += 1 if tok_curr in open_to_close else -1
+        if stacklen == 0 and tok_curr == want_close:
+            pop_close = sequence[head_stop:head_stop + 1]
+            break
+
+    pop_open = sequence[0:1]
+    head = sequence[1:head_stop]
+    tail = sequence[head_stop + 1:]
+    head_tail = head + tail
+    return pop_open, pop_close, head, tail, head_tail
+
+
+def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):
+    """
+    >>> tree = random_ordered_tree(10)
+    >>> seq, open_to_close, toks = tree_to_balanced_sequence(tree, mode='chr', strhack=True)
+    >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)
+    """
+    all_decomp = {}
+    stack = [seq]
+    while stack:
+        seq = stack.pop()
+        if seq not in all_decomp and seq:
+            pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
+            tok = open_to_tok[pop_open[0]]
+            all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
+            stack.append(head_tail)
+            stack.append(head)
+            stack.append(tail)
+    return all_decomp
+
+
+cdef tuple balanced_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):
+    cdef tuple info
+    pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
+    cdef Py_hash_t head_key = hash(head)
+    cdef Py_hash_t tail_key = hash(tail)
+    cdef Py_hash_t head_tail_key = hash(head_tail)
+    tok = open_to_tok[pop_open[0]]
+    a = pop_open
+    b = pop_close
+    info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
+    return info
+
+
+cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):
+    cdef dict all_decomp = {}
+    cdef list stack = [seq]
+    cdef tuple info
+    while stack:
+        seq = stack.pop()
+        if seq:
+            # key = hash(seq)
+            key = seq
+            if key not in all_decomp:
+                info = balanced_decomp_prehash_cython(seq, open_to_close, open_to_tok)
+                head, tail, head_tail = info[2:5]
+                all_decomp[key] = info
+                stack.append(head_tail)
+                stack.append(head)
+                stack.append(tail)
+    return all_decomp
+
+
+class IdentityDict:
+    """ Used when ``open_to_tok`` is unspecified """
+    def __getitem__(self, key):
+        return key
