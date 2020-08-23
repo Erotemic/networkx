@@ -10,7 +10,7 @@ def maximum_common_ordered_tree_embedding(
     Example
     -------
     >>> from netharn.initializers._nx_extensions import *  # NOQA
-    >>> from netharn.initializers._nx_extensions import _lcs, _print_forest
+    >>> from netharn.initializers._nx_extensions import _lcs, forest_str
     >>> def random_ordered_tree(n, seed=None):
     >>>     tree = nx.dfs_tree(nx.random_tree(n, seed=seed))
     >>>     otree = nx.OrderedDiGraph()
@@ -19,15 +19,15 @@ def maximum_common_ordered_tree_embedding(
     >>> tree1 = random_ordered_tree(10, seed=1)
     >>> tree2 = random_ordered_tree(10, seed=2)
     >>> print('tree1')
-    >>> _print_forest(tree1)
+    >>> forest_str(tree1)
     >>> print('tree2')
-    >>> _print_forest(tree2)
+    >>> forest_str(tree2)
 
     >>> embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2 )
     >>> print('embedding1')
-    >>> _print_forest(embedding1)
+    >>> forest_str(embedding1)
     >>> print('embedding2')
-    >>> _print_forest(embedding2)
+    >>> forest_str(embedding2)
     """
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree1)):
         raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
@@ -226,38 +226,103 @@ def invert_dict(dict_, unique_vals=True):
     return inverted
 
 
-def _print_forest(graph):
+def forest_str(graph, impl='iter', eager=0, write=None):
     """
-    Nice ascii representation of a forest
+    Nice utf8 representation of a forest
 
-    Ignore:
-        graph = nx.balanced_tree(r=2, h=3, create_using=nx.DiGraph)
-        _print_forest(graph)
+    Example
+    -------
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
+    >>> import networkx as nx
+    >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.DiGraph)
+    >>> print(forest_str(graph, impl='recurse'))
 
-        graph = CategoryTree.demo('coco').graph
-        _print_forest(graph)
+
+    Benchmark
+    ---------
+    >>> # xdoctest: +REQUIRES(--bench)
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
+    >>> import networkx as nx
+    >>> # TODO: enumerate test cases
+    >>> graph = nx.balanced_tree(r=1, h=int(2 ** 14), create_using=nx.DiGraph)
+    >>> graph = nx.balanced_tree(r=2, h=14, create_using=nx.DiGraph)
+    >>> if len(graph.nodes) < 1000:
+    >>>     forest_str(graph, eager=1, write=print)
+    >>> else:
+    >>>     print('graph = {!r}, {}'.format(graph, len(graph.nodes)))
+    >>> import timerit
+    >>> ti = timerit.Timerit(1, bestof=1, verbose=3)
+    >>> ti.reset('iter-lazy').call(forest_str, graph, impl='iter', eager=0)
+    >>> ti.reset('recurse-lazy').call(forest_str, graph, impl='recurse', eager=0)
+    >>> print('ti.measures = {}'.format(ub.repr2(ti.measures['min'], nl=1, align=':', precision=6)))
     """
     if len(graph.nodes) == 0:
         print('--')
         return
     assert nx.is_forest(graph)
 
-    def _recurse(node, indent='', islast=False):
-        if islast:
-            this_prefix = indent + '└── '
-            next_prefix = indent + '    '
+    printbuf = []
+    if eager:
+        if write is None:
+            lazyprint = print
         else:
-            this_prefix = indent + '├── '
-            next_prefix = indent + '│   '
-        label = graph.nodes[node].get('label', node)
-        print(this_prefix + str(label))
-        graph.succ[node]
-        children = graph.succ[node]
-        for idx, child in enumerate(children, start=1):
-            islast_next = (idx == len(children))
-            _recurse(child, indent=next_prefix, islast=islast_next)
+            lazyprint = write
+    else:
+        lazyprint = printbuf.append
 
-    sources = [n for n in graph.nodes if graph.in_degree[n] == 0]
-    for idx, node in enumerate(sources, start=1):
-        islast_next = (idx == len(sources))
-        _recurse(node, indent='', islast=islast_next)
+    if impl == 'recurse':
+        def _recurse(node, indent='', islast=False):
+            if islast:
+                this_prefix = indent + '└── '
+                next_prefix = indent + '    '
+            else:
+                this_prefix = indent + '├── '
+                next_prefix = indent + '│   '
+            label = graph.nodes[node].get('label', node)
+            lazyprint(this_prefix + str(label))
+            graph.succ[node]
+            children = graph.succ[node]
+            for idx, child in enumerate(children, start=1):
+                islast_next = (idx == len(children))
+                _recurse(child, indent=next_prefix, islast=islast_next)
+
+        sources = [n for n in graph.nodes if graph.in_degree[n] == 0]
+        for idx, node in enumerate(sources, start=1):
+            islast_next = (idx == len(sources))
+            _recurse(node, indent='', islast=islast_next)
+
+    elif impl == 'iter':
+        sources = [n for n in graph.nodes if graph.in_degree[n] == 0]
+
+        stack = []
+        for idx, node in enumerate(sources):
+            # islast_next = (idx == len(sources))
+            islast_next = (idx <= 1)
+            stack.append((node, '', islast_next))
+
+        while stack:
+            node, indent, islast = stack.pop()
+            if islast:
+                this_prefix = indent + '└── '
+                next_prefix = indent + '    '
+            else:
+                this_prefix = indent + '├── '
+                next_prefix = indent + '│   '
+            label = graph.nodes[node].get('label', node)
+
+            lazyprint(this_prefix + str(label))
+            graph.succ[node]
+            children = graph.succ[node]
+            for idx, child in enumerate(children, start=1):
+                # islast_next = (idx == len(children))
+                islast_next = (idx <= 1)
+                try_frame = (child, next_prefix, islast_next)
+                stack.append(try_frame)
+
+    else:
+        raise KeyError(impl)
+
+    if printbuf:
+        return '\n'.join(printbuf)
+    else:
+        return ''
