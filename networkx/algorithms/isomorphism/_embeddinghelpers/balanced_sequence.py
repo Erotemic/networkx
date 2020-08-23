@@ -10,15 +10,15 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None
     """
     CommandLine:
         xdoctest -m ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence.py longest_common_balanced_sequence:0 --profile && cat profile_output.txt
-    
-    
+
+
     Example
     -------
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence import *  # NOQA
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence import _lcs_iter_simple, _lcs_iter_simple_alt1, _lcs_iter_simple_alt2, _lcs_iter_prehash, _lcs_iter_prehash2, _lcs_recurse
     >>> tree1 = random_ordered_tree(5, seed=10, pool='[{(')
     >>> tree2 = random_ordered_tree(5, seed=3, pool='[{(')
-    
+
     >>> import kwarray
     >>> rng = kwarray.ensure_rng(3432432, 'python')
     >>> tree1 = random_ordered_tree(300, seed=rng, pool='[{(')
@@ -723,14 +723,14 @@ def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_tok, _memo, _
 
 class UnbalancedException(Exception):
     """
-    Denotes that a sequence was unbalanced 
+    Denotes that a sequence was unbalanced
     """
     pass
 
 
 class IdentityDict:
     """
-    Used when ``open_to_tok`` is unspecified 
+    Used when ``open_to_tok`` is unspecified
     """
     def __getitem__(self, key):
         return key
@@ -761,26 +761,26 @@ def generate_all_decomp_prehash(seq, open_to_close, open_to_tok):
 def generate_all_decomp(seq, open_to_close, open_to_tok=None):
     """
     Generates all possible decompositions of a single balanced sequence
-    
+
     Parameters
     ----------
     seq : Tuple | str
         a tuple of hashable items or a string where each character is an item
-    
+
     open_to_close : Dict
         a dictionary that maps opening tokens to closing tokens in the balanced
         sequence problem.
-    
+
     open_to_tok : Dict
         a dictionary that maps a sequence token to a token corresponding to an
         original problem (e.g. a tree node)
-    
+
     Example
     -------
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
     >>> seq = '({[[]]})[[][]]{{}}'
     >>> pop_open, pop_close, head, tail, head_tail = balanced_decomp(seq, open_to_close)
-    
+
     Example
     -------
     >>> tree = random_ordered_tree(10)
@@ -806,24 +806,24 @@ def generate_all_decomp(seq, open_to_close, open_to_tok=None):
 def balanced_decomp(sequence, open_to_close):
     """
     Generates a decomposition of a balanced sequence.
-    
+
     Parameters
     ----------
     open_to_close: dict
         a dictionary that maps opening tokens to closing tokens in the balanced sequence problem.
-    
+
     Returns
     -------
     : tuple[T, T, T, T, T]
         where ``T = type(sequence)``
-    
+
     Example
     -------
     >>> open_to_close = {0: 1}
     >>> sequence = [0, 0, 0, 1, 1, 1, 0, 1]
     >>> a1, b1, head, tail = balanced_decomp(sequence, open_to_close)
     >>> a2, b2, tail1, tail2 = balanced_decomp(tail, open_to_close)
-    
+
     Example
     -------
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
@@ -854,7 +854,7 @@ def balanced_decomp_unsafe(sequence, open_to_close):
     """
     Same as :func:`balanced_decomp` but assumes that ``sequence`` is valid
     balanced sequence in order to execute faster.
-    
+
     Example
     -------
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
@@ -906,11 +906,11 @@ def generate_balance(sequence, open_to_close):
     """
     Iterates through a balanced sequence and reports if the sequence-so-far
     is balanced at that position or not.
-    
+
     Raises
     ------
     UnbalancedException - if the sequence is not balanced
-    
+
     Example
     -------
     >>> open_to_close = {0: 1}
@@ -918,7 +918,7 @@ def generate_balance(sequence, open_to_close):
     >>> gen = list(generate_balance(sequence, open_to_close))
     >>> for flag, token in gen:
     >>>     print('flag={:d}, token={}'.format(flag, token))
-    
+
     Example
     -------
     >>> tree = random_ordered_tree(1000)
@@ -956,7 +956,7 @@ def generate_balance_unsafe(sequence, open_to_close):
     """
     Same as :func:`generate_balance` but assumes that ``sequence`` is valid
     balanced sequence in order to execute faster.
-    
+
     Benchmark:
         >>> tree = random_ordered_tree(1000)
         >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
