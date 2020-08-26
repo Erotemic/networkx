@@ -118,9 +118,32 @@ def random_paths(
 
 
 def random_ordered_tree(n, seed=None):
+    """
+    Creates a random ordered tree
+
+    Parameters
+    ----------
+    n : int
+        A positive integer representing the number of nodes in the tree.
+
+    seed : integer, random_state, or None (default)
+        Indicator of random number generation state.
+        See :ref:`Randomness<randomness>`.
+
+    Returns
+    -------
+    networkx.OrderedDiGraph
+
+    Example
+    --------
+    >>> assert len(random_ordered_tree(n=1, seed=0).nodes) == 1
+    >>> assert len(random_ordered_tree(n=2, seed=0).nodes) == 2
+    >>> assert len(random_ordered_tree(n=3, seed=0).nodes) == 3
+    """
     import networkx as nx
     tree = nx.dfs_tree(nx.random_tree(n, seed=seed))
     otree = nx.OrderedDiGraph()
+    otree.add_nodes_from(tree.nodes)
     otree.add_edges_from(tree.edges)
     return otree
 
