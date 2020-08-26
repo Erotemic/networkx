@@ -1,12 +1,64 @@
+"""
+
+- [ ] TODO: rename to open_to_node. Most places where we use tok, we should use
+  node
+
+"""
 import networkx as nx
 from collections import OrderedDict, defaultdict
-from .balanced_sequence import longest_common_balanced_sequence
+from .balanced_sequence import longest_common_balanced_sequence, UnbalancedException
 
 
 def maximum_common_ordered_tree_embedding(
         tree1, tree2, node_affinity='auto', impl='iter-alt2', mode='number'):
     """
-    Core networkx API
+    Finds the maximum common subtree-embedding between two ordered trees.
+
+    A tree S is an embedded subtree of T if it can be obtained from T by a
+    series of edge contractions.
+
+    Note this produces a subtree embedding, which is not necessarilly a
+    subgraph isomorphism (although a subgraph isomorphism is also an
+    embedding.)
+
+    The maximum common embedded subtree problem can be solved in in
+    `O(n1 * n2 * min(d1, l1) * min(d2, l2))` time on ordered trees with n1 and
+    n2 nodes, of depth d1 and d2 and with l1 and l2 leaves, respectively.
+
+    Implements algorithm described in [1]_.
+
+    Parameters
+    ----------
+    tree1, tree2 : nx.OrderedDiGraph
+        Trees to find the maximum embedding between
+
+    node_affinity : None | str | callable
+        Function for to determine if two nodes can be matched. The return is
+        interpreted as a weight that is used to break ties. If None then any
+        node can match any other node and only the topology is important.
+        The default is "eq", which is the same as ``operator.eq``.
+
+    impl : str
+        Determines the backend implementation
+
+    mode : str
+        Determines the backend representation
+
+    References:
+        .. [1] Lozano, Antoni, and Gabriel Valiente.
+            "On the maximum common embedded subtree problem for ordered trees."
+            String Algorithmics (2004): 155-170.
+            https://pdfs.semanticscholar.org/0b6e/061af02353f7d9b887f9a378be70be64d165.pdf
+
+    Returns
+    -------
+    Tuple[nx.OrderedDiGraph, nx.OrderedDiGraph] :
+        The maximum value common embedding for each tree with respect to the
+        chosen ``node_affinity`` function. The topology of both graphs will
+        always be the same, the only difference is that the node labels in the
+        first and second embeddings will correspond to ``tree1`` and `tree2``
+        respectively. When ``node_affinity='eq'`` then embeddings should be
+        identical.
 
     Example
     -------
@@ -69,8 +121,8 @@ def maximum_common_ordered_tree_embedding(
     subseq1, subseq2 = best
 
     # Convert the subsequence back into a tree
-    embedding1 = seq_to_tree(subseq1, open_to_close, toks)
-    embedding2 = seq_to_tree(subseq2, open_to_close, toks)
+    embedding1 = seq_to_tree(subseq1, open_to_close, open_to_tok)
+    embedding2 = seq_to_tree(subseq2, open_to_close, open_to_tok)
     return embedding1, embedding2
 
 
@@ -81,10 +133,33 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
     Example
     -------
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
+    >>> print(forest_str(tree))
+    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
+    >>> print('sequence = {!r}'.format(sequence))
+    └── 0
+        └── 1
+            └── 2
+    sequence = (1, 2, 3, -3, -2, -1)
+
+    >>> tree = nx.balanced_tree(2, 2, nx.OrderedDiGraph)
+    >>> print(forest_str(tree))
+    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
+    >>> print('sequence = {!r}'.format(sequence))
+    └── 0
+        ├── 2
+        │   ├── 6
+        │   └── 5
+        └── 1
+            ├── 4
+            └── 3
+    sequence = (1, 2, 3, -3, 4, -4, -2, 5, 6, -6, 7, -7, -5, -1)
+
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree  # NOQA
     >>> tree = random_ordered_tree(1000)
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='chr')
+    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
     """
     # from collections import namedtuple
     # Token = namedtuple('Token', ['action', 'value'])
@@ -160,37 +235,73 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
     return sequence, open_to_close, toks
 
 
-def seq_to_tree(subseq, open_to_close, toks):
+def seq_to_tree(subseq, open_to_close, open_to_tok):
     """
     Converts a balanced sequence to an ordered tree
+
+    Parameters
+    ----------
+    subseq : Tuple | str
+        a balanced sequence of hashable items as a string or tuple
+
+    open_to_close : Dict
+        a dictionary that maps opening tokens to closing tokens in the balanced
+        sequence problem.
+
+    open_to_tok : Dict
+        a dictionary that maps a sequence token to a token corresponding to an
+        original problem (e.g. a tree node). Must be unique. If unspecified new
+        nodes will be generated and the opening sequence token will be used as
+        a node label.
 
     Example
     --------
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence import IdentityDict
     >>> tree = random_ordered_tree(1000)
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
     >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='chr')
+    >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
+    >>> open_to_tok = None
+    >>> subseq = '({[[]]})[[][]]{{}}'
+    >>> subtree = seq_to_tree(subseq, open_to_close, open_to_tok)
+    >>> print(forest_str(subtree))
+    ├── {
+    │   └── {
+    ├── [
+    │   ├── [
+    │   └── [
+    └── (
+        └── {
+            └── [
+                └── [
     """
-    open_to_tok = invert_dict(toks)
+    nextnode = 0  # only used if open_to_tok is not specified
     subtree = nx.OrderedDiGraph()
     stack = []
     for token in subseq:
         if token in open_to_close:
-            node = open_to_tok[token]
+            if open_to_tok is None:
+                node = nextnode
+                nextnode += 1
+            else:
+                node = open_to_tok[token]
             if stack:
-                parent = open_to_tok[stack[-1]]
-                subtree.add_edge(parent, node)
+                parent_tok, parent_node = stack[-1]
+                subtree.add_edge(parent_node, node)
             else:
                 subtree.add_node(node)
-            stack.append(token)
+            if open_to_tok is None:
+                subtree.nodes[node]['label'] = token
+            stack.append((token, node))
         else:
             if not stack:
-                raise Exception
-            prev_open = stack.pop()
+                raise UnbalancedException
+            prev_open, prev_node = stack.pop()
             want_close = open_to_close[prev_open]
             if token != want_close:
-                raise Exception
+                raise UnbalancedException
     return subtree
 
 
@@ -273,7 +384,22 @@ def forest_str(graph, impl='iter', eager=0, write=None):
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
     >>> import networkx as nx
     >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.DiGraph)
-    >>> print(forest_str(graph, impl='recurse'))
+    >>> print(forest_str(graph))
+    └── 0
+        ├── 2
+        │   ├── 6
+        │   │   ├── 14
+        │   │   └── 13
+        │   └── 5
+        │       ├── 12
+        │       └── 11
+        └── 1
+            ├── 4
+            │   ├── 10
+            │   └── 9
+            └── 3
+                ├── 8
+                └── 7
 
     Benchmark
     ---------
@@ -336,7 +462,7 @@ def forest_str(graph, impl='iter', eager=0, write=None):
         stack = []
         for idx, node in enumerate(sources):
             # islast_next = (idx == len(sources))
-            islast_next = (idx <= 1)
+            islast_next = (idx == 0)
             stack.append((node, '', islast_next))
 
         while stack:

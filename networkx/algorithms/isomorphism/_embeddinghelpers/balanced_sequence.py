@@ -779,11 +779,31 @@ def generate_all_decomp(seq, open_to_close, open_to_tok=None):
         a dictionary that maps a sequence token to a token corresponding to an
         original problem (e.g. a tree node)
 
+    Returns
+    -------
+    Dict : mapping from a sub-sequence to its decomposition
+
     Example
     -------
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
     >>> seq = '({[[]]})[[][]]{{}}'
-    >>> pop_open, pop_close, head, tail, head_tail = balanced_decomp(seq, open_to_close)
+    >>> all_decomp = generate_all_decomp(seq, open_to_close)
+    >>> tok, *decomp = all_decomp[seq]
+    >>> pop_open, pop_close, head, tail, head_tail = decomp
+    >>> print('tok = {!r}'.format(tok))
+    >>> print('pop_open = {!r}'.format(pop_open))
+    >>> print('pop_close = {!r}'.format(pop_close))
+    >>> print('head = {!r}'.format(head))
+    >>> print('tail = {!r}'.format(tail))
+    >>> print('head_tail = {!r}'.format(head_tail))
+    tok = '('
+    pop_open = '('
+    pop_close = ')'
+    head = '{[[]]}'
+    tail = '[[][]]{{}}'
+    head_tail = '{[[]]}[[][]]{{}}'
+    >>> decomp_alt = balanced_decomp(seq, open_to_close)
+    >>> assert decomp_alt == tuple(decomp)
 
     Example
     -------
@@ -816,7 +836,8 @@ def balanced_decomp(sequence, open_to_close):
     Parameters
     ----------
     open_to_close: dict
-        a dictionary that maps opening tokens to closing tokens in the balanced sequence problem.
+        a dictionary that maps opening tokens to closing tokens in the balanced
+        sequence problem.
 
     Returns
     -------
@@ -828,6 +849,16 @@ def balanced_decomp(sequence, open_to_close):
     >>> open_to_close = {0: 1}
     >>> sequence = [0, 0, 0, 1, 1, 1, 0, 1]
     >>> a1, b1, head, tail, head_tail = balanced_decomp(sequence, open_to_close)
+    >>> print('a1 = {!r}'.format(a1))
+    >>> print('b1 = {!r}'.format(b1))
+    >>> print('head = {!r}'.format(head))
+    >>> print('tail = {!r}'.format(tail))
+    >>> print('head_tail = {!r}'.format(head_tail))
+    a1 = [0]
+    b1 = [1]
+    head = [0, 0, 1, 1]
+    tail = [0, 1]
+    head_tail = [0, 0, 1, 1, 0, 1]
     >>> a2, b2, tail1, tail2, head_tail2 = balanced_decomp(tail, open_to_close)
 
     Example
@@ -835,7 +866,27 @@ def balanced_decomp(sequence, open_to_close):
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
     >>> sequence = '({[[]]})[[][]]'
     >>> a1, b1, head, tail, head_tail = balanced_decomp(sequence, open_to_close)
+    >>> print('a1 = {}'.format(ub.repr2(a1, nl=1)))
+    >>> print('b1 = {}'.format(ub.repr2(b1, nl=1)))
+    >>> print('head = {}'.format(ub.repr2(head, nl=1)))
+    >>> print('tail = {}'.format(ub.repr2(tail, nl=1)))
+    >>> print('head_tail = {}'.format(ub.repr2(head_tail, nl=1)))
+    a1 = '('
+    b1 = ')'
+    head = '{[[]]}'
+    tail = '[[][]]'
+    head_tail = '{[[]]}[[][]]'
     >>> a2, b2, tail1, tail2, head_tail2 = balanced_decomp(tail, open_to_close)
+    >>> print('a2 = {}'.format(ub.repr2(a2, nl=1)))
+    >>> print('b2 = {}'.format(ub.repr2(b2, nl=1)))
+    >>> print('tail1 = {}'.format(ub.repr2(tail1, nl=1)))
+    >>> print('tail2 = {}'.format(ub.repr2(tail2, nl=1)))
+    >>> print('head_tail2 = {}'.format(ub.repr2(head_tail2, nl=1)))
+    a2 = '['
+    b2 = ']'
+    tail1 = '[][]'
+    tail2 = ''
+    head_tail2 = '[][]'
     """
     gen = generate_balance(sequence, open_to_close)
 
