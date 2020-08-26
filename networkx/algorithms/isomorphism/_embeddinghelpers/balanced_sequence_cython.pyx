@@ -16,20 +16,20 @@ Examples
 >>> if len(tree1.nodes) < 20:
 >>>     _print_forest(tree1)
 >>>     _print_forest(tree2)
->>> seq1, open_to_close, toks = tree_to_seq(tree1, mode='label', strhack=1)
->>> seq2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks, mode='label', strhack=1)
+>>> seq1, open_to_close, nodes = tree_to_seq(tree1, mode='label', strhack=1)
+>>> seq2, open_to_close, nodes = tree_to_seq(tree2, open_to_close, nodes, mode='label', strhack=1)
 >>> full_seq1 = seq1
 >>> full_seq2 = seq2
 
 >>> node_affinity = operator.eq
->>> open_to_tok = ub.invert_dict(toks)
+>>> open_to_node = ub.invert_dict(nodes)
 >>> from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_simple_alt2_cython  # NOQA
 
 with ub.Timer('cython'):
-    best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+    best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
 
 with ub.Timer('python'):
-    best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+    best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
 
 References
 ----------
@@ -41,14 +41,14 @@ https://stackoverflow.com/questions/41909486/returning-a-complex-object-containi
 # from libcpp.vector cimport vector
         
 
-def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Depth first stack trajectory and replace try except statements with ifs
     """
-    if open_to_tok is None:
-        open_to_tok = IdentityDict()
-    all_decomp1 = generate_all_decomp_cython(full_seq1, open_to_close, open_to_tok)
-    all_decomp2 = generate_all_decomp_cython(full_seq2, open_to_close, open_to_tok)
+    if open_to_node is None:
+        open_to_node = IdentityDict()
+    all_decomp1 = generate_all_decomp_cython(full_seq1, open_to_close, open_to_node)
+    all_decomp2 = generate_all_decomp_cython(full_seq2, open_to_close, open_to_node)
 
     key0 = (full_seq1, full_seq2)
     frame0 = key0
@@ -142,12 +142,12 @@ def _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affin
     return found
 
 
-def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+def _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Version of the lcs iterative algorithm where we precompute hash values
     """
-    cdef dict all_decomp1 = generate_all_decomp_prehash_cython(full_seq1, open_to_close, open_to_tok)
-    cdef dict all_decomp2 = generate_all_decomp_prehash_cython(full_seq2, open_to_close, open_to_tok)
+    cdef dict all_decomp1 = generate_all_decomp_prehash_cython(full_seq1, open_to_close, open_to_node)
+    cdef dict all_decomp2 = generate_all_decomp_prehash_cython(full_seq2, open_to_close, open_to_node)
     cdef dict key_decomp1 = {}
     cdef dict key_decomp2 = {}
 
@@ -298,10 +298,10 @@ cdef tuple balanced_decomp_unsafe_cython(sequence, dict open_to_close):
     return pop_open, pop_close, head, tail, head_tail
 
 
-def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):
+def generate_all_decomp_cython(seq, open_to_close, open_to_node=None):
     """
     >>> tree = random_ordered_tree(10)
-    >>> seq, open_to_close, toks = tree_to_seq(tree, mode='chr', strhack=True)
+    >>> seq, open_to_close, nodes = tree_to_seq(tree, mode='chr', strhack=True)
     >>> all_decomp = generate_all_decomp_cython(seq, open_to_close)
     """
     all_decomp = {}
@@ -310,28 +310,28 @@ def generate_all_decomp_cython(seq, open_to_close, open_to_tok=None):
         seq = stack.pop()
         if seq not in all_decomp and seq:
             pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
-            tok = open_to_tok[pop_open[0]]
-            all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
+            node = open_to_node[pop_open[0]]
+            all_decomp[seq] = (node, pop_open, pop_close, head, tail, head_tail)
             stack.append(head_tail)
             stack.append(head)
             stack.append(tail)
     return all_decomp
 
 
-cdef tuple balanced_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):
+cdef tuple balanced_decomp_prehash_cython(seq, dict open_to_close, open_to_node):
     cdef tuple info
     pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe_cython(seq, open_to_close)
     cdef Py_hash_t head_key = hash(head)
     cdef Py_hash_t tail_key = hash(tail)
     cdef Py_hash_t head_tail_key = hash(head_tail)
-    tok = open_to_tok[pop_open[0]]
+    node = open_to_node[pop_open[0]]
     a = pop_open
     b = pop_close
-    info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
+    info = (node, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
     return info
 
 
-cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_tok):
+cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_node):
     cdef dict all_decomp = {}
     cdef list stack = [seq]
     cdef tuple info
@@ -341,7 +341,7 @@ cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_to
             # key = hash(seq)
             key = seq
             if key not in all_decomp:
-                info = balanced_decomp_prehash_cython(seq, open_to_close, open_to_tok)
+                info = balanced_decomp_prehash_cython(seq, open_to_close, open_to_node)
                 head, tail, head_tail = info[2:5]
                 all_decomp[key] = info
                 stack.append(head_tail)
@@ -351,6 +351,6 @@ cdef dict generate_all_decomp_prehash_cython(seq, dict open_to_close, open_to_to
 
 
 class IdentityDict:
-    """ Used when ``open_to_tok`` is unspecified """
+    """ Used when ``open_to_node`` is unspecified """
     def __getitem__(self, key):
         return key

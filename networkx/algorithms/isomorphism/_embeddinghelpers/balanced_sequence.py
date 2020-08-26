@@ -6,10 +6,11 @@ import operator
 
 
 # @profile
-def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None, node_affinity='auto', impl='iter'):
+def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_node=None, node_affinity='auto', impl='iter'):
     """
-    CommandLine:
-        xdoctest -m ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence.py longest_common_balanced_sequence:0 --profile && cat profile_output.txt
+    CommandLine
+    -----------
+    xdoctest -m ~/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/balanced_sequence.py longest_common_balanced_sequence:0 --profile && cat profile_output.txt
 
 
     Example
@@ -29,32 +30,32 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None
     >>> if len(tree1.nodes) < 20:
     >>>     forest_str(tree1, eager=1)
     >>>     forest_str(tree2, eager=1)
-    >>> seq1, open_to_close, toks = tree_to_seq(tree1, mode='chr', strhack=1)
-    >>> seq2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks, mode='chr', strhack=1)
+    >>> seq1, open_to_close, node_to_open = tree_to_seq(tree1, mode='chr', strhack=1)
+    >>> seq2, open_to_close, node_to_open = tree_to_seq(tree2, open_to_close, node_to_open, mode='chr', strhack=1)
     >>> full_seq1 = seq1
     >>> full_seq2 = seq2
     >>> print('seq1 = {!r}'.format(seq1))
     >>> print('seq2 = {!r}'.format(seq2))
-    >>> open_to_tok = invert_dict(toks)
-    >>> best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
+    >>> open_to_node = invert_dict(node_to_open)
+    >>> best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_node, impl='iter-alt2')
     >>> #
     >>> # xdoctest: +REQUIRES(module:ubelt)
     >>> import ubelt as ub
     >>> node_affinity = operator.eq
     >>> with ub.Timer('iterative-alt2'):
-    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt2')
+    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_node, impl='iter-alt2')
     >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
     >>> with ub.Timer('iterative-alt1'):
-    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-alt1')
+    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_node, impl='iter-alt1')
     >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
     >>> with ub.Timer('iterative'):
-    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter')
+    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_node, impl='iter')
     >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
     >>> with ub.Timer('recursive'):
-    >>>     best2, val2 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='recurse')
+    >>>     best2, val2 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_node, impl='recurse')
     >>>     #print('val2, best2 = {}, {!r}'.format(val2, best2))
     >>> with ub.Timer('iterative-prehash'):
-    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok, impl='iter-prehash')
+    >>>     best1, val1 = longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_node, impl='iter-prehash')
     >>>     #print('val1, best1 = {}, {!r}'.format(val1, best1))
     """
     if node_affinity == 'auto' or node_affinity == 'eq':
@@ -63,42 +64,42 @@ def longest_common_balanced_sequence(seq1, seq2, open_to_close, open_to_tok=None
         def _matchany(a, b):
             return True
         node_affinity = _matchany
-    if open_to_tok is None:
-        open_to_tok = IdentityDict()
+    if open_to_node is None:
+        open_to_node = IdentityDict()
     full_seq1 = seq1
     full_seq2 = seq2
     if impl == 'recurse':
         _memo = {}
         _seq_memo = {}
-        best, value = _lcs_recurse(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok, _memo, _seq_memo)
+        best, value = _lcs_recurse(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
     elif impl == 'iter':
-        best, value = _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+        best, value = _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     elif impl == 'iter-prehash':
-        best, value = _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+        best, value = _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     elif impl == 'iter-prehash2':
-        best, value = _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+        best, value = _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     elif impl == 'iter-alt1':
-        best, value = _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+        best, value = _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     elif impl == 'iter-alt2':
-        best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+        best, value = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     elif impl == 'iter-alt2-cython':
         from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_simple_alt2_cython
-        best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+        best, value = _lcs_iter_simple_alt2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     elif impl == 'iter-prehash2-cython':
         from networkx.algorithms.isomorphism.balanced_sequence_cython import _lcs_iter_prehash2_cython
-        best, value = _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok)
+        best, value = _lcs_iter_prehash2_cython(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     else:
         raise KeyError(impl)
     return best, value
 
 
-def _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+def _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Converts _lcs_recursive to an iterative algorithm using a fairly
     straightforward method that effectivly simulates callstacks
     """
-    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_tok)
-    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_tok)
+    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_node)
+    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_node)
 
     args0 = (full_seq1, full_seq2)
     frame0 = args0
@@ -210,12 +211,12 @@ def _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to
     return found
 
 
-def _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+def _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Depth first stack trajectory
     """
-    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_tok)
-    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_tok)
+    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_node)
+    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_node)
 
     args0 = (full_seq1, full_seq2)
     frame0 = args0
@@ -316,12 +317,12 @@ def _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, op
     return found
 
 
-def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Depth first stack trajectory and replace try except statements with ifs
     """
-    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_tok)
-    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_tok)
+    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_node)
+    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_node)
 
     key0 = (full_seq1, full_seq2)
     frame0 = key0
@@ -421,12 +422,12 @@ def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, op
     return found
 
 
-def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Version of the lcs iterative algorithm where we precompute hash values
     """
-    all_decomp1 = generate_all_decomp_prehash(full_seq1, open_to_close, open_to_tok)
-    all_decomp2 = generate_all_decomp_prehash(full_seq2, open_to_close, open_to_tok)
+    all_decomp1 = generate_all_decomp_prehash(full_seq1, open_to_close, open_to_node)
+    all_decomp2 = generate_all_decomp_prehash(full_seq2, open_to_close, open_to_node)
 
     key_decomp1 = {}
     key_decomp2 = {}
@@ -544,13 +545,13 @@ def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_t
     return found
 
 
-def _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_tok):
+def _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Version of the lcs iterative algorithm where we precompute hash values
     """
 
-    all_decomp1 = generate_all_decomp_prehash(full_seq1, open_to_close, open_to_tok)
-    all_decomp2 = generate_all_decomp_prehash(full_seq2, open_to_close, open_to_tok)
+    all_decomp1 = generate_all_decomp_prehash(full_seq1, open_to_close, open_to_node)
+    all_decomp2 = generate_all_decomp_prehash(full_seq2, open_to_close, open_to_node)
 
     key_decomp1 = {}
     key_decomp2 = {}
@@ -667,7 +668,7 @@ def _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_
     return found
 
 
-def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_tok, _memo, _seq_memo):
+def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo):
     if not seq1:
         return (seq1, seq1), 0
     elif not seq2:
@@ -692,21 +693,21 @@ def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_tok, _memo, _
             _seq_memo[key2] = a2, b2, head2, tail2, head2_tail2
 
         # Case 2: The current edge in sequence1 is deleted
-        best, val = _lcs_recurse(head1_tail1, seq2, open_to_close, node_affinity, open_to_tok, _memo, _seq_memo)
+        best, val = _lcs_recurse(head1_tail1, seq2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
 
         # Case 3: The current edge in sequence2 is deleted
-        cand, val_alt = _lcs_recurse(seq1, head2_tail2, open_to_close, node_affinity, open_to_tok, _memo, _seq_memo)
+        cand, val_alt = _lcs_recurse(seq1, head2_tail2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
         if val_alt > val:
             best = cand
             val = val_alt
 
         # Case 1: The LCS involves this edge
-        t1 = open_to_tok[a1[0]]
-        t2 = open_to_tok[a2[0]]
+        t1 = open_to_node[a1[0]]
+        t2 = open_to_node[a2[0]]
         affinity = node_affinity(t1, t2)
         if affinity:
-            new_heads, pval_h = _lcs_recurse(head1, head2, open_to_close, node_affinity, open_to_tok, _memo, _seq_memo)
-            new_tails, pval_t = _lcs_recurse(tail1, tail2, open_to_close, node_affinity, open_to_tok, _memo, _seq_memo)
+            new_heads, pval_h = _lcs_recurse(head1, head2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
+            new_tails, pval_t = _lcs_recurse(tail1, tail2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
 
             new_head1, new_head2 = new_heads
             new_tail1, new_tail2 = new_tails
@@ -734,13 +735,13 @@ class UnbalancedException(Exception):
 
 class IdentityDict:
     """
-    Used when ``open_to_tok`` is unspecified
+    Used when ``open_to_node`` is unspecified
     """
     def __getitem__(self, key):
         return key
 
 
-def generate_all_decomp_prehash(seq, open_to_close, open_to_tok):
+def generate_all_decomp_prehash(seq, open_to_close, open_to_node):
     """
     Like :func:`generate_all_decomp` but additionally returns the
     precomputed hashes of the sequences.
@@ -753,7 +754,7 @@ def generate_all_decomp_prehash(seq, open_to_close, open_to_tok):
             # key = hash(seq)
             key = seq
             if key not in all_decomp:
-                info = balanced_decomp_prehash(seq, open_to_close, open_to_tok)
+                info = balanced_decomp_prehash(seq, open_to_close, open_to_node)
                 head, tail, head_tail = info[2:5]
                 all_decomp[key] = info
                 stack.append(head_tail)
@@ -762,7 +763,7 @@ def generate_all_decomp_prehash(seq, open_to_close, open_to_tok):
     return all_decomp
 
 
-def generate_all_decomp(seq, open_to_close, open_to_tok=None):
+def generate_all_decomp(seq, open_to_close, open_to_node=None):
     """
     Generates all possible decompositions of a single balanced sequence
 
@@ -775,7 +776,7 @@ def generate_all_decomp(seq, open_to_close, open_to_tok=None):
         a dictionary that maps opening tokens to closing tokens in the balanced
         sequence problem.
 
-    open_to_tok : Dict
+    open_to_node : Dict
         a dictionary that maps a sequence token to a token corresponding to an
         original problem (e.g. a tree node)
 
@@ -788,15 +789,15 @@ def generate_all_decomp(seq, open_to_close, open_to_tok=None):
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
     >>> seq = '({[[]]})[[][]]{{}}'
     >>> all_decomp = generate_all_decomp(seq, open_to_close)
-    >>> tok, *decomp = all_decomp[seq]
+    >>> node, *decomp = all_decomp[seq]
     >>> pop_open, pop_close, head, tail, head_tail = decomp
-    >>> print('tok = {!r}'.format(tok))
+    >>> print('node = {!r}'.format(node))
     >>> print('pop_open = {!r}'.format(pop_open))
     >>> print('pop_close = {!r}'.format(pop_close))
     >>> print('head = {!r}'.format(head))
     >>> print('tail = {!r}'.format(tail))
     >>> print('head_tail = {!r}'.format(head_tail))
-    tok = '('
+    node = '('
     pop_open = '('
     pop_close = ')'
     head = '{[[]]}'
@@ -810,19 +811,19 @@ def generate_all_decomp(seq, open_to_close, open_to_tok=None):
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import tree_to_seq
     >>> tree = random_ordered_tree(10)
-    >>> seq, open_to_close, toks = tree_to_seq(tree, mode='chr', strhack=True)
+    >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='chr', strhack=True)
     >>> all_decomp = generate_all_decomp(seq, open_to_close)
     """
-    if open_to_tok is None:
-        open_to_tok = IdentityDict()
+    if open_to_node is None:
+        open_to_node = IdentityDict()
     all_decomp = {}
     stack = [seq]
     while stack:
         seq = stack.pop()
         if seq not in all_decomp and seq:
             pop_open, pop_close, head, tail, head_tail = balanced_decomp(seq, open_to_close)
-            tok = open_to_tok[pop_open[0]]
-            all_decomp[seq] = (tok, pop_open, pop_close, head, tail, head_tail)
+            node = open_to_node[pop_open[0]]
+            all_decomp[seq] = (node, pop_open, pop_close, head, tail, head_tail)
             stack.append(head_tail)
             stack.append(head)
             stack.append(tail)
@@ -943,7 +944,7 @@ def balanced_decomp_unsafe(sequence, open_to_close):
     return pop_open, pop_close, head, tail, head_tail
 
 
-def balanced_decomp_prehash(seq, open_to_close, open_to_tok):
+def balanced_decomp_prehash(seq, open_to_close, open_to_node):
     """
     Like :func:`balanced_decomp` but additionally returns the
     precomputed hashes of the sequences.
@@ -952,10 +953,10 @@ def balanced_decomp_prehash(seq, open_to_close, open_to_tok):
     head_key = hash(head)
     tail_key = hash(tail)
     head_tail_key = hash(head_tail)
-    tok = open_to_tok[pop_open[0]]
+    node = open_to_node[pop_open[0]]
     a = pop_open
     b = pop_close
-    info = (tok, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
+    info = (node, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
     return info
 
 
@@ -981,7 +982,7 @@ def generate_balance(sequence, open_to_close):
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import tree_to_seq
     >>> tree = random_ordered_tree(1000)
-    >>> sequence, open_to_close, toks = tree_to_seq(tree)
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree)
     >>> gen = list(generate_balance(sequence, open_to_close))
     >>> for flag, token in gen:
     >>>     print('flag={:d}, token={}'.format(flag, token))
@@ -1016,22 +1017,24 @@ def generate_balance_unsafe(sequence, open_to_close):
     Same as :func:`generate_balance` but assumes that ``sequence`` is valid
     balanced sequence in order to execute faster.
 
-    Benchmark:
-        >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
-        >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import tree_to_seq
-        >>> tree = random_ordered_tree(1000)
-        >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
-        >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
-        >>> import timerit
-        >>> ti = timerit.Timerit(100, bestof=10, verbose=2)
-        >>> for timer in ti.reset('time'):
-        >>>     with timer:
-        >>>         list(generate_balance_unsafe(sequence, open_to_close))
-        >>> import timerit
-        >>> ti = timerit.Timerit(100, bestof=10, verbose=2)
-        >>> for timer in ti.reset('time'):
-        >>>     with timer:
-        >>>         list(generate_balance_unsafe_cython(sequence, open_to_close))
+    Benchmark
+    ---------
+    >>> # xdoctest: +REQUIRES(--benchmark)
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
+    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import tree_to_seq
+    >>> tree = random_ordered_tree(1000)
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
+    >>> import timerit
+    >>> ti = timerit.Timerit(100, bestof=10, verbose=2)
+    >>> for timer in ti.reset('time'):
+    >>>     with timer:
+    >>>         list(generate_balance_unsafe(sequence, open_to_close))
+    >>> import timerit
+    >>> ti = timerit.Timerit(100, bestof=10, verbose=2)
+    >>> for timer in ti.reset('time'):
+    >>>     with timer:
+    >>>         list(generate_balance_unsafe_cython(sequence, open_to_close))
     """
     stacklen = 0
     for token in sequence:

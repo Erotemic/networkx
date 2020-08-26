@@ -38,9 +38,9 @@ def random_paths(
     >>> from networkx.algorithms.isomorphism._embeddinghelpers import path_embedding
     >>> from networkx.algorithms.isomorphism._embeddinghelpers import tree_embedding
     >>> tree = path_embedding.paths_to_otree(paths1)
-    >>> seq, open_to_close, toks = tree_embedding.tree_to_seq(tree, mode='chr')
-    >>> seq, open_to_close, toks = tree_embedding.tree_to_seq(tree, mode='number')
-    >>> seq, open_to_close, toks = tree_embedding.tree_to_seq(tree, mode='tuple')
+    >>> seq, open_to_close, node_to_open = tree_embedding.tree_to_seq(tree, mode='chr')
+    >>> seq, open_to_close, node_to_open = tree_embedding.tree_to_seq(tree, mode='number')
+    >>> seq, open_to_close, node_to_open = tree_embedding.tree_to_seq(tree, mode='tuple')
     >>> # xdoctest: +REQUIRES(module:ubelt)
     >>> import ubelt as ub
     >>> print('paths1 = {}'.format(ub.repr2(paths1, nl=1)))
@@ -50,32 +50,6 @@ def random_paths(
     rng = create_py_random_state(seed)
 
     if isinstance(labels, int):
-        def _convert_digit_base(digit, alphabet):
-            """
-            Parameters
-            ----------
-            digit : int
-                number in base 10 to convert
-
-            alphabet : list
-                symbols of the conversion base
-            """
-            baselen = len(alphabet)
-            x = digit
-            if x == 0:
-                return alphabet[0]
-            sign = 1 if x > 0 else -1
-            x *= sign
-            digits = []
-            while x:
-                digits.append(alphabet[x % baselen])
-                x //= baselen
-            if sign < 0:
-                digits.append('-')
-            digits.reverse()
-            newbase_str = ''.join(digits)
-            return newbase_str
-
         alphabet = list(map(chr, range(ord('a'), ord('z'))))
 
         def random_label():
@@ -154,3 +128,30 @@ def simple_sequences(size=80, **kw):
     paths2 = ['q/r/sp/' + p for p in paths1]
     len(paths1)
     return paths1, paths2
+
+
+def _convert_digit_base(digit, alphabet):
+    """
+    Parameters
+    ----------
+    digit : int
+        number in base 10 to convert
+
+    alphabet : list
+        symbols of the conversion base
+    """
+    baselen = len(alphabet)
+    x = digit
+    if x == 0:
+        return alphabet[0]
+    sign = 1 if x > 0 else -1
+    x *= sign
+    digits = []
+    while x:
+        digits.append(alphabet[x % baselen])
+        x //= baselen
+    if sign < 0:
+        digits.append('-')
+    digits.reverse()
+    newbase_str = ''.join(digits)
+    return newbase_str

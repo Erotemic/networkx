@@ -41,9 +41,9 @@ def maximum_common_path_embedding(paths1, paths2, sep='/', impl='iter-prehash2',
     >>> paths1 = paths1 + ['a/' + k for k in paths2[0:n // 3]]
     """
     # the longest common balanced sequence problem
-    def _affinity(tok1, tok2):
+    def _affinity(node1, node2):
         score = 0
-        for t1, t2 in zip(tok1[::-1], tok2[::-1]):
+        for t1, t2 in zip(node1[::-1], node2[::-1]):
             if t1 == t2:
                 score += 1
             else:
