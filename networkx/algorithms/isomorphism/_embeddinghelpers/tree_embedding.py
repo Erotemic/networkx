@@ -108,34 +108,51 @@ def maximum_common_ordered_tree_embedding(
         raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
 
     # Convert the trees to balanced sequences
-    sequence1, open_to_close, toks = tree_to_seq(tree1, open_to_close=None, toks=None, mode=mode)
-    sequence2, open_to_close, toks = tree_to_seq(tree2, open_to_close, toks, mode=mode)
+    sequence1, open_to_close, node_to_open = tree_to_seq(tree1, open_to_close=None, node_to_open=None, mode=mode)
+    sequence2, open_to_close, node_to_open = tree_to_seq(tree2, open_to_close, node_to_open, mode=mode)
     seq1 = sequence1
     seq2 = sequence2
 
-    open_to_tok = invert_dict(toks)
+    open_to_node = invert_dict(node_to_open)
 
     # Solve the longest common balanced sequence problem
     best, value = longest_common_balanced_sequence(
-        seq1, seq2, open_to_close, open_to_tok=open_to_tok, node_affinity=node_affinity, impl=impl)
+        seq1, seq2, open_to_close, open_to_node=open_to_node, node_affinity=node_affinity, impl=impl)
     subseq1, subseq2 = best
 
     # Convert the subsequence back into a tree
-    embedding1 = seq_to_tree(subseq1, open_to_close, open_to_tok)
-    embedding2 = seq_to_tree(subseq2, open_to_close, open_to_tok)
+    embedding1 = seq_to_tree(subseq1, open_to_close, open_to_node)
+    embedding2 = seq_to_tree(subseq2, open_to_close, open_to_node)
     return embedding1, embedding2
 
 
-def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None):
+def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strhack=None):
     """
-    Converts an ordered tree to a balanced sequence
+    Converts an ordered tree to a balanced sequence for use in algorithm
+    reductions.
+
+    Parameters
+    ----------
+    open_to_close : Dict | None
+        Dictionary of opening to closing tokens to be updated for problems
+        where multiple trees are converted to sequences.
+
+    open_to_node : Dict | None
+        Dictionary of opening tokens to nodes to be updated for problems where
+        multiple trees are converted to sequences.
+
+    mode : str
+        Currently hacky and needs refactor
+
+    strhack : bool
+        Currently hacky and needs refactor
 
     Example
     -------
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
-    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
     └── 0
         └── 1
@@ -144,7 +161,7 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
 
     >>> tree = nx.balanced_tree(2, 2, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
-    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
     └── 0
         ├── 2
@@ -157,9 +174,9 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
 
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree  # NOQA
     >>> tree = random_ordered_tree(1000)
-    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
-    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='chr')
-    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='number')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     """
     # from collections import namedtuple
     # Token = namedtuple('Token', ['action', 'value'])
@@ -173,8 +190,8 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
 
     if open_to_close is None:
         open_to_close = {}
-    if toks is None:
-        toks = {}
+    if node_to_open is None:
+        node_to_open = {}
 
     if strhack:
         if mode == 'label':
@@ -185,7 +202,7 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
         for u, v, etype in nx.dfs_labeled_edges(tree, source=source):
             if etype == 'forward':
                 # u has been visited by v has not
-                if v not in toks:
+                if v not in node_to_open:
                     if mode == 'tuple':
                         # TODO: token encoding scheme where subdirectories
                         # are matchable via a custom operation.
@@ -196,7 +213,7 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
                         open_tok = ('open', v)
                         close_tok = ('close', v)
                     elif mode == 'number':
-                        open_tok = len(toks) + 1
+                        open_tok = len(node_to_open) + 1
                         close_tok = -open_tok
                     elif mode == 'paren':
                         open_tok = '{}('.format(v)
@@ -207,9 +224,9 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
                             close_tok = str(v) + u'\u0301'
                         else:
                             # utf8 can only encode this many chars
-                            assert len(toks) < (1112064 // 2)
-                            open_tok = chr(len(toks) * 2)
-                            close_tok = chr(len(toks) * 2 + 1)
+                            assert len(node_to_open) < (1112064 // 2)
+                            open_tok = chr(len(node_to_open) * 2)
+                            close_tok = chr(len(node_to_open) * 2 + 1)
                     elif mode == 'label':
                         open_tok = tree.nodes[v]['label']
                         assert strhack
@@ -219,23 +236,23 @@ def tree_to_seq(tree, open_to_close=None, toks=None, mode='tuple', strhack=None)
                             close_tok = ']'
                         if open_tok == '(':
                             close_tok = ')'
-                    toks[v] = open_tok
+                    node_to_open[v] = open_tok
                     open_to_close[open_tok] = close_tok
-                open_tok = toks[v]
+                open_tok = node_to_open[v]
                 sequence.append(open_tok)
             elif etype == 'reverse':
                 # Both u and v are visited and the edge is in the tree
-                close_tok = open_to_close[toks[v]]
+                close_tok = open_to_close[node_to_open[v]]
                 sequence.append(close_tok)
             else:
                 raise KeyError(etype)
     sequence = tuple(sequence)
     if strhack:
         sequence = ''.join(sequence)
-    return sequence, open_to_close, toks
+    return sequence, open_to_close, node_to_open
 
 
-def seq_to_tree(subseq, open_to_close, open_to_tok):
+def seq_to_tree(subseq, open_to_close, open_to_node):
     """
     Converts a balanced sequence to an ordered tree
 
@@ -248,8 +265,8 @@ def seq_to_tree(subseq, open_to_close, open_to_tok):
         a dictionary that maps opening tokens to closing tokens in the balanced
         sequence problem.
 
-    open_to_tok : Dict
-        a dictionary that maps a sequence token to a token corresponding to an
+    open_to_node : Dict
+        a dictionary that maps a sequence token to a node corresponding to an
         original problem (e.g. a tree node). Must be unique. If unspecified new
         nodes will be generated and the opening sequence token will be used as
         a node label.
@@ -260,12 +277,12 @@ def seq_to_tree(subseq, open_to_close, open_to_tok):
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
     >>> from networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence import IdentityDict
     >>> tree = random_ordered_tree(1000)
-    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='tuple')
-    >>> sequence, open_to_close, toks = tree_to_seq(tree, mode='chr')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
-    >>> open_to_tok = None
+    >>> open_to_node = None
     >>> subseq = '({[[]]})[[][]]{{}}'
-    >>> subtree = seq_to_tree(subseq, open_to_close, open_to_tok)
+    >>> subtree = seq_to_tree(subseq, open_to_close, open_to_node)
     >>> print(forest_str(subtree))
     ├── {
     │   └── {
@@ -277,22 +294,22 @@ def seq_to_tree(subseq, open_to_close, open_to_tok):
             └── [
                 └── [
     """
-    nextnode = 0  # only used if open_to_tok is not specified
+    nextnode = 0  # only used if open_to_node is not specified
     subtree = nx.OrderedDiGraph()
     stack = []
     for token in subseq:
         if token in open_to_close:
-            if open_to_tok is None:
+            if open_to_node is None:
                 node = nextnode
                 nextnode += 1
             else:
-                node = open_to_tok[token]
+                node = open_to_node[token]
             if stack:
                 parent_tok, parent_node = stack[-1]
                 subtree.add_edge(parent_node, node)
             else:
                 subtree.add_node(node)
-            if open_to_tok is None:
+            if open_to_node is None:
                 subtree.nodes[node]['label'] = token
             stack.append((token, node))
         else:
