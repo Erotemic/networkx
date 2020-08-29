@@ -51,11 +51,13 @@ def bench_maximum_common_path_embedding():
     #     # 'recurse'
     # }
 
+    # TODO: parametarize demo names
     # BENCH_MODE = None
-    # BENCH_MODE = 'small'
+    BENCH_MODE = 'small'
+    # BENCH_MODE = 'small2'
     # BENCH_MODE = 'recursion-error'
     # BENCH_MODE = 'medium'
-    BENCH_MODE = 'large'
+    # BENCH_MODE = 'large'
 
     if BENCH_MODE == 'small':
         data_basis = {
@@ -74,6 +76,44 @@ def bench_maximum_common_path_embedding():
             # 'iter',
             # 'recurse',
         }
+        run_basis['impl'] = ub.oset(balanced_sequence.available_impls_longest_common_balanced_sequence()) - {
+                'recurse',
+        }
+        # runparam_to_time = {
+        #     ('chr', 'iter-prehash2-cython'): {'mean': 0.062, 'max': 0.157},
+        #     ('chr', 'iter-prehash2')       : {'mean': 0.071, 'max': 0.185},
+        # }
+
+    if BENCH_MODE == 'small2':
+        data_basis = {
+            'size': [30],
+            'max_depth': [8, 2],
+            'common': [2, 8],
+            'prefix_depth1': [0, 4],
+            'prefix_depth2': [0],
+            'labels': [4]
+        }
+        run_basis['impl'] = ub.oset(balanced_sequence.available_impls_longest_common_balanced_sequence()) - {
+                'recurse',
+        }
+        run_basis['mode'] = ['number', 'chr']
+        # runparam_to_time = {
+        #     ('chr', 'iter-alt2-cython')       : {'mean': 0.036, 'max': 0.094},
+        #     ('chr', 'iter-alt2')              : {'mean': 0.049, 'max': 0.125},
+        #     ('chr', 'iter-alt1')              : {'mean': 0.050, 'max': 0.129},
+        #     ('chr', 'iter-prehash2-cython')   : {'mean': 0.057, 'max': 0.146},
+        #     ('number', 'iter-prehash2-cython'): {'mean': 0.057, 'max': 0.146},
+        #     ('chr', 'iter')                   : {'mean': 0.064, 'max': 0.167},
+        #     ('chr', 'iter-prehash2')          : {'mean': 0.066, 'max': 0.170},
+        #     ('number', 'iter-prehash2')       : {'mean': 0.067, 'max': 0.176},
+        #     ('chr', 'iter-prehash')           : {'mean': 0.073, 'max': 0.187},
+        #     ('number', 'iter-prehash')        : {'mean': 0.074, 'max': 0.196},
+        #     ('number', 'iter-alt1')           : {'mean': 0.126, 'max': 0.344},
+        #     ('number', 'iter-alt2-cython')    : {'mean': 0.133, 'max': 0.363},
+        #     ('number', 'iter')                : {'mean': 0.140, 'max': 0.386},
+        #     ('number', 'iter-alt2')           : {'mean': 0.149, 'max': 0.408},
+        # }
+
     if BENCH_MODE == 'medium':
         data_basis = {
             'size': [30, 40],
@@ -105,6 +145,17 @@ def bench_maximum_common_path_embedding():
             'labels': [8]
         }
         run_basis['impl'] = balanced_sequence.available_impls_longest_common_balanced_sequence()
+        # runparam_to_time = {
+        #     ('chr', 'iter-alt2-cython')    : {'mean': 0.282, 'max': 0.923},
+        #     ('chr', 'recurse')             : {'mean': 0.397, 'max': 1.297},
+        #     ('chr', 'iter-alt2')           : {'mean': 0.409, 'max': 1.328},
+        #     ('chr', 'iter-alt1')           : {'mean': 0.438, 'max': 1.428},
+        #     ('chr', 'iter-prehash2-cython'): {'mean': 0.511, 'max': 1.668},
+        #     ('chr', 'iter')                : {'mean': 0.580, 'max': 1.915},
+        #     ('chr', 'iter-prehash2')       : {'mean': 0.605, 'max': 1.962},
+        #     ('chr', 'iter-prehash')        : {'mean': 0.679, 'max': 2.211},
+        # }
+
     elif BENCH_MODE == 'too-big':
         data_basis = {
             'size': [100],
@@ -129,7 +180,7 @@ def bench_maximum_common_path_embedding():
         # stats1 = {'depth': 395, 'n_edges': 1203, 'n_leafs': 4, 'n_nodes': 1207, 'npaths': 4}
         # stats2 = {'depth': 395, 'n_edges': 1203, 'n_leafs': 4, 'n_nodes': 1207, 'npaths': 4}
         # runparam_to_time = {
-        #     ('chr', 'recurse')             : {'mean': 0.208, 'max': 0.208},
+        #     ('chr', 'recurse')             : {'mean': NAN, 'max': NAN},
         #     ('chr', 'iter-alt2-cython')    : {'mean': 7.979, 'max': 7.979},
         #     ('chr', 'iter-alt2')           : {'mean': 11.307, 'max': 11.307},
         #     ('chr', 'iter-alt1')           : {'mean': 11.659, 'max': 11.659},
@@ -238,14 +289,17 @@ def bench_maximum_common_path_embedding():
             run_key = ub.repr2(
                 paramkw, sep='', itemsep='', kvsep='',
                 explicit=1, nobr=1, nl=0, precision=1)
-            for timer in ti.reset(run_key):
-                with timer:
-                    try:
+            try:
+                for timer in ti.reset(run_key):
+                    with timer:
                         maximum_common_path_embedding(paths1, paths2, **runkw)
-                    except RecursionError as ex:
-                        print('ex = {!r}'.format(ex))
-            row = paramkw.copy()
-            row['time'] = ti.min()
+            except RecursionError as ex:
+                print('ex = {!r}'.format(ex))
+                row = paramkw.copy()
+                row['time'] = float('nan')
+            else:
+                row = paramkw.copy()
+                row['time'] = ti.min()
             results.append(row)
     prog.end()
 
