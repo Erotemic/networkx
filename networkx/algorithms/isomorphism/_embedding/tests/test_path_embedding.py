@@ -1,5 +1,5 @@
-from networkx.algorithms.isomorphism._embeddinghelpers.path_embedding import maximum_common_path_embedding
-from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_paths
+from networkx.algorithms.isomorphism._embedding.path_embedding import maximum_common_path_embedding
+from networkx.algorithms.isomorphism._embedding.demodata import random_paths
 
 
 def test_not_compatable():
@@ -85,16 +85,9 @@ def test_simple1():
         'prefix2/root/file4',
     ]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
-    print('embedding1 = {}'.format(ub.repr2(embedding1, nl=1)))
-    print('embedding2 = {}'.format(ub.repr2(embedding2, nl=1)))
     assert embedding1 == paths1
-    assert embedding2 == paths2
 
 
 def test_random1():
     paths1, paths2 = random_paths(10, seed=321)
-    print('paths1 = {}'.format(ub.repr2(paths1, nl=1)))
-    print('paths2 = {}'.format(ub.repr2(paths2, nl=1)))
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
-    print('embedding1 = {}'.format(ub.repr2(embedding1, nl=1)))
-    print('embedding2 = {}'.format(ub.repr2(embedding2, nl=1)))
