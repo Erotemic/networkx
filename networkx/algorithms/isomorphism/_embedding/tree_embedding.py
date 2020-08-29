@@ -1,8 +1,5 @@
 """
-
-- [ ] TODO: rename to open_to_node. Most places where we use tok, we should use
-  node
-
+Algorithm for computing tree embeddings
 """
 import networkx as nx
 from collections import OrderedDict, defaultdict
@@ -25,7 +22,19 @@ def maximum_common_ordered_tree_embedding(
     `O(n1 * n2 * min(d1, l1) * min(d2, l2))` time on ordered trees with n1 and
     n2 nodes, of depth d1 and d2 and with l1 and l2 leaves, respectively.
 
-    Implements algorithm described in [1]_.
+    Implements algorithm described in [1]_, which introduces the problem as
+    follows:
+
+    "An important generalization of tree and subtree isomorphism, known as
+    minor containment, is the problem of determining whether a tree is
+    isomorphic to an embedded subtree of another tree, where an embedded
+    subtree of a tree is obtained by contracting some of the edges in the tree.
+    A further generalization of minor containment on trees, known as maximum
+    common embedded subtree, is the problem of finding or determining the size
+    of a largest common embedded subtree of two trees. The latter also
+    generalizes the maximum common subtree isomorphism problem, in which a
+    common subtree of largest size is contained as a subtree, not only
+    embedded, in the two trees."
 
     Parameters
     ----------
@@ -44,11 +53,12 @@ def maximum_common_ordered_tree_embedding(
     mode : str
         Determines the backend representation
 
-    References:
-        .. [1] Lozano, Antoni, and Gabriel Valiente.
-            "On the maximum common embedded subtree problem for ordered trees."
-            String Algorithmics (2004): 155-170.
-            https://pdfs.semanticscholar.org/0b6e/061af02353f7d9b887f9a378be70be64d165.pdf
+    References
+    ----------
+    .. [1] Lozano, Antoni, and Gabriel Valiente.
+        "On the maximum common embedded subtree problem for ordered trees."
+        String Algorithmics (2004): 155-170.
+        https://pdfs.semanticscholar.org/0b6e/061af02353f7d9b887f9a378be70be64d165.pdf
 
     Returns
     -------
@@ -62,8 +72,8 @@ def maximum_common_ordered_tree_embedding(
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree  # NOQA
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree  # NOQA
     >>> tree1 = random_ordered_tree(7, seed=355707353457411172772606611)
     >>> tree2 = random_ordered_tree(7, seed=1235685871331524688238689717)
     >>> print('tree1')
@@ -108,16 +118,27 @@ def maximum_common_ordered_tree_embedding(
         raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
 
     # Convert the trees to balanced sequences
-    sequence1, open_to_close, node_to_open = tree_to_seq(tree1, open_to_close=None, node_to_open=None, mode=mode)
-    sequence2, open_to_close, node_to_open = tree_to_seq(tree2, open_to_close, node_to_open, mode=mode)
+    sequence1, open_to_close, node_to_open = tree_to_seq(
+        tree1, open_to_close=None, node_to_open=None, mode=mode)
+    sequence2, open_to_close, node_to_open = tree_to_seq(
+        tree2, open_to_close, node_to_open, mode=mode)
     seq1 = sequence1
     seq2 = sequence2
 
+    # FIXME: I think this may cause bugs in two cases, which may or may not be
+    # possible, but I need to look into it and provide a fix or justification
+    # as to why these cases wont be hit:
+    # (1) when the two trees share nodes that have different open tokens
+    # (2) when the mapping between nodes to opening tokens is not unique.
+    #     I'm not sure if this second case can happen when we are converting
+    #     from a tree to a sequence, there are certainly sequences where the
+    #     same opening token might share multiple tree nodes.
     open_to_node = invert_dict(node_to_open)
 
     # Solve the longest common balanced sequence problem
     best, value = longest_common_balanced_sequence(
-        seq1, seq2, open_to_close, open_to_node=open_to_node, node_affinity=node_affinity, impl=impl)
+        seq1, seq2, open_to_close, open_to_node=open_to_node,
+        node_affinity=node_affinity, impl=impl)
     subseq1, subseq2 = best
 
     # Convert the subsequence back into a tree
@@ -127,7 +148,7 @@ def maximum_common_ordered_tree_embedding(
 
 
 def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strhack=None):
-    """
+    r"""
     Converts an ordered tree to a balanced sequence for use in algorithm
     reductions.
 
@@ -142,14 +163,18 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
         multiple trees are converted to sequences.
 
     mode : str
-        Currently hacky and needs refactor
+        Currently hacky and needs refactor.
+        Can be 'tuple', 'number', or 'chr'.
+        Hackier variants are 'str' and 'paren'.
 
     strhack : bool
-        Currently hacky and needs refactor
+        Currently hacky and needs refactor. If False, always return a tuple of
+        items, if True, tries to return a string of items. If None, tries to
+        choose a value depending on mode.
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
@@ -172,14 +197,18 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
             └── 3
     sequence = (1, 2, 3, -3, 4, -4, -2, 5, 6, -6, 7, -7, -5, -1)
 
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree  # NOQA
-    >>> tree = random_ordered_tree(1000)
+    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree  # NOQA
+    >>> tree = random_ordered_tree(2)
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
+    >>> print('sequence = {!r}'.format(sequence))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
+    >>> print('sequence = {!r}'.format(sequence))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
+    >>> print('sequence = {!r}'.format(sequence))
+    sequence = (('open', 0), ('open', 1), ('close', 1), ('close', 0))
+    sequence = '\x00\x02\x03\x01'
+    sequence = (1, 2, -2, -1)
     """
-    # from collections import namedtuple
-    # Token = namedtuple('Token', ['action', 'value'])
     # mapping between opening and closing tokens
     sources = [n for n in tree.nodes if tree.in_degree[n] == 0]
     sequence = []
@@ -194,7 +223,7 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
         node_to_open = {}
 
     if strhack:
-        if mode == 'label':
+        if mode == 'paren':
             all_labels = {n['label'] for n in list(tree.nodes.values())}
             assert all(x == 1 for x in map(len, all_labels))
 
@@ -204,22 +233,19 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
                 # u has been visited by v has not
                 if v not in node_to_open:
                     if mode == 'tuple':
-                        # TODO: token encoding scheme where subdirectories
-                        # are matchable via a custom operation.
-                        # open_tok = '<{}>'.format(v)
-                        # close_tok = '</{}>'.format(v)
-                        # open_tok = Token('open', v)
-                        # close_tok = Token('close', v)
                         open_tok = ('open', v)
                         close_tok = ('close', v)
                     elif mode == 'number':
                         open_tok = len(node_to_open) + 1
                         close_tok = -open_tok
-                    elif mode == 'paren':
+                    elif mode == 'str':
                         open_tok = '{}('.format(v)
                         close_tok = '){}'.format(v)
                     elif mode == 'chr':
                         if not strhack:
+                            # note ussing the accent mark wont work in string
+                            # mode even though the close tok renders as a
+                            # single character.
                             open_tok = str(v)
                             close_tok = str(v) + u'\u0301'
                         else:
@@ -227,15 +253,19 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
                             assert len(node_to_open) < (1112064 // 2)
                             open_tok = chr(len(node_to_open) * 2)
                             close_tok = chr(len(node_to_open) * 2 + 1)
-                    elif mode == 'label':
+                    elif mode == 'paren':
                         open_tok = tree.nodes[v]['label']
                         assert strhack
                         if open_tok == '{':
                             close_tok = '}'
-                        if open_tok == '[':
+                        elif open_tok == '[':
                             close_tok = ']'
-                        if open_tok == '(':
+                        elif open_tok == '(':
                             close_tok = ')'
+                        else:
+                            raise KeyError(open_tok)
+                    else:
+                        raise KeyError(mode)
                     node_to_open[v] = open_tok
                     open_to_close[open_tok] = close_tok
                 open_tok = node_to_open[v]
@@ -273,9 +303,9 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
 
     Example
     --------
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.demodata import random_ordered_tree
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.balanced_sequence import IdentityDict
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree
+    >>> from networkx.algorithms.isomorphism._embedding.balanced_sequence import IdentityDict
     >>> tree = random_ordered_tree(1000)
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
@@ -349,21 +379,21 @@ def invert_dict(dict_, unique_vals=True):
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
     >>> dict_ = {'a': 1, 'b': 2}
     >>> inverted = invert_dict(dict_)
     >>> assert inverted == {1: 'a', 2: 'b'}
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
     >>> dict_ = OrderedDict([(2, 'a'), (1, 'b'), (0, 'c'), (None, 'd')])
     >>> inverted = invert_dict(dict_)
     >>> assert list(inverted.keys())[0] == 'a'
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
     >>> dict_ = {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'f': 2}
     >>> inverted = invert_dict(dict_, unique_vals=False)
     >>> assert inverted == {0: {'b', 'c', 'd'}, 1: {'a'}, 2: {'f'}}
@@ -382,23 +412,34 @@ def invert_dict(dict_, unique_vals=True):
     return inverted
 
 
-def forest_str(graph, impl='iter', eager=0, write=None):
+def forest_str(graph, eager=False, write=None, use_labels=True):
     """
-    Nice utf8 representation of a forest
+    Creates a nice utf8 representation of a forest
 
-    Notes
-    -----
-    The iterative and recursive versions seem to be roughly as fast, but the
-    iterative one does not have the issue of running into the call stack and
-    causing a RecursionError (use params r=1, h=2 ** 14 to reproduce).
+    Parameters
+    ----------
+    graph : nx.DiGraph
+        graph to represent (must be a tree, forest, or the empty graph)
 
-    CommandLine:
-        xdoctest -m /home/joncrall/code/networkx/networkx/algorithms/isomorphism/_embeddinghelpers/tree_embedding.py forest_str --bench
+    eager : bool
+        if True, the text will be written directly to stdout or the write
+        function if specified
+
+    write : callable
+        function to use to write to, if None new lines are appended to
+        a list and returned
+
+    use_labels : bool
+        if True will use the "label" attribute of a node to display if it
+        exists otherwise it will use the node value itself.
+
+    Returns
+    -------
+    str :
+        utf8 representation of the tree / forest
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import *  # NOQA
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
     >>> import networkx as nx
     >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.DiGraph)
     >>> print(forest_str(graph))
@@ -417,32 +458,7 @@ def forest_str(graph, impl='iter', eager=0, write=None):
             └── 3
                 ├── 8
                 └── 7
-
-    Benchmark
-    ---------
-    >>> # xdoctest: +REQUIRES(--bench)
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers.tree_embedding import forest_str
-    >>> import networkx as nx
-    >>> # TODO: enumerate test cases
-    >>> graph = nx.balanced_tree(r=1, h=int(2 ** 14), create_using=nx.DiGraph)  # causes RecursionError
-    >>> graph = nx.balanced_tree(r=2, h=14, create_using=nx.DiGraph)
-    >>> if len(graph.nodes) < 1000:
-    >>>     forest_str(graph, eager=1, write=print)
-    >>> else:
-    >>>     print('graph = {!r}, {}'.format(graph, len(graph.nodes)))
-    >>> import timerit
-    >>> ti = timerit.Timerit(1, bestof=1, verbose=3)
-    >>> ti.reset('iter-lazy').call(forest_str, graph, impl='iter', eager=0)
-    >>> ti.reset('recurse-lazy').call(forest_str, graph, impl='recurse', eager=0)
-    >>> # xdoctest: +REQUIRES(module:ubelt)
-    >>> import ubelt as ub
-    >>> print('ti.measures = {}'.format(ub.repr2(ti.measures['min'], nl=1, align=':', precision=6)))
     """
-    if len(graph.nodes) == 0:
-        print('--')
-        return
-    assert nx.is_forest(graph)
-
     printbuf = []
     if eager:
         if write is None:
@@ -452,28 +468,10 @@ def forest_str(graph, impl='iter', eager=0, write=None):
     else:
         lazyprint = printbuf.append
 
-    if impl == 'recurse':
-        def _recurse(node, indent='', islast=False):
-            if islast:
-                this_prefix = indent + '└── '
-                next_prefix = indent + '    '
-            else:
-                this_prefix = indent + '├── '
-                next_prefix = indent + '│   '
-            label = graph.nodes[node].get('label', node)
-            lazyprint(this_prefix + str(label))
-            graph.succ[node]
-            children = graph.succ[node]
-            for idx, child in enumerate(children, start=1):
-                islast_next = (idx == len(children))
-                _recurse(child, indent=next_prefix, islast=islast_next)
-
-        sources = [n for n in graph.nodes if graph.in_degree[n] == 0]
-        for idx, node in enumerate(sources, start=1):
-            islast_next = (idx == len(sources))
-            _recurse(node, indent='', islast=islast_next)
-
-    elif impl == 'iter':
+    if len(graph.nodes) == 0:
+        lazyprint('<empty graph>')
+    else:
+        assert nx.is_forest(graph)
         sources = [n for n in graph.nodes if graph.in_degree[n] == 0]
 
         stack = []
@@ -501,10 +499,17 @@ def forest_str(graph, impl='iter', eager=0, write=None):
                 try_frame = (child, next_prefix, islast_next)
                 stack.append(try_frame)
 
-    else:
-        raise KeyError(impl)
-
     if printbuf:
         return '\n'.join(printbuf)
     else:
         return ''
+
+
+if __name__ == '__main__':
+    """
+    CommandLine:
+        python -m networkx.algorithms.isomorphism._embedding.tree_embedding all
+        python -m networkx.algorithms.isomorphism._embedding all
+    """
+    import xdoctest
+    xdoctest.doctest_module(__file__)

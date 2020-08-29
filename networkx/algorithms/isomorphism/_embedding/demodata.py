@@ -1,3 +1,9 @@
+"""
+Helpers for creating random data for tests / benchmarks for the tree embedding
+algorithms.
+"""
+
+
 def random_paths(
         size=10, max_depth=10, common=0, prefix_depth1=0, prefix_depth2=0,
         sep='/', labels=26, seed=None):
@@ -31,16 +37,18 @@ def random_paths(
     seed:
         Random state or seed
 
-
     Examples
     --------
-    >>> paths1, paths2 = random_paths(size=5, max_depth=3, common=6, prefix_depth1=3, prefix_depth2=3, seed=0, labels=2 ** 64)
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers import path_embedding
-    >>> from networkx.algorithms.isomorphism._embeddinghelpers import tree_embedding
-    >>> tree = path_embedding.paths_to_otree(paths1)
-    >>> seq, open_to_close, node_to_open = tree_embedding.tree_to_seq(tree, mode='chr')
-    >>> seq, open_to_close, node_to_open = tree_embedding.tree_to_seq(tree, mode='number')
-    >>> seq, open_to_close, node_to_open = tree_embedding.tree_to_seq(tree, mode='tuple')
+    >>> paths1, paths2 = random_paths(
+    >>>     size=5, max_depth=3, common=6,
+    >>>     prefix_depth1=3, prefix_depth2=3, labels=2 ** 64,
+    >>>     seed=0)
+    >>> from networkx.algorithms.isomorphism._embedding.path_embedding import paths_to_otree
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import tree_to_seq
+    >>> tree = paths_to_otree(paths1)
+    >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
+    >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
+    >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
     >>> # xdoctest: +REQUIRES(module:ubelt)
     >>> import ubelt as ub
     >>> print('paths1 = {}'.format(ub.repr2(paths1, nl=1)))
@@ -109,7 +117,7 @@ def random_ordered_tree(n, seed=None):
     networkx.OrderedDiGraph
 
     Example
-    --------
+    -------
     >>> assert len(random_ordered_tree(n=1, seed=0).nodes) == 1
     >>> assert len(random_ordered_tree(n=2, seed=0).nodes) == 2
     >>> assert len(random_ordered_tree(n=3, seed=0).nodes) == 3
@@ -122,12 +130,66 @@ def random_ordered_tree(n, seed=None):
     return otree
 
 
-def simple_sequences(size=80, **kw):
-    n = size
-    paths1 = ['{}/{}'.format(i, j) for i in range(0, (n // 10) + 1) for j in range(0, n)]
-    paths2 = ['q/r/sp/' + p for p in paths1]
-    len(paths1)
-    return paths1, paths2
+def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
+    r"""
+    Creates a random balanced sequence for testing / benchmarks
+
+    Parameters
+    ----------
+    n : int
+        A positive integer representing the number of nodes in the tree.
+
+    seed : integer, random_state, or None (default)
+        Indicator of random number generation state.
+        See :ref:`Randomness<randomness>`.
+
+    open_to_close : dict | None
+        if specified, updates existing open_to_close with tokens from this
+        sequence.
+
+    mode: str
+        the type of sequence returned (see :func:`tree_to_seq` for details)
+
+    Returns
+    -------
+    : tuple
+        The first item is the sequence itself
+        the second item is the open_to_close mappings.
+
+    Example
+    -------
+    >>> # Demo the various sequence encodings that we might use
+    >>> seq, open_to_close = random_balanced_sequence(2, seed=1, mode='tuple')
+    >>> print('seq = {!r}'.format(seq))
+    >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='chr')
+    >>> print('seq = {!r}'.format(seq))
+    >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='number')
+    >>> print('seq = {!r}'.format(seq))
+    >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='str')
+    >>> print('seq = {!r}'.format(seq))
+    >>> seq, open_to_close = random_balanced_sequence(10, seed=1, mode='paren')
+    >>> print('seq = {!r}'.format(seq))
+    seq = (('open', 0), ('open', 1), ('close', 1), ('close', 0))
+    seq = '\x00\x02\x04\x05\x03\x06\x07\x01'
+    seq = (1, 2, 3, -3, -2, 4, -4, -1)
+    seq = ('0(', '1(', '2(', ')2', ')1', '3(', ')3', ')0')
+    seq = '([[{{[]{[]}}{}()}]])'
+    """
+    from networkx.utils import create_py_random_state
+    from networkx.algorithms.isomorphism._embedding.tree_embedding import tree_to_seq
+    # Create a random otree and then convert it to a balanced sequence
+    rng = create_py_random_state(seed)
+    tree = random_ordered_tree(n, seed=rng)
+    if mode == 'paren':
+        pool = '[{('
+        for node in tree.nodes:
+            tree.nodes[node]['label'] = rng.choice(pool)
+        seq, open_to_close, _ = tree_to_seq(
+            tree, mode=mode, open_to_close=open_to_close, strhack=1)
+    else:
+        seq, open_to_close, _ = tree_to_seq(
+            tree, mode=mode, open_to_close=open_to_close)
+    return seq, open_to_close
 
 
 def _convert_digit_base(digit, alphabet):
