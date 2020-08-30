@@ -2,7 +2,7 @@ import networkx as nx
 from .tree_embedding import maximum_common_ordered_tree_embedding
 
 
-def maximum_common_path_embedding(paths1, paths2, sep='/', impl='iter-prehash2', mode='number'):
+def maximum_common_path_embedding(paths1, paths2, sep='/', impl='iter-alt2', mode='chr'):
     """
     Finds the maximum path embedding common between two sets of paths
 
