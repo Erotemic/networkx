@@ -47,6 +47,12 @@ CommandLine
 xdoctest -m networkx.algorithms.isomorphism._embedding list
 xdoctest -m networkx.algorithms.isomorphism._embedding all
 
+# Run all tests in this module
+DPATH=$(python -c "
+import os; import networkx.algorithms.isomorphism._embedding as m;
+print(os.path.dirname(m.__file__))")
+pytest --xdoctest $DPATH --xdoc-analysis=dynamic
+
 # The mkinit tool helps autogenerate explicit `__init__.py` files
 mkinit ~/code/networkx/networkx/algorithms/isomorphism/_embedding/__init__.py -w
 """
