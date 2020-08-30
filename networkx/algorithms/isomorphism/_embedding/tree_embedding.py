@@ -74,8 +74,8 @@ def maximum_common_ordered_tree_embedding(
     -------
     >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
     >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree  # NOQA
-    >>> tree1 = random_ordered_tree(7, seed=355707353457411172772606611)
-    >>> tree2 = random_ordered_tree(7, seed=1235685871331524688238689717)
+    >>> tree1 = random_ordered_tree(7, seed=3257073545741117277206611)
+    >>> tree2 = random_ordered_tree(7, seed=123568587133124688238689717)
     >>> print('tree1')
     >>> forest_str(tree1, eager=1)
     >>> print('tree2')
@@ -86,31 +86,29 @@ def maximum_common_ordered_tree_embedding(
     >>> print('embedding2')
     >>> forest_str(embedding2, eager=1)
     tree1
-    └── 0
-        └── 5
-            └── 1
-                ├── 6
-                │   └── 3
-                │       └── 4
+    └── 1
+        ├── 6
+        │   ├── 4
+        │   └── 3
+        └── 0
+            └── 5
                 └── 2
     tree2
-    └── 0
-        ├── 3
-        │   ├── 6
-        │   │   └── 1
-        │   │       └── 5
-        │   └── 4
-        └── 2
+    └── 4
+        └── 1
+            ├── 2
+            │   ├── 6
+            │   └── 0
+            └── 3
+                └── 5
     embedding1
-    └── 0
-        ├── 3
-        │   └── 4
-        └── 2
+    └── 1
+        ├── 6
+        └── 5
     embedding2
-    └── 0
-        ├── 3
-        │   └── 4
-        └── 2
+    └── 1
+        ├── 6
+        └── 5
     """
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree1)):
         raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
@@ -198,7 +196,7 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
     sequence = (1, 2, 3, -3, 4, -4, -2, 5, 6, -6, 7, -7, -5, -1)
 
     >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree  # NOQA
-    >>> tree = random_ordered_tree(2)
+    >>> tree = random_ordered_tree(2, seed=1)
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
     >>> print('sequence = {!r}'.format(sequence))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
@@ -303,12 +301,7 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
 
     Example
     --------
-    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
     >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree
-    >>> from networkx.algorithms.isomorphism._embedding.balanced_sequence import IdentityDict
-    >>> tree = random_ordered_tree(1000)
-    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
-    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
     >>> open_to_node = None
     >>> subseq = '({[[]]})[[][]]{{}}'
@@ -414,7 +407,7 @@ def invert_dict(dict_, unique_vals=True):
 
 def forest_str(graph, eager=False, write=None, use_labels=True):
     """
-    Creates a nice utf8 representation of a forest
+    Creates a nice utf8 representation of a directed forest
 
     Parameters
     ----------
@@ -437,6 +430,10 @@ def forest_str(graph, eager=False, write=None, use_labels=True):
     -------
     str :
         utf8 representation of the tree / forest
+
+    TODO
+    ----
+    - [ ] Is this a generally useful utility?
 
     Example
     -------

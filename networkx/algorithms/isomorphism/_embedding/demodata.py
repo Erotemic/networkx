@@ -103,6 +103,11 @@ def random_ordered_tree(n, seed=None):
     """
     Creates a random ordered tree
 
+    TODO
+    ----
+    - [ ] Rename to random_ordered_directed_tree ?
+    - [ ] Merge in with other data generators?
+
     Parameters
     ----------
     n : int
@@ -121,12 +126,27 @@ def random_ordered_tree(n, seed=None):
     >>> assert len(random_ordered_tree(n=1, seed=0).nodes) == 1
     >>> assert len(random_ordered_tree(n=2, seed=0).nodes) == 2
     >>> assert len(random_ordered_tree(n=3, seed=0).nodes) == 3
+    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import forest_str
+    >>> print(forest_str(random_ordered_tree(n=5, seed=3)))
+    └── 1
+        ├── 4
+        │   ├── 3
+        │   └── 2
+        └── 0
     """
     import networkx as nx
-    tree = nx.dfs_tree(nx.random_tree(n, seed=seed))
+    from networkx.utils import create_py_random_state
+    rng = create_py_random_state(seed)
+    # Create a random undirected tree
+    utree = nx.random_tree(n, seed=rng)
+    # Use a random root node and dfs to define edge directions
+    nodes = list(utree.nodes)
+    source = rng.choice(nodes)
+    edges = nx.dfs_edges(utree, source=source)
+    # Populate the ordered graph
     otree = nx.OrderedDiGraph()
-    otree.add_nodes_from(tree.nodes)
-    otree.add_edges_from(tree.edges)
+    otree.add_nodes_from(utree.nodes)
+    otree.add_edges_from(edges)
     return otree
 
 
@@ -170,10 +190,10 @@ def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
     >>> seq, open_to_close = random_balanced_sequence(10, seed=1, mode='paren')
     >>> print('seq = {!r}'.format(seq))
     seq = (('open', 0), ('open', 1), ('close', 1), ('close', 0))
-    seq = '\x00\x02\x04\x05\x03\x06\x07\x01'
-    seq = (1, 2, 3, -3, -2, 4, -4, -1)
-    seq = ('0(', '1(', '2(', ')2', ')1', '3(', ')3', ')0')
-    seq = '([[{{[]{[]}}{}()}]])'
+    seq = '\x00\x02\x04\x06\x07\x05\x03\x01'
+    seq = (1, 2, 3, 4, -4, -3, -2, -1)
+    seq = ('2(', '1(', '0(', '3(', ')3', ')0', ')1', ')2')
+    seq = '([[[]{{}}](){{[]}}])'
     """
     from networkx.utils import create_py_random_state
     from networkx.algorithms.isomorphism._embedding.tree_embedding import tree_to_seq

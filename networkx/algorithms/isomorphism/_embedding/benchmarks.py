@@ -53,10 +53,10 @@ def bench_maximum_common_path_embedding():
 
     # TODO: parametarize demo names
     # BENCH_MODE = None
-    BENCH_MODE = 'small'
+    # BENCH_MODE = 'small'
     # BENCH_MODE = 'small2'
     # BENCH_MODE = 'recursion-error'
-    # BENCH_MODE = 'medium'
+    BENCH_MODE = 'medium'
     # BENCH_MODE = 'large'
 
     if BENCH_MODE == 'small':
