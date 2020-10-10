@@ -1,9 +1,27 @@
 """
 Algorithm for computing tree embeddings
+
+Issues
+------
+- [ ] strhack is not a good API in `tree_to_seq`
+
+- [ ] Should we return which edges were contracted in each tree to create the
+  embeddings? That seems useful (but maybe not equivalent to the embeddings
+  themselves?) Note, I had an initial attempt to do this, but I haven't found
+  an efficient way to modify the dynamic program yet.
+
+- [ ] How to deal with cython + networkx? Do we need to fix that skbuild with
+  pypy?
+
+- [ ] The open_to_node problem:
+        Note, we may be able to simply use the position of each opening token
+        as a proxy for unique tokens. Pass in an ordered list of nodes, then
+        just use their indexes.
+
 """
 import networkx as nx
 from collections import OrderedDict, defaultdict
-from .balanced_sequence import longest_common_balanced_sequence, UnbalancedException
+from networkx.algorithms.string import balanced_sequence
 
 
 def maximum_common_ordered_tree_embedding(
@@ -72,10 +90,10 @@ def maximum_common_ordered_tree_embedding(
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
-    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree  # NOQA
-    >>> tree1 = random_ordered_tree(7, seed=3257073545741117277206611)
-    >>> tree2 = random_ordered_tree(7, seed=123568587133124688238689717)
+    >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
+    >>> from networkx.generators.random_graphs import random_ordered_tree
+    >>> tree1 = random_ordered_tree(7, seed=3257073545741117277206611, directed=True)
+    >>> tree2 = random_ordered_tree(7, seed=123568587133124688238689717, directed=True)
     >>> print('tree1')
     >>> forest_str(tree1, eager=1)
     >>> print('tree2')
@@ -134,7 +152,7 @@ def maximum_common_ordered_tree_embedding(
     open_to_node = invert_dict(node_to_open)
 
     # Solve the longest common balanced sequence problem
-    best, value = longest_common_balanced_sequence(
+    best, value = balanced_sequence.longest_common_balanced_sequence(
         seq1, seq2, open_to_close, open_to_node=open_to_node,
         node_affinity=node_affinity, impl=impl)
     subseq1, subseq2 = best
@@ -172,7 +190,7 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
@@ -195,8 +213,8 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
             └── 3
     sequence = (1, 2, 3, -3, 4, -4, -2, 5, 6, -6, 7, -7, -5, -1)
 
-    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree  # NOQA
-    >>> tree = random_ordered_tree(2, seed=1)
+    >>> from networkx.generators.random_graphs import random_ordered_tree
+    >>> tree = random_ordered_tree(2, seed=1, directed=True)
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
     >>> print('sequence = {!r}'.format(sequence))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
@@ -301,7 +319,6 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
 
     Example
     --------
-    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_ordered_tree
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
     >>> open_to_node = None
     >>> subseq = '({[[]]})[[][]]{{}}'
@@ -337,11 +354,11 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
             stack.append((token, node))
         else:
             if not stack:
-                raise UnbalancedException
+                raise balanced_sequence.UnbalancedException
             prev_open, prev_node = stack.pop()
             want_close = open_to_close[prev_open]
             if token != want_close:
-                raise UnbalancedException
+                raise balanced_sequence.UnbalancedException
     return subtree
 
 
@@ -372,21 +389,21 @@ def invert_dict(dict_, unique_vals=True):
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
     >>> dict_ = {'a': 1, 'b': 2}
     >>> inverted = invert_dict(dict_)
     >>> assert inverted == {1: 'a', 2: 'b'}
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
     >>> dict_ = OrderedDict([(2, 'a'), (1, 'b'), (0, 'c'), (None, 'd')])
     >>> inverted = invert_dict(dict_)
     >>> assert list(inverted.keys())[0] == 'a'
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
     >>> dict_ = {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'f': 2}
     >>> inverted = invert_dict(dict_, unique_vals=False)
     >>> assert inverted == {0: {'b', 'c', 'd'}, 1: {'a'}, 2: {'f'}}
@@ -405,13 +422,13 @@ def invert_dict(dict_, unique_vals=True):
     return inverted
 
 
-def forest_str(graph, eager=False, write=None, use_labels=True):
+def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
     """
     Creates a nice utf8 representation of a directed forest
 
     Parameters
     ----------
-    graph : nx.DiGraph
+    graph : nx.DiGraph | nx.Graph
         graph to represent (must be a tree, forest, or the empty graph)
 
     eager : bool
@@ -426,6 +443,10 @@ def forest_str(graph, eager=False, write=None, use_labels=True):
         if True will use the "label" attribute of a node to display if it
         exists otherwise it will use the node value itself.
 
+    sources : List
+        Only relevant for undirected graphs, specifies which nodes to list
+        first.
+
     Returns
     -------
     str :
@@ -433,7 +454,7 @@ def forest_str(graph, eager=False, write=None, use_labels=True):
 
     TODO
     ----
-    - [ ] Is this a generally useful utility?
+    - [ ] Is this useful? If so, should this move to networkx.utils
 
     Example
     -------
@@ -455,6 +476,10 @@ def forest_str(graph, eager=False, write=None, use_labels=True):
             └── 3
                 ├── 8
                 └── 7
+
+    >>> import networkx as nx
+    >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.Graph)
+    >>> print(forest_str(graph))
     """
     printbuf = []
     if eager:
@@ -469,16 +494,26 @@ def forest_str(graph, eager=False, write=None, use_labels=True):
         lazyprint('<empty graph>')
     else:
         assert nx.is_forest(graph)
-        sources = [n for n in graph.nodes if graph.in_degree[n] == 0]
 
+        if graph.is_directed():
+            sources = [n for n in graph.nodes if graph.in_degree[n] == 0]
+            succ = graph.succ
+        else:
+            # use arbitrary sources for undirected trees
+            sources = sorted(graph.nodes, key=lambda n: graph.degree[n])
+            succ = graph.adj
+
+        seen = set()
         stack = []
         for idx, node in enumerate(sources):
-            # islast_next = (idx == len(sources))
             islast_next = (idx == 0)
             stack.append((node, '', islast_next))
 
         while stack:
             node, indent, islast = stack.pop()
+            if node in seen:
+                continue
+            seen.add(node)
             if islast:
                 this_prefix = indent + '└── '
                 next_prefix = indent + '    '
@@ -486,12 +521,10 @@ def forest_str(graph, eager=False, write=None, use_labels=True):
                 this_prefix = indent + '├── '
                 next_prefix = indent + '│   '
             label = graph.nodes[node].get('label', node)
-
             lazyprint(this_prefix + str(label))
-            graph.succ[node]
-            children = graph.succ[node]
+
+            children = [child for child in succ[node] if child not in seen]
             for idx, child in enumerate(children, start=1):
-                # islast_next = (idx == len(children))
                 islast_next = (idx <= 1)
                 try_frame = (child, next_prefix, islast_next)
                 stack.append(try_frame)
@@ -505,8 +538,8 @@ def forest_str(graph, eager=False, write=None, use_labels=True):
 if __name__ == '__main__':
     """
     CommandLine:
-        python -m networkx.algorithms.isomorphism._embedding.tree_embedding all
-        python -m networkx.algorithms.isomorphism._embedding all
+        python -m networkx.algorithms.embedding.tree_embedding all
+        python -m networkx.algorithms.embedding all
     """
     import xdoctest
     xdoctest.doctest_module(__file__)
