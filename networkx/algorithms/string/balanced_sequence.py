@@ -1,8 +1,14 @@
 """
-Balanced sequences are used via reduction to solve the maximum common subtree
-embedding problem.
+Core python implementations for the longest common balanced sequence
+subproblem, which is used by
+:module:`networkx.algorithms.embedding.tree_embedding`.
 """
 import operator
+
+__all__ = [
+    'longest_common_balanced_sequence',
+    'available_impls_longest_common_balanced_sequence',
+]
 
 
 def longest_common_balanced_sequence(
@@ -119,7 +125,7 @@ def available_impls_longest_common_balanced_sequence():
     Returns all available implementations for
     :func:`longest_common_balanced_sequence`.
     """
-    from networkx.algorithms.isomorphism._embedding import balanced_sequence
+    from networkx.algorithms.string import balanced_sequence
     impls = []
     if balanced_sequence._cython_lcs_backend():
         impls += [
@@ -144,7 +150,7 @@ def _cython_lcs_backend(error='ignore'):
     Returns the cython backend if available, otherwise None
     """
     try:
-        from networkx.algorithms.isomorphism._embedding import balanced_sequence_cython
+        from networkx.algorithms.string import balanced_sequence_cython
     except Exception:
         if error == 'ignore':
             return None
@@ -878,7 +884,7 @@ def generate_all_decomp(seq, open_to_close, open_to_node=None):
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_balanced_sequence
+    >>> from networkx.algorithms.string.demodata import random_balanced_sequence
     >>> seq, open_to_close = random_balanced_sequence(10)
     >>> all_decomp = generate_all_decomp(seq, open_to_close)
     """
@@ -1034,7 +1040,7 @@ def generate_balance(sequence, open_to_close):
 
     Example
     -------
-    >>> from networkx.algorithms.isomorphism._embedding.demodata import random_balanced_sequence
+    >>> from networkx.algorithms.string.demodata import random_balanced_sequence
     >>> sequence, open_to_close = random_balanced_sequence(4)
     >>> print('sequence = {!r}'.format(sequence))
     >>> gen = list(generate_balance(sequence, open_to_close))

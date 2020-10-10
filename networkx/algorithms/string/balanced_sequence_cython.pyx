@@ -7,14 +7,14 @@ speed improvements that could be made.
 CommandLine
 -----------
 # Explicitly build this cython module (must in networkx repo root)
-cythonize -a -i networkx/algorithms/isomorphism/_embedding/balanced_sequence_cython.pyx
+cythonize -a -i networkx/algorithms/string/balanced_sequence_cython.pyx
 
 
 Examples
 --------
->>> from networkx.algorithms.isomorphism._embedding.balanced_sequence_cython import _lcs_iter_prehash2_cython
->>> from networkx.algorithms.isomorphism._embedding.balanced_sequence_cython import _lcs_iter_simple_alt2_cython
->>> from networkx.algorithms.isomorphism._embedding.demodata import random_balanced_sequence
+>>> from networkx.algorithms.string.balanced_sequence_cython import _lcs_iter_prehash2_cython
+>>> from networkx.algorithms.string.balanced_sequence_cython import _lcs_iter_simple_alt2_cython
+>>> from networkx.algorithms.string.demodata import random_balanced_sequence
 >>> seq1, open_to_close1 = random_balanced_sequence(300, mode='paren')
 >>> seq2, open_to_close2 = random_balanced_sequence(300, mode='paren')
 >>> open_to_close = {**open_to_close1, **open_to_close2}
