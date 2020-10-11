@@ -21,7 +21,9 @@ def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
         sequence.
 
     mode: str
-        the type of sequence returned (see :func:`tree_to_seq` for details)
+        the type of sequence returned (see :func:`tree_to_seq` for details) can
+        also be "param", which is a special case that returns a nested set of
+        parenthesis.
 
     Returns
     -------
@@ -32,20 +34,14 @@ def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
     Example
     -------
     >>> # Demo the various sequence encodings that we might use
-    >>> seq, open_to_close = random_balanced_sequence(2, seed=1, mode='tuple')
-    >>> print('seq = {!r}'.format(seq))
     >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='chr')
     >>> print('seq = {!r}'.format(seq))
     >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='number')
     >>> print('seq = {!r}'.format(seq))
-    >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='str')
-    >>> print('seq = {!r}'.format(seq))
     >>> seq, open_to_close = random_balanced_sequence(10, seed=1, mode='paren')
     >>> print('seq = {!r}'.format(seq))
-    seq = (('open', 0), ('open', 1), ('close', 1), ('close', 0))
     seq = '\x00\x02\x04\x06\x07\x05\x03\x01'
     seq = (1, 2, 3, 4, -4, -3, -2, -1)
-    seq = ('2(', '1(', '0(', '3(', ')3', ')0', ')1', ')2')
     seq = '([[[]{{}}](){{[]}}])'
     """
     from networkx.algorithms.embedding.tree_embedding import tree_to_seq
@@ -53,13 +49,17 @@ def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
     from networkx.utils import create_py_random_state
     # Create a random otree and then convert it to a balanced sequence
     rng = create_py_random_state(seed)
-    tree = random_ordered_tree(n, seed=rng)
+
+    # To create a random balanced sequences we simply create a random ordered
+    # tree and convert it to a sequence
+    tree = random_ordered_tree(n, seed=rng, directed=True)
     if mode == 'paren':
+        # special case
         pool = '[{('
         for node in tree.nodes:
             tree.nodes[node]['label'] = rng.choice(pool)
         seq, open_to_close, _ = tree_to_seq(
-            tree, mode=mode, open_to_close=open_to_close, strhack=1)
+            tree, mode=mode, open_to_close=open_to_close, container='str')
     else:
         seq, open_to_close, _ = tree_to_seq(
             tree, mode=mode, open_to_close=open_to_close)

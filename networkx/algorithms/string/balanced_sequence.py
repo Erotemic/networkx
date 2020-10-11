@@ -13,7 +13,7 @@ __all__ = [
 
 def longest_common_balanced_sequence(
         seq1, seq2, open_to_close, open_to_node=None,
-        node_affinity='auto', impl='iter-prehash2'):
+        node_affinity='auto', impl='auto'):
     """
     Finds the longest common balanced sequence between two sequences
 
@@ -38,11 +38,10 @@ def longest_common_balanced_sequence(
         The default is "eq", which is the same as ``operator.eq``.
 
     impl : str
-        Determines the backend implementation. There are currently 8 different
-        backend implementations:
-
-        recurse, iter, iter-prehash, iter-prehash2, iter-alt1, iter-alt2,
-        iter-alt2-cython, and iter-prehash2-cython.
+        Determines the backend implementation. There are currently 3 different
+        backend implementations:  "recurse", "iter", and "iter-cython". The
+        default is "auto", which choose "iter-cython" if available, otherwise
+        "iter".
 
     Example
     -------
@@ -86,6 +85,12 @@ def longest_common_balanced_sequence(
         open_to_node = IdentityDict()
     full_seq1 = seq1
     full_seq2 = seq2
+    if impl == 'auto':
+        if _cython_lcs_backend(error='ignore'):
+            impl = 'iter-cython'
+        else:
+            impl = 'iter'
+
     if impl == 'recurse':
         _memo = {}
         _seq_memo = {}
@@ -93,27 +98,11 @@ def longest_common_balanced_sequence(
             full_seq1, full_seq2, open_to_close, node_affinity, open_to_node,
             _memo, _seq_memo)
     elif impl == 'iter':
-        best, value = _lcs_iter_simple(
+        best, value = _lcs_iter(
             full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
-    elif impl == 'iter-prehash':
-        best, value = _lcs_iter_prehash(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
-    elif impl == 'iter-prehash2':
-        best, value = _lcs_iter_prehash2(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
-    elif impl == 'iter-alt1':
-        best, value = _lcs_iter_simple_alt1(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
-    elif impl == 'iter-alt2':
-        best, value = _lcs_iter_simple_alt2(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
-    elif impl == 'iter-alt2-cython':
+    elif impl == 'iter-cython':
         balanced_sequence_cython = _cython_lcs_backend(error='raise')
-        best, value = balanced_sequence_cython._lcs_iter_simple_alt2_cython(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
-    elif impl == 'iter-prehash2-cython':
-        balanced_sequence_cython = _cython_lcs_backend(error='raise')
-        best, value = balanced_sequence_cython._lcs_iter_prehash2_cython(
+        best, value = balanced_sequence_cython._lcs_iter_cython(
             full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     else:
         raise KeyError(impl)
@@ -125,20 +114,14 @@ def available_impls_longest_common_balanced_sequence():
     Returns all available implementations for
     :func:`longest_common_balanced_sequence`.
     """
-    from networkx.algorithms.string import balanced_sequence
     impls = []
-    if balanced_sequence._cython_lcs_backend():
+    if _cython_lcs_backend():
         impls += [
-            'iter-alt2-cython',
-            'iter-prehash2-cython',
+            'iter-cython',
         ]
 
     # Pure python backends
     impls += [
-        'iter-prehash2',
-        'iter-alt2',
-        'iter-alt1',
-        'iter-prehash',
         'iter',
         'recurse',
     ]
@@ -162,11 +145,16 @@ def _cython_lcs_backend(error='ignore'):
         return balanced_sequence_cython
 
 
-def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
+def _lcs_iter(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     """
     Depth first stack trajectory and replace try except statements with ifs
 
     This is the current best pure-python algorithm candidate
+
+    Converts _lcs_recursive to an iterative algorithm using a fairly
+    straightforward method that effectivly simulates callstacks.
+    Uses a breadth-first trajectory and try-except to catch missing
+    memoized results (which seems to be slightly slower than if statements).
 
     >>> full_seq1 = '{({})([[]([]){(()(({()[]({}{})}))){}}])}'
     >>> full_seq2 = '{[({{}}{{[][{}]}(()[(({()})){[]()}])})]}'
@@ -177,7 +165,8 @@ def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, op
     >>> import operator as op
     >>> node_affinity = op.eq
     >>> open_to_node = IdentityDict()
-    >>> res = _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
+    >>> res = _lcs_iter(full_seq1, full_seq2, open_to_close, node_affinity,
+    >>>                 open_to_node)
     >>> val, embeddings = res
     """
     all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_node)
@@ -283,125 +272,8 @@ def _lcs_iter_simple_alt2(full_seq1, full_seq2, open_to_close, node_affinity, op
     return found
 
 
-def _lcs_iter_prehash2(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
-    """
-    Version of the lcs iterative algorithm where we precompute hash values
-
-    See :func:`longest_common_balanced_sequence` for parameter details.
-    """
-
-    all_decomp1 = generate_all_decomp_prehash(full_seq1, open_to_close, open_to_node)
-    all_decomp2 = generate_all_decomp_prehash(full_seq2, open_to_close, open_to_node)
-
-    key_decomp1 = {}
-    key_decomp2 = {}
-    _results = {}
-    # Populate base cases
-    empty1 = type(next(iter(all_decomp1.keys())))()
-    empty2 = type(next(iter(all_decomp2.keys())))()
-    empty1_key = hash(empty1)
-    empty2_key = hash(empty2)
-    best = (empty1, empty2)
-    base_result = (0, best)
-    for seq1, info1 in all_decomp1.items():
-        seq1_key = hash(seq1)
-        head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]
-        _results[(seq1_key, empty2_key)] = base_result
-        _results[(head1_key, empty2_key)] = base_result
-        _results[(tail1_key, empty2_key)] = base_result
-        _results[(head_tail1_key, empty2_key)] = base_result
-        key_decomp1[seq1_key] = info1
-
-    for seq2, info2 in all_decomp2.items():
-        seq2_key = hash(seq2)
-        head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]
-        _results[(empty1_key, seq2_key)] = base_result
-        _results[(empty1_key, head2_key)] = base_result
-        _results[(empty1_key, tail2_key)] = base_result
-        _results[(empty1_key, head_tail2_key)] = base_result
-        key_decomp2[seq2_key] = info2
-
-    full_seq1_key = hash(full_seq1)
-    full_seq2_key = hash(full_seq2)
-    key0 = (full_seq1_key, full_seq2_key)
-    frame0 = key0, full_seq1, full_seq2
-    stack = [frame0]
-    missing_frames = []
-    while stack:
-        frame = stack[-1]
-        key, seq1, seq2 = frame
-        seq1_key, seq2_key = key
-        if key not in _results:
-            missing_frames.clear()
-
-            info1 = key_decomp1[seq1_key]
-            tok1, seq1, head1, tail1, head_tail1, head1_key, tail1_key, head_tail1_key, a1, b1 = info1
-
-            # if seq2_key not in key_decomp2:
-            info2 = key_decomp2[seq2_key]
-            tok2, seq2, head2, tail2, head_tail2, head2_key, tail2_key, head_tail2_key, a2, b2 = info2
-
-            affinity = node_affinity(tok1, tok2)
-
-            # Case 2: The current edge in sequence1 is deleted
-            try_key = (head_tail1_key, seq2_key)
-            if try_key in _results:
-                cand1 = _results[try_key]
-            else:
-                miss_frame = try_key, head_tail1, seq2
-                stack.append(miss_frame)
-                continue
-
-            # Case 3: The current edge in sequence2 is deleted
-            try_key = (seq1_key, head_tail2_key)
-            if try_key in _results:
-                cand2 = _results[try_key]
-            else:
-                miss_frame = try_key, seq1, head_tail2
-                stack.append(miss_frame)
-                continue
-
-            # Case 1: The LCS involves this edge
-            if affinity:
-                try_key = (head1_key, head2_key)
-                if try_key in _results:
-                    pval_h, new_heads = _results[try_key]
-                else:
-                    miss_frame = try_key, head1, head2
-                    stack.append(miss_frame)
-                    continue
-
-                try_key = (tail1_key, tail2_key)
-                if try_key in _results:
-                    pval_t, new_tails = _results[try_key]
-                else:
-                    miss_frame = try_key, tail1, tail2
-                    stack.append(miss_frame)
-                    continue
-
-                new_head1, new_head2 = new_heads
-                new_tail1, new_tail2 = new_tails
-
-                subseq1 = a1 + new_head1 + b1 + new_tail1
-                subseq2 = a2 + new_head2 + b2 + new_tail2
-
-                res3 = (subseq1, subseq2)
-                val3 = pval_h + pval_t + affinity
-                cand3 = (val3, res3)
-            else:
-                cand3 = (-1, None)
-
-            # We solved the frame
-            _results[key] = max(cand1, cand2, cand3)
-        stack.pop()
-
-    # The stack pop is our solution
-    (val, best) = _results[key0]
-    found = (best, val)
-    return found
-
-
-def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo):
+def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_node, _memo,
+                 _seq_memo):
     """
     Surprisingly, this recursive implementation is one of the faster
     pure-python methods for certain input types. However, its major drawback is
@@ -421,20 +293,25 @@ def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_node, _memo, 
         if key1 in _seq_memo:
             a1, b1, head1, tail1, head1_tail1 = _seq_memo[key1]
         else:
-            a1, b1, head1, tail1, head1_tail1 = balanced_decomp_unsafe(seq1, open_to_close)
+            a1, b1, head1, tail1, head1_tail1 = balanced_decomp_unsafe(
+                seq1, open_to_close)
             _seq_memo[key1] = a1, b1, head1, tail1, head1_tail1
 
         if key2 in _seq_memo:
             a2, b2, head2, tail2, head2_tail2 = _seq_memo[key2]
         else:
-            a2, b2, head2, tail2, head2_tail2 = balanced_decomp_unsafe(seq2, open_to_close)
+            a2, b2, head2, tail2, head2_tail2 = balanced_decomp_unsafe(
+                seq2, open_to_close)
             _seq_memo[key2] = a2, b2, head2, tail2, head2_tail2
 
         # Case 2: The current edge in sequence1 is deleted
-        best, val = _lcs_recurse(head1_tail1, seq2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
+        best, val = _lcs_recurse(head1_tail1, seq2, open_to_close,
+                                 node_affinity, open_to_node, _memo, _seq_memo)
 
         # Case 3: The current edge in sequence2 is deleted
-        cand, val_alt = _lcs_recurse(seq1, head2_tail2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
+        cand, val_alt = _lcs_recurse(seq1, head2_tail2, open_to_close,
+                                     node_affinity, open_to_node, _memo,
+                                     _seq_memo)
         if val_alt > val:
             best = cand
             val = val_alt
@@ -444,8 +321,12 @@ def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_node, _memo, 
         t2 = open_to_node[a2[0]]
         affinity = node_affinity(t1, t2)
         if affinity:
-            new_heads, pval_h = _lcs_recurse(head1, head2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
-            new_tails, pval_t = _lcs_recurse(tail1, tail2, open_to_close, node_affinity, open_to_node, _memo, _seq_memo)
+            new_heads, pval_h = _lcs_recurse(
+                head1, head2, open_to_close, node_affinity, open_to_node,
+                _memo, _seq_memo)
+            new_tails, pval_t = _lcs_recurse(
+                tail1, tail2, open_to_close, node_affinity, open_to_node,
+                _memo, _seq_memo)
 
             new_head1, new_head2 = new_heads
             new_tail1, new_tail2 = new_tails
@@ -462,344 +343,6 @@ def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_node, _memo, 
         found = (best, val)
         _memo[key] = found
         return found
-
-
-def _lcs_iter_simple(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
-    """
-    Converts _lcs_recursive to an iterative algorithm using a fairly
-    straightforward method that effectivly simulates callstacks.
-    Uses a breadth-first trajectory and try-except to catch missing
-    memoized results (which seems to be slightly slower than if statements).
-    """
-    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_node)
-    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_node)
-
-    args0 = (full_seq1, full_seq2)
-    frame0 = args0
-    stack = [frame0]
-
-    _results = {}
-    # Populate base cases
-    empty1 = type(next(iter(all_decomp1.keys())))()
-    empty2 = type(next(iter(all_decomp2.keys())))()
-    best = (empty1, empty2)
-    base_result = (0, best)
-    for seq1 in all_decomp1.keys():
-        key1 = seq1
-        t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[key1]
-        _results[(seq1, empty2)] = base_result
-        _results[(head1, empty2)] = base_result
-        _results[(tail1, empty2)] = base_result
-        _results[(head_tail1, empty2)] = base_result
-
-    for seq2 in all_decomp2.keys():
-        key2 = seq2
-        t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[key2]
-        _results[(empty1, seq2)] = base_result
-        _results[(empty1, head2)] = base_result
-        _results[(empty1, tail2)] = base_result
-        _results[(empty1, head_tail2)] = base_result
-
-    del args0
-    del frame0
-    del empty1
-    del empty2
-    del best
-    del base_result
-
-    missing_frames = []
-    while stack:
-        key = stack.pop()
-        if key not in _results:
-            seq1, seq2 = key
-            missing_frames.clear()
-
-            t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[seq1]
-            t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[seq2]
-
-            # Case 2: The current edge in sequence1 is deleted
-            try:
-                try_key = (head_tail1, seq2)
-                cand1 = _results[try_key]
-            except KeyError:
-                missing_frames.append(try_key)
-
-            # Case 3: The current edge in sequence2 is deleted
-            try:
-                try_key = (seq1, head_tail2)
-                cand2 = _results[try_key]
-            except KeyError:
-                missing_frames.append(try_key)
-
-            # Case 1: The LCS involves this edge
-            affinity = node_affinity(t1, t2)
-            if affinity:
-                try:
-                    try_key = (head1, head2)
-                    pval_h, new_heads = _results[try_key]
-                except KeyError:
-                    missing_frames.append(try_key)
-
-                try:
-                    try_key = (tail1, tail2)
-                    pval_t, new_tails = _results[try_key]
-                except KeyError:
-                    missing_frames.append(try_key)
-
-                if not missing_frames:
-                    new_head1, new_head2 = new_heads
-                    new_tail1, new_tail2 = new_tails
-
-                    subseq1 = a1 + new_head1 + b1 + new_tail1
-                    subseq2 = a2 + new_head2 + b2 + new_tail2
-
-                    res3 = (subseq1, subseq2)
-                    val3 = pval_h + pval_t + affinity
-                    cand3 = (val3, res3)
-            else:
-                cand3 = (-1, None)
-
-            if missing_frames:
-                # We did not solve this frame yet
-                stack.append(key)
-                stack.extend(missing_frames)
-                # stack.extend(missing_frames[::-1])
-            else:
-                # We solved the frame
-                _results[key] = max(cand1, cand2, cand3)
-
-    val, best = _results[key]
-    found = (best, val)
-    return found
-
-
-def _lcs_iter_simple_alt1(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
-    """
-    Depth first stack trajectory
-    """
-    all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_node)
-    all_decomp2 = generate_all_decomp(full_seq2, open_to_close, open_to_node)
-
-    args0 = (full_seq1, full_seq2)
-    frame0 = args0
-    stack = [frame0]
-
-    _results = {}
-    # Populate base cases
-    empty1 = type(next(iter(all_decomp1.keys())))()
-    empty2 = type(next(iter(all_decomp2.keys())))()
-    best = (empty1, empty2)
-    base_result = (0, best)
-    for seq1 in all_decomp1.keys():
-        key1 = seq1
-        t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[key1]
-        _results[(seq1, empty2)] = base_result
-        _results[(head1, empty2)] = base_result
-        _results[(tail1, empty2)] = base_result
-        _results[(head_tail1, empty2)] = base_result
-
-    for seq2 in all_decomp2.keys():
-        key2 = seq2
-        t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[key2]
-        _results[(empty1, seq2)] = base_result
-        _results[(empty1, head2)] = base_result
-        _results[(empty1, tail2)] = base_result
-        _results[(empty1, head_tail2)] = base_result
-
-    del args0
-    del frame0
-    del empty1
-    del empty2
-    del best
-    del base_result
-
-    while stack:
-        key = stack.pop()
-        if key not in _results:
-            seq1, seq2 = key
-
-            t1, a1, b1, head1, tail1, head_tail1 = all_decomp1[seq1]
-            t2, a2, b2, head2, tail2, head_tail2 = all_decomp2[seq2]
-
-            # Case 2: The current edge in sequence1 is deleted
-            try:
-                try_key = (head_tail1, seq2)
-                cand1 = _results[try_key]
-            except KeyError:
-                stack.append(key)
-                stack.append(try_key)
-                continue
-
-            # Case 3: The current edge in sequence2 is deleted
-            try:
-                try_key = (seq1, head_tail2)
-                cand2 = _results[try_key]
-            except KeyError:
-                stack.append(key)
-                stack.append(try_key)
-                continue
-
-            # Case 1: The LCS involves this edge
-            affinity = node_affinity(t1, t2)
-            if affinity:
-                try:
-                    try_key = (head1, head2)
-                    pval_h, new_heads = _results[try_key]
-                except KeyError:
-                    stack.append(key)
-                    stack.append(try_key)
-                    continue
-
-                try:
-                    try_key = (tail1, tail2)
-                    pval_t, new_tails = _results[try_key]
-                except KeyError:
-                    stack.append(key)
-                    stack.append(try_key)
-                    continue
-
-                new_head1, new_head2 = new_heads
-                new_tail1, new_tail2 = new_tails
-
-                subseq1 = a1 + new_head1 + b1 + new_tail1
-                subseq2 = a2 + new_head2 + b2 + new_tail2
-
-                res3 = (subseq1, subseq2)
-                val3 = pval_h + pval_t + affinity
-                cand3 = (val3, res3)
-            else:
-                cand3 = (-1, None)
-
-            # We solved the frame
-            _results[key] = max(cand1, cand2, cand3)
-
-    val, best = _results[key]
-    found = (best, val)
-    return found
-
-
-def _lcs_iter_prehash(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
-    """
-    Version of the lcs iterative algorithm where we precompute hash values.
-    Uses a breadth-first trajectory.
-    """
-    all_decomp1 = generate_all_decomp_prehash(full_seq1, open_to_close, open_to_node)
-    all_decomp2 = generate_all_decomp_prehash(full_seq2, open_to_close, open_to_node)
-
-    key_decomp1 = {}
-    key_decomp2 = {}
-    _results = {}
-    # Populate base cases
-    empty1 = type(next(iter(all_decomp1.keys())))()
-    empty2 = type(next(iter(all_decomp2.keys())))()
-    empty1_key = hash(empty1)
-    empty2_key = hash(empty2)
-    best = (empty1, empty2)
-    base_result = (0, best)
-    for seq1, info1 in all_decomp1.items():
-        seq1_key = hash(seq1)
-        head1_key, tail1_key, head_tail1_key = all_decomp1[seq1][5:8]
-        _results[(seq1_key, empty2_key)] = base_result
-        _results[(head1_key, empty2_key)] = base_result
-        _results[(tail1_key, empty2_key)] = base_result
-        _results[(head_tail1_key, empty2_key)] = base_result
-        key_decomp1[seq1_key] = info1
-
-    for seq2, info2 in all_decomp2.items():
-        seq2_key = hash(seq2)
-        head2_key, tail2_key, head_tail2_key = all_decomp2[seq2][5:8]
-        _results[(empty1_key, seq2_key)] = base_result
-        _results[(empty1_key, head2_key)] = base_result
-        _results[(empty1_key, tail2_key)] = base_result
-        _results[(empty1_key, head_tail2_key)] = base_result
-        key_decomp2[seq2_key] = info2
-
-    full_seq1_key = hash(full_seq1)
-    full_seq2_key = hash(full_seq2)
-    key0 = (full_seq1_key, full_seq2_key)
-    frame0 = key0, full_seq1, full_seq2
-    stack = [frame0]
-    missing_frames = []
-    while stack:
-        frame = stack.pop()
-        key, seq1, seq2 = frame
-        seq1_key, seq2_key = key
-        if key not in _results:
-            missing_frames.clear()
-
-            try:
-                info1 = key_decomp1[seq1_key]
-            except KeyError:
-                info1 = balanced_decomp_prehash(seq1, open_to_close)
-                key_decomp1[seq1_key] = info1
-            tok1, seq1, head1, tail1, head_tail1, head1_key, tail1_key, head_tail1_key, a1, b1 = info1
-
-            try:
-                info2 = key_decomp2[seq2_key]
-            except KeyError:
-                info2 = balanced_decomp_prehash(seq2, open_to_close)
-                key_decomp2[seq2_key] = info2
-            tok2, seq2, head2, tail2, head_tail2, head2_key, tail2_key, head_tail2_key, a2, b2 = info2
-
-            affinity = node_affinity(tok1, tok2)
-
-            # Case 2: The current edge in sequence1 is deleted
-            try:
-                try_key = (head_tail1_key, seq2_key)
-                cand1 = _results[try_key]
-            except KeyError:
-                miss_frame = try_key, head_tail1, seq2
-                missing_frames.append(miss_frame)
-
-            # Case 3: The current edge in sequence2 is deleted
-            try:
-                try_key = (seq1_key, head_tail2_key)
-                cand2 = _results[try_key]
-            except KeyError:
-                miss_frame = try_key, seq1, head_tail2
-                missing_frames.append(miss_frame)
-
-            # Case 1: The LCS involves this edge
-            if affinity:
-                try:
-                    try_key = (head1_key, head2_key)
-                    pval_h, new_heads = _results[try_key]
-                except KeyError:
-                    miss_frame = try_key, head1, head2
-                    missing_frames.append(miss_frame)
-
-                try:
-                    try_key = (tail1_key, tail2_key)
-                    pval_t, new_tails = _results[try_key]
-                except KeyError:
-                    miss_frame = try_key, tail1, tail2
-                    missing_frames.append(miss_frame)
-
-                if not missing_frames:
-                    new_head1, new_head2 = new_heads
-                    new_tail1, new_tail2 = new_tails
-
-                    subseq1 = a1 + new_head1 + b1 + new_tail1
-                    subseq2 = a2 + new_head2 + b2 + new_tail2
-
-                    res3 = (subseq1, subseq2)
-                    val3 = pval_h + pval_t + affinity
-                    cand3 = (val3, res3)
-            else:
-                cand3 = (-1, None)
-
-            if missing_frames:
-                # We did not solve this frame yet
-                stack.append(frame)
-                stack.extend(missing_frames[::-1])
-            else:
-                # We solved the frame
-                _results[key] = max(cand1, cand2, cand3)
-
-    # The stack pop is our solution
-    (val, best) = _results[key]
-    found = (best, val)
-    return found
 
 
 class UnbalancedException(Exception):
@@ -895,9 +438,11 @@ def generate_all_decomp(seq, open_to_close, open_to_node=None):
     while stack:
         seq = stack.pop()
         if seq not in all_decomp and seq:
-            pop_open, pop_close, head, tail, head_tail = balanced_decomp(seq, open_to_close)
+            (pop_open, pop_close,
+             head, tail, head_tail) = balanced_decomp(seq, open_to_close)
             node = open_to_node[pop_open[0]]
-            all_decomp[seq] = (node, pop_open, pop_close, head, tail, head_tail)
+            all_decomp[seq] = (node, pop_open, pop_close,
+                               head, tail, head_tail)
             if head:
                 if tail:
                     stack.append(head_tail)
@@ -919,7 +464,7 @@ def balanced_decomp(sequence, open_to_close):
 
     open_to_close: dict
         a dictionary that maps opening tokens to closing tokens in the balanced
-        sequence problem.
+             sequence problem.
 
     Returns
     -------
@@ -1070,44 +615,6 @@ def generate_balance(sequence, open_to_close):
 
     if stack:
         raise UnbalancedException
-
-
-def generate_all_decomp_prehash(seq, open_to_close, open_to_node):
-    """
-    Like :func:`generate_all_decomp` but additionally returns the
-    precomputed hashes of the sequences.
-    """
-    all_decomp = {}
-    stack = [seq]
-    while stack:
-        seq = stack.pop()
-        if seq:
-            # key = hash(seq)
-            key = seq
-            if key not in all_decomp:
-                info = balanced_decomp_prehash(seq, open_to_close, open_to_node)
-                head, tail, head_tail = info[2:5]
-                all_decomp[key] = info
-                stack.append(head_tail)
-                stack.append(head)
-                stack.append(tail)
-    return all_decomp
-
-
-def balanced_decomp_prehash(seq, open_to_close, open_to_node):
-    """
-    Like :func:`balanced_decomp` but additionally returns the
-    precomputed hashes of the sequences.
-    """
-    pop_open, pop_close, head, tail, head_tail = balanced_decomp_unsafe(seq, open_to_close)
-    head_key = hash(head)
-    tail_key = hash(tail)
-    head_tail_key = hash(head_tail)
-    node = open_to_node[pop_open[0]]
-    a = pop_open
-    b = pop_close
-    info = (node, seq, head, tail, head_tail, head_key, tail_key, head_tail_key, a, b)
-    return info
 
 
 def balanced_decomp_unsafe(sequence, open_to_close):

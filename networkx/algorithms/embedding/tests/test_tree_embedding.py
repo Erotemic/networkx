@@ -12,7 +12,7 @@ def test_null_common_embedding():
     The empty graph is not a tree and should raise an error
     """
     empty = nx.OrderedDiGraph()
-    non_empty = random_ordered_tree(n=1)
+    non_empty = random_ordered_tree(n=1, directed=True)
 
     with pytest.raises(nx.NetworkXPointlessConcept):
         maximum_common_ordered_tree_embedding(empty, empty)
@@ -30,7 +30,7 @@ def test_self_common_embedding():
     """
     rng = create_py_random_state(85652972257)
     for n in range(1, 10):
-        tree = random_ordered_tree(n=n, seed=rng)
+        tree = random_ordered_tree(n=n, seed=rng, directed=True)
         embedding1, embedding2 = maximum_common_ordered_tree_embedding(
             tree, tree)
         assert tree.edges == embedding1.edges
@@ -75,8 +75,8 @@ def test_all_implementations_are_same():
         n1 = rng.randint(1, maxsize)
         n2 = rng.randint(1, maxsize)
 
-        tree1 = random_ordered_tree(n1, seed=rng)
-        tree2 = random_ordered_tree(n2, seed=rng)
+        tree1 = random_ordered_tree(n1, seed=rng, directed=True)
+        tree2 = random_ordered_tree(n2, seed=rng, directed=True)
 
         # Note: the returned sequences may be different (maximum embeddings may
         # not be unique), but the values should all be the same.

@@ -10,7 +10,8 @@ from networkx.algorithms.embedding import maximum_common_ordered_tree_embedding
 import operator
 
 
-def maximum_common_path_embedding(paths1, paths2, sep='/', impl='iter-alt2', mode='chr'):
+def maximum_common_path_embedding(paths1, paths2, sep='/', impl='auto',
+                                  mode='auto'):
     """
     Finds the maximum path embedding common between two sets of paths
 
@@ -194,7 +195,6 @@ def random_paths(
     >>> tree = paths_to_otree(paths1)
     >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
     >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
-    >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
     >>> # xdoctest: +REQUIRES(module:ubelt)
     >>> import ubelt as ub
     >>> print('paths1 = {}'.format(ub.repr2(paths1, nl=1)))
@@ -276,23 +276,24 @@ def bench_maximum_common_path_embedding():
     """
     Runs algorithm benchmarks over a range of parameters
 
-    xdoctest -m examples/applications/plot_filesystem_embedding.py bench_maximum_common_path_embedding
+    xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
     """
     import itertools as it
     import ubelt as ub
     import timerit
-    from networkx.algorithms.strings import balanced_sequence
+    from networkx.algorithms.string import balanced_sequence
 
     data_modes = []
+
+    available_impls = balanced_sequence.available_impls_longest_common_balanced_sequence()
 
     # Define which implementations we are going to test
     run_basis = {
         'mode': [
             'chr',
-            # 'number'
-            # 'tuple',  # by far the slowest
+            'number'
         ],
-        'impl': balanced_sequence.available_impls_longest_common_balanced_sequence(),
+        'impl': available_impls,
     }
 
     # Define the properties of the random data we are going to test on
@@ -307,20 +308,14 @@ def bench_maximum_common_path_embedding():
     }
 
     # run_basis['impl'] = set(run_basis['impl']) & {
-    #     'iter-alt2-cython',
-    #     'iter-prehash2-cython',
-    #     'iter-prehash2',
-    #     'iter-alt2',
-    #     # 'iter-alt1',
-    #     # 'iter-prehash',
-    #     # 'iter',
-    #     # 'recurse'
+    #     'iter-cython',
+    #     'iter',
+    #     'recurse'
     # }
 
     # TODO: parametarize demo names
     # BENCH_MODE = None
     # BENCH_MODE = 'small'
-    # BENCH_MODE = 'small2'
     # BENCH_MODE = 'recursion-error'
     BENCH_MODE = 'medium'
     # BENCH_MODE = 'large'
@@ -334,50 +329,13 @@ def bench_maximum_common_path_embedding():
             'prefix_depth2': [0],
             'labels': [4]
         }
-        run_basis['impl'] = set(run_basis['impl']) & {
-            # 'iter-alt2-cython',
-            'iter-prehash2-cython',
-            'iter-prehash2',
-            # 'iter-alt2',
-            # 'iter',
-            # 'recurse',
-        }
-        run_basis['impl'] = ub.oset(balanced_sequence.available_impls_longest_common_balanced_sequence()) - {
-                'recurse',
-        }
-        # runparam_to_time = {
-        #     ('chr', 'iter-prehash2-cython'): {'mean': 0.062, 'max': 0.157},
-        #     ('chr', 'iter-prehash2')       : {'mean': 0.071, 'max': 0.185},
-        # }
-
-    if BENCH_MODE == 'small2':
-        data_basis = {
-            'size': [30],
-            'max_depth': [8, 2],
-            'common': [2, 8],
-            'prefix_depth1': [0, 4],
-            'prefix_depth2': [0],
-            'labels': [4]
-        }
-        run_basis['impl'] = ub.oset(balanced_sequence.available_impls_longest_common_balanced_sequence()) - {
-                'recurse',
-        }
+        run_basis['impl'] = ub.oset(available_impls) - {'recurse'}
         run_basis['mode'] = ['number', 'chr']
         # runparam_to_time = {
-        #     ('chr', 'iter-alt2-cython')       : {'mean': 0.036, 'max': 0.094},
-        #     ('chr', 'iter-alt2')              : {'mean': 0.049, 'max': 0.125},
-        #     ('chr', 'iter-alt1')              : {'mean': 0.050, 'max': 0.129},
-        #     ('chr', 'iter-prehash2-cython')   : {'mean': 0.057, 'max': 0.146},
-        #     ('number', 'iter-prehash2-cython'): {'mean': 0.057, 'max': 0.146},
-        #     ('chr', 'iter')                   : {'mean': 0.064, 'max': 0.167},
-        #     ('chr', 'iter-prehash2')          : {'mean': 0.066, 'max': 0.170},
-        #     ('number', 'iter-prehash2')       : {'mean': 0.067, 'max': 0.176},
-        #     ('chr', 'iter-prehash')           : {'mean': 0.073, 'max': 0.187},
-        #     ('number', 'iter-prehash')        : {'mean': 0.074, 'max': 0.196},
-        #     ('number', 'iter-alt1')           : {'mean': 0.126, 'max': 0.344},
-        #     ('number', 'iter-alt2-cython')    : {'mean': 0.133, 'max': 0.363},
-        #     ('number', 'iter')                : {'mean': 0.140, 'max': 0.386},
-        #     ('number', 'iter-alt2')           : {'mean': 0.149, 'max': 0.408},
+        #     ('chr', 'iter-cython')       : {'mean': 0.036, 'max': 0.094},
+        #     ('chr', 'iter')              : {'mean': 0.049, 'max': 0.125},
+        #     ('number', 'iter-cython')    : {'mean': 0.133, 'max': 0.363},
+        #     ('number', 'iter')           : {'mean': 0.149, 'max': 0.408},
         # }
 
     if BENCH_MODE == 'medium':
@@ -391,14 +349,9 @@ def bench_maximum_common_path_embedding():
         }
         # Results
         # runparam_to_time = {
-        #     ('chr', 'iter-alt2-cython')    : {'mean': 0.112, 'max': 0.467},
-        #     ('chr', 'recurse')             : {'mean': 0.153, 'max': 0.648},
-        #     ('chr', 'iter-alt2')           : {'mean': 0.155, 'max': 0.661},
-        #     ('chr', 'iter-alt1')           : {'mean': 0.163, 'max': 0.707},
-        #     ('chr', 'iter-prehash2-cython'): {'mean': 0.197, 'max': 0.849},
-        #     ('chr', 'iter')                : {'mean': 0.216, 'max': 0.933},
-        #     ('chr', 'iter-prehash2')       : {'mean': 0.225, 'max': 0.974},
-        #     ('chr', 'iter-prehash')        : {'mean': 0.253, 'max': 1.097},
+        #     ('chr', 'iter-cython')    : {'mean': 0.112, 'max': 0.467},
+        #     ('chr', 'recurse')        : {'mean': 0.153, 'max': 0.648},
+        #     ('chr', 'iter')           : {'mean': 0.155, 'max': 0.661},
         # }
 
     if BENCH_MODE == 'large':
@@ -410,16 +363,11 @@ def bench_maximum_common_path_embedding():
             'prefix_depth2': [2],
             'labels': [8]
         }
-        run_basis['impl'] = balanced_sequence.available_impls_longest_common_balanced_sequence()
+        run_basis['impl'] = available_impls
         # runparam_to_time = {
-        #     ('chr', 'iter-alt2-cython')    : {'mean': 0.282, 'max': 0.923},
-        #     ('chr', 'recurse')             : {'mean': 0.397, 'max': 1.297},
-        #     ('chr', 'iter-alt2')           : {'mean': 0.409, 'max': 1.328},
-        #     ('chr', 'iter-alt1')           : {'mean': 0.438, 'max': 1.428},
-        #     ('chr', 'iter-prehash2-cython'): {'mean': 0.511, 'max': 1.668},
-        #     ('chr', 'iter')                : {'mean': 0.580, 'max': 1.915},
-        #     ('chr', 'iter-prehash2')       : {'mean': 0.605, 'max': 1.962},
-        #     ('chr', 'iter-prehash')        : {'mean': 0.679, 'max': 2.211},
+        #     ('chr', 'iter-cython')    : {'mean': 0.282, 'max': 0.923},
+        #     ('chr', 'recurse')        : {'mean': 0.397, 'max': 1.297},
+        #     ('chr', 'iter')           : {'mean': 0.409, 'max': 1.328},
         # }
 
     elif BENCH_MODE == 'too-big':
@@ -440,20 +388,15 @@ def bench_maximum_common_path_embedding():
             'prefix_depth2': [0],
             'labels': [256]
         }
-        run_basis['impl'] = ub.oset(['recurse']) | ub.oset(balanced_sequence.available_impls_longest_common_balanced_sequence())
+        run_basis['impl'] = ub.oset(['recurse']) | ub.oset(available_impls)
         # Results
         # complexity = 69.48
         # stats1 = {'depth': 395, 'n_edges': 1203, 'n_leafs': 4, 'n_nodes': 1207, 'npaths': 4}
         # stats2 = {'depth': 395, 'n_edges': 1203, 'n_leafs': 4, 'n_nodes': 1207, 'npaths': 4}
         # runparam_to_time = {
-        #     ('chr', 'recurse')             : {'mean': NAN, 'max': NAN},
-        #     ('chr', 'iter-alt2-cython')    : {'mean': 7.979, 'max': 7.979},
-        #     ('chr', 'iter-alt2')           : {'mean': 11.307, 'max': 11.307},
-        #     ('chr', 'iter-alt1')           : {'mean': 11.659, 'max': 11.659},
-        #     ('chr', 'iter-prehash2-cython'): {'mean': 15.230, 'max': 15.230},
-        #     ('chr', 'iter-prehash2')       : {'mean': 17.058, 'max': 17.058},
-        #     ('chr', 'iter')                : {'mean': 18.377, 'max': 18.377},
-        #     ('chr', 'iter-prehash')        : {'mean': 19.508, 'max': 19.508},
+        #     ('chr', 'recurse')        : {'mean': NAN, 'max': NAN},
+        #     ('chr', 'iter-cython')    : {'mean': 7.979, 'max': 7.979},
+        #     ('chr', 'iter')           : {'mean': 11.307, 'max': 11.307},
         # }
 
     data_modes = [
@@ -468,13 +411,6 @@ def bench_maximum_common_path_embedding():
     print('total = {}'.format(len(data_modes) * len(run_modes)))
 
     seed = 0
-    # if len(data_modes) < 10:
-    #     for datakw in data_modes:
-    #         _datakw = ub.dict_diff(datakw, {'complexity'})
-    #         paths1, paths2 = random_paths(seed=seed, **datakw)
-    #         print('paths1 = {}'.format(ub.repr2(paths1, nl=1)))
-    #         print('paths2 = {}'.format(ub.repr2(paths2, nl=1)))
-    #         print('---')
     for idx, datakw in enumerate(data_modes):
         print('datakw = {}'.format(ub.repr2(datakw, nl=1)))
         _datakw = ub.dict_diff(datakw, {'complexity'})
@@ -502,11 +438,8 @@ def bench_maximum_common_path_embedding():
         datakw['complexity'] = complexity
         print('datakw = {}'.format(ub.repr2(datakw, nl=0, precision=2)))
 
-        if True:
-            # idx + 4 > len(data_modes):
-            print('stats1 = {}'.format(ub.repr2(stats1, nl=0)))
-            print('stats2 = {}'.format(ub.repr2(stats2, nl=0)))
-            # print('complexity = {:.2f}'.format(complexity))
+        print('stats1 = {}'.format(ub.repr2(stats1, nl=0)))
+        print('stats2 = {}'.format(ub.repr2(stats2, nl=0)))
 
     total = len(data_modes) * len(run_modes)
     print('len(data_modes) = {!r}'.format(len(data_modes)))
@@ -569,7 +502,8 @@ def bench_maximum_common_path_embedding():
             results.append(row)
     prog.end()
 
-    print(ub.repr2(ub.sorted_vals(ti.measures['min']), nl=1, align=':', precision=6))
+    print(ub.repr2(
+        ub.sorted_vals(ti.measures['min']), nl=1, align=':', precision=6))
 
     import pandas as pd
     import kwarray
@@ -583,7 +517,8 @@ def bench_maximum_common_path_embedding():
         stats.pop('shape', None)
         dataparam_to_time[mode] = stats
     dataparam_to_time = ub.sorted_vals(dataparam_to_time, key=lambda x: x['max'])
-    print('dataparam_to_time = {}'.format(ub.repr2(dataparam_to_time, nl=1, precision=3, align=':')))
+    print('dataparam_to_time = {}'.format(
+        ub.repr2(dataparam_to_time, nl=1, precision=3, align=':')))
     print(list(data_basis.keys()))
 
     runparam_to_time = {}
@@ -594,25 +529,8 @@ def bench_maximum_common_path_embedding():
         stats.pop('shape', None)
         runparam_to_time[mode] = stats
     runparam_to_time = ub.sorted_vals(runparam_to_time, key=lambda x: x['max'])
-    print('runparam_to_time = {}'.format(ub.repr2(runparam_to_time, nl=1, precision=3, align=':')))
-
-
-def benchmark_balanced_sequence_single():
-    from networkx.algorithms.string import balanced_sequence
-    from networkx.algorithms.stirng import demodata
-    import ubelt as ub
-    mode = 'number'
-    seq1, open_to_close = demodata.random_balanced_sequence(200, mode=mode)
-    seq2, open_to_close = demodata.random_balanced_sequence(400, mode=mode, open_to_close=open_to_close)
-    longest_common_balanced_sequence = balanced_sequence.longest_common_balanced_sequence
-    impls = balanced_sequence.available_impls_longest_common_balanced_sequence()
-    results = {}
-    for impl in impls:
-        with ub.Timer(impl):
-            best, val = longest_common_balanced_sequence(
-                seq1, seq2, open_to_close, node_affinity=None, impl=impl)
-            results[impl] = val
-    assert allsame(results.values())
+    print('runparam_to_time = {}'.format(
+        ub.repr2(runparam_to_time, nl=1, precision=3, align=':')))
 
 
 def allsame(iterable, eq=operator.eq):
@@ -841,8 +759,7 @@ def test_realworld_case1():
     # times: resnet152: 9.83 seconds
     paths1 = _demodata_resnet_module_state('resnet50')
     paths2 = ['module.' + p for p in paths1]
-    # import ubelt as ub
-    # with ub.Timer('test-real-world-case'):
+
     embedding1, embedding2 = maximum_common_path_embedding(
             paths1, paths2, sep='.')
     assert [p[len('module.'):] for p in embedding2] == embedding1
@@ -877,8 +794,6 @@ def test_realworld_case2():
 
     paths2 = ['module.' + p for p in backbone]
 
-    # import ubelt as ub
-    # with ub.Timer('test-real-world-case'):
     embedding1, embedding2 = maximum_common_path_embedding(
             paths1, paths2, sep='.')
 
@@ -917,7 +832,9 @@ def test_realworld_case2():
 if __name__ == '__main__':
     """
     CommandLine:
-        python ~/code/networkx/examples/applications/plot_filesystem_embedding.py
+        xdoctest -m examples/applications/filesystem_embedding.py all
+        xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
+        pytest examples/applications/filesystem_embedding.py -s -v
     """
     import xdoctest
     xdoctest.doctest_module(__file__)
