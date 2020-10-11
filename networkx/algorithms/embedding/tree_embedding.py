@@ -3,8 +3,6 @@ Algorithm for computing tree embeddings
 
 Issues
 ------
-- [ ] strhack is not a good API in `tree_to_seq`
-
 - [ ] Should we return which edges were contracted in each tree to create the
   embeddings? That seems useful (but maybe not equivalent to the embeddings
   themselves?) Note, I had an initial attempt to do this, but I haven't found
@@ -25,7 +23,7 @@ from networkx.algorithms.string import balanced_sequence
 
 
 def maximum_common_ordered_tree_embedding(
-        tree1, tree2, node_affinity='auto', impl='iter-alt2', mode='chr'):
+        tree1, tree2, node_affinity='auto', impl='auto', mode='auto'):
     """
     Finds the maximum common subtree-embedding between two ordered trees.
 
@@ -66,10 +64,10 @@ def maximum_common_ordered_tree_embedding(
         The default is "eq", which is the same as ``operator.eq``.
 
     impl : str
-        Determines the backend implementation
+        Determines the backend implementation. Defaults to "auto".
 
     mode : str
-        Determines the backend representation
+        Determines the backend representation. Defaults to "auto".
 
     References
     ----------
@@ -163,7 +161,8 @@ def maximum_common_ordered_tree_embedding(
     return embedding1, embedding2
 
 
-def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strhack=None):
+def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
+                container='auto'):
     r"""
     Converts an ordered tree to a balanced sequence for use in algorithm
     reductions.
@@ -179,14 +178,12 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
         multiple trees are converted to sequences.
 
     mode : str
-        Currently hacky and needs refactor.
-        Can be 'tuple', 'number', or 'chr'.
-        Hackier variants are 'str' and 'paren'.
+        Determines the item type of the sequence.  Can be 'number', 'chr'.
+        Default is 'auto', which will choose 'chr' unless the graph is too big.
 
-    strhack : bool
-        Currently hacky and needs refactor. If False, always return a tuple of
-        items, if True, tries to return a string of items. If None, tries to
-        choose a value depending on mode.
+    container : str
+        Determines the container type. Can be "list" or "str". If "auto"
+        tries to choose the best.
 
     Example
     -------
@@ -215,13 +212,10 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
 
     >>> from networkx.generators.random_graphs import random_ordered_tree
     >>> tree = random_ordered_tree(2, seed=1, directed=True)
-    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='tuple')
-    >>> print('sequence = {!r}'.format(sequence))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
     >>> print('sequence = {!r}'.format(sequence))
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
-    sequence = (('open', 0), ('open', 1), ('close', 1), ('close', 0))
     sequence = '\x00\x02\x03\x01'
     sequence = (1, 2, -2, -1)
     """
@@ -229,49 +223,45 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
     sources = [n for n in tree.nodes if tree.in_degree[n] == 0]
     sequence = []
 
-    if strhack is None:
-        if mode == 'chr':
-            strhack = True
+    if mode == 'auto':
+        mode = 'chr' if len(tree) < 1112064 // 2 else 'number'
+
+    if mode == 'paren':
+        all_labels = {n['label'] for n in list(tree.nodes.values())}
+        assert all(x == 1 for x in map(len, all_labels))
+
+    if container == 'auto':
+        container = 'str' if mode == 'chr' else 'list'
+
+    seq_is_str = (container == 'str')
 
     if open_to_close is None:
         open_to_close = {}
     if node_to_open is None:
         node_to_open = {}
 
-    if strhack:
-        if mode == 'paren':
-            all_labels = {n['label'] for n in list(tree.nodes.values())}
-            assert all(x == 1 for x in map(len, all_labels))
-
     for source in sources:
         for u, v, etype in nx.dfs_labeled_edges(tree, source=source):
             if etype == 'forward':
                 # u has been visited by v has not
                 if v not in node_to_open:
-                    if mode == 'tuple':
-                        open_tok = ('open', v)
-                        close_tok = ('close', v)
-                    elif mode == 'number':
+                    if mode == 'number':
                         open_tok = len(node_to_open) + 1
                         close_tok = -open_tok
-                    elif mode == 'str':
-                        open_tok = '{}('.format(v)
-                        close_tok = '){}'.format(v)
                     elif mode == 'chr':
-                        if not strhack:
+                        if seq_is_str:
+                            # utf8 can only encode this many chars
+                            assert len(node_to_open) < (1112064 // 2)
+                            open_tok = chr(len(node_to_open) * 2)
+                            close_tok = chr(len(node_to_open) * 2 + 1)
+                        else:
                             # note ussing the accent mark wont work in string
                             # mode even though the close tok renders as a
                             # single character.
                             open_tok = str(v)
                             close_tok = str(v) + u'\u0301'
-                        else:
-                            # utf8 can only encode this many chars
-                            assert len(node_to_open) < (1112064 // 2)
-                            open_tok = chr(len(node_to_open) * 2)
-                            close_tok = chr(len(node_to_open) * 2 + 1)
                     elif mode == 'paren':
                         open_tok = tree.nodes[v]['label']
-                        assert strhack
                         if open_tok == '{':
                             close_tok = '}'
                         elif open_tok == '[':
@@ -293,7 +283,8 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='tuple', strha
             else:
                 raise KeyError(etype)
     sequence = tuple(sequence)
-    if strhack:
+
+    if seq_is_str:
         sequence = ''.join(sequence)
     return sequence, open_to_close, node_to_open
 
