@@ -6,8 +6,9 @@ subproblem, which is used by
 import operator
 
 __all__ = [
-    'longest_common_balanced_sequence',
     'available_impls_longest_common_balanced_sequence',
+    'longest_common_balanced_sequence',
+    'random_balanced_sequence',
 ]
 
 
