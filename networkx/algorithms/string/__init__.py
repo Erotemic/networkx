@@ -1,12 +1,12 @@
 """
-Subpackages for helpers and such related to string based problems.
+Subpackages related to string based problems.
 
 balanced_sequence.py - core python implementations for the longest common
-balanced sequence subproblem, this is used by
-:module:`networkx.algorithms.embedding.tree_embedding`.
+    balanced sequence subproblem, this is used by
+    :module:`networkx.algorithms.embedding.tree_embedding`.
 
-balanced_sequence_cython.pyx -
-faster alternative implementsions for balanced_sequence.py
+balanced_sequence_cython.pyx - faster alternative implementations for
+    balanced_sequence.py
 
 Regen Command:
     mkinit ~/code/networkx/networkx/algorithms/string/__init__.py

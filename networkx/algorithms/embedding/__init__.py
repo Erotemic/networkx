@@ -1,16 +1,8 @@
 """
-Subpackages related to the ordered subtree embedding problem.
+Subpackages related to embedding problems.
 
 tree_embedding.py - defines reduction from tree problem to balanced sequence
 problems.
-
-
-Outstanding Issues
-------------------
-- [ ] Multiple implementations of the algorithm backend / data structure
-  reduction, need to reduce the impelmentation and / or determine a better
-  mechansim for allowing the user to switch between them.
-
 
 
 CommandLine
