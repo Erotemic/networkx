@@ -39,7 +39,7 @@ def longest_common_balanced_sequence(
 
     impl : str
         Determines the backend implementation. There are currently 3 different
-        backend implementations:  "recurse", "iter", and "iter-cython". The
+        backend implementations:  "iter", and "iter-cython". The
         default is "auto", which choose "iter-cython" if available, otherwise
         "iter".
 
@@ -91,13 +91,7 @@ def longest_common_balanced_sequence(
         else:
             impl = 'iter'
 
-    if impl == 'recurse':
-        _memo = {}
-        _seq_memo = {}
-        best, value = _lcs_recurse(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node,
-            _memo, _seq_memo)
-    elif impl == 'iter':
+    if impl == 'iter':
         best, value = _lcs_iter(
             full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
     elif impl == 'iter-cython':
@@ -123,7 +117,6 @@ def available_impls_longest_common_balanced_sequence():
     # Pure python backends
     impls += [
         'iter',
-        'recurse',
     ]
     return impls
 
@@ -270,79 +263,6 @@ def _lcs_iter(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     val, best = _results[key0]
     found = (best, val)
     return found
-
-
-def _lcs_recurse(seq1, seq2, open_to_close, node_affinity, open_to_node, _memo,
-                 _seq_memo):
-    """
-    Surprisingly, this recursive implementation is one of the faster
-    pure-python methods for certain input types. However, its major drawback is
-    that it can raise a RecurssionError if the inputs are too deep.
-    """
-    if not seq1:
-        return (seq1, seq1), 0
-    elif not seq2:
-        return (seq2, seq2), 0
-    else:
-        key1 = hash(seq1)  # using hash(seq) is faster than seq itself
-        key2 = hash(seq2)
-        key = hash((key1, key2))
-        if key in _memo:
-            return _memo[key]
-
-        if key1 in _seq_memo:
-            a1, b1, head1, tail1, head1_tail1 = _seq_memo[key1]
-        else:
-            a1, b1, head1, tail1, head1_tail1 = balanced_decomp_unsafe(
-                seq1, open_to_close)
-            _seq_memo[key1] = a1, b1, head1, tail1, head1_tail1
-
-        if key2 in _seq_memo:
-            a2, b2, head2, tail2, head2_tail2 = _seq_memo[key2]
-        else:
-            a2, b2, head2, tail2, head2_tail2 = balanced_decomp_unsafe(
-                seq2, open_to_close)
-            _seq_memo[key2] = a2, b2, head2, tail2, head2_tail2
-
-        # Case 2: The current edge in sequence1 is deleted
-        best, val = _lcs_recurse(head1_tail1, seq2, open_to_close,
-                                 node_affinity, open_to_node, _memo, _seq_memo)
-
-        # Case 3: The current edge in sequence2 is deleted
-        cand, val_alt = _lcs_recurse(seq1, head2_tail2, open_to_close,
-                                     node_affinity, open_to_node, _memo,
-                                     _seq_memo)
-        if val_alt > val:
-            best = cand
-            val = val_alt
-
-        # Case 1: The LCS involves this edge
-        t1 = open_to_node[a1[0]]
-        t2 = open_to_node[a2[0]]
-        affinity = node_affinity(t1, t2)
-        if affinity:
-            new_heads, pval_h = _lcs_recurse(
-                head1, head2, open_to_close, node_affinity, open_to_node,
-                _memo, _seq_memo)
-            new_tails, pval_t = _lcs_recurse(
-                tail1, tail2, open_to_close, node_affinity, open_to_node,
-                _memo, _seq_memo)
-
-            new_head1, new_head2 = new_heads
-            new_tail1, new_tail2 = new_tails
-
-            subseq1 = a1 + new_head1 + b1 + new_tail1
-            subseq2 = a2 + new_head2 + b2 + new_tail2
-
-            cand = (subseq1, subseq2)
-            val_alt = pval_h + pval_t + affinity
-            if val_alt > val:
-                best = cand
-                val = val_alt
-
-        found = (best, val)
-        _memo[key] = found
-        return found
 
 
 class UnbalancedException(Exception):

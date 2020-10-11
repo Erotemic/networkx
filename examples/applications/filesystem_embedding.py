@@ -310,13 +310,11 @@ def bench_maximum_common_path_embedding():
     # run_basis['impl'] = set(run_basis['impl']) & {
     #     'iter-cython',
     #     'iter',
-    #     'recurse'
     # }
 
     # TODO: parametarize demo names
     # BENCH_MODE = None
     # BENCH_MODE = 'small'
-    # BENCH_MODE = 'recursion-error'
     BENCH_MODE = 'medium'
     # BENCH_MODE = 'large'
 
@@ -350,7 +348,6 @@ def bench_maximum_common_path_embedding():
         # Results
         # runparam_to_time = {
         #     ('chr', 'iter-cython')    : {'mean': 0.112, 'max': 0.467},
-        #     ('chr', 'recurse')        : {'mean': 0.153, 'max': 0.648},
         #     ('chr', 'iter')           : {'mean': 0.155, 'max': 0.661},
         # }
 
@@ -366,7 +363,6 @@ def bench_maximum_common_path_embedding():
         run_basis['impl'] = available_impls
         # runparam_to_time = {
         #     ('chr', 'iter-cython')    : {'mean': 0.282, 'max': 0.923},
-        #     ('chr', 'recurse')        : {'mean': 0.397, 'max': 1.297},
         #     ('chr', 'iter')           : {'mean': 0.409, 'max': 1.328},
         # }
 
@@ -379,25 +375,6 @@ def bench_maximum_common_path_embedding():
             'prefix_depth2': [2],
             'labels': [8]
         }
-    if BENCH_MODE == 'recursion-error':
-        data_basis = {
-            'size': [0],
-            'max_depth': [512],
-            'common': [4],
-            'prefix_depth1': [0],
-            'prefix_depth2': [0],
-            'labels': [256]
-        }
-        run_basis['impl'] = ub.oset(['recurse']) | ub.oset(available_impls)
-        # Results
-        # complexity = 69.48
-        # stats1 = {'depth': 395, 'n_edges': 1203, 'n_leafs': 4, 'n_nodes': 1207, 'npaths': 4}
-        # stats2 = {'depth': 395, 'n_edges': 1203, 'n_leafs': 4, 'n_nodes': 1207, 'npaths': 4}
-        # runparam_to_time = {
-        #     ('chr', 'recurse')        : {'mean': NAN, 'max': NAN},
-        #     ('chr', 'iter-cython')    : {'mean': 7.979, 'max': 7.979},
-        #     ('chr', 'iter')           : {'mean': 11.307, 'max': 11.307},
-        # }
 
     data_modes = [
         dict(zip(data_basis.keys(), vals))
