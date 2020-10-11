@@ -12,7 +12,7 @@ def test_all_implementations_are_same():
     Tests several random sequences
     """
     from networkx.algorithms.string import balanced_sequence
-    from networkx.algorithms.string.demodata import random_balanced_sequence
+    from networkx.algorithms.string import random_balanced_sequence
     from networkx.utils import create_py_random_state
 
     seed = 93024896892223032652928827097264

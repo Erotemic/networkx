@@ -13,8 +13,7 @@ cythonize -a -i networkx/algorithms/string/balanced_sequence_cython.pyx
 Examples
 --------
 >>> from networkx.algorithms.string.balanced_sequence_cython import _lcs_iter_cython, IdentityDictCython
->>> from networkx.algorithms.string.balanced_sequence import _lcs_iter
->>> from networkx.algorithms.string.demodata import random_balanced_sequence
+>>> from networkx.algorithms.string.balanced_sequence import _lcs_iter, random_balanced_sequence
 >>> seq1, open_to_close1 = random_balanced_sequence(300, mode='paren')
 >>> seq2, open_to_close2 = random_balanced_sequence(300, mode='paren')
 >>> open_to_close = {**open_to_close1, **open_to_close2}
