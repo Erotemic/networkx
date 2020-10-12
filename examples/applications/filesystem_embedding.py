@@ -38,26 +38,26 @@ def maximum_common_path_embedding(paths1, paths2, sep='/', impl='auto',
     Examples
     --------
     >>> paths1 = [
-    >>>     '/usr/bin/python',
-    >>>     '/usr/bin/python3.6.1',
-    >>>     '/usr/lib/python3.6/dist-packages/networkx',
-    >>>     '/usr/lib/python3.6/dist-packages/numpy',
-    >>>     '/usr/include/python3.6/Python.h',
-    >>> ]
+    ...     '/usr/bin/python',
+    ...     '/usr/bin/python3.6.1',
+    ...     '/usr/lib/python3.6/dist-packages/networkx',
+    ...     '/usr/lib/python3.6/dist-packages/numpy',
+    ...     '/usr/include/python3.6/Python.h',
+    ... ]
     >>> paths2 = [
-    >>>     '/usr/local/bin/python',
-    >>>     '/usr/bin/python3.6.2',
-    >>>     '/usr/local/lib/python3.6/dist-packages/networkx',
-    >>>     '/usr/local/lib/python3.6/dist-packages/scipy',
-    >>>     '/usr/local/include/python3.6/Python.h',
-    >>> ]
+    ...     '/usr/local/bin/python',
+    ...     '/usr/bin/python3.6.2',
+    ...     '/usr/local/lib/python3.6/dist-packages/networkx',
+    ...     '/usr/local/lib/python3.6/dist-packages/scipy',
+    ...     '/usr/local/include/python3.6/Python.h',
+    ... ]
     >>> subpaths1, subpaths2 = maximum_common_path_embedding(paths1, paths2)
     >>> import pprint
     >>> print('subpaths1 = {}'.format(pprint.pformat(subpaths1)))
-    >>> print('subpaths2 = {}'.format(pprint.pformat(subpaths2)))
     subpaths1 = ['/usr/bin/python',
      '/usr/include/python3.6/Python.h',
      '/usr/lib/python3.6/dist-packages/networkx']
+    >>> print('subpaths2 = {}'.format(pprint.pformat(subpaths2)))
     subpaths2 = ['/usr/local/bin/python',
      '/usr/local/include/python3.6/Python.h',
      '/usr/local/lib/python3.6/dist-packages/networkx']
@@ -104,14 +104,14 @@ def paths_to_otree(paths, sep='/'):
     -------
     >>> from networkx.algorithms.embedding.tree_embedding import forest_str
     >>> paths = [
-    >>>     '/etc/ld.so.conf',
-    >>>     '/usr/bin/python3.6',
-    >>>     '/usr/include/python3.6/Python.h',
-    >>>     '/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6.so',
-    >>>     '/usr/local/bin/gnumake.h',
-    >>>     '/usr/local/etc',
-    >>>     '/usr/local/lib/python3.6/dist-packages/',
-    >>> ]
+    ...     '/etc/ld.so.conf',
+    ...     '/usr/bin/python3.6',
+    ...     '/usr/include/python3.6/Python.h',
+    ...     '/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6.so',
+    ...     '/usr/local/bin/gnumake.h',
+    ...     '/usr/local/etc',
+    ...     '/usr/local/lib/python3.6/dist-packages',
+    ... ]
     >>> otree = paths_to_otree(paths)
     >>> print(forest_str(otree))
     └── /
@@ -120,7 +120,6 @@ def paths_to_otree(paths, sep='/'):
         │   │   ├── lib
         │   │   │   └── python3.6
         │   │   │       └── dist-packages
-        │   │   │           └──
         │   │   ├── etc
         │   │   └── bin
         │   │       └── gnumake.h
@@ -189,16 +188,27 @@ def random_paths(
     --------
     >>> from networkx.algorithms.embedding.tree_embedding import tree_to_seq
     >>> paths1, paths2 = random_paths(
-    >>>     size=5, max_depth=3, common=6,
-    >>>     prefix_depth1=3, prefix_depth2=3, labels=2 ** 64,
-    >>>     seed=0)
+    ...     size=3, max_depth=3, common=3,
+    ...     prefix_depth1=3, prefix_depth2=3, labels=2 ** 16,
+    ...     seed=0)
     >>> tree = paths_to_otree(paths1)
     >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
     >>> seq, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
-    >>> # xdoctest: +REQUIRES(module:ubelt)
-    >>> import ubelt as ub
-    >>> print('paths1 = {}'.format(ub.repr2(paths1, nl=1)))
-    >>> print('paths2 = {}'.format(ub.repr2(paths2, nl=1)))
+    >>> import pprint
+    >>> print('paths1 = {}'.format(pprint.pformat(paths1)))
+    paths1 = ['brwb/eaaw/druy/ctge/dyaj/vcy',
+     'brwb/eaaw/druy/dqbh/cqht',
+     'brwb/eaaw/druy/plp',
+     'dnfa/img',
+     'dyxs/dacf',
+     'ebwq/djxa']
+    >>> print('paths2 = {}'.format(pprint.pformat(paths2)))
+    paths2 = ['buug/befe/cjcq',
+     'ccnj/bfum/cpbb',
+     'ceps/nbn/cxp/ctge/dyaj/vcy',
+     'ceps/nbn/cxp/dqbh/cqht',
+     'ceps/nbn/cxp/plp',
+     'twe']
     """
     from networkx.utils import create_py_random_state
     rng = create_py_random_state(seed)
@@ -532,7 +542,7 @@ def allsame(iterable, eq=operator.eq):
         >>> allsame([0, 1])
         False
         >>> iterable = iter([0, 1, 1, 1])
-        >>> next(iterable)
+        >>> _ = next(iterable)
         >>> allsame(iterable)
         True
         >>> allsame(range(10))
