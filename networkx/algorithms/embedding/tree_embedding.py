@@ -96,32 +96,33 @@ def maximum_common_ordered_tree_embedding(
     >>> tree1 = random_ordered_tree(7, seed=3257073545741117277206611, directed=True)
     >>> tree2 = random_ordered_tree(7, seed=123568587133124688238689717, directed=True)
     >>> print(forest_str(tree1))
-    └── 1
-        ├── 6
-        │   ├── 4
-        │   └── 3
-        └── 0
-            └── 5
-                └── 2
+    ╙── 1
+        ├─➤ 6
+        │   ├─➤ 4
+        │   └─➤ 3
+        └─➤ 0
+            └─➤ 5
+                └─➤ 2
     >>> print(forest_str(tree2))
-    └── 4
-        └── 1
-            ├── 2
-            │   ├── 6
-            │   └── 0
-            └── 3
-                └── 5
+    ╙── 4
+        └─➤ 1
+            ├─➤ 2
+            │   ├─➤ 6
+            │   └─➤ 0
+            └─➤ 3
+                └─➤ 5
     >>> embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2 )
     >>> print(forest_str(embedding1))
-    └── 1
-        ├── 6
-        └── 5
+    ╙── 1
+        ├─➤ 6
+        └─➤ 5
     >>> print(forest_str(embedding2))
-    └── 1
-        ├── 6
-        └── 5
+    ╙── 1
+        ├─➤ 6
+        └─➤ 5
     """
     import networkx as nx
+
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree1)):
         raise nx.NetworkXNotImplemented("only implemented for directed ordered trees")
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree2)):
@@ -196,22 +197,22 @@ def tree_to_seq(
     >>> import networkx as nx
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
-    └── 0
-        └── 1
-            └── 2
+    ╙── 0
+        └─➤ 1
+            └─➤ 2
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
     sequence = (1, 2, 3, -3, -2, -1)
 
     >>> tree = nx.balanced_tree(2, 2, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
-    └── 0
-        ├── 2
-        │   ├── 6
-        │   └── 5
-        └── 1
-            ├── 4
-            └── 3
+    ╙── 0
+        ├─➤ 2
+        │   ├─➤ 6
+        │   └─➤ 5
+        └─➤ 1
+            ├─➤ 4
+            └─➤ 3
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
     sequence = (1, 2, 3, -3, 4, -4, -2, 5, 6, -6, 7, -7, -5, -1)
@@ -226,6 +227,7 @@ def tree_to_seq(
     sequence = (1, 2, -2, -1)
     """
     import networkx as nx
+
     # mapping between opening and closing tokens
     sources = [n for n in tree.nodes if tree.in_degree[n] == 0]
     sequence = []
@@ -323,17 +325,18 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
     >>> subseq = '({[[]]})[[][]]{{}}'
     >>> subtree = seq_to_tree(subseq, open_to_close, open_to_node)
     >>> print(forest_str(subtree))
-    ├── {
-    │   └── {
-    ├── [
-    │   ├── [
-    │   └── [
-    └── (
-        └── {
-            └── [
-                └── [
+    ╟── {
+    ║   └─➤ {
+    ╟── [
+    ║   ├─➤ [
+    ║   └─➤ [
+    ╙── (
+        └─➤ {
+            └─➤ [
+                └─➤ [
     """
     import networkx as nx
+
     nextnode = 0  # only used if open_to_node is not specified
     subtree = nx.OrderedDiGraph()
     stack = []
