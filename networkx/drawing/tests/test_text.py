@@ -71,12 +71,45 @@ def test_directed_multi_tree_forest():
     target = dedent(
         """
         ╟── 7
-        ║   ├─➤ 9
-        ║   │   ├─➤ 13
-        ║   │   └─➤ 12
-        ║   └─➤ 8
-        ║       ├─➤ 11
-        ║       └─➤ 10
+        ╎   ├─➤ 9
+        ╎   │   ├─➤ 13
+        ╎   │   └─➤ 12
+        ╎   └─➤ 8
+        ╎       ├─➤ 11
+        ╎       └─➤ 10
+        ╙── 0
+            ├─➤ 2
+            │   ├─➤ 6
+            │   └─➤ 5
+            └─➤ 1
+                ├─➤ 4
+                └─➤ 3
+        """
+    ).strip()
+    assert ret == target
+
+    tree3 = nx.balanced_tree(r=2, h=2, create_using=nx.DiGraph)
+    tree3 = nx.relabel_nodes(tree3, {n: n + len(forest) for n in tree3.nodes})
+    forest = nx.union(forest, tree3)
+    ret = nx.forest_str(forest, sources=[0, 7, 14])
+    print(ret)
+
+    target = dedent(
+        """
+        ╟── 14
+        ╎   ├─➤ 16
+        ╎   │   ├─➤ 20
+        ╎   │   └─➤ 19
+        ╎   └─➤ 15
+        ╎       ├─➤ 18
+        ╎       └─➤ 17
+        ╟── 7
+        ╎   ├─➤ 9
+        ╎   │   ├─➤ 13
+        ╎   │   └─➤ 12
+        ╎   └─➤ 8
+        ╎       ├─➤ 11
+        ╎       └─➤ 10
         ╙── 0
             ├─➤ 2
             │   ├─➤ 6
@@ -100,12 +133,12 @@ def test_undirected_multi_tree_forest():
     target = dedent(
         """
         ╟── 7
-        ║   ├── 9
-        ║   │   ├── 13
-        ║   │   └── 12
-        ║   └── 8
-        ║       ├── 11
-        ║       └── 10
+        ╎   ├── 9
+        ╎   │   ├── 13
+        ╎   │   └── 12
+        ╎   └── 8
+        ╎       ├── 11
+        ╎       └── 10
         ╙── 0
             ├── 2
             │   ├── 6

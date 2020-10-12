@@ -57,8 +57,8 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
     >>> graph = nx.balanced_tree(r=1, h=2, create_using=nx.Graph)
     >>> print(nx.forest_str(graph))
     ╟── 1
-    ║   ├── 2
-    ║   └── 0
+    ╎   ├── 2
+    ╎   └── 0
     """
     import networkx as nx
 
@@ -97,20 +97,9 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
                 continue
             seen.add(node)
 
+            # Notes on available box and arrow characters
             # https://en.wikipedia.org/wiki/Box-drawing_character
             # https://stackoverflow.com/questions/2701192/triangle-arrow
-            # # should we use arrows for directed cases?
-            # Candidate utf8 characters:
-            # ╼ → ► ⟶ ➙ ➝
-            # shortlist: ➙ ➤
-            if 0:
-                candidates = (
-                    "→" "ᐅ ⇢ ⇀ →" "╼ → ► ⟶" "➙ ➝ ➝ ➞" "➟ ➠ ➡ ➢" "➣ ➤ ➥ ➦" "➧"
-                ).split(" ")
-                for c in candidates:
-                    if len(c) == 1:
-                        print("─" + c)
-
             if not indent:
                 # Top level items (i.e. trees in the forest) get different
                 # glyphs to indicate they are not actually connected
@@ -119,9 +108,11 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
                     next_prefix = indent + "    "
                 else:
                     this_prefix = indent + "╟── "
-                    next_prefix = indent + "║   "
+                    next_prefix = indent + "╎   "
 
             else:
+                # For individual forests distinguish between directed and
+                # undirected cases
                 if is_directed:
                     if islast:
                         this_prefix = indent + "└─➤ "

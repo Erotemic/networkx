@@ -326,10 +326,10 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
     >>> subtree = seq_to_tree(subseq, open_to_close, open_to_node)
     >>> print(forest_str(subtree))
     ╟── {
-    ║   └─➤ {
+    ╎   └─➤ {
     ╟── [
-    ║   ├─➤ [
-    ║   └─➤ [
+    ╎   ├─➤ [
+    ╎   └─➤ [
     ╙── (
         └─➤ {
             └─➤ [
