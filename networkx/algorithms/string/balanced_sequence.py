@@ -6,15 +6,15 @@ subproblem, which is used by
 import operator
 
 __all__ = [
-    'available_impls_longest_common_balanced_sequence',
-    'longest_common_balanced_sequence',
-    'random_balanced_sequence',
+    "available_impls_longest_common_balanced_sequence",
+    "longest_common_balanced_sequence",
+    "random_balanced_sequence",
 ]
 
 
 def longest_common_balanced_sequence(
-        seq1, seq2, open_to_close, open_to_node=None,
-        node_affinity='auto', impl='auto'):
+    seq1, seq2, open_to_close, open_to_node=None, node_affinity="auto", impl="auto"
+):
     """
     Finds the longest common balanced sequence between two sequences
 
@@ -76,29 +76,33 @@ def longest_common_balanced_sequence(
     subseq1 = '{{}[][]()(({()})){}}'
     >>> assert value == 10
     """
-    if node_affinity == 'auto' or node_affinity == 'eq':
+    if node_affinity == "auto" or node_affinity == "eq":
         node_affinity = operator.eq
     if node_affinity is None:
+
         def _matchany(a, b):
             return True
+
         node_affinity = _matchany
     if open_to_node is None:
         open_to_node = IdentityDict()
     full_seq1 = seq1
     full_seq2 = seq2
-    if impl == 'auto':
-        if _cython_lcs_backend(error='ignore'):
-            impl = 'iter-cython'
+    if impl == "auto":
+        if _cython_lcs_backend(error="ignore"):
+            impl = "iter-cython"
         else:
-            impl = 'iter'
+            impl = "iter"
 
-    if impl == 'iter':
+    if impl == "iter":
         best, value = _lcs_iter(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
-    elif impl == 'iter-cython':
-        balanced_sequence_cython = _cython_lcs_backend(error='raise')
+            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node
+        )
+    elif impl == "iter-cython":
+        balanced_sequence_cython = _cython_lcs_backend(error="raise")
         best, value = balanced_sequence_cython._lcs_iter_cython(
-            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node)
+            full_seq1, full_seq2, open_to_close, node_affinity, open_to_node
+        )
     else:
         raise KeyError(impl)
     return best, value
@@ -112,26 +116,26 @@ def available_impls_longest_common_balanced_sequence():
     impls = []
     if _cython_lcs_backend():
         impls += [
-            'iter-cython',
+            "iter-cython",
         ]
 
     # Pure python backends
     impls += [
-        'iter',
+        "iter",
     ]
     return impls
 
 
-def _cython_lcs_backend(error='ignore'):
+def _cython_lcs_backend(error="ignore"):
     """
     Returns the cython backend if available, otherwise None
     """
     try:
         from networkx.algorithms.string import balanced_sequence_cython
     except Exception:
-        if error == 'ignore':
+        if error == "ignore":
             return None
-        elif error == 'raise':
+        elif error == "raise":
             raise
         else:
             raise KeyError(error)
@@ -272,6 +276,7 @@ class UnbalancedException(Exception):
     """
     Denotes that a sequence was unbalanced
     """
+
     pass
 
 
@@ -279,6 +284,7 @@ class IdentityDict:
     """
     Used when ``open_to_node`` is unspecified
     """
+
     def __getitem__(self, key):
         return key
 
@@ -360,11 +366,11 @@ def generate_all_decomp(seq, open_to_close, open_to_node=None):
     while stack:
         seq = stack.pop()
         if seq not in all_decomp and seq:
-            (pop_open, pop_close,
-             head, tail, head_tail) = balanced_decomp(seq, open_to_close)
+            (pop_open, pop_close, head, tail, head_tail) = balanced_decomp(
+                seq, open_to_close
+            )
             node = open_to_node[pop_open[0]]
-            all_decomp[seq] = (node, pop_open, pop_close,
-                               head, tail, head_tail)
+            all_decomp[seq] = (node, pop_open, pop_close, head, tail, head_tail)
             if head:
                 if tail:
                     stack.append(head_tail)
@@ -466,10 +472,10 @@ def balanced_decomp(sequence, open_to_close):
         if tok_curr is None:
             break
         elif bal_curr and tok_curr == want_close:
-            pop_close = sequence[head_stop:head_stop + 1]
+            pop_close = sequence[head_stop : head_stop + 1]
             break
     head = sequence[1:head_stop]
-    tail = sequence[head_stop + 1:]
+    tail = sequence[head_stop + 1 :]
     head_tail = head + tail
     return pop_open, pop_close, head, tail, head_tail
 
@@ -555,10 +561,10 @@ def balanced_decomp_unsafe(sequence, open_to_close):
     head_stop = 1
     for head_stop, (bal_curr, tok_curr) in enumerate(gen, start=1):
         if bal_curr and tok_curr == want_close:
-            pop_close = sequence[head_stop:head_stop + 1]
+            pop_close = sequence[head_stop : head_stop + 1]
             break
     head = sequence[1:head_stop]
-    tail = sequence[head_stop + 1:]
+    tail = sequence[head_stop + 1 :]
     head_tail = head + tail
     return pop_open, pop_close, head, tail, head_tail
 
@@ -577,7 +583,7 @@ def generate_balance_unsafe(sequence, open_to_close):
         yield stacklen == 0, token
 
 
-def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
+def random_balanced_sequence(n, seed=None, mode="chr", open_to_close=None):
     r"""
     Creates a random balanced sequence for testing / benchmarks
 
@@ -621,20 +627,23 @@ def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
     from networkx.algorithms.embedding.tree_embedding import tree_to_seq
     from networkx.generators.random_graphs import random_ordered_tree
     from networkx.utils import create_py_random_state
+
     # Create a random otree and then convert it to a balanced sequence
     rng = create_py_random_state(seed)
 
     # To create a random balanced sequences we simply create a random ordered
     # tree and convert it to a sequence
     tree = random_ordered_tree(n, seed=rng, directed=True)
-    if mode == 'paren':
+    if mode == "paren":
         # special case
-        pool = '[{('
+        pool = "[{("
         for node in tree.nodes:
-            tree.nodes[node]['label'] = rng.choice(pool)
+            tree.nodes[node]["label"] = rng.choice(pool)
         seq, open_to_close, _ = tree_to_seq(
-            tree, mode=mode, open_to_close=open_to_close, container='str')
+            tree, mode=mode, open_to_close=open_to_close, container="str"
+        )
     else:
         seq, open_to_close, _ = tree_to_seq(
-            tree, mode=mode, open_to_close=open_to_close)
+            tree, mode=mode, open_to_close=open_to_close
+        )
     return seq, open_to_close

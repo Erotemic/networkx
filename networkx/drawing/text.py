@@ -67,7 +67,7 @@ def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
         lazyprint = printbuf.append
 
     if len(graph.nodes) == 0:
-        lazyprint('<empty graph>')
+        lazyprint("<empty graph>")
     else:
         assert nx.is_forest(graph)
 
@@ -82,8 +82,8 @@ def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
         seen = set()
         stack = []
         for idx, node in enumerate(sources):
-            islast_next = (idx == 0)
-            stack.append((node, '', islast_next))
+            islast_next = idx == 0
+            stack.append((node, "", islast_next))
 
         while stack:
             node, indent, islast = stack.pop()
@@ -91,21 +91,21 @@ def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
                 continue
             seen.add(node)
             if islast:
-                this_prefix = indent + '└── '
-                next_prefix = indent + '    '
+                this_prefix = indent + "└── "
+                next_prefix = indent + "    "
             else:
-                this_prefix = indent + '├── '
-                next_prefix = indent + '│   '
-            label = graph.nodes[node].get('label', node)
+                this_prefix = indent + "├── "
+                next_prefix = indent + "│   "
+            label = graph.nodes[node].get("label", node)
             lazyprint(this_prefix + str(label))
 
             children = [child for child in succ[node] if child not in seen]
             for idx, child in enumerate(children, start=1):
-                islast_next = (idx <= 1)
+                islast_next = idx <= 1
                 try_frame = (child, next_prefix, islast_next)
                 stack.append(try_frame)
 
     if printbuf:
-        return '\n'.join(printbuf)
+        return "\n".join(printbuf)
     else:
-        return ''
+        return ""

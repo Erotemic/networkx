@@ -15,12 +15,13 @@ mkinit ~/code/networkx/networkx/algorithms/embedding/__init__.py -w
 """
 
 __submodules__ = [
-    'tree_embedding',
+    "tree_embedding",
 ]
 
 from networkx.algorithms.embedding import tree_embedding
 
 from networkx.algorithms.embedding.tree_embedding import (
-    maximum_common_ordered_tree_embedding,)
+    maximum_common_ordered_tree_embedding,
+)
 
-__all__ = ['maximum_common_ordered_tree_embedding', 'tree_embedding']
+__all__ = ["maximum_common_ordered_tree_embedding", "tree_embedding"]

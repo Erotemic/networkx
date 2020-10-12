@@ -20,8 +20,13 @@ from networkx.algorithms.string import balanced_sequence
 
 from networkx.algorithms.string.balanced_sequence import (
     available_impls_longest_common_balanced_sequence,
-    longest_common_balanced_sequence, random_balanced_sequence,)
+    longest_common_balanced_sequence,
+    random_balanced_sequence,
+)
 
-__all__ = ['available_impls_longest_common_balanced_sequence',
-           'balanced_sequence', 'longest_common_balanced_sequence',
-           'random_balanced_sequence']
+__all__ = [
+    "available_impls_longest_common_balanced_sequence",
+    "balanced_sequence",
+    "longest_common_balanced_sequence",
+    "random_balanced_sequence",
+]

@@ -21,13 +21,12 @@ import networkx as nx
 from collections import OrderedDict, defaultdict
 from networkx.algorithms.string import balanced_sequence
 
-__all__ = [
-    'maximum_common_ordered_tree_embedding'
-]
+__all__ = ["maximum_common_ordered_tree_embedding"]
 
 
 def maximum_common_ordered_tree_embedding(
-        tree1, tree2, node_affinity='auto', impl='auto', mode='auto'):
+    tree1, tree2, node_affinity="auto", impl="auto", mode="auto"
+):
     """
     Finds the maximum common subtree-embedding between two ordered trees.
 
@@ -124,15 +123,17 @@ def maximum_common_ordered_tree_embedding(
         └── 5
     """
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree1)):
-        raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
+        raise nx.NetworkXNotImplemented("only implemented for directed ordered trees")
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree2)):
-        raise nx.NetworkXNotImplemented('only implemented for directed ordered trees')
+        raise nx.NetworkXNotImplemented("only implemented for directed ordered trees")
 
     # Convert the trees to balanced sequences
     sequence1, open_to_close, node_to_open = tree_to_seq(
-        tree1, open_to_close=None, node_to_open=None, mode=mode)
+        tree1, open_to_close=None, node_to_open=None, mode=mode
+    )
     sequence2, open_to_close, node_to_open = tree_to_seq(
-        tree2, open_to_close, node_to_open, mode=mode)
+        tree2, open_to_close, node_to_open, mode=mode
+    )
     seq1 = sequence1
     seq2 = sequence2
 
@@ -148,8 +149,13 @@ def maximum_common_ordered_tree_embedding(
 
     # Solve the longest common balanced sequence problem
     best, value = balanced_sequence.longest_common_balanced_sequence(
-        seq1, seq2, open_to_close, open_to_node=open_to_node,
-        node_affinity=node_affinity, impl=impl)
+        seq1,
+        seq2,
+        open_to_close,
+        open_to_node=open_to_node,
+        node_affinity=node_affinity,
+        impl=impl,
+    )
     subseq1, subseq2 = best
 
     # Convert the subsequence back into a tree
@@ -158,8 +164,9 @@ def maximum_common_ordered_tree_embedding(
     return embedding1, embedding2
 
 
-def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
-                container='auto'):
+def tree_to_seq(
+    tree, open_to_close=None, node_to_open=None, mode="auto", container="auto"
+):
     r"""
     Converts an ordered tree to a balanced sequence for use in algorithm
     reductions.
@@ -221,17 +228,17 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
     sources = [n for n in tree.nodes if tree.in_degree[n] == 0]
     sequence = []
 
-    if mode == 'auto':
-        mode = 'chr' if len(tree) < 1112064 // 2 else 'number'
+    if mode == "auto":
+        mode = "chr" if len(tree) < 1112064 // 2 else "number"
 
-    if mode == 'paren':
-        all_labels = {n['label'] for n in list(tree.nodes.values())}
+    if mode == "paren":
+        all_labels = {n["label"] for n in list(tree.nodes.values())}
         assert all(x == 1 for x in map(len, all_labels))
 
-    if container == 'auto':
-        container = 'str' if mode == 'chr' else 'list'
+    if container == "auto":
+        container = "str" if mode == "chr" else "list"
 
-    seq_is_str = (container == 'str')
+    seq_is_str = container == "str"
 
     if open_to_close is None:
         open_to_close = {}
@@ -240,13 +247,13 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
 
     for source in sources:
         for u, v, etype in nx.dfs_labeled_edges(tree, source=source):
-            if etype == 'forward':
+            if etype == "forward":
                 # u has been visited by v has not
                 if v not in node_to_open:
-                    if mode == 'number':
+                    if mode == "number":
                         open_tok = len(node_to_open) + 1
                         close_tok = -open_tok
-                    elif mode == 'chr':
+                    elif mode == "chr":
                         if seq_is_str:
                             # utf8 can only encode this many chars
                             assert len(node_to_open) < (1112064 // 2)
@@ -257,15 +264,15 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
                             # mode even though the close tok renders as a
                             # single character.
                             open_tok = str(v)
-                            close_tok = str(v) + u'\u0301'
-                    elif mode == 'paren':
-                        open_tok = tree.nodes[v]['label']
-                        if open_tok == '{':
-                            close_tok = '}'
-                        elif open_tok == '[':
-                            close_tok = ']'
-                        elif open_tok == '(':
-                            close_tok = ')'
+                            close_tok = str(v) + u"\u0301"
+                    elif mode == "paren":
+                        open_tok = tree.nodes[v]["label"]
+                        if open_tok == "{":
+                            close_tok = "}"
+                        elif open_tok == "[":
+                            close_tok = "]"
+                        elif open_tok == "(":
+                            close_tok = ")"
                         else:
                             raise KeyError(open_tok)
                     else:
@@ -274,7 +281,7 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
                     open_to_close[open_tok] = close_tok
                 open_tok = node_to_open[v]
                 sequence.append(open_tok)
-            elif etype == 'reverse':
+            elif etype == "reverse":
                 # Both u and v are visited and the edge is in the tree
                 close_tok = open_to_close[node_to_open[v]]
                 sequence.append(close_tok)
@@ -283,7 +290,7 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
     sequence = tuple(sequence)
 
     if seq_is_str:
-        sequence = ''.join(sequence)
+        sequence = "".join(sequence)
     return sequence, open_to_close, node_to_open
 
 
@@ -340,7 +347,7 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
             else:
                 subtree.add_node(node)
             if open_to_node is None:
-                subtree.nodes[node]['label'] = token
+                subtree.nodes[node]["label"] = token
             stack.append((token, node))
         else:
             if not stack:

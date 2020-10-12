@@ -1331,6 +1331,7 @@ def random_ordered_tree(n, seed=None, directed=False):
         └── 0
     """
     from networkx.utils import create_py_random_state
+
     rng = create_py_random_state(seed)
     # Create a random undirected tree
     utree = nx.random_tree(n, seed=rng)

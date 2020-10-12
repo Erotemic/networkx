@@ -18,8 +18,7 @@ from networkx.algorithms.embedding import maximum_common_ordered_tree_embedding
 import operator
 
 
-def maximum_common_path_embedding(paths1, paths2, sep='/', impl='auto',
-                                  mode='auto'):
+def maximum_common_path_embedding(paths1, paths2, sep="/", impl="auto", mode="auto"):
     """
     Finds the maximum path embedding common between two sets of paths
 
@@ -79,20 +78,26 @@ def maximum_common_path_embedding(paths1, paths2, sep='/', impl='auto',
             else:
                 break
         return score
+
     node_affinity = _affinity
 
     tree1 = paths_to_otree(paths1, sep=sep)
     tree2 = paths_to_otree(paths2, sep=sep)
 
     subtree1, subtree2 = maximum_common_ordered_tree_embedding(
-            tree1, tree2, node_affinity=node_affinity, impl=impl, mode=mode)
+        tree1, tree2, node_affinity=node_affinity, impl=impl, mode=mode
+    )
 
-    subpaths1 = [sep.join(node) for node in subtree1.nodes if subtree1.out_degree[node] == 0]
-    subpaths2 = [sep.join(node) for node in subtree2.nodes if subtree2.out_degree[node] == 0]
+    subpaths1 = [
+        sep.join(node) for node in subtree1.nodes if subtree1.out_degree[node] == 0
+    ]
+    subpaths2 = [
+        sep.join(node) for node in subtree2.nodes if subtree2.out_degree[node] == 0
+    ]
     return subpaths1, subpaths2
 
 
-def paths_to_otree(paths, sep='/'):
+def paths_to_otree(paths, sep="/"):
     """
     Generates an ordered tree from a list of path strings
 
@@ -150,18 +155,25 @@ def paths_to_otree(paths, sep='/'):
         for i in range(1, len(parts) + 1):
             node = parts[0:i]
             otree.add_node(node)
-            otree.nodes[node]['label'] = node[-1]
+            otree.nodes[node]["label"] = node[-1]
             node_path.append(node)
         for u, v in zip(node_path[:-1], node_path[1:]):
             otree.add_edge(u, v)
-    if ('',) in otree.nodes:
-        otree.nodes[('',)]['label'] = sep
+    if ("",) in otree.nodes:
+        otree.nodes[("",)]["label"] = sep
     return otree
 
 
 def random_paths(
-        size=10, max_depth=10, common=0, prefix_depth1=0, prefix_depth2=0,
-        sep='/', labels=26, seed=None):
+    size=10,
+    max_depth=10,
+    common=0,
+    prefix_depth1=0,
+    prefix_depth2=0,
+    sep="/",
+    labels=26,
+    seed=None,
+):
     """
     Returns two randomly created paths (as in directory structures) for use in
     testing and benchmarking :func:`maximum_common_path_embedding`.
@@ -219,17 +231,20 @@ def random_paths(
      'twe']
     """
     from networkx.utils import create_py_random_state
+
     rng = create_py_random_state(seed)
 
     if isinstance(labels, int):
-        alphabet = list(map(chr, range(ord('a'), ord('z'))))
+        alphabet = list(map(chr, range(ord("a"), ord("z"))))
 
         def random_label():
             digit = rng.randint(0, labels)
             label = _convert_digit_base(digit, alphabet)
             return label
+
     else:
         from functools import partial
+
         random_label = partial(rng.choice, labels)
 
     def random_path(rng, max_depth):
@@ -284,9 +299,9 @@ def _convert_digit_base(digit, alphabet):
         digits.append(alphabet[x % baselen])
         x //= baselen
     if sign < 0:
-        digits.append('-')
+        digits.append("-")
     digits.reverse()
-    newbase_str = ''.join(digits)
+    newbase_str = "".join(digits)
     return newbase_str
 
 
@@ -312,26 +327,25 @@ def bench_maximum_common_path_embedding():
 
     data_modes = []
 
-    available_impls = balanced_sequence.available_impls_longest_common_balanced_sequence()
+    available_impls = (
+        balanced_sequence.available_impls_longest_common_balanced_sequence()
+    )
 
     # Define which implementations we are going to test
     run_basis = {
-        'mode': [
-            'chr',
-            'number'
-        ],
-        'impl': available_impls,
+        "mode": ["chr", "number"],
+        "impl": available_impls,
     }
 
     # Define the properties of the random data we are going to test on
     data_basis = {
-        'size': [20, 50],
-        'max_depth': [8, 16],
-        'common': [8, 16],
-        'prefix_depth1': [0, 4],
-        'prefix_depth2': [0, 4],
+        "size": [20, 50],
+        "max_depth": [8, 16],
+        "common": [8, 16],
+        "prefix_depth1": [0, 4],
+        "prefix_depth2": [0, 4],
         # 'labels': [26 ** 1, 26 ** 8]
-        'labels': [1, 26]
+        "labels": [1, 26],
     }
 
     # run_basis['impl'] = set(run_basis['impl']) & {
@@ -342,20 +356,20 @@ def bench_maximum_common_path_embedding():
     # TODO: parametarize demo names
     # BENCH_MODE = None
     # BENCH_MODE = 'small'
-    BENCH_MODE = 'medium'
+    BENCH_MODE = "medium"
     # BENCH_MODE = 'large'
 
-    if BENCH_MODE == 'small':
+    if BENCH_MODE == "small":
         data_basis = {
-            'size': [30],
-            'max_depth': [8, 2],
-            'common': [2, 8],
-            'prefix_depth1': [0, 4],
-            'prefix_depth2': [0],
-            'labels': [4]
+            "size": [30],
+            "max_depth": [8, 2],
+            "common": [2, 8],
+            "prefix_depth1": [0, 4],
+            "prefix_depth2": [0],
+            "labels": [4],
         }
-        run_basis['impl'] = ub.oset(available_impls) - {'recurse'}
-        run_basis['mode'] = ['number', 'chr']
+        run_basis["impl"] = ub.oset(available_impls) - {"recurse"}
+        run_basis["mode"] = ["number", "chr"]
         # runparam_to_time = {
         #     ('chr', 'iter-cython')       : {'mean': 0.036, 'max': 0.094},
         #     ('chr', 'iter')              : {'mean': 0.049, 'max': 0.125},
@@ -363,14 +377,14 @@ def bench_maximum_common_path_embedding():
         #     ('number', 'iter')           : {'mean': 0.149, 'max': 0.408},
         # }
 
-    if BENCH_MODE == 'medium':
+    if BENCH_MODE == "medium":
         data_basis = {
-            'size': [30, 40],
-            'max_depth': [4, 8],
-            'common': [8, 50],
-            'prefix_depth1': [0, 4],
-            'prefix_depth2': [2],
-            'labels': [8, 1]
+            "size": [30, 40],
+            "max_depth": [4, 8],
+            "common": [8, 50],
+            "prefix_depth1": [0, 4],
+            "prefix_depth2": [2],
+            "labels": [8, 1],
         }
         # Results
         # runparam_to_time = {
@@ -378,163 +392,182 @@ def bench_maximum_common_path_embedding():
         #     ('chr', 'iter')           : {'mean': 0.155, 'max': 0.661},
         # }
 
-    if BENCH_MODE == 'large':
+    if BENCH_MODE == "large":
         data_basis = {
-            'size': [30, 40],
-            'max_depth': [4, 12],  # 64000
-            'common': [8, 32],
-            'prefix_depth1': [0, 4],
-            'prefix_depth2': [2],
-            'labels': [8]
+            "size": [30, 40],
+            "max_depth": [4, 12],  # 64000
+            "common": [8, 32],
+            "prefix_depth1": [0, 4],
+            "prefix_depth2": [2],
+            "labels": [8],
         }
-        run_basis['impl'] = available_impls
+        run_basis["impl"] = available_impls
         # runparam_to_time = {
         #     ('chr', 'iter-cython')    : {'mean': 0.282, 'max': 0.923},
         #     ('chr', 'iter')           : {'mean': 0.409, 'max': 1.328},
         # }
 
-    elif BENCH_MODE == 'too-big':
+    elif BENCH_MODE == "too-big":
         data_basis = {
-            'size': [100],
-            'max_depth': [8],
-            'common': [80],
-            'prefix_depth1': [4],
-            'prefix_depth2': [2],
-            'labels': [8]
+            "size": [100],
+            "max_depth": [8],
+            "common": [80],
+            "prefix_depth1": [4],
+            "prefix_depth2": [2],
+            "labels": [8],
         }
 
     data_modes = [
-        dict(zip(data_basis.keys(), vals))
-        for vals in it.product(*data_basis.values())]
+        dict(zip(data_basis.keys(), vals)) for vals in it.product(*data_basis.values())
+    ]
     run_modes = [
-        dict(zip(run_basis.keys(), vals))
-        for vals in it.product(*run_basis.values())]
+        dict(zip(run_basis.keys(), vals)) for vals in it.product(*run_basis.values())
+    ]
 
-    print('len(data_modes) = {!r}'.format(len(data_modes)))
-    print('len(run_modes) = {!r}'.format(len(run_modes)))
-    print('total = {}'.format(len(data_modes) * len(run_modes)))
+    print("len(data_modes) = {!r}".format(len(data_modes)))
+    print("len(run_modes) = {!r}".format(len(run_modes)))
+    print("total = {}".format(len(data_modes) * len(run_modes)))
 
     seed = 0
     for idx, datakw in enumerate(data_modes):
-        print('datakw = {}'.format(ub.repr2(datakw, nl=1)))
-        _datakw = ub.dict_diff(datakw, {'complexity'})
+        print("datakw = {}".format(ub.repr2(datakw, nl=1)))
+        _datakw = ub.dict_diff(datakw, {"complexity"})
         paths1, paths2 = random_paths(seed=seed, **_datakw)
         tree1 = paths_to_otree(paths1)
         tree2 = paths_to_otree(paths2)
         stats1 = {
-            'npaths': len(paths1),
-            'n_nodes': len(tree1.nodes),
-            'n_edges': len(tree1.edges),
-            'n_leafs': len([n for n in tree1.nodes if len(tree1.succ[n]) == 0]),
-            'depth': max(len(p.split('/')) for p in paths1),
+            "npaths": len(paths1),
+            "n_nodes": len(tree1.nodes),
+            "n_edges": len(tree1.edges),
+            "n_leafs": len([n for n in tree1.nodes if len(tree1.succ[n]) == 0]),
+            "depth": max(len(p.split("/")) for p in paths1),
         }
         stats2 = {
-            'npaths': len(paths2),
-            'n_nodes': len(tree2.nodes),
-            'n_edges': len(tree2.edges),
-            'n_leafs': len([n for n in tree2.nodes if len(tree2.succ[n]) == 0]),
-            'depth': max(len(p.split('/')) for p in paths2),
+            "npaths": len(paths2),
+            "n_nodes": len(tree2.nodes),
+            "n_edges": len(tree2.edges),
+            "n_leafs": len([n for n in tree2.nodes if len(tree2.succ[n]) == 0]),
+            "depth": max(len(p.split("/")) for p in paths2),
         }
         complexity = (
-            stats1['n_nodes'] * min(stats1['n_leafs'], stats1['depth']) *
-            stats2['n_nodes'] * min(stats2['n_leafs'], stats2['depth'])) ** .25
+            stats1["n_nodes"]
+            * min(stats1["n_leafs"], stats1["depth"])
+            * stats2["n_nodes"]
+            * min(stats2["n_leafs"], stats2["depth"])
+        ) ** 0.25
 
-        datakw['complexity'] = complexity
-        print('datakw = {}'.format(ub.repr2(datakw, nl=0, precision=2)))
+        datakw["complexity"] = complexity
+        print("datakw = {}".format(ub.repr2(datakw, nl=0, precision=2)))
 
-        print('stats1 = {}'.format(ub.repr2(stats1, nl=0)))
-        print('stats2 = {}'.format(ub.repr2(stats2, nl=0)))
+        print("stats1 = {}".format(ub.repr2(stats1, nl=0)))
+        print("stats2 = {}".format(ub.repr2(stats2, nl=0)))
 
     total = len(data_modes) * len(run_modes)
-    print('len(data_modes) = {!r}'.format(len(data_modes)))
-    print('len(run_modes) = {!r}'.format(len(run_modes)))
-    print('total = {!r}'.format(total))
+    print("len(data_modes) = {!r}".format(len(data_modes)))
+    print("len(run_modes) = {!r}".format(len(run_modes)))
+    print("total = {!r}".format(total))
     seed = 0
 
     prog = ub.ProgIter(total=total, verbose=3)
     prog.begin()
     results = []
-    ti = timerit.Timerit(1, bestof=1, verbose=1, unit='s')
+    ti = timerit.Timerit(1, bestof=1, verbose=1, unit="s")
     for datakw in data_modes:
-        _datakw = ub.dict_diff(datakw, {'complexity'})
+        _datakw = ub.dict_diff(datakw, {"complexity"})
         paths1, paths2 = random_paths(seed=seed, **_datakw)
-        print('---')
+        print("---")
         prog.step(4)
         tree1 = paths_to_otree(paths1)
         tree2 = paths_to_otree(paths2)
         stats1 = {
-            'npaths': len(paths1),
-            'n_nodes': len(tree1.nodes),
-            'n_edges': len(tree1.edges),
-            'n_leafs': len([n for n in tree1.nodes if len(tree1.succ[n]) == 0]),
-            'depth': max(len(p.split('/')) for p in paths1),
+            "npaths": len(paths1),
+            "n_nodes": len(tree1.nodes),
+            "n_edges": len(tree1.edges),
+            "n_leafs": len([n for n in tree1.nodes if len(tree1.succ[n]) == 0]),
+            "depth": max(len(p.split("/")) for p in paths1),
         }
         stats2 = {
-            'npaths': len(paths2),
-            'n_nodes': len(tree2.nodes),
-            'n_edges': len(tree2.edges),
-            'n_leafs': len([n for n in tree2.nodes if len(tree2.succ[n]) == 0]),
-            'depth': max(len(p.split('/')) for p in paths2),
+            "npaths": len(paths2),
+            "n_nodes": len(tree2.nodes),
+            "n_edges": len(tree2.edges),
+            "n_leafs": len([n for n in tree2.nodes if len(tree2.succ[n]) == 0]),
+            "depth": max(len(p.split("/")) for p in paths2),
         }
         complexity = (
-            stats1['n_nodes'] * min(stats1['n_leafs'], stats1['depth']) *
-            stats2['n_nodes'] * min(stats2['n_leafs'], stats2['depth'])) ** .25
+            stats1["n_nodes"]
+            * min(stats1["n_leafs"], stats1["depth"])
+            * stats2["n_nodes"]
+            * min(stats2["n_leafs"], stats2["depth"])
+        ) ** 0.25
 
-        datakw['complexity'] = complexity
-        print('datakw = {}'.format(ub.repr2(datakw, nl=0, precision=2)))
+        datakw["complexity"] = complexity
+        print("datakw = {}".format(ub.repr2(datakw, nl=0, precision=2)))
 
         if True:
             # idx + 4 > len(data_modes):
-            print('stats1 = {}'.format(ub.repr2(stats1, nl=0)))
-            print('stats2 = {}'.format(ub.repr2(stats2, nl=0)))
+            print("stats1 = {}".format(ub.repr2(stats1, nl=0)))
+            print("stats2 = {}".format(ub.repr2(stats2, nl=0)))
         for runkw in run_modes:
             paramkw = {**datakw, **runkw}
             run_key = ub.repr2(
-                paramkw, sep='', itemsep='', kvsep='',
-                explicit=1, nobr=1, nl=0, precision=1)
+                paramkw,
+                sep="",
+                itemsep="",
+                kvsep="",
+                explicit=1,
+                nobr=1,
+                nl=0,
+                precision=1,
+            )
             try:
                 for timer in ti.reset(run_key):
                     with timer:
                         maximum_common_path_embedding(paths1, paths2, **runkw)
             except RecursionError as ex:
-                print('ex = {!r}'.format(ex))
+                print("ex = {!r}".format(ex))
                 row = paramkw.copy()
-                row['time'] = float('nan')
+                row["time"] = float("nan")
             else:
                 row = paramkw.copy()
-                row['time'] = ti.min()
+                row["time"] = ti.min()
             results.append(row)
     prog.end()
 
-    print(ub.repr2(
-        ub.sorted_vals(ti.measures['min']), nl=1, align=':', precision=6))
+    print(ub.repr2(ub.sorted_vals(ti.measures["min"]), nl=1, align=":", precision=6))
 
     import pandas as pd
     import kwarray
+
     df = pd.DataFrame.from_dict(results)
 
     dataparam_to_time = {}
-    for mode, subdf in df.groupby(['complexity'] + list(data_basis.keys())):
-        stats = kwarray.stats_dict(subdf['time'])
-        stats.pop('min', None)
-        stats.pop('std', None)
-        stats.pop('shape', None)
+    for mode, subdf in df.groupby(["complexity"] + list(data_basis.keys())):
+        stats = kwarray.stats_dict(subdf["time"])
+        stats.pop("min", None)
+        stats.pop("std", None)
+        stats.pop("shape", None)
         dataparam_to_time[mode] = stats
-    dataparam_to_time = ub.sorted_vals(dataparam_to_time, key=lambda x: x['max'])
-    print('dataparam_to_time = {}'.format(
-        ub.repr2(dataparam_to_time, nl=1, precision=3, align=':')))
+    dataparam_to_time = ub.sorted_vals(dataparam_to_time, key=lambda x: x["max"])
+    print(
+        "dataparam_to_time = {}".format(
+            ub.repr2(dataparam_to_time, nl=1, precision=3, align=":")
+        )
+    )
     print(list(data_basis.keys()))
 
     runparam_to_time = {}
-    for mode, subdf in df.groupby(['mode', 'impl']):
-        stats = kwarray.stats_dict(subdf['time'])
-        stats.pop('min', None)
-        stats.pop('std', None)
-        stats.pop('shape', None)
+    for mode, subdf in df.groupby(["mode", "impl"]):
+        stats = kwarray.stats_dict(subdf["time"])
+        stats.pop("min", None)
+        stats.pop("std", None)
+        stats.pop("shape", None)
         runparam_to_time[mode] = stats
-    runparam_to_time = ub.sorted_vals(runparam_to_time, key=lambda x: x['max'])
-    print('runparam_to_time = {}'.format(
-        ub.repr2(runparam_to_time, nl=1, precision=3, align=':')))
+    runparam_to_time = ub.sorted_vals(runparam_to_time, key=lambda x: x["max"])
+    print(
+        "runparam_to_time = {}".format(
+            ub.repr2(runparam_to_time, nl=1, precision=3, align=":")
+        )
+    )
 
 
 def allsame(iterable, eq=operator.eq):
@@ -579,86 +612,66 @@ def allsame(iterable, eq=operator.eq):
 
 
 def test_not_compatable():
-    paths1 = [
-        'foo/bar'
-    ]
-    paths2 = [
-        'baz/biz'
-    ]
+    paths1 = ["foo/bar"]
+    paths2 = ["baz/biz"]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
     assert len(embedding1) == 0
     assert len(embedding2) == 0
 
 
 def test_compatable():
-    paths1 = [
-        'root/suffix1'
-    ]
-    paths2 = [
-        'root/suffix2'
-    ]
+    paths1 = ["root/suffix1"]
+    paths2 = ["root/suffix2"]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
-    assert embedding1 == ['root']
-    assert embedding2 == ['root']
+    assert embedding1 == ["root"]
+    assert embedding2 == ["root"]
 
-    paths1 = [
-        'root/suffix1'
-    ]
-    paths2 = [
-        'root'
-    ]
+    paths1 = ["root/suffix1"]
+    paths2 = ["root"]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
-    assert embedding1 == ['root']
-    assert embedding2 == ['root']
+    assert embedding1 == ["root"]
+    assert embedding2 == ["root"]
 
 
 def test_prefixed():
-    paths1 = [
-        'prefix1/root/suffix1'
-    ]
-    paths2 = [
-        'root/suffix2'
-    ]
+    paths1 = ["prefix1/root/suffix1"]
+    paths2 = ["root/suffix2"]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
-    assert embedding1 == ['prefix1/root']
-    assert embedding2 == ['root']
+    assert embedding1 == ["prefix1/root"]
+    assert embedding2 == ["root"]
 
-    paths1 = [
-        'prefix1/root/suffix1'
-    ]
-    paths2 = [
-        'prefix1/root/suffix2'
-    ]
+    paths1 = ["prefix1/root/suffix1"]
+    paths2 = ["prefix1/root/suffix2"]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
-    assert embedding1 == ['prefix1/root']
-    assert embedding2 == ['prefix1/root']
+    assert embedding1 == ["prefix1/root"]
+    assert embedding2 == ["prefix1/root"]
 
 
 def test_simple1():
     paths1 = [
-        'root/file1',
-        'root/file2',
-        'root/file3',
+        "root/file1",
+        "root/file2",
+        "root/file3",
     ]
     paths2 = [
-        'prefix1/root/file1',
-        'prefix1/root/file2',
-        'root/file3',
+        "prefix1/root/file1",
+        "prefix1/root/file2",
+        "root/file3",
     ]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
     assert embedding1 == paths1
     assert embedding2 == paths2
 
     paths1 = [
-        'root/file1',
-        'root/file2',
-        'root/file3',
+        "root/file1",
+        "root/file2",
+        "root/file3",
     ]
     paths2 = [
-        'prefix1/root/file1',
-        'prefix1/root/file2',
-        'prefix2/root/file3',
-        'prefix2/root/file4',
+        "prefix1/root/file1",
+        "prefix1/root/file2",
+        "prefix2/root/file3",
+        "prefix2/root/file4",
     ]
     embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2)
     assert embedding1 == paths1
@@ -693,59 +706,59 @@ def _demodata_resnet_module_state(arch):
     print(ub.hzcat([ub.repr2(paths_true, nl=2), ub.repr2(paths_demo)]))
     assert paths_demo == paths_true
     """
-    if arch == 'resnet18':
-        block_type = 'basic'
+    if arch == "resnet18":
+        block_type = "basic"
         layer_blocks = [2, 2, 2, 2]
-    elif arch == 'resnet50':
-        block_type = 'bottleneck'
+    elif arch == "resnet50":
+        block_type = "bottleneck"
         layer_blocks = [3, 4, 6, 3]
-    elif arch == 'resnet152':
-        block_type = 'bottleneck'
+    elif arch == "resnet152":
+        block_type = "bottleneck"
         layer_blocks = [3, 8, 36, 3]
     else:
         raise KeyError(arch)
     paths = []
     paths += [
-        'conv1.weight',
-        'bn1.weight',
-        'bn1.bias',
-        'bn1.running_mean',
-        'bn1.running_var',
-        'bn1.num_batches_tracked',
+        "conv1.weight",
+        "bn1.weight",
+        "bn1.bias",
+        "bn1.running_mean",
+        "bn1.running_var",
+        "bn1.num_batches_tracked",
     ]
-    if block_type == 'bottleneck':
+    if block_type == "bottleneck":
         num_convs = 3
-    elif block_type == 'basic':
+    elif block_type == "basic":
         num_convs = 2
     else:
         raise KeyError(block_type)
 
     for layer_idx, nblocks in enumerate(layer_blocks, start=1):
         for block_idx in range(0, nblocks):
-            prefix = 'layer{}.{}.'.format(layer_idx, block_idx)
+            prefix = "layer{}.{}.".format(layer_idx, block_idx)
 
             for conv_idx in range(1, num_convs + 1):
                 paths += [
-                    prefix + 'conv{}.weight'.format(conv_idx),
-                    prefix + 'bn{}.weight'.format(conv_idx),
-                    prefix + 'bn{}.bias'.format(conv_idx),
-                    prefix + 'bn{}.running_mean'.format(conv_idx),
-                    prefix + 'bn{}.running_var'.format(conv_idx),
-                    prefix + 'bn{}.num_batches_tracked'.format(conv_idx),
+                    prefix + "conv{}.weight".format(conv_idx),
+                    prefix + "bn{}.weight".format(conv_idx),
+                    prefix + "bn{}.bias".format(conv_idx),
+                    prefix + "bn{}.running_mean".format(conv_idx),
+                    prefix + "bn{}.running_var".format(conv_idx),
+                    prefix + "bn{}.num_batches_tracked".format(conv_idx),
                 ]
             if block_idx == 0 and layer_idx > 0:
-                if block_type != 'basic' or layer_idx > 1:
+                if block_type != "basic" or layer_idx > 1:
                     paths += [
-                        prefix + 'downsample.0.weight',
-                        prefix + 'downsample.1.weight',
-                        prefix + 'downsample.1.bias',
-                        prefix + 'downsample.1.running_mean',
-                        prefix + 'downsample.1.running_var',
-                        prefix + 'downsample.1.num_batches_tracked',
+                        prefix + "downsample.0.weight",
+                        prefix + "downsample.1.weight",
+                        prefix + "downsample.1.bias",
+                        prefix + "downsample.1.running_mean",
+                        prefix + "downsample.1.running_var",
+                        prefix + "downsample.1.num_batches_tracked",
                     ]
     paths += [
-        'fc.weight',
-        'fc.bias',
+        "fc.weight",
+        "fc.bias",
     ]
     return paths
 
@@ -761,12 +774,11 @@ def test_realworld_case1():
     # times: resnet18:  0.16 seconds
     # times: resnet50:  0.93 seconds
     # times: resnet152: 9.83 seconds
-    paths1 = _demodata_resnet_module_state('resnet50')
-    paths2 = ['module.' + p for p in paths1]
+    paths1 = _demodata_resnet_module_state("resnet50")
+    paths2 = ["module." + p for p in paths1]
 
-    embedding1, embedding2 = maximum_common_path_embedding(
-            paths1, paths2, sep='.')
-    assert [p[len('module.'):] for p in embedding2] == embedding1
+    embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2, sep=".")
+    assert [p[len("module.") :] for p in embedding2] == embedding1
 
 
 def test_realworld_case2():
@@ -777,56 +789,58 @@ def test_realworld_case2():
     paths1 = list(torchvision.models.resnet152().state_dict().keys())
     print('paths1 = {}'.format(ub.repr2(paths1, nl=2)))
     """
-    backbone = _demodata_resnet_module_state('resnet18')
+    backbone = _demodata_resnet_module_state("resnet18")
 
     # Detector strips of prefix and suffix of the backbone net
-    subpaths = ['detector.' + p for p in backbone[6:-2]]
-    paths1 = [
-        'detector.conv1.weight',
-        'detector.bn1.weight',
-        'detector.bn1.bias',
-    ] + subpaths + [
-        'detector.head1.conv1.weight',
-        'detector.head1.conv2.weight',
-        'detector.head1.conv3.weight',
-        'detector.head1.fc.weight',
-        'detector.head1.fc.bias',
-        'detector.head2.conv1.weight',
-        'detector.head2.conv2.weight',
-        'detector.head2.conv3.weight',
-        'detector.head2.fc.weight',
-        'detector.head2.fc.bias',
-    ]
+    subpaths = ["detector." + p for p in backbone[6:-2]]
+    paths1 = (
+        [
+            "detector.conv1.weight",
+            "detector.bn1.weight",
+            "detector.bn1.bias",
+        ]
+        + subpaths
+        + [
+            "detector.head1.conv1.weight",
+            "detector.head1.conv2.weight",
+            "detector.head1.conv3.weight",
+            "detector.head1.fc.weight",
+            "detector.head1.fc.bias",
+            "detector.head2.conv1.weight",
+            "detector.head2.conv2.weight",
+            "detector.head2.conv3.weight",
+            "detector.head2.fc.weight",
+            "detector.head2.fc.bias",
+        ]
+    )
 
-    paths2 = ['module.' + p for p in backbone]
+    paths2 = ["module." + p for p in backbone]
 
-    embedding1, embedding2 = maximum_common_path_embedding(
-            paths1, paths2, sep='.')
+    embedding1, embedding2 = maximum_common_path_embedding(paths1, paths2, sep=".")
 
     mapping = dict(zip(embedding1, embedding2))
 
     # Note in the embedding case there may be superfluous assignments
     # but they can either be discarded in post-processing or they wont
     # be in the solution if we use isomorphisms instead of embeddings
-    assert len(subpaths) < len(mapping), (
-        'all subpaths should be in the mapping')
+    assert len(subpaths) < len(mapping), "all subpaths should be in the mapping"
 
     non_common1 = set(paths1) - set(embedding1)
     non_common2 = set(paths2) - set(embedding2)
 
     assert non_common2 == {
-            'module.bn1.num_batches_tracked',
-            'module.bn1.running_mean',
-            'module.bn1.running_var',
-            }
+        "module.bn1.num_batches_tracked",
+        "module.bn1.running_mean",
+        "module.bn1.running_var",
+    }
 
     assert non_common1 == {
-        'detector.conv1.weight',
-        'detector.head1.conv1.weight',
-        'detector.head1.conv2.weight',
-        'detector.head1.conv3.weight',
-        'detector.head1.fc.bias',
-        'detector.head1.fc.weight',
-        'detector.head2.conv2.weight',
-        'detector.head2.conv3.weight',
+        "detector.conv1.weight",
+        "detector.head1.conv1.weight",
+        "detector.head1.conv2.weight",
+        "detector.head1.conv3.weight",
+        "detector.head1.fc.bias",
+        "detector.head1.fc.weight",
+        "detector.head2.conv2.weight",
+        "detector.head2.conv3.weight",
     }

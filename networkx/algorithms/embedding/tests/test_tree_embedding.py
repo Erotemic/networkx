@@ -1,5 +1,6 @@
 from networkx.algorithms.embedding.tree_embedding import (
-    maximum_common_ordered_tree_embedding)
+    maximum_common_ordered_tree_embedding,
+)
 from networkx.algorithms.string import balanced_sequence
 from networkx.drawing.text import forest_str
 from networkx.generators.random_graphs import random_ordered_tree
@@ -32,8 +33,7 @@ def test_self_common_embedding():
     rng = create_py_random_state(85652972257)
     for n in range(1, 10):
         tree = random_ordered_tree(n=n, seed=rng, directed=True)
-        embedding1, embedding2 = maximum_common_ordered_tree_embedding(
-            tree, tree)
+        embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree, tree)
         assert tree.edges == embedding1.edges
 
 
@@ -43,8 +43,7 @@ def test_common_tree_embedding_small():
     print(forest_str(tree1))
     print(forest_str(tree2))
 
-    embedding1, embedding2 = maximum_common_ordered_tree_embedding(
-        tree1, tree2)
+    embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2)
     print(forest_str(embedding1))
     print(forest_str(embedding2))
 
@@ -56,7 +55,8 @@ def test_common_tree_embedding_small2():
     print(forest_str(tree2))
 
     embedding1, embedding2 = maximum_common_ordered_tree_embedding(
-        tree1, tree2, node_affinity=None)
+        tree1, tree2, node_affinity=None
+    )
     print(forest_str(embedding1))
     print(forest_str(embedding2))
 
@@ -86,7 +86,8 @@ def test_all_implementations_are_same():
         for impl in impls:
             # FIXME: do we need to rework the return value here?
             subtree1, subtree2 = maximum_common_ordered_tree_embedding(
-                tree1, tree2, node_affinity=None, impl=impl)
+                tree1, tree2, node_affinity=None, impl=impl
+            )
             _check_common_embedding_invariants(tree1, tree2, subtree1, subtree2)
             results[impl] = len(subtree1.nodes)
 
@@ -95,7 +96,7 @@ def test_all_implementations_are_same():
 
 
 def _check_embedding_invariants(tree, subtree):
-    assert set(subtree.nodes).issubset(set(tree.nodes)), 'must have a node subset'
+    assert set(subtree.nodes).issubset(set(tree.nodes)), "must have a node subset"
     assert len(subtree.edges) <= len(tree.edges)
 
 
