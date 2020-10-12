@@ -1321,7 +1321,7 @@ def random_ordered_tree(n, seed=None, directed=False):
     >>> assert len(random_ordered_tree(n=1, seed=0).nodes) == 1
     >>> assert len(random_ordered_tree(n=2, seed=0).nodes) == 2
     >>> assert len(random_ordered_tree(n=3, seed=0).nodes) == 3
-    >>> from networkx.algorithms.embedding.tree_embedding import forest_str
+    >>> from networkx.drawing.text import forest_str
     >>> otree = random_ordered_tree(n=5, seed=3, directed=True)
     >>> print(forest_str(otree))
     └── 1
