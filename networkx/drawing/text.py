@@ -1,4 +1,6 @@
-import networkx as nx
+"""
+Text-based visual representations of graphs
+"""
 
 
 def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
@@ -57,6 +59,7 @@ def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
     │   ├── 2
     │   └── 0
     """
+    import networkx as nx
     printbuf = []
     if eager:
         if write is None:
