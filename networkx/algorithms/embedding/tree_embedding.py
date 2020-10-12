@@ -517,13 +517,3 @@ def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
         return '\n'.join(printbuf)
     else:
         return ''
-
-
-if __name__ == '__main__':
-    """
-    CommandLine:
-        python -m networkx.algorithms.embedding.tree_embedding all
-        python -m networkx.algorithms.embedding all
-    """
-    import xdoctest
-    xdoctest.doctest_module(__file__)

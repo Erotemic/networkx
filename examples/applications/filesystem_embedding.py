@@ -4,6 +4,14 @@ solve the maximum common path embedding problem.
 
 Also contains benchmarks demonstrating runtime differences for different
 backend modes of the :func:`maximum_common_ordered_tree_embedding` algorithm.
+
+Command Line
+------------
+# Run tests and doctests
+pytest examples/applications/filesystem_embedding.py -s -v --doctest-modules
+
+# Run benchmark (requires timerit and ubelt module)
+xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
 """
 import networkx as nx
 from networkx.algorithms.embedding import maximum_common_ordered_tree_embedding
@@ -284,8 +292,17 @@ def _convert_digit_base(digit, alphabet):
 
 def bench_maximum_common_path_embedding():
     """
-    Runs algorithm benchmarks over a range of parameters
+    Runs algorithm benchmarks over a range of parameters.
 
+    Running this benchmark does require some external libraries
+
+    Requirements
+    ------------
+    timerit >= 0.3.0
+    ubelt >= 0.9.2
+
+    Command Line
+    ------------
     xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
     """
     import itertools as it
@@ -754,6 +771,8 @@ def test_realworld_case1():
 
 def test_realworld_case2():
     """
+    Ignore
+    ------
     import torchvision
     paths1 = list(torchvision.models.resnet152().state_dict().keys())
     print('paths1 = {}'.format(ub.repr2(paths1, nl=2)))
@@ -811,17 +830,3 @@ def test_realworld_case2():
         'detector.head2.conv2.weight',
         'detector.head2.conv3.weight',
     }
-    # print('non_common1 = {}'.format(ub.repr2(non_common1, nl=1)))
-    # print('non_common2 = {}'.format(ub.repr2(non_common2, nl=1)))
-    # assert [p[len('module.'):] for p in embedding2] == embedding1
-
-
-if __name__ == '__main__':
-    """
-    CommandLine:
-        xdoctest -m examples/applications/filesystem_embedding.py all
-        xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
-        pytest examples/applications/filesystem_embedding.py -s -v
-    """
-    import xdoctest
-    xdoctest.doctest_module(__file__)

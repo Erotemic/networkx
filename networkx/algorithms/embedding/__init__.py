@@ -7,10 +7,10 @@ problems.
 
 CommandLine
 -----------
-xdoctest -m networkx.algorithms.embedding all
-pytest networkx/algorithms/embedding
+# Run all tests in this subpackage
+pytest networkx/algorithms/embedding --doctest-modules
 
-# The mkinit tool helps autogenerate explicit `__init__.py` files
+# Autogenerate the `__init__.py` file for this subpackage with `mkinit`.
 mkinit ~/code/networkx/networkx/algorithms/embedding/__init__.py -w
 """
 

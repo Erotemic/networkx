@@ -105,12 +105,3 @@ def _check_common_embedding_invariants(tree1, tree2, subtree1, subtree2):
     _check_embedding_invariants(tree1, subtree1)
     _check_embedding_invariants(tree2, subtree2)
     assert len(subtree1.nodes) == len(subtree2.nodes)
-
-
-if __name__ == '__main__':
-    """
-    CommandLine:
-        pytest ~/code/networkx/networkx/algorithms/embedding/tests/test_tree_embedding.py
-    """
-    import xdoctest
-    xdoctest.doctest_module(__file__)

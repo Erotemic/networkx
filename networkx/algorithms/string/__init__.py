@@ -8,12 +8,13 @@ balanced_sequence.py - core python implementations for the longest common
 balanced_sequence_cython.pyx - faster alternative implementations for
     balanced_sequence.py
 
-Regen Command:
-    mkinit ~/code/networkx/networkx/algorithms/string/__init__.py
+CommandLine
+-----------
+# Run all tests in this subpackage
+pytest networkx/algorithms/string --doctest-modules
 
-Test Command:
-    xdoctest -m networkx.algorithms.string all
-    pytest networkx/algorithms/string
+# Autogenerate the `__init__.py` file for this subpackage with `mkinit`.
+mkinit ~/code/networkx/networkx/algorithms/string/__init__.py -w
 """
 from networkx.algorithms.string import balanced_sequence
 
