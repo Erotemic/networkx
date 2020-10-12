@@ -92,16 +92,7 @@ def maximum_common_ordered_tree_embedding(
     >>> from networkx.generators.random_graphs import random_ordered_tree
     >>> tree1 = random_ordered_tree(7, seed=3257073545741117277206611, directed=True)
     >>> tree2 = random_ordered_tree(7, seed=123568587133124688238689717, directed=True)
-    >>> print('tree1')
-    >>> forest_str(tree1, eager=1)
-    >>> print('tree2')
-    >>> forest_str(tree2, eager=1)
-    >>> embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2 )
-    >>> print('embedding1')
-    >>> forest_str(embedding1, eager=1)
-    >>> print('embedding2')
-    >>> forest_str(embedding2, eager=1)
-    tree1
+    >>> print(forest_str(tree1))
     └── 1
         ├── 6
         │   ├── 4
@@ -109,7 +100,7 @@ def maximum_common_ordered_tree_embedding(
         └── 0
             └── 5
                 └── 2
-    tree2
+    >>> print(forest_str(tree2))
     └── 4
         └── 1
             ├── 2
@@ -117,11 +108,12 @@ def maximum_common_ordered_tree_embedding(
             │   └── 0
             └── 3
                 └── 5
-    embedding1
+    >>> embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2 )
+    >>> print(forest_str(embedding1))
     └── 1
         ├── 6
         └── 5
-    embedding2
+    >>> print(forest_str(embedding2))
     └── 1
         ├── 6
         └── 5
@@ -190,17 +182,15 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
     >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
-    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
-    >>> print('sequence = {!r}'.format(sequence))
     └── 0
         └── 1
             └── 2
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
+    >>> print('sequence = {!r}'.format(sequence))
     sequence = (1, 2, 3, -3, -2, -1)
 
     >>> tree = nx.balanced_tree(2, 2, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
-    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
-    >>> print('sequence = {!r}'.format(sequence))
     └── 0
         ├── 2
         │   ├── 6
@@ -208,15 +198,17 @@ def tree_to_seq(tree, open_to_close=None, node_to_open=None, mode='auto',
         └── 1
             ├── 4
             └── 3
+    >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
+    >>> print('sequence = {!r}'.format(sequence))
     sequence = (1, 2, 3, -3, 4, -4, -2, 5, 6, -6, 7, -7, -5, -1)
 
     >>> from networkx.generators.random_graphs import random_ordered_tree
     >>> tree = random_ordered_tree(2, seed=1, directed=True)
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='chr')
     >>> print('sequence = {!r}'.format(sequence))
+    sequence = '\x00\x02\x03\x01'
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
-    sequence = '\x00\x02\x03\x01'
     sequence = (1, 2, -2, -1)
     """
     # mapping between opening and closing tokens
@@ -445,7 +437,7 @@ def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
 
     TODO
     ----
-    - [ ] Is this useful? If so, should this move to networkx.utils
+    - [ ] Is this useful? If so, should this move to networkx.drawing.text
 
     Example
     -------
@@ -467,10 +459,11 @@ def forest_str(graph, eager=False, write=None, use_labels=True, sources=None):
             └── 3
                 ├── 8
                 └── 7
-
-    >>> import networkx as nx
-    >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.Graph)
+    >>> graph = nx.balanced_tree(r=1, h=2, create_using=nx.Graph)
     >>> print(forest_str(graph))
+    ├── 1
+    │   ├── 2
+    │   └── 0
     """
     printbuf = []
     if eager:

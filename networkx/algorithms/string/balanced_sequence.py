@@ -63,8 +63,8 @@ def longest_common_balanced_sequence(
     >>> best, value = longest_common_balanced_sequence(seq1, seq2, open_to_close)
     >>> subseq1, subseq2 = best
     >>> print('subseq1 = {!r}'.format(subseq1))
-    >>> assert value == 13
     subseq1 = '00100101011100001011011011'
+    >>> assert value == 13
 
     >>> # 3-label case
     >>> seq1 = '{({})([[]([]){(()(({()[]({}{})}))){}}])}'
@@ -73,8 +73,8 @@ def longest_common_balanced_sequence(
     >>> best, value = longest_common_balanced_sequence(seq1, seq2, open_to_close)
     >>> subseq1, subseq2 = best
     >>> print('subseq1 = {!r}'.format(subseq1))
-    >>> assert value == 10
     subseq1 = '{{}[][]()(({()})){}}'
+    >>> assert value == 10
     """
     if node_affinity == 'auto' or node_affinity == 'eq':
         node_affinity = operator.eq
@@ -150,6 +150,8 @@ def _lcs_iter(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     Uses a breadth-first trajectory and try-except to catch missing
     memoized results (which seems to be slightly slower than if statements).
 
+    Example
+    -------
     >>> full_seq1 = '{({})([[]([]){(()(({()[]({}{})}))){}}])}'
     >>> full_seq2 = '{[({{}}{{[][{}]}(()[(({()})){[]()}])})]}'
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
@@ -160,7 +162,7 @@ def _lcs_iter(full_seq1, full_seq2, open_to_close, node_affinity, open_to_node):
     >>> node_affinity = op.eq
     >>> open_to_node = IdentityDict()
     >>> res = _lcs_iter(full_seq1, full_seq2, open_to_close, node_affinity,
-    >>>                 open_to_node)
+    ...                 open_to_node)
     >>> val, embeddings = res
     """
     all_decomp1 = generate_all_decomp(full_seq1, open_to_close, open_to_node)
@@ -332,16 +334,16 @@ def generate_all_decomp(seq, open_to_close, open_to_node=None):
     >>> node, *decomp = all_decomp[seq]
     >>> pop_open, pop_close, head, tail, head_tail = decomp
     >>> print('node = {!r}'.format(node))
-    >>> print('pop_open = {!r}'.format(pop_open))
-    >>> print('pop_close = {!r}'.format(pop_close))
-    >>> print('head = {!r}'.format(head))
-    >>> print('tail = {!r}'.format(tail))
-    >>> print('head_tail = {!r}'.format(head_tail))
     node = '('
+    >>> print('pop_open = {!r}'.format(pop_open))
     pop_open = '('
+    >>> print('pop_close = {!r}'.format(pop_close))
     pop_close = ')'
+    >>> print('head = {!r}'.format(head))
     head = '{[[]]}'
+    >>> print('tail = {!r}'.format(tail))
     tail = '[[][]]{{}}'
+    >>> print('head_tail = {!r}'.format(head_tail))
     head_tail = '{[[]]}[[][]]{{}}'
     >>> decomp_alt = balanced_decomp(seq, open_to_close)
     >>> assert decomp_alt == tuple(decomp)
@@ -405,8 +407,8 @@ def balanced_decomp(sequence, open_to_close):
     >>> open_to_close = {'0': '1'}
     >>> a1, b1, head, tail, head_tail = balanced_decomp(sequence, open_to_close)
     >>> print('head = {!r}'.format(head))
-    >>> print('tail = {!r}'.format(tail))
     head = '010001011011'
+    >>> print('tail = {!r}'.format(tail))
     tail = '0001000100101110111011'
 
     Example
@@ -415,14 +417,14 @@ def balanced_decomp(sequence, open_to_close):
     >>> sequence = [0, 0, 0, 1, 1, 1, 0, 1]
     >>> a1, b1, head, tail, head_tail = balanced_decomp(sequence, open_to_close)
     >>> print('a1 = {!r}'.format(a1))
-    >>> print('b1 = {!r}'.format(b1))
-    >>> print('head = {!r}'.format(head))
-    >>> print('tail = {!r}'.format(tail))
-    >>> print('head_tail = {!r}'.format(head_tail))
     a1 = [0]
+    >>> print('b1 = {!r}'.format(b1))
     b1 = [1]
+    >>> print('head = {!r}'.format(head))
     head = [0, 0, 1, 1]
+    >>> print('tail = {!r}'.format(tail))
     tail = [0, 1]
+    >>> print('head_tail = {!r}'.format(head_tail))
     head_tail = [0, 0, 1, 1, 0, 1]
     >>> a2, b2, tail1, tail2, head_tail2 = balanced_decomp(tail, open_to_close)
 
@@ -432,25 +434,25 @@ def balanced_decomp(sequence, open_to_close):
     >>> sequence = '({[[]]})[[][]]'
     >>> a1, b1, head, tail, head_tail = balanced_decomp(sequence, open_to_close)
     >>> print('a1 = {!r}'.format(a1))
-    >>> print('b1 = {!r}'.format(b1))
-    >>> print('head = {!r}'.format(head))
-    >>> print('tail = {!r}'.format(tail))
-    >>> print('head_tail = {!r}'.format(head_tail))
     a1 = '('
+    >>> print('b1 = {!r}'.format(b1))
     b1 = ')'
+    >>> print('head = {!r}'.format(head))
     head = '{[[]]}'
+    >>> print('tail = {!r}'.format(tail))
     tail = '[[][]]'
+    >>> print('head_tail = {!r}'.format(head_tail))
     head_tail = '{[[]]}[[][]]'
     >>> a2, b2, tail1, tail2, head_tail2 = balanced_decomp(tail, open_to_close)
     >>> print('a2 = {!r}'.format(a2))
-    >>> print('b2 = {!r}'.format(b2))
-    >>> print('tail1 = {!r}'.format(tail1))
-    >>> print('tail2 = {!r}'.format(tail2))
-    >>> print('head_tail2 = {!r}'.format(head_tail2))
     a2 = '['
+    >>> print('b2 = {!r}'.format(b2))
     b2 = ']'
+    >>> print('tail1 = {!r}'.format(tail1))
     tail1 = '[][]'
+    >>> print('tail2 = {!r}'.format(tail2))
     tail2 = ''
+    >>> print('head_tail2 = {!r}'.format(head_tail2))
     head_tail2 = '[][]'
     """
     gen = generate_balance(sequence, open_to_close)
@@ -473,7 +475,7 @@ def balanced_decomp(sequence, open_to_close):
 
 
 def generate_balance(sequence, open_to_close):
-    """
+    r"""
     Iterates through a balanced sequence and reports if the sequence-so-far
     is balanced at that position or not.
 
@@ -501,15 +503,18 @@ def generate_balance(sequence, open_to_close):
     >>> sequence = [0, 0, 0, 1, 1, 1]
     >>> gen = list(generate_balance(sequence, open_to_close))
     >>> for flag, token in gen:
-    >>>     print('flag={:d}, token={}'.format(flag, token))
+    ...     print('flag={:d}, token={}'.format(flag, token))
+    flag=0, token=0
+    flag=0, token=0
+    flag=0, token=0
+    flag=0, token=1
+    flag=0, token=1
+    flag=1, token=1
 
     Example
     -------
-    >>> sequence, open_to_close = random_balanced_sequence(4)
-    >>> print('sequence = {!r}'.format(sequence))
+    >>> sequence, open_to_close = random_balanced_sequence(4, seed=0)
     >>> gen = list(generate_balance(sequence, open_to_close))
-    >>> for flag, token in gen:
-    >>>     print('flag={:d}, token={}'.format(flag, token))
     """
     stack = []
     # Traversing the Expression
@@ -605,12 +610,12 @@ def random_balanced_sequence(n, seed=None, mode='chr', open_to_close=None):
     >>> # Demo the various sequence encodings that we might use
     >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='chr')
     >>> print('seq = {!r}'.format(seq))
+    seq = '\x00\x02\x04\x06\x07\x05\x03\x01'
     >>> seq, open_to_close = random_balanced_sequence(4, seed=1, mode='number')
     >>> print('seq = {!r}'.format(seq))
+    seq = (1, 2, 3, 4, -4, -3, -2, -1)
     >>> seq, open_to_close = random_balanced_sequence(10, seed=1, mode='paren')
     >>> print('seq = {!r}'.format(seq))
-    seq = '\x00\x02\x04\x06\x07\x05\x03\x01'
-    seq = (1, 2, 3, 4, -4, -3, -2, -1)
     seq = '([[[]{{}}](){{[]}}])'
     """
     from networkx.algorithms.embedding.tree_embedding import tree_to_seq
