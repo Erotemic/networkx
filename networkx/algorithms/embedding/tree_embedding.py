@@ -17,7 +17,6 @@ Issues
         just use their indexes.
 
 """
-import networkx as nx
 from collections import OrderedDict, defaultdict
 from networkx.algorithms.string import balanced_sequence
 
@@ -122,6 +121,7 @@ def maximum_common_ordered_tree_embedding(
         ├── 6
         └── 5
     """
+    import networkx as nx
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree1)):
         raise nx.NetworkXNotImplemented("only implemented for directed ordered trees")
     if not (isinstance(tree1, nx.OrderedDiGraph) and nx.is_forest(tree2)):
@@ -193,6 +193,7 @@ def tree_to_seq(
     -------
     >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
     >>> from networkx.drawing.text import forest_str
+    >>> import networkx as nx
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
     └── 0
@@ -224,6 +225,7 @@ def tree_to_seq(
     >>> print('sequence = {!r}'.format(sequence))
     sequence = (1, 2, -2, -1)
     """
+    import networkx as nx
     # mapping between opening and closing tokens
     sources = [n for n in tree.nodes if tree.in_degree[n] == 0]
     sequence = []
@@ -331,6 +333,7 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
             └── [
                 └── [
     """
+    import networkx as nx
     nextnode = 0  # only used if open_to_node is not specified
     subtree = nx.OrderedDiGraph()
     stack = []
