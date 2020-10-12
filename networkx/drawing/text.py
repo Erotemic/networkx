@@ -72,8 +72,7 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
         _write("<empty graph>")
     else:
         if not nx.is_forest(graph):
-            raise nx.NetworkXNotImplemented(
-                "input must be a forest or the empty graph")
+            raise nx.NetworkXNotImplemented("input must be a forest or the empty graph")
 
         is_directed = graph.is_directed()
         succ = graph.succ if is_directed else graph.adj
@@ -106,16 +105,11 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
             # shortlist: ➙ ➤
             if 0:
                 candidates = (
-                    '→'
-                    'ᐅ ⇢ ⇀ →'
-                    '╼ → ► ⟶'
-                    '➙ ➝ ➝ ➞'
-                    '➟ ➠ ➡ ➢'
-                    '➣ ➤ ➥ ➦'
-                    '➧').split(' ')
+                    "→" "ᐅ ⇢ ⇀ →" "╼ → ► ⟶" "➙ ➝ ➝ ➞" "➟ ➠ ➡ ➢" "➣ ➤ ➥ ➦" "➧"
+                ).split(" ")
                 for c in candidates:
                     if len(c) == 1:
-                        print('─' + c)
+                        print("─" + c)
 
             if not indent:
                 # Top level items (i.e. trees in the forest) get different
