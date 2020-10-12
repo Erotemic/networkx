@@ -77,7 +77,6 @@ import networkx.algorithms.shortest_paths
 import networkx.algorithms.tournament
 import networkx.algorithms.traversal
 import networkx.algorithms.tree
-import networkx.algorithms.embedding
 
 # Make certain functions from some of the previous subpackages available
 # to the user as direct imports from the `networkx` namespace.
@@ -100,7 +99,7 @@ from networkx.algorithms.connectivity import minimum_node_cut
 from networkx.algorithms.connectivity import node_connectivity
 from networkx.algorithms.connectivity import node_disjoint_paths
 from networkx.algorithms.connectivity import stoer_wagner
-from networkx.algorithms.embedding import *
+from networkx.algorithms.embedding.tree_embedding import *
 from networkx.algorithms.flow import capacity_scaling
 from networkx.algorithms.flow import cost_of_flow
 from networkx.algorithms.flow import gomory_hu_tree
