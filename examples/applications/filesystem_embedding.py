@@ -110,7 +110,7 @@ def paths_to_otree(paths, sep='/'):
 
     Example
     -------
-    >>> from networkx.algorithms.embedding.tree_embedding import forest_str
+    >>> from networkx.algorithms.drawing.text import forest_str
     >>> paths = [
     ...     '/etc/ld.so.conf',
     ...     '/usr/bin/python3.6',

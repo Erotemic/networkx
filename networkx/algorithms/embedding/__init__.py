@@ -21,9 +21,6 @@ __submodules__ = [
 from networkx.algorithms.embedding import tree_embedding
 
 from networkx.algorithms.embedding.tree_embedding import (
-    forest_str, invert_dict, maximum_common_ordered_tree_embedding,
-    seq_to_tree, tree_to_seq,)
+    maximum_common_ordered_tree_embedding,)
 
-__all__ = ['forest_str', 'invert_dict',
-           'maximum_common_ordered_tree_embedding', 'seq_to_tree',
-           'tree_embedding', 'tree_to_seq']
+__all__ = ['maximum_common_ordered_tree_embedding', 'tree_embedding']

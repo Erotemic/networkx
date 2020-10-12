@@ -1,6 +1,7 @@
 from networkx.algorithms.embedding.tree_embedding import (
-    maximum_common_ordered_tree_embedding, forest_str)
+    maximum_common_ordered_tree_embedding)
 from networkx.algorithms.string import balanced_sequence
+from networkx.drawing.text import forest_str
 from networkx.generators.random_graphs import random_ordered_tree
 import networkx as nx
 import pytest
