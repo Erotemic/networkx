@@ -39,20 +39,20 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
     >>> graph = nx.balanced_tree(r=2, h=3, create_using=nx.DiGraph)
     >>> print(nx.forest_str(graph))
     ╙── 0
-        ├─➤ 2
-        │   ├─➤ 6
-        │   │   ├─➤ 14
-        │   │   └─➤ 13
-        │   └─➤ 5
-        │       ├─➤ 12
-        │       └─➤ 11
-        └─➤ 1
-            ├─➤ 4
-            │   ├─➤ 10
-            │   └─➤ 9
-            └─➤ 3
-                ├─➤ 8
-                └─➤ 7
+        ├─╼ 2
+        │   ├─╼ 6
+        │   │   ├─╼ 14
+        │   │   └─╼ 13
+        │   └─╼ 5
+        │       ├─╼ 12
+        │       └─╼ 11
+        └─╼ 1
+            ├─╼ 4
+            │   ├─╼ 10
+            │   └─╼ 9
+            └─╼ 3
+                ├─╼ 8
+                └─╼ 7
 
     >>> graph = nx.balanced_tree(r=1, h=2, create_using=nx.Graph)
     >>> print(nx.forest_str(graph))
@@ -115,10 +115,10 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
                 # undirected cases
                 if is_directed:
                     if islast:
-                        this_prefix = indent + "└─➤ "
+                        this_prefix = indent + "└─╼ "
                         next_prefix = indent + "    "
                     else:
-                        this_prefix = indent + "├─➤ "
+                        this_prefix = indent + "├─╼ "
                         next_prefix = indent + "│   "
                 else:
                     if islast:

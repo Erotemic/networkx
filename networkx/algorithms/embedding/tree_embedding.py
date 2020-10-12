@@ -97,29 +97,29 @@ def maximum_common_ordered_tree_embedding(
     >>> tree2 = random_ordered_tree(7, seed=123568587133124688238689717, directed=True)
     >>> print(forest_str(tree1))
     ╙── 1
-        ├─➤ 6
-        │   ├─➤ 4
-        │   └─➤ 3
-        └─➤ 0
-            └─➤ 5
-                └─➤ 2
+        ├─╼ 6
+        │   ├─╼ 4
+        │   └─╼ 3
+        └─╼ 0
+            └─╼ 5
+                └─╼ 2
     >>> print(forest_str(tree2))
     ╙── 4
-        └─➤ 1
-            ├─➤ 2
-            │   ├─➤ 6
-            │   └─➤ 0
-            └─➤ 3
-                └─➤ 5
+        └─╼ 1
+            ├─╼ 2
+            │   ├─╼ 6
+            │   └─╼ 0
+            └─╼ 3
+                └─╼ 5
     >>> embedding1, embedding2 = maximum_common_ordered_tree_embedding(tree1, tree2 )
     >>> print(forest_str(embedding1))
     ╙── 1
-        ├─➤ 6
-        └─➤ 5
+        ├─╼ 6
+        └─╼ 5
     >>> print(forest_str(embedding2))
     ╙── 1
-        ├─➤ 6
-        └─➤ 5
+        ├─╼ 6
+        └─╼ 5
     """
     import networkx as nx
 
@@ -198,8 +198,8 @@ def tree_to_seq(
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
     ╙── 0
-        └─➤ 1
-            └─➤ 2
+        └─╼ 1
+            └─╼ 2
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
     sequence = (1, 2, 3, -3, -2, -1)
@@ -207,12 +207,12 @@ def tree_to_seq(
     >>> tree = nx.balanced_tree(2, 2, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
     ╙── 0
-        ├─➤ 2
-        │   ├─➤ 6
-        │   └─➤ 5
-        └─➤ 1
-            ├─➤ 4
-            └─➤ 3
+        ├─╼ 2
+        │   ├─╼ 6
+        │   └─╼ 5
+        └─╼ 1
+            ├─╼ 4
+            └─╼ 3
     >>> sequence, open_to_close, node_to_open = tree_to_seq(tree, mode='number')
     >>> print('sequence = {!r}'.format(sequence))
     sequence = (1, 2, 3, -3, 4, -4, -2, 5, 6, -6, 7, -7, -5, -1)
@@ -326,14 +326,14 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
     >>> subtree = seq_to_tree(subseq, open_to_close, open_to_node)
     >>> print(forest_str(subtree))
     ╟── {
-    ╎   └─➤ {
+    ╎   └─╼ {
     ╟── [
-    ╎   ├─➤ [
-    ╎   └─➤ [
+    ╎   ├─╼ [
+    ╎   └─╼ [
     ╙── (
-        └─➤ {
-            └─➤ [
-                └─➤ [
+        └─╼ {
+            └─╼ [
+                └─╼ [
     """
     import networkx as nx
 

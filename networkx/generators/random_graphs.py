@@ -1325,10 +1325,10 @@ def random_ordered_tree(n, seed=None, directed=False):
     >>> otree = random_ordered_tree(n=5, seed=3, directed=True)
     >>> print(forest_str(otree))
     ╙── 1
-        ├─➤ 4
-        │   ├─➤ 3
-        │   └─➤ 2
-        └─➤ 0
+        ├─╼ 4
+        │   ├─╼ 3
+        │   └─╼ 2
+        └─╼ 0
     """
     from networkx.utils import create_py_random_state
 
