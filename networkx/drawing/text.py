@@ -69,7 +69,7 @@ def forest_str(graph, use_labels=True, sources=None, write=None):
         _write = write
 
     if len(graph.nodes) == 0:
-        _write("<empty graph>")
+        _write("╙")
     else:
         if not nx.is_forest(graph):
             raise nx.NetworkXNotImplemented("input must be a forest or the empty graph")

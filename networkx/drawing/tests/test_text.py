@@ -56,8 +56,8 @@ def test_directed_tree_str():
 
 
 def test_empty_graph():
-    assert nx.forest_str(nx.DiGraph()) == "<empty graph>"
-    assert nx.forest_str(nx.Graph()) == "<empty graph>"
+    assert nx.forest_str(nx.DiGraph()) == "╙"
+    assert nx.forest_str(nx.Graph()) == "╙"
 
 
 def test_directed_multi_tree_forest():
