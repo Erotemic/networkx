@@ -115,7 +115,7 @@ def paths_to_otree(paths, sep="/"):
 
     Example
     -------
-    >>> from networkx.drawing.text import forest_str
+    >>> from networkx.readwrite.text import forest_str
     >>> paths = [
     ...     '/etc/ld.so.conf',
     ...     '/usr/bin/python3.6',

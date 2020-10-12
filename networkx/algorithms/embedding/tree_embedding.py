@@ -91,7 +91,7 @@ def maximum_common_ordered_tree_embedding(
     Example
     -------
     >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
-    >>> from networkx.drawing.text import forest_str
+    >>> from networkx.readwrite.text import forest_str
     >>> from networkx.generators.random_graphs import random_ordered_tree
     >>> tree1 = random_ordered_tree(7, seed=3257073545741117277206611, directed=True)
     >>> tree2 = random_ordered_tree(7, seed=123568587133124688238689717, directed=True)
@@ -193,7 +193,7 @@ def tree_to_seq(
     Example
     -------
     >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
-    >>> from networkx.drawing.text import forest_str
+    >>> from networkx.readwrite.text import forest_str
     >>> import networkx as nx
     >>> tree = nx.path_graph(3, nx.OrderedDiGraph)
     >>> print(forest_str(tree))
@@ -319,7 +319,7 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
 
     Example
     --------
-    >>> from networkx.drawing.text import forest_str
+    >>> from networkx.readwrite.text import forest_str
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
     >>> open_to_node = None
     >>> subseq = '({[[]]})[[][]]{{}}'
