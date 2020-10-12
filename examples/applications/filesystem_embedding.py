@@ -12,10 +12,14 @@ pytest examples/applications/filesystem_embedding.py -s -v --doctest-modules
 
 # Run benchmark (requires timerit and ubelt module)
 xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
+
+
+TODO:
+    - [ ] Clean this up and make it work as a gallary example
+
 """
 import networkx as nx
 from networkx.algorithms.embedding import maximum_common_ordered_tree_embedding
-import operator
 
 
 def maximum_common_path_embedding(paths1, paths2, sep="/", impl="auto", mode="auto"):
@@ -127,26 +131,26 @@ def paths_to_otree(paths, sep="/"):
     ... ]
     >>> otree = paths_to_otree(paths)
     >>> print(forest_str(otree))
-    └── /
-        ├── usr
-        │   ├── local
-        │   │   ├── lib
-        │   │   │   └── python3.6
-        │   │   │       └── dist-packages
-        │   │   ├── etc
-        │   │   └── bin
-        │   │       └── gnumake.h
-        │   ├── lib
-        │   │   └── python3.6
-        │   │       └── config-3.6m-x86_64-linux-gnu
-        │   │           └── libpython3.6.so
-        │   ├── include
-        │   │   └── python3.6
-        │   │       └── Python.h
-        │   └── bin
-        │       └── python3.6
-        └── etc
-            └── ld.so.conf
+    ╙── /
+        ├─╼ usr
+        │   ├─╼ local
+        │   │   ├─╼ lib
+        │   │   │   └─╼ python3.6
+        │   │   │       └─╼ dist-packages
+        │   │   ├─╼ etc
+        │   │   └─╼ bin
+        │   │       └─╼ gnumake.h
+        │   ├─╼ lib
+        │   │   └─╼ python3.6
+        │   │       └─╼ config-3.6m-x86_64-linux-gnu
+        │   │           └─╼ libpython3.6.so
+        │   ├─╼ include
+        │   │   └─╼ python3.6
+        │   │       └─╼ Python.h
+        │   └─╼ bin
+        │       └─╼ python3.6
+        └─╼ etc
+            └─╼ ld.so.conf
     """
     otree = nx.OrderedDiGraph()
     for path in sorted(paths):
@@ -568,44 +572,6 @@ def bench_maximum_common_path_embedding():
             ub.repr2(runparam_to_time, nl=1, precision=3, align=":")
         )
     )
-
-
-def allsame(iterable, eq=operator.eq):
-    """
-    Determine if all items in a sequence are the same
-
-    Args:
-        iterable (Iterable[A]):
-            items to determine if they are all the same
-
-        eq (Callable[[A, A], bool], default=operator.eq):
-            function used to test for equality
-
-    Returns:
-        bool: True if all items are equal, otherwise False
-
-    Example:
-        >>> allsame([1, 1, 1, 1])
-        True
-        >>> allsame([])
-        True
-        >>> allsame([0, 1])
-        False
-        >>> iterable = iter([0, 1, 1, 1])
-        >>> _ = next(iterable)
-        >>> allsame(iterable)
-        True
-        >>> allsame(range(10))
-        False
-        >>> allsame(range(10), lambda a, b: True)
-        True
-    """
-    iter_ = iter(iterable)
-    try:
-        first = next(iter_)
-    except StopIteration:
-        return True
-    return all(eq(first, item) for item in iter_)
 
 
 # -- tests
