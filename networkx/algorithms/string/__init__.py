@@ -7,7 +7,7 @@ __devnotes__ = """
 
 balanced_sequence.py - core python implementations for the longest common
     balanced sequence subproblem, this is used by
-    :module:`networkx.algorithms.embedding.tree_embedding`.
+    :module:`networkx.algorithms.minors.tree_embedding`.
 
 balanced_sequence_cython.pyx - faster alternative implementations for
     balanced_sequence.py

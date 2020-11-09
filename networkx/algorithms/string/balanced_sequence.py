@@ -1,7 +1,7 @@
 """
 Core python implementations for the longest common balanced sequence
 subproblem, which is used by
-:mod:`networkx.algorithms.embedding.tree_embedding`.
+:mod:`networkx.algorithms.minors.tree_embedding`.
 """
 import operator
 
@@ -62,7 +62,7 @@ def longest_common_balanced_sequence(
 
     See Also
     --------
-    * This function is used to implement :func:`networkx.algorithms.embedding.tree_embedding.maximum_common_ordered_tree_embedding`
+    * This function is used to implement :func:`networkx.algorithms.minors.tree_embedding.maximum_common_ordered_tree_embedding`
 
     Notes
     -----
@@ -966,7 +966,7 @@ def random_balanced_sequence(n, seed=None, item_type="chr", open_to_close=None):
     >>> print("seq = {!r}".format(seq))
     seq = '([[[]{{}}](){{[]}}])'
     """
-    from networkx.algorithms.embedding.tree_embedding import tree_to_seq
+    from networkx.algorithms.minors.tree_embedding import tree_to_seq
     from networkx.generators.random_graphs import random_ordered_tree
     from networkx.utils import create_py_random_state
 

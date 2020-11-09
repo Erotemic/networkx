@@ -1,7 +1,7 @@
 """
-====================
-Filesystem Embedding
-====================
+===================
+Path Correspondence
+===================
 
 This example introduces the "maximum common path embedding" problem.
 
@@ -12,9 +12,9 @@ suffixes, or had intermediate directories removed.
 
 We will solve this problem via a reduction to the "maximum common path
 embedding". We will represent each set of paths as a directed ordered tree and
-find the maximum common embedding between the two trees subject to a custom
-node affinity function. The resulting embedded trees (i.e. minors) can then be
-directly converted back to the optimal set of corresponding paths.
+find the maximum common embedding (i.e. minor) between the two trees subject to
+a custom node affinity function. The resulting embedded trees (i.e. minors) can
+then be directly converted back to the optimal set of corresponding paths.
 
 
 Example 1
@@ -42,7 +42,7 @@ several files exist only one either the first or the second machine.
 ...     '/home/local/acme/wile.coyote/Documents/resume.tex',
 ... ]
 
-A maximum filesystem embedding would locate the correspondence between
+A maximum path embedding would locate the correspondence between
 ``paths1`` and ``paths2`` as follows:
 
 >>> {  # doctest: +SKIP
@@ -163,7 +163,7 @@ common ordered tree embedding" problem.  The basic outline of the algorithm is:
    Thus we define our affinity score between two nodes to be the number of
    contiguous trailing components in common.
 
-3. Use :func:`networkx.algorithms.embedding.tree_embedding.maximum_common_ordered_tree_embedding`
+3. Use :func:`networkx.algorithms.minors.tree_embedding.maximum_common_ordered_tree_embedding`
    to find the maximum subtree embeddings subject to our node affinity
    function.
 
@@ -188,17 +188,17 @@ __devnotes__ = """
 Command Line
 ------------
 # Run tests and doctests
-pytest examples/applications/filesystem_embedding.py -s -v --doctest-modules
+pytest examples/applications/path_correspondence.py -s -v --doctest-modules
 
 # Run benchmark (requires timerit and ubelt module)
-xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
+xdoctest -m examples/applications/path_correspondence.py bench_maximum_common_path_embedding
 
 # Run main function
-python examples/applications/filesystem_embedding.py
+python examples/applications/path_correspondence.py
 """
 import networkx as nx
 import pprint
-from networkx.algorithms.embedding import maximum_common_ordered_tree_embedding
+from networkx.algorithms.minors import maximum_common_ordered_tree_embedding
 
 
 def maximum_common_path_embedding(
@@ -420,7 +420,7 @@ def random_paths(
 
     Examples
     --------
-    >>> from networkx.algorithms.embedding.tree_embedding import tree_to_seq
+    >>> from networkx.algorithms.minors.tree_embedding import tree_to_seq
     >>> paths1, paths2 = random_paths(
     ...     size=3, max_depth=3, common=3,
     ...     prefix_depth1=3, prefix_depth2=3, labels=2 ** 16,
@@ -534,7 +534,7 @@ def bench_maximum_common_path_embedding():
 
     Command Line
     ------------
-    xdoctest -m examples/applications/filesystem_embedding.py bench_maximum_common_path_embedding
+    xdoctest -m examples/applications/path_correspondence.py bench_maximum_common_path_embedding
     """
     import itertools as it
     import ubelt as ub

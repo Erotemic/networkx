@@ -1,4 +1,4 @@
-from networkx.algorithms.embedding.tree_embedding import (
+from networkx.algorithms.minors.tree_embedding import (
     maximum_common_ordered_tree_embedding,
 )
 from networkx.algorithms.string import balanced_sequence
@@ -158,7 +158,7 @@ def _check_contractions(tree1, tree2, embedding1, embedding2):
 
 def test_forest_case():
     import networkx as nx
-    from networkx.algorithms.embedding.tree_embedding import tree_to_seq
+    from networkx.algorithms.minors.tree_embedding import tree_to_seq
     from networkx.readwrite.text import forest_str
 
     # Test forest case

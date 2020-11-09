@@ -89,7 +89,7 @@ def maximum_common_ordered_tree_embedding(
 
     Example
     -------
-    >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.minors.tree_embedding import *  # NOQA
     >>> from networkx.readwrite.text import forest_str
     >>> from networkx.generators.random_graphs import random_ordered_tree
     >>> # Create two random trees
@@ -242,7 +242,7 @@ def tree_to_seq(
 
     Examples
     --------
-    >>> from networkx.algorithms.embedding.tree_embedding import *  # NOQA
+    >>> from networkx.algorithms.minors.tree_embedding import *  # NOQA
     >>> from networkx.readwrite.text import forest_str
     >>> import networkx as nx
     >>> # This function helps us encode this graph as a balance sequence
@@ -425,7 +425,7 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
 
     Example
     --------
-    >>> from networkx.algorithms.embedding.tree_embedding import seq_to_tree
+    >>> from networkx.algorithms.minors.tree_embedding import seq_to_tree
     >>> from networkx.readwrite.text import forest_str
     >>> # For a given balanced sequence
     >>> open_to_close = {'{': '}', '(': ')', '[': ']'}
@@ -477,7 +477,7 @@ def seq_to_tree(subseq, open_to_close, open_to_node):
 if __name__ == "__main__":
     """
     CommandLine:
-        xdoctest -m networkx.algorithms.embedding.tree_embedding all
+        xdoctest -m networkx.algorithms.minors.tree_embedding all
     """
     import xdoctest
 

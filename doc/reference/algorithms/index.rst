@@ -29,7 +29,6 @@ Algorithms
    covering
    cycles
    cuts
-   embedding
    string
    d_separation
    dag
